@@ -1,1 +1,3 @@
-kavik.cz
+# kavik.cz
+
+Fork it, use it!
