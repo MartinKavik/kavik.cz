@@ -1,6 +1,7 @@
 use crate::generated::css_classes::C;
 use seed::prelude::*;
 use seed::*;
+use crate::page;
 
 // ------ ------
 //     Model
@@ -19,6 +20,11 @@ impl Default for Model {
 // ------ ------
 
 pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
+    document()
+        .get_element_by_id("loading-page")
+        .expect("cannot delete element with id 'loading-page'")
+        .remove();
+
     Model::default()
 }
 
@@ -40,24 +46,6 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
 // ------ ------
 
 pub fn view(model: &Model) -> impl View<Msg> {
-    vec![
-        h1![
-            style! {
-                "margin" => "21px",
-            },
-            class! [
-                C.font_sans
-            ],
-            "Martin Kavík"
-        ],
-        h2![
-            style! {
-                "margin" => "21px",
-            },
-            class! [
-                C.font_sans
-            ],
-            "martin@kavik.cz"
-        ]
-    ]
+    page::home::view()
+//    page::about::view()
 }
