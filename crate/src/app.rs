@@ -20,6 +20,10 @@ impl Default for Model {
 // ------ ------
 
 pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
+    body()
+        .set_attribute("class", &format!("{} {}", C.font_body, C.text_18))
+        .expect("cannot set body's class");
+
     document()
         .get_element_by_id("loading-page")
         .expect("cannot delete element with id 'loading-page'")
