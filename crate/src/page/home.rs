@@ -21,9 +21,11 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         // Main section
         section![
             div![
+                class![
+                    C.font_display,
+                ],
                 h1![
                     class![
-                        C.font_display,
                         C.text_31
                     ],
                     span![
