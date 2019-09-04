@@ -1,5 +1,11 @@
 @tailwind base;
 
+@import "fonts.css";
+
 @tailwind components;
 
 @tailwind utilities;
+
+
+
+

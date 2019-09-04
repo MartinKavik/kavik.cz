@@ -22,10 +22,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         section![
             div![
                 h1![
+                    class![
+                        C.font_display
+                    ],
                     span![
                         "Martin "
                     ],
                     span![
+                        class![
+                            C.font_bold
+                        ],
                         "Kavík"
                     ],
                 ],
@@ -34,6 +40,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ]
             ],
             ul![
+                class![
+                    C.font_display
+                ],
                 li![
                     "To work on your project"
                 ],
@@ -46,6 +55,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 li![
                     "Receiving mails. ",
                     span![
+                        class![
+                            C.font_semibold
+                        ],
                         "martin@kavik.cz"
                     ]
                 ],
@@ -54,21 +66,39 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         // Seed section
         section![
             h2![
+                class![
+                    C.font_display,
+                    C.font_thin
+                ],
                 "TOP-5 GITHUB PROJECTS"
             ],
             div![
                 div![
+                    class![
+                        C.font_display,
+                        C.italic
+                    ],
                     "Awesome, awesome framework!"
                 ],
                 div![
+                    class![
+                        C.font_display,
+                    ],
                     "- rebo"
                 ]
             ],
             div![
                 div![
+                    class![
+                        C.font_display,
+                        C.italic
+                    ],
                     "Seed rocks, and Martin makes it better."
                 ],
                 div![
+                    class![
+                        C.font_display,
+                    ],
                     "- robwebbjr"
                 ]
             ],
@@ -78,6 +108,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ul![
                 li![
                     h3![
+                        class![
+                            C.font_bold,
+                        ],
                         "Seed"
                     ],
                     " is an open-source Rust framework for creating fast and reliable web apps running in WebAssembly."
@@ -90,6 +123,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ],
             ],
             div![
+                class![
+                    C.font_display,
+                ],
                 span![
                     "David-OConnor/"
                 ],
@@ -102,9 +138,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         section![
             div![
                 div![
+                    class![
+                        C.font_display,
+                        C.italic
+                    ],
                     "Your real world example really  is the mother of all examples."
                 ],
                 div![
+                    class![
+                        C.font_display,
+                    ],
                     "- theduke"
                 ]
             ],
@@ -114,12 +157,18 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ul![
                 li![
                     h3![
+                        class![
+                            C.font_bold,
+                        ],
                         "RealWorld example"
                     ],
                     " is a Seed codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the RealWorld spec and API."
                 ],
             ],
             div![
+                class![
+                    C.font_display,
+                ],
                 span![
                     "MartinKavik/"
                 ],
@@ -132,9 +181,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         section![
             div![
                 div![
+                    class![
+                        C.font_display,
+                        C.italic
+                    ],
                     "Fork it, use it!"
                 ],
                 div![
+                    class![
+                        C.font_display,
+                    ],
                     "- me"
                 ]
             ],
@@ -144,6 +200,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ul![
                 li![
                     h3![
+                        class![
+                            C.font_bold,
+                        ],
                         "kavik.cz"
                     ],
                     " is this website."
@@ -153,6 +212,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ],
             ],
             div![
+                class![
+                    C.font_display,
+                ],
                 span![
                     "MartinKavik/"
                 ],
@@ -165,9 +227,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         section![
             div![
                 div![
+                    class![
+                        C.font_display,
+                        C.italic
+                    ],
                     "Its great!"
                 ],
                 div![
+                    class![
+                        C.font_display,
+                    ],
                     "- rebo"
                 ]
             ],
@@ -177,12 +246,18 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ul![
                 li![
                     h3![
+                        class![
+                            C.font_bold,
+                        ],
                         "Seed Quickstart"
                     ],
                     " is a template for web apps with Seed, TailwindCSS, Typescript and Webpack."
                 ],
             ],
             div![
+                class![
+                    C.font_display,
+                ],
                 span![
                     "MartinKavik/"
                 ],
@@ -199,6 +274,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ul![
                 li![
                     h3![
+                        class![
+                            C.font_bold,
+                        ],
                         "Hellweb"
                     ],
                     " will be a collection of Rust libraries and applications which solve your pain points and explore new ideas."
@@ -206,6 +284,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 li![
                     "What do you hate or what annoys you about ",
                     span![
+                        class![
+                            C.font_bold,
+                        ],
                         "web design & development"
                     ],
                     " ? Don't hesitate to create an issue or contact me - ",
@@ -233,30 +314,6 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ]
         ]
     ]
-
-//    vec![
-//        h1![
-//           "Home"
-//        ],
-//        h1![
-//            style! {
-//                "margin" => "21px",
-//            },
-//            class! [
-//                C.font_sans
-//            ],
-//            "Martin Kavík"
-//        ],
-//        h2![
-//            style! {
-//                "margin" => "21px",
-//            },
-//            class! [
-//                C.font_sans
-//            ],
-//            "martin@kavik.cz"
-//        ]
-//    ]
 }
 
 pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
@@ -265,10 +322,18 @@ pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
             div![
                 "MK",
                 span![
+                    class![
+                        C.font_display,
+                        C.font_semibold
+                    ],
                     "2019"
                 ]
             ],
             div![
+                class![
+                    C.font_display,
+                    C.font_semibold
+                ],
                 "martin@kavik.cz"
             ],
             div![

@@ -74,7 +74,7 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.(png|jpg|gif)$/,
+          test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
           use: [
             {
               loader: "file-loader",
@@ -95,13 +95,7 @@ module.exports = (env, argv) => {
           test: /\.css$/,
           use: [
             "style-loader",
-            {
-              loader: "css-loader",
-              options: {
-                // https://github.com/webpack-contrib/css-loader/issues/228
-                importLoaders: 1
-              }
-            },
+            "css-loader",
             {
               loader: "postcss-loader",
               options: {
