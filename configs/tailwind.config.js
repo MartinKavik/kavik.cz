@@ -1,3 +1,16 @@
+let generateFontSize = () => {
+    let fontSize = {};
+    let addRange = (start, end, step) => {
+        for (let i = start; i <= end; i += step) {
+            fontSize[i] = i + 'px';
+        }
+    };
+    addRange(15, 35, 1);
+    addRange(40, 60, 5);
+    addRange(70, 120, 10);
+    return fontSize;
+};
+
 module.exports = {
   theme: {
     fontFamily: {
@@ -6,18 +19,7 @@ module.exports = {
         monospace: ['Courier New', 'monospace'],
         ordinary: ['Arial', 'sans-serif']
     },
-    fontSize: {
-        'xs-14': '14px',
-        'xs-15': '15px',
-        'xs-16': '16px',
-        'xs-17': '17px',
-        'xs-18': '18px',
-        'xs-19': '19px',
-        'xs-21': '21px',
-        'xs-31': '31px',
-        'xs-36': '36px',
-        'xs-40': '40px',
-    },
+    fontSize: generateFontSize(),
     extend: {}
   },
   variants: {},

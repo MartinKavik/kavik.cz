@@ -23,7 +23,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             div![
                 h1![
                     class![
-                        C.font_display
+                        C.font_display,
+                        C.text_31
                     ],
                     span![
                         "Martin "
@@ -36,12 +37,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ],
                 ],
                 span![
+                    class![
+                        C.text_21
+                    ],
                     " is  a developer  with 7+ years of experience  who likes to design and ..."
                 ]
             ],
             ul![
                 class![
-                    C.font_display
+                    C.font_display,
+                    C.text_17
                 ],
                 li![
                     "To work on your project"
@@ -68,7 +73,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             h2![
                 class![
                     C.font_display,
-                    C.font_thin
+                    C.font_thin,
+                    C.text_23,
                 ],
                 "TOP-5 GITHUB PROJECTS"
             ],
@@ -76,13 +82,15 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 div![
                     class![
                         C.font_display,
-                        C.italic
+                        C.italic,
+                        C.text_16
                     ],
                     "Awesome, awesome framework!"
                 ],
                 div![
                     class![
                         C.font_display,
+                        C.text_15
                     ],
                     "- rebo"
                 ]
@@ -91,13 +99,15 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 div![
                     class![
                         C.font_display,
-                        C.italic
+                        C.italic,
+                        C.text_16
                     ],
                     "Seed rocks, and Martin makes it better."
                 ],
                 div![
                     class![
                         C.font_display,
+                        C.text_15
                     ],
                     "- robwebbjr"
                 ]
@@ -147,6 +157,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 div![
                     class![
                         C.font_display,
+                        C.text_15
                     ],
                     "- theduke"
                 ]
@@ -190,6 +201,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 div![
                     class![
                         C.font_display,
+                        C.text_15
                     ],
                     "- me"
                 ]
@@ -236,6 +248,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 div![
                     class![
                         C.font_display,
+                        C.text_15
                     ],
                     "- rebo"
                 ]
@@ -257,6 +270,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             div![
                 class![
                     C.font_display,
+                    C.text_15
                 ],
                 span![
                     "MartinKavik/"
@@ -304,6 +318,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ]
             ],
             div![
+                class![
+                    C.text_19
+                ],
                 span![
                     "About"
                 ],
@@ -324,7 +341,8 @@ pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
                 span![
                     class![
                         C.font_display,
-                        C.font_semibold
+                        C.font_semibold,
+                        C.text_15
                     ],
                     "2019"
                 ]
@@ -332,7 +350,8 @@ pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
             div![
                 class![
                     C.font_display,
-                    C.font_semibold
+                    C.font_semibold,
+                    C.text_16
                 ],
                 "martin@kavik.cz"
             ],
