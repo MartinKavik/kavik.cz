@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn generate:css_classes && webpack-dev-server --config configs/webpack.config.js -d",
+    "start:release": "yarn generate:css_classes && webpack-dev-server --config configs/webpack.config.js --mode=production",
     "build": "yarn generate:css_classes && webpack --config configs/webpack.config --mode=development",
     "build:release": "yarn generate:css_classes && webpack --config configs/webpack.config --mode=production && yarn optimize_wasm",
     "test": "yarn test:node",

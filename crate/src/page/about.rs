@@ -12,6 +12,10 @@ pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
 
 pub fn view_header<Ms: 'static>() -> impl View<Ms> {
     header![
+        class![
+            C.text_27,
+            C.text_gray_10
+        ],
         "MK"
     ]
 }
@@ -30,11 +34,15 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 class![
                     C.font_monospace,
                     C.font_bold,
-                    C.text_40
+                    C.text_40,
+                    C.text_blue_10
                 ],
                 "I, developer"
             ],
             ul![
+                class![
+                    C.text_gray_8
+                ],
                 li![
                     "I was working as a ",
                     span![
@@ -94,15 +102,22 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         ],
         // Designer section
         section![
+            class![
+                C.bg_blue_10
+            ],
             h2![
                 class![
                     C.font_display,
                     C.font_bold,
-                    C.text_40
+                    C.text_40,
+                    C.text_yellow_4
                 ],
                 "I, designer"
             ],
             ul![
+                class![
+                    C.text_blue_1
+                ],
                 li![
                     "I've designed logos, my resume and this website in ",
                     span![
@@ -162,24 +177,35 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         ],
         // Human section
         section![
+            class![
+                C.bg_blue_6
+            ],
             h2![
                 class![
                     C.font_ordinary,
                     C.font_bold,
-                    C.text_40
+                    C.text_40,
+                    C.text_blue_2
                 ],
                 "I, human"
             ],
             div![
+                class![
+                    C.bg_blue_10
+                ],
                 h3![
                     class![
                         C.font_display,
                         C.font_thin,
-                        C.text_35
+                        C.text_35,
+                        C.text_blue_3
                     ],
                     "Personal life"
                 ],
                 ul![
+                    class![
+                        C.text_blue_1
+                    ],
                     li![
                         "I'm INTJ. When I'm not ",
                         span![
@@ -196,15 +222,22 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ]
             ],
             div![
+                class![
+                    C.bg_blue_10
+                ],
                 h3![
                     class![
                         C.font_display,
                         C.font_thin,
-                        C.text_35
+                        C.text_35,
+                        C.text_blue_3
                     ],
                     "Work life"
                 ],
                 ul![
+                    class![
+                        C.text_blue_1
+                    ],
                     li![
                         "I'm ",
                         span![
@@ -248,11 +281,15 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 class![
                     C.font_display,
                     C.font_semibold,
-                    C.text_40
+                    C.text_40,
+                    C.text_gray_5
                 ],
                 "Did you know"
             ],
             ul![
+                class![
+                    C.text_gray_8
+                ],
                 li![
                     "I programmed a real football cannon."
                 ],
@@ -263,7 +300,13 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         ],
         // Want to meet section
         section![
+            class![
+                C.bg_blue_10
+            ],
             ul![
+                class![
+                    C.text_blue_1
+                ],
                 li![
                     "Want to meet somewhere in ",
                     span![
@@ -283,7 +326,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         section![
             div![
                 class![
-                    C.text_19
+                    C.text_19,
+                    C.text_gray_10
                 ],
                 "Download my ",
                 span![
@@ -294,9 +338,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ],
                 span![
                     class![
-                        C.font_semibold
+                        C.font_semibold,
+                        C.text_gray_5
                     ],
                     ".pdf"
+                ],
+                div![
+                    class![
+                        C.text_yellow_6
+                    ],
+                    "V"
                 ]
             ]
         ],
@@ -307,12 +358,18 @@ pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
     footer![
         div![
             div![
-                "MK",
+                span![
+                    class![
+                        C.text_gray_10
+                    ],
+                    "MK"
+                ],
                 span![
                     class![
                         C.font_display,
                         C.font_semibold,
-                        C.text_15
+                        C.text_15,
+                        C.text_yellow_6
                     ],
                     "2019"
                 ]
@@ -321,11 +378,15 @@ pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
                 class![
                     C.font_display,
                     C.font_semibold,
-                    C.text_16
+                    C.text_16,
+                    C.text_gray_10
                 ],
                 "martin@kavik.cz"
             ],
             div![
+                class![
+                    C.text_yellow_6
+                ],
                 "^"
             ]
         ]
