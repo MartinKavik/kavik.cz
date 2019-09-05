@@ -165,13 +165,13 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     class![
                         C.text_blue_4
                     ],
-                    "David-OConnor/"
+                    "MartinKavik/"
                 ],
                 span![
                     class![
                         C.text_blue_2
                     ],
-                    "seed"
+                    "awesome-seed-rs"
                 ]
             ]
         ],
