@@ -12,6 +12,10 @@ pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
 
 pub fn view_header<Ms: 'static>() -> impl View<Ms> {
     header![
+        class![
+            C.text_27,
+            C.text_gray_10
+        ],
         "MK"
     ]
 }
@@ -26,7 +30,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ],
                 h1![
                     class![
-                        C.text_31
+                        C.text_31,
+                        C.text_gray_10
                     ],
                     span![
                         "Martin "
@@ -40,7 +45,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ],
                 span![
                     class![
-                        C.text_21
+                        C.text_21,
+                        C.text_gray_7
                     ],
                     " is  a developer  with 7+ years of experience  who likes to design and ..."
                 ]
@@ -48,7 +54,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ul![
                 class![
                     C.font_display,
-                    C.text_17
+                    C.text_17,
+                    C.text_gray_8
                 ],
                 li![
                     "To work on your project"
@@ -72,11 +79,15 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         ],
         // Seed section
         section![
+            class![
+                C.bg_blue_6
+            ],
             h2![
                 class![
                     C.font_display,
                     C.font_thin,
                     C.text_23,
+                    C.text_blue_3
                 ],
                 "TOP-5 GITHUB PROJECTS"
             ],
@@ -85,14 +96,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     class![
                         C.font_display,
                         C.italic,
-                        C.text_16
+                        C.text_16,
+                        C.text_yellow_4
                     ],
                     "Awesome, awesome framework!"
                 ],
                 div![
                     class![
                         C.font_display,
-                        C.text_15
+                        C.text_15,
+                        C.text_blue_3
                     ],
                     "- rebo"
                 ]
@@ -102,22 +115,32 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     class![
                         C.font_display,
                         C.italic,
-                        C.text_16
+                        C.text_16,
+                        C.text_yellow_4
                     ],
                     "Seed rocks, and Martin makes it better."
                 ],
                 div![
                     class![
                         C.font_display,
-                        C.text_15
+                        C.text_15,
+                        C.text_blue_3
                     ],
                     "- robwebbjr"
                 ]
             ],
             div![
+                class![
+                    C.font_display,
+                    C.text_70,
+                    C.font_semibold
+                ],
                 "Seed"
             ],
             ul![
+                class![
+                    C.text_blue_1
+                ],
                 li![
                     h3![
                         class![
@@ -139,35 +162,54 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.font_display,
                 ],
                 span![
+                    class![
+                        C.text_blue_4
+                    ],
                     "David-OConnor/"
                 ],
                 span![
+                    class![
+                        C.text_blue_2
+                    ],
                     "seed"
                 ]
             ]
         ],
         // RealWorld section
         section![
+            class![
+                C.bg_blue_10
+            ],
             div![
                 div![
                     class![
                         C.font_display,
-                        C.italic
+                        C.italic,
+                        C.text_yellow_4
                     ],
                     "Your real world example really  is the mother of all examples."
                 ],
                 div![
                     class![
                         C.font_display,
-                        C.text_15
+                        C.text_15,
+                        C.text_blue_3
                     ],
                     "- theduke"
                 ]
             ],
             div![
+                class![
+                    C.font_display,
+                    C.text_20,
+                    C.font_bold
+                ],
                 "RealWorld example app"
             ],
             ul![
+                class![
+                    C.text_blue_1
+                ],
                 li![
                     h3![
                         class![
@@ -183,35 +225,54 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.font_display,
                 ],
                 span![
+                    class![
+                        C.text_blue_4
+                    ],
                     "MartinKavik/"
                 ],
                 span![
+                    class![
+                        C.text_blue_2
+                    ],
                     "seed-rs-realworld"
                 ]
             ]
         ],
         // Kavik.cz section
         section![
+            class![
+                C.bg_blue_6
+            ],
             div![
                 div![
                     class![
                         C.font_display,
-                        C.italic
+                        C.italic,
+                        C.text_yellow_4
                     ],
                     "Fork it, use it!"
                 ],
                 div![
                     class![
                         C.font_display,
-                        C.text_15
+                        C.text_15,
+                        C.text_blue_3
                     ],
                     "- me"
                 ]
             ],
             div![
+                class![
+                    C.font_display,
+                    C.text_80,
+                    C.font_bold
+                ],
                 "MK"
             ],
             ul![
+                class![
+                    C.text_blue_1
+                ],
                 li![
                     h3![
                         class![
@@ -230,35 +291,54 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.font_display,
                 ],
                 span![
+                    class![
+                        C.text_blue_4
+                    ],
                     "MartinKavik/"
                 ],
                 span![
+                    class![
+                        C.text_blue_2
+                    ],
                     "kavik.cz"
                 ]
             ]
         ],
         // Seed Quickstart section
         section![
+            class![
+                C.bg_blue_10
+            ],
             div![
                 div![
                     class![
                         C.font_display,
-                        C.italic
+                        C.italic,
+                        C.text_yellow_4
                     ],
                     "Its great!"
                 ],
                 div![
                     class![
                         C.font_display,
-                        C.text_15
+                        C.text_15,
+                        C.text_blue_3
                     ],
                     "- rebo"
                 ]
             ],
             div![
+                class![
+                    C.font_display,
+                    C.font_bold,
+                    C.text_34
+                ],
                 "Seed Quickstart"
             ],
             ul![
+                class![
+                    C.text_blue_1
+                ],
                 li![
                     h3![
                         class![
@@ -275,9 +355,15 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.text_15
                 ],
                 span![
+                    class![
+                        C.text_blue_4
+                    ],
                     "MartinKavik/"
                 ],
                 span![
+                    class![
+                        C.text_blue_2
+                    ],
                     "seed-quickstart-webpack"
                 ]
             ]
@@ -285,9 +371,18 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         // Hellweb section
         section![
             div![
+                class![
+                    C.font_display,
+                    C.font_bold,
+                    C.text_45,
+                    C.text_yellow_10
+                ],
                 "Hellweb"
             ],
             ul![
+                class![
+                    C.text_gray_10
+                ],
                 li![
                     h3![
                         class![
@@ -313,21 +408,31 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ],
             div![
                 span![
+                    class![
+                        C.text_gray_5
+                    ],
                     "MartinKavik/"
                 ],
                 span![
+                    class![
+                        C.text_gray_9
+                    ],
                     "hellweb-pain"
                 ]
             ],
             div![
                 class![
-                    C.text_19
+                    C.text_19,
+                    C.text_gray_10
                 ],
                 span![
                     "About"
                 ],
                 " your new developer",
                 div![
+                    class![
+                        C.text_yellow_6
+                    ],
                     ">"
                 ]
             ]
@@ -339,12 +444,18 @@ pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
     footer![
         div![
             div![
-                "MK",
+                span![
+                    class![
+                        C.text_gray_10
+                    ],
+                    "MK"
+                ],
                 span![
                     class![
                         C.font_display,
                         C.font_semibold,
-                        C.text_15
+                        C.text_15,
+                        C.text_yellow_6
                     ],
                     "2019"
                 ]
@@ -353,11 +464,15 @@ pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
                 class![
                     C.font_display,
                     C.font_semibold,
-                    C.text_16
+                    C.text_16,
+                    C.text_gray_10
                 ],
                 "martin@kavik.cz"
             ],
             div![
+                class![
+                    C.text_yellow_6
+                ],
                 "^"
             ]
         ]
