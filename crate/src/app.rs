@@ -46,7 +46,7 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
 
 pub fn view(model: &Model) -> impl View<Msg> {
     page::home::view()
-    //    page::about::view()
-    //    page::not_found::view()
+//        page::about::view()
+//        page::not_found::view()
     //    empty![]
 }

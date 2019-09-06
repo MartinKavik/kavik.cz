@@ -89,7 +89,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     span![
                         "packtpub.com"
                     ],
-                    ".  And I recommend to read book ",
+                    ". And I recommend to read book ",
                     span![
                         "Domain Modeling Made Functional"
                     ],
@@ -263,7 +263,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         " people (not only on GitHub) and to mentor juniors."
                     ],
                     li![
-                        "I'd rather think about your project for free in a gym than sit and wait for ideas. I also recommend to read ",
+                        "I'd rather think about your project for free in a gym than sit and wait for ideas. I also recommend to read ",
                         span![
                             "You don’t need standup"
                         ],
@@ -291,7 +291,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     "I programmed a real football cannon."
                 ],
                 li![
-                    "I jumped off a plane and a bridge."
+                    "I jumped off a planeand a bridge."
                 ],
             ]
         ],
@@ -312,7 +312,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         ],
                         "Prague"
                     ],
-                    "?  Is there good coffee, tea, sushi or some spicy food? Ok! ",
+                    "? Is there good coffee, tea, sushi or some spicy food? Ok! ",
                     span![
                         "martin@kavik.cz"
                     ]

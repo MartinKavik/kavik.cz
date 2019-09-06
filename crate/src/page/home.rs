@@ -45,7 +45,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.text_21,
                         C.text_gray_7
                     ],
-                    " is  a developer  with 7+ years of experience  who likes to design and ..."
+                    " is a developer with 7+ years of experience who likes to design and ..."
                 ]
             ],
             ul![
@@ -184,7 +184,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.italic,
                         C.text_yellow_4
                     ],
-                    "Your real world example really  is the mother of all examples."
+                    "Your real world example really is the mother of all examples."
                 ],
                 div![
                     class![
@@ -397,7 +397,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         ],
                         "web design & development"
                     ],
-                    " ? Don't hesitate to create an issue or contact me - ",
+                    "? Don't hesitate to create an issue or contact me - ",
                     span![
                         "martin@kavik.cz"
                     ]
