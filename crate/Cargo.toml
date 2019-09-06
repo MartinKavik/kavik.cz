@@ -39,7 +39,8 @@ features = [
   "HtmlElement",
   "Node",
   "Window",
-  "CustomEvent"
+  "CustomEvent",
+  "DomTokenList"
 ]
 
 [features]

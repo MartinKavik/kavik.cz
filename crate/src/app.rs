@@ -20,9 +20,13 @@ impl Default for Model {
 // ------ ------
 
 pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
+    body()
+        .class_list()
+        .add_1("fade-in");
+
     document()
         .get_element_by_id("loading-page")
-        .expect("cannot delete element with id 'loading-page'")
+        .expect("cannot find element with id `loading-page`")
         .remove();
 
     Model::default()

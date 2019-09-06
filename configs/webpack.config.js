@@ -6,6 +6,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const Critters = require('critters-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env, argv) => {
   return {
@@ -36,10 +38,15 @@ module.exports = (env, argv) => {
       new WebpackBar(),
       // clean dist folder before compilation
       new CleanWebpackPlugin(),
+      // extract CSS styles into a file
+      new MiniCssExtractPlugin(),
       // add scripts, css, ... to html template
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "../entries/index.html"),
-        hash: true
+        template: path.resolve(__dirname, "../entries/index.html")
+      }),
+      // inline the critical part of styles, preload remainder
+      new Critters({
+        logLevel: "warn"
       }),
       // compile Rust
       new WasmPackPlugin({
@@ -94,7 +101,7 @@ module.exports = (env, argv) => {
         {
           test: /\.css$/,
           use: [
-            "style-loader",
+            MiniCssExtractPlugin.loader,
             "css-loader",
             {
               loader: "postcss-loader",
