@@ -8,14 +8,14 @@ module.exports = {
     escapeClassName: escapeClassName,
 
     /**
-     * Search in Rust files and index.html for CSS classes
+     * Search in Rust and Handlebars files for CSS classes
      *
      * @returns Set of class names
      */
     getUsedCssClasses: function() {
         return new Set([
             ...getUsedCssClassesInRust(),
-            ...getUsedCssClassesInIndex()
+            ...getUsedCssClassesInHandlebars()
         ])
     }
 }
@@ -100,28 +100,33 @@ function getUsedCssClassesInRust() {
 }
 
 /**
- * Search in index.html for CSS classes
+ * Search in Handlebar templates for CSS classes
  *
  * @returns usedCssClasses Set of class names
  */
-function getUsedCssClassesInIndex() {
+function getUsedCssClassesInHandlebars() {
     const usedCssClasses = new Set;
-    const fileContent = fs.readFileSync('./entries/index.html', 'utf8')
-    // example of a used class in HTML code is `class="mb-16 text-blue-1"` or `class='font-bold'`
-    // Note: We cannot use capturing group because of `/g` (and stateful regexes are ugly)
-    const classAttribute = fileContent.match(/class\s*=\s*['|"][^'|"]+['|"]/g) || []
-    classAttribute
-        // extract classes from from attribute (i.e. class="one two" => "one two"
-        .map(classAttribute => classAttribute.match(/class\s*=\s*['|"]([^'|"]+)['|"]/)[1])
-        .forEach(content => {
-            // split classes
-            const classes = content.match(/\S+/g) || []
-                classes
-                    // transform classes to Rust form
-                    .map(escapeClassName)
-                    // add class to set
-                    .forEach(class_ => usedCssClasses.add(class_))
-        })
+    // search in Handlebars templates
+    const files = findFiles.fileSync(/\.hbs$/, './entries');
+    files.forEach(filePath => {
+        const fileContent = fs.readFileSync(filePath, 'utf8')
+        // example of a used class in HTML code is `class="mb-16 text-blue-1"` or `class='font-bold'`
+        // Note: We cannot use capturing group because of `/g`
+        const classAttribute = fileContent.match(/class\s*=\s*['|"][^'|"]+['|"]/g) || []
+        classAttribute
+            // extract classes from from attribute (i.e. class="one two" => "one two"
+            .map(classAttribute => classAttribute.match(/class\s*=\s*['|"]([^'|"]+)['|"]/)[1])
+            .forEach(content => {
+                // split classes
+                const classes = content.match(/\S+/g) || []
+                    classes
+                        // transform classes to Rust form
+                        .map(escapeClassName)
+                        // add class to set
+                        .forEach(class_ => usedCssClasses.add(class_))
+            })
+    })
+
     return usedCssClasses
 }
 

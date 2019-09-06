@@ -40,7 +40,7 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin(),
       // add scripts, css, ... to html template
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "../entries/index.html")
+        template: path.resolve(__dirname, "../entries/index.hbs")
       }),
       // inline the critical part of styles, preload remainder
       new Critters({
@@ -78,6 +78,17 @@ module.exports = (env, argv) => {
     },
     module: {
       rules: [
+        {
+          test: /\.hbs$/,
+          use: [
+            {
+              loader: "handlebars-loader",
+              options: {
+                rootRelative: './templates/'
+              }
+            }
+          ]
+        },
         {
           test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
           use: [
