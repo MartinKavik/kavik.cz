@@ -7,17 +7,14 @@ pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
         view_header().els(),
         view_content().els(),
         view_footer().els(),
-    ].into_iter().flatten().collect()
+    ]
+    .into_iter()
+    .flatten()
+    .collect()
 }
 
 pub fn view_header<Ms: 'static>() -> impl View<Ms> {
-    header![
-        class![
-            C.text_27,
-            C.text_gray_10
-        ],
-        "MK"
-    ]
+    header![class![C.text_27, C.text_gray_10], "MK"]
 }
 
 pub fn view_content<Ms: 'static>() -> impl View<Ms> {
@@ -441,41 +438,18 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
 }
 
 pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
-    footer![
+    footer![div![
         div![
-            div![
-                span![
-                    class![
-                        C.text_gray_10
-                    ],
-                    "MK"
-                ],
-                span![
-                    class![
-                        C.font_display,
-                        C.font_semibold,
-                        C.text_15,
-                        C.text_yellow_6
-                    ],
-                    "2019"
-                ]
-            ],
-            div![
-                class![
-                    C.font_display,
-                    C.font_semibold,
-                    C.text_16,
-                    C.text_gray_10
-                ],
-                "martin@kavik.cz"
-            ],
-            div![
-                class![
-                    C.text_yellow_6
-                ],
-                "^"
+            span![class![C.text_gray_10], "MK"],
+            span![
+                class![C.font_display, C.font_semibold, C.text_15, C.text_yellow_6],
+                "2019"
             ]
-        ]
-    ]
+        ],
+        div![
+            class![C.font_display, C.font_semibold, C.text_16, C.text_gray_10],
+            "martin@kavik.cz"
+        ],
+        div![class![C.text_yellow_6], "^"]
+    ]]
 }
-

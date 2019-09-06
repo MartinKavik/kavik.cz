@@ -9,13 +9,9 @@ use wasm_bindgen::prelude::*;
 pub fn run() -> Result<(), JsValue> {
     set_panic_hook();
 
-    seed::App::build(
-        app::init,
-        app::update,
-        app::view,
-    )
-    .finish()
-    .run();
+    seed::App::build(app::init, app::update, app::view)
+        .finish()
+        .run();
 
     Ok(())
 }

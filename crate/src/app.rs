@@ -1,7 +1,7 @@
 use crate::generated::css_classes::C;
+use crate::page;
 use seed::prelude::*;
 use seed::*;
-use crate::page;
 
 // ------ ------
 //     Model
@@ -20,9 +20,7 @@ impl Default for Model {
 // ------ ------
 
 pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
-    body()
-        .class_list()
-        .add_1("fade-in");
+    body().class_list().add_1("fade-in");
 
     document()
         .get_element_by_id("loading-page")
@@ -36,13 +34,10 @@ pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
 //    Update
 // ------ ------
 
-pub enum Msg {
-
-}
+pub enum Msg {}
 
 pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
-    match msg {
-    }
+    match msg {}
 }
 
 // ------ ------
@@ -51,7 +46,7 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
 
 pub fn view(model: &Model) -> impl View<Msg> {
     page::home::view()
-//    page::about::view()
-//    page::not_found::view()
-//    empty![]
+    //    page::about::view()
+    //    page::not_found::view()
+    //    empty![]
 }
