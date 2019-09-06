@@ -20,8 +20,6 @@ impl Default for Model {
 // ------ ------
 
 pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
-    body().class_list().add_1("fade-in");
-
     document()
         .get_element_by_id("loading-page")
         .expect("cannot find element with id `loading-page`")
@@ -45,8 +43,13 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
 // ------ ------
 
 pub fn view(model: &Model) -> impl View<Msg> {
-    page::home::view()
-//        page::about::view()
-//        page::not_found::view()
-    //    empty![]
+    div![
+        class![
+            C.fade_in
+        ],
+        page::home::view()
+//            page::about::view()
+//            page::not_found::view()
+        //    empty![]
+    ]
 }

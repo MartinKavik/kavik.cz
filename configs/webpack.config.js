@@ -21,13 +21,11 @@ module.exports = (env, argv) => {
     },
     devServer: {
       contentBase: dist,
-      hot: true,
       // you can connect to dev server from devices in your network (e.g. 192.168.0.3:3000)
       host: "0.0.0.0",
       port: 8000,
       noInfo: true,
       stats: "errors-only",
-      // Note: it doesn't work for Rust files (probably because Rust isn't compiled by loader but plugin)
       overlay: {
         warnings: true,
         errors: true

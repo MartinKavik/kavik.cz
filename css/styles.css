@@ -1,12 +1,16 @@
-@tailwind base;
+@import "tailwindcss/base";
 
 @import "fonts.css";
 
-@tailwind components;
-
-@tailwind utilities;
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @import "custom.css"
+
+
+
+
+
 
 
 
