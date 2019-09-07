@@ -67,7 +67,7 @@ module.exports = (env, argv) => {
           from: "static",
           to: "static"
         }
-      ])
+      ]),
     ],
     // webpack try to guess how to resolve imports in this order:
     resolve: {
