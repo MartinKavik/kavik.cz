@@ -82,11 +82,21 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             h2![
                 class![
                     C.font_display,
-                    C.font_thin,
                     C.text_23,
                     C.text_blue_3
                 ],
-                "TOP-5 GITHUB PROJECTS"
+                span![
+                    class![
+                        C.font_thin
+                    ],
+                    "TOP-5"
+                ],
+                span![
+                    class![
+                        C.font_normal
+                    ],
+                    " GITHUB PROJECTS"
+                ]
             ],
             div![
                 div![
