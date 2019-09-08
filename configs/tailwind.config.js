@@ -69,9 +69,30 @@ module.exports = {
             10: 'hsl(15, 86%, 30%)',
         },
     },
+    opacity: (() => {
+        return Object.fromEntries([
+            ...range(0, 100, 10),
+        ].map(i => [i, i / 100]))
+    })(),
     extend: {
         margin: {
-            '-10vh': '-10vh'
+            '-10vh': '-10vh',
+            '-260px': '-260px',
+        },
+        inset: {
+          'full': '100%',
+        },
+        width: {
+          'xs': '20rem',
+          'md': '28rem'
+        },
+        height: {
+          '300px': '300px',
+          '320px': '320px',
+          '690px': '690px',
+        },
+        borderRadius: {
+          '140px': '140px'
         }
     }
   },

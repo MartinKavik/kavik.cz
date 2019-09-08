@@ -45,7 +45,7 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
 pub fn view(model: &Model) -> impl View<Msg> {
     div![
         class![
-            C.fade_in
+            C.fade_in,
         ],
         page::home::view()
 //            page::about::view()

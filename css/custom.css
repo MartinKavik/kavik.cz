@@ -1,3 +1,14 @@
+
+
+.blur {
+  filter: blur(7px);
+}
+
+
+/* ====== ====== ANIMATIONS ====== ====== */
+
+
+
 .fade-in {
 	animation: fade-in 500ms linear 200ms both;
 }

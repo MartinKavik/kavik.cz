@@ -4,9 +4,9 @@ use seed::*;
 
 pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
     vec![
-        view_header().els(),
         view_content().els(),
-        view_footer().els(),
+        view_header().els(),
+//        view_footer().els(),
     ]
     .into_iter()
     .flatten()
@@ -14,21 +14,172 @@ pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
 }
 
 pub fn view_header<Ms: 'static>() -> impl View<Ms> {
-    header![class![C.text_27, C.text_gray_10], "MK"]
+    vec![
+        // Header background and line container
+        div![
+            class![
+                C.fixed,
+                C.top_0
+                C.inset_x_0,
+                C.h_16,
+            ],
+            // Header background
+            div![
+                class![
+                    C.absolute,
+                    C.inset_0,
+                    C.bg_gray_1,
+                    C.opacity_90
+                ]
+            ],
+            // Bottom header line
+            div![
+                class![
+                    C.absolute,
+                    C.bottom_0,
+                    C.ml_12,
+                    C.w_3of5,
+                    C.h_px,
+                    C.bg_gray_2,
+                ]
+            ],
+        ],
+        // Photo 1
+        div![
+            class![
+                C.absolute,
+                C.top_0,
+                C.inset_x_0,
+                C.mt_6,
+                C.flex,
+                C.justify_center
+            ],
+            img![
+                class![
+                    C.w_xs,
+                ],
+                attrs!{
+                    At::Src => "/static/images/photo_1.png"
+                }
+            ],
+        ],
+        // Header
+        header![
+            class![
+                C.fixed,
+                C.top_0
+                C.inset_x_0,
+            ],
+            // Header controls container
+            div![
+                class![
+                    C.mx_8
+                    C.h_16
+                    C.flex,
+                    C.justify_between,
+                    C.items_center,
+                ],
+                // Logo
+                img![
+                    class![
+                        C.h_6
+                    ],
+                    attrs!{
+                        At::Src => "/static/images/logo.svg"
+                    }
+                ],
+                // Hamburger
+                img![
+                    class![
+                        C.h_8
+                    ],
+                    attrs!{
+                        At::Src => "/static/images/hamburger.svg"
+                    }
+                ]
+            ],
+            // Top header line
+            div![
+                class![
+                    C.absolute,
+                    C.top_0,
+                    C.ml_12,
+                    C.w_3of5,
+                    C.h_px,
+                    C.bg_gray_2,
+                ]
+            ],
+        ],
+    ]
 }
 
 pub fn view_content<Ms: 'static>() -> impl View<Ms> {
     vec![
         // Photo section
         section![
+            class![
+                C.w_screen,
+                C.h_690px,
+                C.bg_blue_10,
+            ],
+            // Small photo background container
             div![
-                "me"
+                class![
+                    C.absolute,
+                    C.top_0,
+                    C.inset_x_0,
+                    C.flex,
+                    C.justify_center,
+                ],
+                // Small photo background
+                div![
+                    class![
+                        C.w_xs,
+                        C.h_300px,
+                        C.bg_gray_1,
+                    ]
+                ],
+            ],
+            // Large photo background
+            div![
+                class![
+                    C.absolute,
+                    C.top_0,
+                    C.inset_x_0,
+                    C.h_320px,
+                    C.rounded_bl_140px,
+                    C.bg_gray_1,
+                ],
+            ],
+            // Gear
+            img![
+                class![
+                    C.absolute
+                    C.left_full,
+                    C._ml_40,
+                    C._mt_56,
+                    C.w_md,
+                    C.blur,
+                ],
+                attrs!{
+                    At::Src => "/static/images/gear.svg"
+                }
             ],
         ],
         // Developer section
         section![
+            class![
+                C._mt_260px,
+                C.pt_px,
+                C.rounded_tr_140px,
+                C.bg_gray_1,
+            ],
+            // I, developer
             h2![
                 class![
+                    C.mt_32,
+                    C.mb_16,
+                    C.text_center,
                     C.font_monospace,
                     C.font_bold,
                     C.text_40,
