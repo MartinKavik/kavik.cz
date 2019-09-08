@@ -93,7 +93,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ],
                 span![
                     class![
-                        C.font_medium
+                        C.font_normal
                     ],
                     " GITHUB PROJECTS"
                 ]

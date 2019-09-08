@@ -80,22 +80,32 @@ pub fn view_header<Ms: 'static>() -> impl View<Ms> {
                     C.items_center,
                 ],
                 // Logo
-                img![
-                    class![
-                        C.h_6
-                    ],
+                a![
                     attrs!{
-                        At::Src => "/static/images/logo.svg"
-                    }
+                        At::Href => "/"
+                    },
+                    img![
+                        class![
+                            C.h_6
+                        ],
+                        attrs!{
+                            At::Src => "/static/images/logo.svg"
+                        }
+                    ],
                 ],
                 // Hamburger
-                img![
+                div![
                     class![
-                        C.h_8
+                        C.cursor_pointer,
                     ],
-                    attrs!{
-                        At::Src => "/static/images/hamburger.svg"
-                    }
+                    img![
+                        class![
+                            C.h_8
+                        ],
+                        attrs!{
+                            At::Src => "/static/images/hamburger.svg"
+                        }
+                    ]
                 ]
             ],
             // Top header line
@@ -192,59 +202,111 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.text_gray_8
                 ],
                 li![
-                    "I was working as a ",
-                    span![
-                        class![
-                            C.font_bold,
-                        ],
-                        "backend"
+                    class![
+                        C.flex,
+                        C.flex_no_wrap
                     ],
-                    " developer in a bank and for some startups and agencies last years."
+                    div![
+                        class![
+                            C.text_blue_6,
+                            C.mr_1,
+                        ],
+                        "▶"
+                    ],
+                    div![
+                        "I was working as a ",
+                        span![
+                            class![
+                                C.font_bold,
+                            ],
+                            "backend"
+                        ],
+                        " developer in a bank and for some startups and agencies last years."
+                    ]
                 ],
                 li![
-                    "I'm also coming back to ",
-                    span![
-                        class![
-                            C.font_bold,
-                        ],
-                        "frontend"
+                    class![
+                        C.flex,
+                        C.flex_no_wrap
                     ],
-                    " because it's finally possible to write reliable web apps and I want to make more use of my ",
-                    span![
+                    div![
                         class![
-                            C.font_bold,
+                            C.text_blue_6,
+                            C.mr_1,
                         ],
-                        "artistic"
+                        "▶"
                     ],
-                    " self."
+                    div![
+                        "I'm also coming back to ",
+                        span![
+                            class![
+                                C.font_bold,
+                            ],
+                            "frontend"
+                        ],
+                        " because it's finally possible to write reliable web apps and I want to make more use of my ",
+                        span![
+                            class![
+                                C.font_bold,
+                            ],
+                            "artistic"
+                        ],
+                        " self."
+                    ]
                 ],
                 li![
-                    "People make mistakes. That's why I setup linters, formatters, CI pipelines, etc., as ",
-                    span![
-                        class![
-                            C.font_bold,
-                        ],
-                        "strict"
+                    class![
+                        C.flex,
+                        C.flex_no_wrap
                     ],
-                    " as possible and I want to write in ",
-                    span![
+                    div![
                         class![
-                            C.font_bold,
+                            C.text_blue_6,
+                            C.mr_1,
                         ],
-                        "Rust"
+                        "▶"
                     ],
-                    ". Ideal tools \"bully\" me and don't have any configuration options."
+                    div![
+                        "People make mistakes. That's why I setup linters, formatters, CI pipelines, etc., as ",
+                        span![
+                            class![
+                                C.font_bold,
+                            ],
+                            "strict"
+                        ],
+                        " as possible and I want to write in ",
+                        span![
+                            class![
+                                C.font_bold,
+                            ],
+                            "Rust"
+                        ],
+                        ". Ideal tools \"bully\" me and don't have any configuration options."
+                    ]
                 ],
                 li![
-                    "I often learn from ",
-                    span![
-                        "packtpub.com"
+                    class![
+                        C.flex,
+                        C.flex_no_wrap
                     ],
-                    ". And I recommend to read book ",
-                    span![
-                        "Domain Modeling Made Functional"
+                    div![
+                        class![
+                            C.text_blue_6,
+                            C.mr_1,
+                        ],
+                        "▶"
                     ],
-                    "."
+                    div![
+                        "I often learn from ",
+                        span![
+                            "packtpub.com"
+                        ],
+                        ". And I recommend to read book ",
+                        span![
+                            "Domain Modeling Made Functional"
+                        ],
+                        "."
+                    ]
                 ],
             ]
         ],
@@ -267,59 +329,111 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.text_blue_1
                 ],
                 li![
-                    "I've designed logos, my resume and this website in ",
-                    span![
-                        class![
-                            C.font_bold,
-                        ],
-                        "Affinity Designer"
+                    class![
+                        C.flex,
+                        C.flex_no_wrap
                     ],
-                    "."
+                    div![
+                        class![
+                            C.text_yellow_4,
+                            C.mr_1,
+                        ],
+                        "▶"
+                    ],
+                    div![
+                        "I've designed logos, my resume and this website in ",
+                        span![
+                            class![
+                                C.font_bold,
+                            ],
+                            "Affinity Designer"
+                        ],
+                        "."
+                    ]
                 ],
                 li![
-                    "I'll use ",
-                    span![
-                        class![
-                            C.font_bold,
-                        ],
-                        "Figma"
+                    class![
+                        C.flex,
+                        C.flex_no_wrap
                     ],
-                    " for my next website design."
+                    div![
+                        class![
+                            C.text_yellow_4,
+                            C.mr_1,
+                        ],
+                        "▶"
+                    ],
+                    div![
+                        "I'll use ",
+                        span![
+                            class![
+                                C.font_bold,
+                            ],
+                            "Figma"
+                        ],
+                        " for my next website design."
+                    ]
                 ],
                 li![
-                    "I have some experience with ",
-                    span![
-                        class![
-                            C.font_bold,
-                        ],
-                        "Adobe XD"
+                    class![
+                        C.flex,
+                        C.flex_no_wrap
                     ],
-                    ", ",
-                    span![
+                    div![
                         class![
-                            C.font_bold,
+                            C.text_yellow_4,
+                            C.mr_1,
                         ],
-                        "Krita"
+                        "▶"
                     ],
-                    " and ",
-                    span![
-                        class![
-                            C.font_bold,
+                    div![
+                        "I have some experience with ",
+                        span![
+                            class![
+                                C.font_bold,
+                            ],
+                            "Adobe XD"
                         ],
-                        "Rhino3D"
-                    ],
-                    "."
+                        ", ",
+                        span![
+                            class![
+                                C.font_bold,
+                            ],
+                            "Krita"
+                        ],
+                        " and ",
+                        span![
+                            class![
+                                C.font_bold,
+                            ],
+                            "Rhino3D"
+                        ],
+                        "."
+                    ]
                 ],
                 li![
-                    "I recommend to check ",
-                    span![
-                        "refactoringui.com"
+                    class![
+                        C.flex,
+                        C.flex_no_wrap
                     ],
-                    ". I've bought their book and I use their ",
-                    span![
-                        "TailwindCSS"
+                    div![
+                        class![
+                            C.text_yellow_4,
+                            C.mr_1,
+                        ],
+                        "▶"
                     ],
-                    " in my projects."
+                    div![
+                        "I recommend to check ",
+                        span![
+                            "refactoringui.com"
+                        ],
+                        ". I've bought their book and I use their ",
+                        span![
+                            "TailwindCSS"
+                        ],
+                        " in my projects."
+                    ]
                 ],
             ]
         ],
@@ -355,17 +469,43 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.text_blue_1
                     ],
                     li![
-                        "I'm INTJ. When I'm not ",
-                        span![
-                            class![
-                                C.font_bold,
-                            ],
-                            "creating"
+                        class![
+                            C.flex,
+                            C.flex_no_wrap
                         ],
-                        " something, I usually read or go to gym."
+                        div![
+                            class![
+                                C.text_yellow_4,
+                                C.mr_1,
+                            ],
+                            "▶"
+                        ],
+                        div![
+                            "I'm INTJ. When I'm not ",
+                            span![
+                                class![
+                                    C.font_bold,
+                                ],
+                                "creating"
+                            ],
+                            " something, I usually read or go to gym."
+                        ]
                     ],
                     li![
-                        "I like to spend my vacation at the cottage - hiking, cycling, driving, etc."
+                        class![
+                            C.flex,
+                            C.flex_no_wrap
+                        ],
+                        div![
+                            class![
+                                C.text_yellow_4,
+                                C.mr_1,
+                            ],
+                            "▶"
+                        ],
+                        div![
+                            "I like to spend my vacation at the cottage - hiking, cycling, driving, etc."
+                        ]
                     ]
                 ]
             ],
@@ -387,38 +527,77 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.text_blue_1
                     ],
                     li![
-                        "I'm ",
-                        span![
-                            class![
-                                C.font_bold,
-                            ],
-                            "more productive"
+                        class![
+                            C.flex,
+                            C.flex_no_wrap
                         ],
-                        " when I'm working ",
-                        span![
+                        div![
                             class![
-                                C.font_bold,
+                                C.text_yellow_4,
+                                C.mr_1,
                             ],
-                            "remotely"
+                            "▶"
                         ],
-                        "."
+                        div![
+                            "I'm ",
+                            span![
+                                class![
+                                    C.font_bold,
+                                ],
+                                "more productive"
+                            ],
+                            " when I'm working ",
+                            span![
+                                class![
+                                    C.font_bold,
+                                ],
+                                "remotely"
+                            ],
+                            "."
+                        ]
                     ],
                     li![
-                        "I like to ",
-                        span![
-                            class![
-                                C.font_bold,
-                            ],
-                            "help"
+                        class![
+                            C.flex,
+                            C.flex_no_wrap
                         ],
-                        " people (not only on GitHub) and to mentor juniors."
+                        div![
+                            class![
+                                C.text_yellow_4,
+                                C.mr_1,
+                            ],
+                            "▶"
+                        ],
+                        div![
+                            "I like to ",
+                            span![
+                                class![
+                                    C.font_bold,
+                                ],
+                                "help"
+                            ],
+                            " people (not only on GitHub) and to mentor juniors."
+                        ]
                     ],
                     li![
-                        "I'd rather think about your project for free in a gym than sit and wait for ideas. I also recommend to read ",
-                        span![
-                            "You don’t need standup"
+                        class![
+                            C.flex,
+                            C.flex_no_wrap
                         ],
-                        "."
+                        div![
+                            class![
+                                C.text_yellow_4,
+                                C.mr_1,
+                            ],
+                            "▶"
+                        ],
+                        div![
+                            "I'd rather think about your project for free in a gym than sit and wait for ideas. I also recommend to read ",
+                            span![
+                                "You don’t need standup"
+                            ],
+                            "."
+                        ]
                     ]
                 ]
             ]
@@ -439,10 +618,36 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.text_gray_8
                 ],
                 li![
-                    "I programmed a real football cannon."
+                    class![
+                        C.flex,
+                        C.flex_no_wrap
+                    ],
+                    div![
+                        class![
+                            C.text_blue_6,
+                            C.mr_1,
+                        ],
+                        "▶"
+                    ],
+                    div![
+                        "I programmed a real football cannon."
+                    ]
                 ],
                 li![
-                    "I jumped off a planeand a bridge."
+                    class![
+                        C.flex,
+                        C.flex_no_wrap
+                    ],
+                    div![
+                        class![
+                            C.text_blue_6,
+                            C.mr_1,
+                        ],
+                        "▶"
+                    ],
+                    div![
+                        "I jumped off a planeand a bridge."
+                    ]
                 ],
             ]
         ],
@@ -456,16 +661,29 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.text_blue_1
                 ],
                 li![
-                    "Want to meet somewhere in ",
-                    span![
-                        class![
-                            C.font_bold
-                        ],
-                        "Prague"
+                    class![
+                        C.flex,
+                        C.flex_no_wrap
                     ],
-                    "? Is there good coffee, tea, sushi or some spicy food? Ok! ",
-                    span![
-                        "martin@kavik.cz"
+                    div![
+                        class![
+                            C.text_yellow_4,
+                            C.mr_1,
+                        ],
+                        "▶"
+                    ],
+                    div![
+                        "Want to meet somewhere in ",
+                        span![
+                            class![
+                                C.font_bold
+                            ],
+                            "Prague"
+                        ],
+                        "? Is there good coffee, tea, sushi or some spicy food? Ok! ",
+                        span![
+                            "martin@kavik.cz"
+                        ]
                     ]
                 ],
             ]
