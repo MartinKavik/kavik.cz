@@ -78,20 +78,27 @@ module.exports = {
         margin: {
             '-10vh': '-10vh',
             '-260px': '-260px',
+            '-545px': '-545px',
         },
         inset: {
+          '1/2': '50%',
           'full': '100%',
         },
         width: {
           '76': '19rem',
           'xs': '20rem',
-          'md': '28rem'
+          'md': '28rem',
+          '570px': '570px',
+          '1090px': '1090px',
         },
         height: {
           '300px': '300px',
           '320px': '320px',
           '690px': '690px',
-          '1420px': '1420px',
+          '570px': '570px',
+          '1000px': '1000px',
+          '1090px': '1090px',
+          '1480px': '1480px',
         },
         borderRadius: {
           '140px': '140px'

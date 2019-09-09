@@ -47,8 +47,8 @@ pub fn view(model: &Model) -> impl View<Msg> {
         class![
             C.fade_in,
         ],
-        page::home::view()
-//            page::about::view()
+//        page::home::view()
+            page::about::view()
 //            page::not_found::view()
         //    empty![]
     ]

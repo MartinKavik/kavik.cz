@@ -181,7 +181,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             class![
                 C.relative,
                 C._mt_260px,
-                C.h_1420px,
+                C.h_1480px,
                 C.pt_px,
                 C.rounded_tr_140px,
                 C.bg_gray_1,
@@ -221,7 +221,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.w_76,
                         C.pl_2,
                         C.pr_5,
-                        C.py_8
+                        C.py_10,
                         C.bg_gray_1,
                         C.flex,
                         C.flex_no_wrap,
@@ -254,7 +254,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.w_76,
                             C.pl_2,
                             C.pr_5,
-                            C.py_8,
+                            C.py_10,
                             C.flex,
                             C.flex_no_wrap,
                         ],
@@ -289,7 +289,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.w_76,
                         C.pl_2,
                         C.pr_4,
-                        C.py_8,
+                        C.py_10,
                         C.flex,
                         C.flex_no_wrap,
                         C.bg_gray_1
@@ -329,7 +329,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.w_76,
                             C.pl_2,
                             C.pr_5,
-                            C.py_8,
+                            C.py_10,
                             C.flex,
                             C.flex_no_wrap,
                         ],
@@ -360,30 +360,83 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             class![
                 C.relative,
                 C._mt_260px,
+                C.h_1000px,
                 C.pt_px,
                 C.rounded_tr_140px,
-                C.bg_blue_10
-                C.overflow_x_hidden
+                C.bg_blue_10,
+                C.overflow_hidden,
             ],
-            h2![
+            // Circles
+            div![
+                class![
+                    C.absolute,
+                    C.left_1of2,
+                    C._mt_12,
+                    C._ml_545px,
+                    C.w_1090px,
+                    C.h_1090px,
+                    C.opacity_10,
+                ],
+                div![
+                    class![
+                        C.absolute,
+                        C.left_0,
+                        C.bottom_0,
+                        C.w_570px,
+                        C.h_570px,
+                        C.rounded_full,
+                        C.border_yellow_4,
+                        C.border_2
+                    ]
+                ],
+                div![
+                    class![
+                        C.absolute,
+                        C.right_0,
+                        C.top_0,
+                        C.w_570px,
+                        C.h_570px,
+                        C.rounded_full,
+                        C.border_yellow_4,
+                        C.border_2
+                    ]
+                ],
+            ],
+            div![
                 class![
                     C.relative,
                     C.mt_32,
-                    C.mb_16,
-                    C.text_center,
-                    C.font_display,
-                    C.font_bold,
-                    C.text_40,
-                    C.text_yellow_4
+                    C.h_24,
+                    C.bg_blue_10,
+                    C.flex,
+                    C.items_center,
+                    C.justify_center,
                 ],
-                "I, designer"
+                h2![
+                    class![
+                        C.text_center,
+                        C.font_display,
+                        C.font_semibold,
+                        C.text_40,
+                        C.text_yellow_4
+                    ],
+                    "I, designer"
+                ],
             ],
             ul![
                 class![
-                    C.text_blue_1
+                    C.relative,
+                    C.mt_16,
+                    C.max_w_md,
+                    C.mx_auto,
+                    C.pl_1,
+                    C.text_blue_1,
+                    C.flex,
+                    C.flex_col,
                 ],
                 li![
                     class![
+                        C.w_76,
                         C.flex,
                         C.flex_no_wrap
                     ],
@@ -408,28 +461,39 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 li![
                     class![
                         C.flex,
-                        C.flex_no_wrap
+                        C.justify_end,
                     ],
                     div![
                         class![
-                            C.text_yellow_4,
-                            C.mr_1,
+                            C.mt_16,
+                            C.ml_5,
+                            C.w_64,
+                            C.flex,
+                            C.flex_no_wrap,
                         ],
-                        "▶"
-                    ],
-                    div![
-                        "I'll use ",
-                        span![
+                        div![
                             class![
-                                C.font_bold,
+                                C.text_yellow_4,
+                                C.mr_1,
                             ],
-                            "Figma"
+                            "▶"
                         ],
-                        " for my next website design."
+                        div![
+                            "I'll use ",
+                            span![
+                                class![
+                                    C.font_bold,
+                                ],
+                                "Figma"
+                            ],
+                            " for my next website design."
+                        ]
                     ]
                 ],
                 li![
                     class![
+                        C.mt_16,
+                        C.w_76,
                         C.flex,
                         C.flex_no_wrap
                     ],
@@ -468,25 +532,34 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 li![
                     class![
                         C.flex,
-                        C.flex_no_wrap
+                        C.justify_end,
                     ],
                     div![
                         class![
-                            C.text_yellow_4,
-                            C.mr_1,
+                            C.mt_16,
+                            C.ml_6,
+                            C.w_76,
+                            C.flex,
+                            C.flex_no_wrap
                         ],
-                        "▶"
-                    ],
-                    div![
-                        "I recommend to check ",
-                        span![
-                            "refactoringui.com"
+                        div![
+                            class![
+                                C.text_yellow_4,
+                                C.mr_1,
+                            ],
+                            "▶"
                         ],
-                        ". I've bought their book and I use their ",
-                        span![
-                            "TailwindCSS"
-                        ],
-                        " in my projects."
+                        div![
+                            "I recommend to check ",
+                            span![
+                                "refactoringui.com"
+                            ],
+                            ". I've bought their book and I use their ",
+                            span![
+                                "TailwindCSS"
+                            ],
+                            " in my projects."
+                        ]
                     ]
                 ],
             ]
