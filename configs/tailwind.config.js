@@ -83,6 +83,7 @@ module.exports = {
           'full': '100%',
         },
         width: {
+          '76': '19rem',
           'xs': '20rem',
           'md': '28rem'
         },
@@ -90,6 +91,7 @@ module.exports = {
           '300px': '300px',
           '320px': '320px',
           '690px': '690px',
+          '1420px': '1420px',
         },
         borderRadius: {
           '140px': '140px'

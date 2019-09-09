@@ -179,14 +179,28 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         // Developer section
         section![
             class![
+                C.relative,
                 C._mt_260px,
+                C.h_1420px,
                 C.pt_px,
                 C.rounded_tr_140px,
                 C.bg_gray_1,
+                C.overflow_x_hidden,
+            ],
+            // Right background
+            div![
+                class![
+                    C.absolute,
+                    C.right_0,
+                    C.inset_y_0,
+                    C.w_76,
+                    C.bg_yellow_4
+                ]
             ],
             // I, developer
             h2![
                 class![
+                    C.relative,
                     C.mt_32,
                     C.mb_16,
                     C.text_center,
@@ -199,12 +213,18 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ],
             ul![
                 class![
+                    C.relative,
                     C.text_gray_8
                 ],
                 li![
                     class![
+                        C.w_76,
+                        C.pl_2,
+                        C.pr_5,
+                        C.py_8
+                        C.bg_gray_1,
                         C.flex,
-                        C.flex_no_wrap
+                        C.flex_no_wrap,
                     ],
                     div![
                         class![
@@ -227,37 +247,52 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 li![
                     class![
                         C.flex,
-                        C.flex_no_wrap
+                        C.justify_end
                     ],
                     div![
                         class![
-                            C.text_blue_6,
-                            C.mr_1,
+                            C.w_76,
+                            C.pl_2,
+                            C.pr_5,
+                            C.py_8,
+                            C.flex,
+                            C.flex_no_wrap,
                         ],
-                        "▶"
-                    ],
-                    div![
-                        "I'm also coming back to ",
-                        span![
+                        div![
                             class![
-                                C.font_bold,
+                                C.text_blue_6,
+                                C.mr_1,
                             ],
-                            "frontend"
+                            "▶"
                         ],
-                        " because it's finally possible to write reliable web apps and I want to make more use of my ",
-                        span![
-                            class![
-                                C.font_bold,
+                        div![
+                            "I'm also coming back to ",
+                            span![
+                                class![
+                                    C.font_bold,
+                                ],
+                                "frontend"
                             ],
-                            "artistic"
-                        ],
-                        " self."
+                            " because it's finally possible to write reliable web apps and I want to make more use of my ",
+                            span![
+                                class![
+                                    C.font_bold,
+                                ],
+                                "artistic"
+                            ],
+                            " self."
+                        ]
                     ]
                 ],
                 li![
                     class![
+                        C.w_76,
+                        C.pl_2,
+                        C.pr_4,
+                        C.py_8,
                         C.flex,
-                        C.flex_no_wrap
+                        C.flex_no_wrap,
+                        C.bg_gray_1
                     ],
                     div![
                         class![
@@ -287,25 +322,35 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 li![
                     class![
                         C.flex,
-                        C.flex_no_wrap
+                        C.justify_end
                     ],
                     div![
                         class![
-                            C.text_blue_6,
-                            C.mr_1,
+                            C.w_76,
+                            C.pl_2,
+                            C.pr_5,
+                            C.py_8,
+                            C.flex,
+                            C.flex_no_wrap,
                         ],
-                        "▶"
-                    ],
-                    div![
-                        "I often learn from ",
-                        span![
-                            "packtpub.com"
+                        div![
+                            class![
+                                C.text_blue_6,
+                                C.mr_1,
+                            ],
+                            "▶"
                         ],
-                        ". And I recommend to read book ",
-                        span![
-                            "Domain Modeling Made Functional"
-                        ],
-                        "."
+                        div![
+                            "I often learn from ",
+                            span![
+                                "packtpub.com"
+                            ],
+                            ". And I recommend to read book ",
+                            span![
+                                "Domain Modeling Made Functional"
+                            ],
+                            "."
+                        ]
                     ]
                 ],
             ]
@@ -313,10 +358,19 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         // Designer section
         section![
             class![
+                C.relative,
+                C._mt_260px,
+                C.pt_px,
+                C.rounded_tr_140px,
                 C.bg_blue_10
+                C.overflow_x_hidden
             ],
             h2![
                 class![
+                    C.relative,
+                    C.mt_32,
+                    C.mb_16,
+                    C.text_center,
                     C.font_display,
                     C.font_bold,
                     C.text_40,
