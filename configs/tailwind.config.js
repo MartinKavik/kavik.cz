@@ -89,6 +89,7 @@ module.exports = {
           '76': '19rem',
           'xs': '20rem',
           'md': '28rem',
+          '265px': '265px',
           '570px': '570px',
           '1090px': '1090px',
           '50vh': '50vh',
@@ -96,12 +97,13 @@ module.exports = {
         height: {
           '300px': '300px',
           '320px': '320px',
-          '690px': '690px',
           '570px': '570px',
+          '580px': '580px',
+          '690px': '690px',
           '1090px': '1090px',
           '1160px': '1160px',
           '1480px': '1480px',
-          '1520px': '1520px',
+          '1580px': '1580px',
         },
         borderRadius: {
           '110px': '110px',

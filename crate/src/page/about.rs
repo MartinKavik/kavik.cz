@@ -570,7 +570,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             class![
                 C.relative,
                 C._mt_260px,
-                C.h_1520px,
+                C.h_1580px,
                 C.pt_px,
                 C.rounded_tr_140px,
                 C.bg_blue_6,
@@ -803,17 +803,33 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         ],
         // Did you know section
         section![
+            class![
+                C.relative,
+                C._mt_260px,
+                C.h_580px,
+                C.pt_px,
+                C.rounded_tr_140px,
+                C.bg_gray_1,
+                C.overflow_hidden,
+                C.flex,
+                C.flex_col,
+                C.items_center,
+            ],
             h2![
                 class![
+                    C.mt_32,
+                    C.mb_16,
                     C.font_display,
                     C.font_semibold,
                     C.text_40,
                     C.text_gray_5
                 ],
-                "Did you know"
+                "Did you know..."
             ],
             ul![
                 class![
+                    C.ml_12,
+                    C.w_xs,
                     C.text_gray_8
                 ],
                 li![
@@ -834,6 +850,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ],
                 li![
                     class![
+                        C.mt_10,
                         C.flex,
                         C.flex_no_wrap
                     ],
@@ -845,7 +862,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         "▶"
                     ],
                     div![
-                        "I jumped off a planeand a bridge."
+                        "I jumped off a plane",
+                        br![],
+                        "and a bridge."
                     ]
                 ],
             ]
@@ -853,7 +872,18 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         // Want to meet section
         section![
             class![
+                C.h_690px,
                 C.bg_blue_10
+            ],
+            img![
+                class![
+                    C.relative,
+                    C._mt_6,
+                    C.w_265px,
+                ],
+                attrs!{
+                    At::Src => "/static/images/photo_2.jpg"
+                }
             ],
             ul![
                 class![
