@@ -1,11 +1,12 @@
 use crate::generated::css_classes::C;
 use seed::prelude::*;
 use seed::*;
+use super::{view_header, view_footer};
 
 pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
     vec![
-        view_header().els(),
         view_content().els(),
+        view_header(false).els(),
         view_footer().els(),
     ]
     .into_iter()
@@ -13,172 +14,344 @@ pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
     .collect()
 }
 
-pub fn view_header<Ms: 'static>() -> impl View<Ms> {
-    header![class![C.text_27, C.text_gray_10], "MK"]
-}
-
 pub fn view_content<Ms: 'static>() -> impl View<Ms> {
     vec![
         // Main section
         section![
+            class![
+                C.relative,
+                C.h_690px,
+                C.bg_gray_1,
+            ],
+            // Left background
             div![
                 class![
-                    C.font_display,
-                ],
-                h1![
-                    class![
-                        C.text_31,
-                        C.text_gray_10
-                    ],
-                    span![
-                        "Martin "
-                    ],
-                    span![
-                        class![
-                            C.font_bold
-                        ],
-                        "Kavík"
-                    ],
-                ],
-                span![
-                    class![
-                        C.text_21,
-                        C.text_gray_7
-                    ],
-                    " is a developer with 7+ years of experience who likes to design and ..."
+                    C.absolute,
+                    C.left_0,
+                    C.inset_y_0,
+                    C.w_1of2,
+                    C.bg_yellow_4,
                 ]
             ],
-            ul![
+            div![
                 class![
-                    C.font_display,
-                    C.text_17,
-                    C.text_gray_8
+                    C.relative,
+                    C.flex,
+                    C.justify_center,
                 ],
-                li![
-                    "To work on your project"
-                ],
-                li![
-                    "Readable code and UI"
-                ],
-                li![
-                    "Rust, Affinity Designer and Figma."
-                ],
-                li![
-                    "Receiving mails. ",
-                    span![
+                // Martin Kavík container
+                div![
+                    class![
+                        C.h_360px,
+                        C.rounded_bl_90px,
+                        C.bg_gray_1,
+                    ],
+                    // Martin Kavík
+                    div![
                         class![
-                            C.font_semibold
+                            C.mt_40,
+                            C.ml_12,
+                            C.w_xs,
+                            C.font_display,
                         ],
-                        "martin@kavik.cz"
-                    ]
+                        h1![
+                            class![
+                                C.inline,
+                                C.leading_tight,
+                                C.text_31,
+                                C.text_gray_10
+                            ],
+                            span![
+                                "Martin "
+                            ],
+                            span![
+                                class![
+                                    C.font_bold
+                                ],
+                                "Kavík"
+                            ],
+                        ],
+                        span![
+                            class![
+                                C.text_21,
+                                C.text_gray_7
+                            ],
+                            "\u{00A0}is",
+                            br![],
+                            "a developer",
+                            br![],
+                            "with 7+ years of experience",
+                            br![],
+                            "who likes to design and ..."
+                        ]
+                    ],
                 ],
-            ]
+            ],
+            // Gear
+            img![
+                class![
+                    C.absolute
+                    C.top_0,
+                    C.left_full,
+                    C._ml_40,
+                    C._mt_56,
+                    C.w_md,
+                    C.max_w_none,
+                    C.blur,
+                ],
+                attrs!{
+                    At::Src => "/static/images/gear.svg"
+                }
+            ],
         ],
         // Seed section
         section![
             class![
-                C.bg_blue_6
+                C.relative,
+                C._mt_48,
+                C.pt_px,
+                C.rounded_tl_140px,
+                C.bg_blue_6,
             ],
-            h2![
-                class![
-                    C.font_display,
-                    C.text_23,
-                    C.text_blue_3
-                ],
-                span![
-                    class![
-                        C.font_thin
-                    ],
-                    "TOP-5"
-                ],
-                span![
-                    class![
-                        C.font_normal
-                    ],
-                    " GITHUB PROJECTS"
-                ]
-            ],
-            div![
-                div![
-                    class![
-                        C.font_display,
-                        C.italic,
-                        C.text_16,
-                        C.text_yellow_4
-                    ],
-                    "Awesome, awesome framework!"
-                ],
-                div![
-                    class![
-                        C.font_display,
-                        C.text_15,
-                        C.text_blue_3
-                    ],
-                    "- rebo"
-                ]
-            ],
-            div![
-                div![
-                    class![
-                        C.font_display,
-                        C.italic,
-                        C.text_16,
-                        C.text_yellow_4
-                    ],
-                    "Seed rocks, and Martin makes it better."
-                ],
-                div![
-                    class![
-                        C.font_display,
-                        C.text_15,
-                        C.text_blue_3
-                    ],
-                    "- robwebbjr"
-                ]
-            ],
+            // Main list
             div![
                 class![
-                    C.font_display,
-                    C.text_70,
-                    C.font_semibold
+                    C._ml_5,
+                    C._mt_48,
+                    C.max_w_lg,
+                    C.flex,
+                    C.justify_end,
+                    C.relative,
                 ],
-                "Seed"
-            ],
-            ul![
-                class![
-                    C.text_blue_1
+                // Right background
+                div![
+                    class![
+                        C.absolute,
+                        C.right_0,
+                        C.inset_y_0,
+                        C._right_50vw,
+                        C.w_50vw,
+                        C.bg_gray_1
+                    ]
                 ],
-                li![
-                    h3![
+                // List
+                div![
+                    class![
+                        C.relative,
+                        C.pl_4,
+                        C.rounded_bl_45px,
+                        C.font_display,
+                        C.text_17,
+                        C.text_gray_8,
+                        C.bg_gray_1,
+                        C.overflow_hidden,
+                    ],
+                    ul![
                         class![
-                            C.font_bold,
+                            C.w_xs,
+                            C.pl_2,
+                            C.py_8,
+                        ],
+                        li![
+                            class![
+                                C.my_3,
+                            ],
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_blue_6,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                "To work on your project"
+                            ]
+                        ],
+                        li![
+                            class![
+                                C.my_3,
+                            ],
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_blue_6,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                "Readable code and UI"
+                            ]
+                        ],
+                        li![
+                            class![
+                                C.my_3,
+                            ],
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_blue_6,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                "Rust, Affinity Designer and Figma."
+                            ]
+                        ],
+                        li![
+                            class![
+                                C.my_3,
+                            ],
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_blue_6,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                div![
+                                    "Receiving mails. ",
+                                    span![
+                                        class![
+                                            C.font_semibold
+                                        ],
+                                        "martin@kavik.cz"
+                                    ]
+                                ]
+                            ]
+                        ],
+                    ]
+                ]
+            ],
+            div![
+                class![
+                    C.flex,
+                    C.flex_col,
+                    C.items_center
+                ],
+                // Section content container
+                div![
+                    class![
+                        C.w_xs
+                    ],
+                    h2![
+                        class![
+                            C.font_display,
+                            C.text_23,
+                            C.text_blue_3
+                        ],
+                        span![
+                            class![
+                                C.font_thin
+                            ],
+                            "TOP-5"
+                        ],
+                        span![
+                            class![
+                                C.font_normal
+                            ],
+                            " GITHUB PROJECTS"
+                        ]
+                    ],
+                    div![
+                        div![
+                            class![
+                                C.font_display,
+                                C.italic,
+                                C.text_16,
+                                C.text_yellow_4
+                            ],
+                            "Awesome, awesome framework!"
+                        ],
+                        div![
+                            class![
+                                C.font_display,
+                                C.text_15,
+                                C.text_blue_3
+                            ],
+                            "- rebo"
+                        ]
+                    ],
+                    div![
+                        div![
+                            class![
+                                C.font_display,
+                                C.italic,
+                                C.text_16,
+                                C.text_yellow_4
+                            ],
+                            "Seed rocks, and Martin makes it better."
+                        ],
+                        div![
+                            class![
+                                C.font_display,
+                                C.text_15,
+                                C.text_blue_3
+                            ],
+                            "- robwebbjr"
+                        ]
+                    ],
+                    div![
+                        class![
+                            C.font_display,
+                            C.text_70,
+                            C.font_semibold
                         ],
                         "Seed"
                     ],
-                    " is an open-source Rust framework for creating fast and reliable web apps running in WebAssembly."
-                ],
-                li![
-                    "I'm the main contributor."
-                ],
-                li![
-                    "I've designed the logo."
-                ],
-            ],
-            div![
-                class![
-                    C.font_display,
-                ],
-                span![
-                    class![
-                        C.text_blue_4
+                    ul![
+                        class![
+                            C.text_blue_1
+                        ],
+                        li![
+                            h3![
+                                class![
+                                    C.font_bold,
+                                ],
+                                "Seed"
+                            ],
+                            " is an open-source Rust framework for creating fast and reliable web apps running in WebAssembly."
+                        ],
+                        li![
+                            "I'm the main contributor."
+                        ],
+                        li![
+                            "I've designed the logo."
+                        ],
                     ],
-                    "MartinKavik/"
-                ],
-                span![
-                    class![
-                        C.text_blue_2
-                    ],
-                    "awesome-seed-rs"
+                    div![
+                        class![
+                            C.font_display,
+                        ],
+                        span![
+                            class![
+                                C.text_blue_4
+                            ],
+                            "MartinKavik/"
+                        ],
+                        span![
+                            class![
+                                C.text_blue_2
+                            ],
+                            "awesome-seed-rs"
+                        ]
+                    ]
                 ]
             ]
         ],
@@ -445,21 +618,4 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ]
         ]
     ]
-}
-
-pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
-    footer![div![
-        div![
-            span![class![C.text_gray_10], "MK"],
-            span![
-                class![C.font_display, C.font_semibold, C.text_15, C.text_yellow_6],
-                "2019"
-            ]
-        ],
-        div![
-            class![C.font_display, C.font_semibold, C.text_16, C.text_gray_10],
-            "martin@kavik.cz"
-        ],
-        div![class![C.text_yellow_6], "^"]
-    ]]
 }

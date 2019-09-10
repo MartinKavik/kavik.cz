@@ -1,126 +1,17 @@
 use crate::generated::css_classes::C;
 use seed::prelude::*;
 use seed::*;
+use super::{view_header, view_footer};
 
 pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
     vec![
         view_content().els(),
-        view_header().els(),
-//        view_footer().els(),
+        view_header(true).els(),
+        view_footer().els(),
     ]
     .into_iter()
     .flatten()
     .collect()
-}
-
-pub fn view_header<Ms: 'static>() -> impl View<Ms> {
-    vec![
-        // Header background and line container
-        div![
-            class![
-                C.fixed,
-                C.top_0
-                C.inset_x_0,
-                C.h_16,
-            ],
-            // Header background
-            div![
-                class![
-                    C.absolute,
-                    C.inset_0,
-                    C.bg_gray_1,
-                    C.opacity_90
-                ]
-            ],
-            // Bottom header line
-            div![
-                class![
-                    C.absolute,
-                    C.bottom_0,
-                    C.ml_12,
-                    C.w_3of5,
-                    C.h_px,
-                    C.bg_gray_2,
-                ]
-            ],
-        ],
-        // Photo 1
-        div![
-            class![
-                C.absolute,
-                C.top_0,
-                C.inset_x_0,
-                C.mt_6,
-                C.flex,
-                C.justify_center
-            ],
-            img![
-                class![
-                    C.w_xs,
-                ],
-                attrs!{
-                    At::Src => "/static/images/photo_1.png"
-                }
-            ],
-        ],
-        // Header
-        header![
-            class![
-                C.fixed,
-                C.top_0
-                C.inset_x_0,
-            ],
-            // Header controls container
-            div![
-                class![
-                    C.mx_8
-                    C.h_16
-                    C.flex,
-                    C.justify_between,
-                    C.items_center,
-                ],
-                // Logo
-                a![
-                    attrs!{
-                        At::Href => "/"
-                    },
-                    img![
-                        class![
-                            C.h_6
-                        ],
-                        attrs!{
-                            At::Src => "/static/images/logo.svg"
-                        }
-                    ],
-                ],
-                // Hamburger
-                div![
-                    class![
-                        C.cursor_pointer,
-                    ],
-                    img![
-                        class![
-                            C.h_8
-                        ],
-                        attrs!{
-                            At::Src => "/static/images/hamburger.svg"
-                        }
-                    ]
-                ]
-            ],
-            // Top header line
-            div![
-                class![
-                    C.absolute,
-                    C.top_0,
-                    C.ml_12,
-                    C.w_3of5,
-                    C.h_px,
-                    C.bg_gray_2,
-                ]
-            ],
-        ],
-    ]
 }
 
 pub fn view_content<Ms: 'static>() -> impl View<Ms> {
@@ -607,8 +498,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.absolute,
                         C.left_0,
                         C.inset_y_0,
-                        C._left_50vh,
-                        C.w_50vh,
+                        C._left_50vw,
+                        C.w_50vw,
                         C.bg_blue_10,
                     ]
                 ],
@@ -693,8 +584,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.absolute,
                         C.right_0,
                         C.inset_y_0,
-                        C._right_50vh,
-                        C.w_50vh,
+                        C._right_50vw,
+                        C.w_50vw,
                         C.bg_blue_10,
                     ]
                 ],
@@ -940,6 +831,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ],
             a![
                 class![
+                    C.mt_6,
                     C.text_19,
                     C.text_gray_10,
                     C.flex,
@@ -972,21 +864,4 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ]
         ],
     ]
-}
-
-pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
-    footer![div![
-        div![
-            span![class![C.text_gray_10], "MK"],
-            span![
-                class![C.font_display, C.font_semibold, C.text_15, C.text_yellow_6],
-                "2019"
-            ]
-        ],
-        div![
-            class![C.font_display, C.font_semibold, C.text_16, C.text_gray_10],
-            "martin@kavik.cz"
-        ],
-        div![class![C.text_yellow_6], "^"]
-    ]]
 }

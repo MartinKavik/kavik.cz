@@ -1,8 +1,8 @@
 // [...range(1,5,2)] => [1,3,5]
 function* range(start, end, step) {
-    if(start > end) return;
-    yield start;
-    yield* range(start + step, end, step);
+  if(start > end) return;
+  yield start;
+  yield* range(start + step, end, step);
 };
 
 // For NodeJS < 12
@@ -16,19 +16,19 @@ Object.fromEntries = Object.fromEntries || ((iterable) => {
 module.exports = {
   theme: {
     fontFamily: {
-        display: ['Metropolis', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
-        monospace: ['Courier New', 'monospace'],
-        ordinary: ['Arial', 'sans-serif'],
-        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial',
-            'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji']
+      display: ['Metropolis', 'sans-serif'],
+      body: ['Inter', 'sans-serif'],
+      monospace: ['Courier New', 'monospace'],
+      ordinary: ['Arial', 'sans-serif'],
+      sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial',
+          'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji']
     },
     fontSize: (() => {
-        return Object.fromEntries([
-            ...range(15, 35, 1),
-            ...range(40, 60, 5),
-            ...range(70, 120, 10)
-        ].map(i => [i, `${i}px`]))
+      return Object.fromEntries([
+        ...range(15, 35, 1),
+        ...range(40, 60, 5),
+        ...range(70, 120, 10)
+      ].map(i => [i, `${i}px`]))
     })(),
     colors: {
         black: "#000",
@@ -75,16 +75,19 @@ module.exports = {
         ].map(i => [i, i / 100]))
     })(),
     extend: {
+        boxShadow: {
+          "2xl-above": '0 25px 50px 15px rgba(0, 0, 0, 0.25), 0 10px 10px 10px rgba(0, 0, 0, 0.25)'
+        },
         margin: {
-            '-10vh': '-10vh',
-            '10vw': '10vw',
-            '-260px': '-260px',
-            '-545px': '-545px',
+          '-10vh': '-10vh',
+          '10vw': '10vw',
+          '-260px': '-260px',
+          '-545px': '-545px',
         },
         inset: {
           '1/2': '50%',
           'full': '100%',
-          '-50vh': '-50vh',
+          '-50vw': '-50vw',
         },
         width: {
           '76': '19rem',
@@ -94,10 +97,15 @@ module.exports = {
           '570px': '570px',
           '1090px': '1090px',
           '50vh': '50vh',
+          '50vw': '50vw',
+        },
+        maxWidth: {
+          'none': 'none',
         },
         height: {
           '300px': '300px',
           '320px': '320px',
+          '360px': '360px',
           '570px': '570px',
           '580px': '580px',
           '690px': '690px',
@@ -107,6 +115,8 @@ module.exports = {
           '1580px': '1580px',
         },
         borderRadius: {
+          '45px': '45px',
+          '90px': '90px',
           '110px': '110px',
           '140px': '140px'
         }
