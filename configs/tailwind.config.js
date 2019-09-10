@@ -77,6 +77,7 @@ module.exports = {
     extend: {
         margin: {
             '-10vh': '-10vh',
+            '10vw': '10vw',
             '-260px': '-260px',
             '-545px': '-545px',
         },

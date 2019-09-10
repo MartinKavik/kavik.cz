@@ -873,20 +873,33 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         section![
             class![
                 C.h_690px,
-                C.bg_blue_10
+                C.bg_blue_10,
+                C.rounded_br_140px,
+                C.flex,
+                C.flex_col,
+                C.items_center,
             ],
-            img![
+            div![
                 class![
                     C.relative,
                     C._mt_6,
-                    C.w_265px,
+                    C.flex,
+                    C.justify_center,
                 ],
-                attrs!{
-                    At::Src => "/static/images/photo_2.jpg"
-                }
+                img![
+                    class![
+                        C.ml_10vw,
+                        C.w_265px,
+                    ],
+                    attrs!{
+                        At::Src => "/static/images/photo_2.jpg"
+                    }
+                ],
             ],
             ul![
                 class![
+                    C.mt_16,
+                    C.w_xs,
                     C.text_blue_1
                 ],
                 li![
@@ -919,12 +932,20 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         ],
         // Resume section
         section![
-            div![
+            class![
+                C.h_48,
+                C.flex,
+                C.justify_center,
+                C.items_center,
+            ],
+            a![
                 class![
                     C.text_19,
-                    C.text_gray_10
+                    C.text_gray_10,
+                    C.flex,
+                    C.whitespace_no_wrap
                 ],
-                "Download my ",
+                "Download my\u{00A0}",
                 span![
                     class![
                         C.font_semibold
@@ -938,12 +959,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ],
                     ".pdf"
                 ],
-                div![
+                img![
                     class![
-                        C.text_yellow_6
+                        C._mt_1,
+                        C.ml_1,
+                        C.w_12
                     ],
-                    "V"
-                ]
+                    attrs!{
+                        At::Src => "/static/images/download.svg"
+                    }
+                ],
             ]
         ],
     ]
