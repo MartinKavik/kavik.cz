@@ -83,6 +83,7 @@ module.exports = {
         inset: {
           '1/2': '50%',
           'full': '100%',
+          '-50vh': '-50vh',
         },
         width: {
           '76': '19rem',
@@ -90,17 +91,20 @@ module.exports = {
           'md': '28rem',
           '570px': '570px',
           '1090px': '1090px',
+          '50vh': '50vh',
         },
         height: {
           '300px': '300px',
           '320px': '320px',
           '690px': '690px',
           '570px': '570px',
-          '1000px': '1000px',
           '1090px': '1090px',
+          '1160px': '1160px',
           '1480px': '1480px',
+          '1520px': '1520px',
         },
         borderRadius: {
+          '110px': '110px',
           '140px': '140px'
         }
     }

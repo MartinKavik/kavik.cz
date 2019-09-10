@@ -360,7 +360,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             class![
                 C.relative,
                 C._mt_260px,
-                C.h_1000px,
+                C.h_1160px,
                 C.pt_px,
                 C.rounded_tr_140px,
                 C.bg_blue_10,
@@ -402,6 +402,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ]
                 ],
             ],
+            // I, designer
             div![
                 class![
                     C.relative,
@@ -567,10 +568,21 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         // Human section
         section![
             class![
-                C.bg_blue_6
+                C.relative,
+                C._mt_260px,
+                C.h_1520px,
+                C.pt_px,
+                C.rounded_tr_140px,
+                C.bg_blue_6,
+                C.overflow_hidden,
+                C.flex,
+                C.flex_col,
+                C.items_center,
             ],
+            // I, human
             h2![
                 class![
+                    C.mt_24,
                     C.font_ordinary,
                     C.font_bold,
                     C.text_40,
@@ -578,152 +590,212 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ],
                 "I, human"
             ],
+            // Personal life
             div![
                 class![
-                    C.bg_blue_10
+                    C.relative,
+                    C.mt_12,
+                    C.pt_3,
+                    C.pb_16,
+                    C.px_12,
+                    C.bg_blue_10,
+                    C.rounded_tr_110px,
                 ],
-                h3![
+                // Extended background
+                div![
                     class![
-                        C.font_display,
-                        C.font_thin,
-                        C.text_35,
-                        C.text_blue_3
-                    ],
-                    "Personal life"
+                        C.absolute,
+                        C.left_0,
+                        C.inset_y_0,
+                        C._left_50vh,
+                        C.w_50vh,
+                        C.bg_blue_10,
+                    ]
                 ],
-                ul![
+                // Content container
+                div![
                     class![
-                        C.text_blue_1
+                        C.w_xs,
+                        C.relative,
                     ],
-                    li![
+                    h3![
                         class![
-                            C.flex,
-                            C.flex_no_wrap
+                            C.ml_8,
+                            C.font_display,
+                            C.font_thin,
+                            C.text_35,
+                            C.text_blue_3
                         ],
-                        div![
+                        "Personal life"
+                    ],
+                    ul![
+                        class![
+                            C.ml_1,
+                            C.text_blue_1
+                        ],
+                        li![
                             class![
-                                C.text_yellow_4,
-                                C.mr_1,
+                                C.flex,
+                                C.flex_no_wrap
                             ],
-                            "▶"
-                        ],
-                        div![
-                            "I'm INTJ. When I'm not ",
-                            span![
+                            div![
                                 class![
-                                    C.font_bold,
+                                    C.text_yellow_4,
+                                    C.mr_1,
                                 ],
-                                "creating"
+                                "▶"
                             ],
-                            " something, I usually read or go to gym."
-                        ]
-                    ],
-                    li![
-                        class![
-                            C.flex,
-                            C.flex_no_wrap
+                            div![
+                                "I'm INTJ. When I'm not ",
+                                span![
+                                    class![
+                                        C.font_bold,
+                                    ],
+                                    "creating"
+                                ],
+                                " something, I usually read or go to gym."
+                            ]
                         ],
-                        div![
+                        li![
                             class![
-                                C.text_yellow_4,
-                                C.mr_1,
+                                C.mt_10,
+                                C.flex,
+                                C.flex_no_wrap
                             ],
-                            "▶"
-                        ],
-                        div![
-                            "I like to spend my vacation at the cottage - hiking, cycling, driving, etc."
+                            div![
+                                class![
+                                    C.text_yellow_4,
+                                    C.mr_1,
+                                ],
+                                "▶"
+                            ],
+                            div![
+                                "I like to spend my vacation at the cottage - hiking, cycling, driving, etc."
+                            ]
                         ]
                     ]
                 ]
             ],
+            // Work life
             div![
                 class![
-                    C.bg_blue_10
+                    C.relative,
+                    C.mt_12,
+                    C.pt_3,
+                    C.pb_16,
+                    C.px_12,
+                    C.bg_blue_10,
+                    C.rounded_tl_110px,
                 ],
-                h3![
+                // Extended background
+                div![
                     class![
-                        C.font_display,
-                        C.font_thin,
-                        C.text_35,
-                        C.text_blue_3
-                    ],
-                    "Work life"
+                        C.absolute,
+                        C.right_0,
+                        C.inset_y_0,
+                        C._right_50vh,
+                        C.w_50vh,
+                        C.bg_blue_10,
+                    ]
                 ],
-                ul![
+                // Content container
+                div![
                     class![
-                        C.text_blue_1
+                        C.relative,
+                        C.w_xs
                     ],
-                    li![
+                    h3![
                         class![
-                            C.flex,
-                            C.flex_no_wrap
+                            C.mr_8,
+                            C.text_right,
+                            C.font_display,
+                            C.font_thin,
+                            C.text_35,
+                            C.text_blue_3
                         ],
-                        div![
-                            class![
-                                C.text_yellow_4,
-                                C.mr_1,
-                            ],
-                            "▶"
-                        ],
-                        div![
-                            "I'm ",
-                            span![
-                                class![
-                                    C.font_bold,
-                                ],
-                                "more productive"
-                            ],
-                            " when I'm working ",
-                            span![
-                                class![
-                                    C.font_bold,
-                                ],
-                                "remotely"
-                            ],
-                            "."
-                        ]
+                        "Work life"
                     ],
-                    li![
+                    ul![
                         class![
-                            C.flex,
-                            C.flex_no_wrap
+                            C.ml_1,
+                            C.text_blue_1
                         ],
-                        div![
+                        li![
                             class![
-                                C.text_yellow_4,
-                                C.mr_1,
+                                C.flex,
+                                C.flex_no_wrap
                             ],
-                            "▶"
-                        ],
-                        div![
-                            "I like to ",
-                            span![
+                            div![
                                 class![
-                                    C.font_bold,
+                                    C.text_yellow_4,
+                                    C.mr_1,
                                 ],
-                                "help"
+                                "▶"
                             ],
-                            " people (not only on GitHub) and to mentor juniors."
-                        ]
-                    ],
-                    li![
-                        class![
-                            C.flex,
-                            C.flex_no_wrap
+                            div![
+                                "I'm ",
+                                span![
+                                    class![
+                                        C.font_bold,
+                                    ],
+                                    "more productive"
+                                ],
+                                " when I'm working ",
+                                span![
+                                    class![
+                                        C.font_bold,
+                                    ],
+                                    "remotely"
+                                ],
+                                "."
+                            ]
                         ],
-                        div![
+                        li![
                             class![
-                                C.text_yellow_4,
-                                C.mr_1,
+                                C.mt_10,
+                                C.flex,
+                                C.flex_no_wrap
                             ],
-                            "▶"
+                            div![
+                                class![
+                                    C.text_yellow_4,
+                                    C.mr_1,
+                                ],
+                                "▶"
+                            ],
+                            div![
+                                "I like to ",
+                                span![
+                                    class![
+                                        C.font_bold,
+                                    ],
+                                    "help"
+                                ],
+                                " people (not only on GitHub) and to mentor juniors."
+                            ]
                         ],
-                        div![
-                            "I'd rather think about your project for free in a gym than sit and wait for ideas. I also recommend to read ",
-                            span![
-                                "You don’t need standup"
+                        li![
+                            class![
+                                C.mt_10,
+                                C.flex,
+                                C.flex_no_wrap
                             ],
-                            "."
+                            div![
+                                class![
+                                    C.text_yellow_4,
+                                    C.mr_1,
+                                ],
+                                "▶"
+                            ],
+                            div![
+                                "I'd rather think about your project for free in a gym than sit and wait for ideas.",
+                                br![],
+                                "I also recommend to read ",
+                                span![
+                                    "You don’t need standup"
+                                ],
+                                "."
+                            ]
                         ]
                     ]
                 ]
