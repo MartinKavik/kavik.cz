@@ -777,6 +777,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         // Seed Quickstart section
         section![
             class![
+                C.rounded_br_140px,
                 C.bg_blue_10
             ],
             div![
@@ -853,7 +854,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ],
                     ul![
                         class![
-                            C.mt_10,
+                            C.mt_12,
                             C.text_blue_1
                         ],
                         li![
@@ -889,7 +890,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     div![
                         class![
                             C.mt_10,
-                            C.mb_24,
+                            C.mb_56,
                             C.text_right,
                             C.font_display,
                             C.text_15
@@ -923,118 +924,168 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         section![
             div![
                 class![
-                    C.font_display,
-                    C.font_bold,
-                    C.text_45,
-                    C.text_yellow_10
+                    C.flex,
+                    C.flex_col,
+                    C.items_center
                 ],
-                "Hellweb"
-            ],
-            ul![
-                class![
-                    C.text_gray_10
-                ],
-                li![
-                    class![
-                        C.my_3,
-                    ],
-                    div![
-                        class![
-                            C.flex,
-                            C.flex_no_wrap,
-                        ],
-                        div![
-                            class![
-                                C.text_blue_6,
-                                C.mr_2,
-                            ],
-                            "▶"
-                        ],
-                        div![
-                            h3![
-                                class![
-                                    C.inline,
-                                    C.text_18,
-                                    C.font_bold,
-                                ],
-                                "Hellweb"
-                            ],
-                            "\u{00A0}will be a collection of Rust libraries and applications which solve your pain points and explore new ideas."
-                        ]
-                    ]
-                ],
-                li![
-                    class![
-                        C.my_3,
-                    ],
-                    div![
-                        class![
-                            C.flex,
-                            C.flex_no_wrap,
-                        ],
-                        div![
-                            class![
-                                C.text_blue_6,
-                                C.mr_2,
-                            ],
-                            "▶"
-                        ],
-                        div![
-                            "What do you hate or what annoys you about ",
-                            span![
-                                class![
-                                    C.font_bold,
-                                ],
-                                "web design & development"
-                            ],
-                            "? Don't hesitate to create an issue or contact me - ",
-                            span![
-                                "martin@kavik.cz"
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            div![
-                span![
-                    class![
-                        C.text_gray_5
-                    ],
-                    "MartinKavik/"
-                ],
-                span![
-                    class![
-                        C.text_gray_9
-                    ],
-                    "hellweb-pain"
-                ],
-                img![
-                    class![
-                        C.mb_2,
-                        C.w_3,
-                    ],
-                    attrs!{
-                        At::Src => "/static/images/link_arrow.svg"
-                    }
-                ]
-            ],
-            div![
-                class![
-                    C.text_19,
-                    C.text_gray_10
-                ],
-                span![
-                    class![
-                        C.font_semibold
-                    ],
-                    "About"
-                ],
-                " your new developer",
+                // Section content container
                 div![
                     class![
-                        C.text_yellow_6
+                        C.mt_16,
+                        C.w_xs,
+                        C.px_2,
                     ],
-                    ">"
+                    // Hellweb container
+                    div![
+                        class![
+                            C.relative,
+                            C._mt_40,
+                            C.w_xs,
+                            C.py_12,
+                            C.rounded_tr_140px,
+                            C.bg_gray_1,
+                        ],
+                        // Extended background
+                        div![
+                            class![
+                                C.absolute,
+                                C.left_0,
+                                C.inset_y_0,
+                                C._left_50vw,
+                                C.w_50vw,
+                                C.bg_gray_1,
+                            ]
+                        ],
+                        // Hellweb
+                        img![
+                            class![
+                                C.mt_1,
+                                C.h_12
+                            ],
+                            attrs!{
+                                At::Src => "/static/images/hellweb_logo.svg"
+                            }
+                        ],
+                    ],
+                    ul![
+                        class![
+                            C.text_gray_10
+                        ],
+                        li![
+                            class![
+                                C.my_3,
+                            ],
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_blue_6,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                div![
+                                    h3![
+                                        class![
+                                            C.inline,
+                                            C.text_18,
+                                            C.font_bold,
+                                        ],
+                                        "Hellweb"
+                                    ],
+                                    "\u{00A0}will be a collection of Rust libraries and applications which solve your pain points and explore new ideas."
+                                ]
+                            ]
+                        ],
+                        li![
+                            class![
+                                C.mt_8,
+                            ],
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_blue_6,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                div![
+                                    "What do you hate or what annoys you about ",
+                                    span![
+                                        class![
+                                            C.font_bold,
+                                        ],
+                                        "web design & development"
+                                    ],
+                                    "? Don't hesitate to create an issue or contact me - ",
+                                    span![
+                                        "martin@kavik.cz"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    div![
+                        class![
+                            C.mt_10,
+                            C.text_right,
+                        ],
+                        span![
+                            class![
+                                C.text_gray_5
+                            ],
+                            "MartinKavik/"
+                        ],
+                        span![
+                            class![
+                                C.text_gray_9
+                            ],
+                            "hellweb-pain"
+                        ],
+                        img![
+                            class![
+                                C.mb_2,
+                                C.w_3,
+                            ],
+                            attrs!{
+                                At::Src => "/static/images/link_arrow.svg"
+                            }
+                        ]
+                    ],
+                    // About your new developer
+                    div![
+                        class![
+                            C.mt_20,
+                            C.mb_16,
+                            C.flex,
+                            C.items_center,
+                            C.text_19,
+                            C.text_gray_10
+                        ],
+                        span![
+                            class![
+                                C.font_semibold
+                            ],
+                            "About"
+                        ],
+                        "\u{00A0}your new developer",
+                        img![
+                            class![
+                                C.mt_1,
+                                C.h_12
+                            ],
+                            attrs!{
+                                At::Src => "/static/images/next.svg"
+                            }
+                        ],
+                    ]
                 ]
             ]
         ]
