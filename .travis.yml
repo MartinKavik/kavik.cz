@@ -20,7 +20,7 @@ before_cache:
 
 script:
   - yarn
-  - yarn build:release:prerender # change it to `yarn build:release` if you don't want to prerender pages
+  - yarn build:prerender # change it to `yarn build:release` if you don't want to prerender pages
   - yarn test:node
 
 before_deploy:

@@ -9,7 +9,7 @@
     "start:release": "yarn generate:css_classes && webpack-dev-server --config configs/webpack.config.js --mode=production",
     "build": "yarn generate:css_classes && webpack --config configs/webpack.config --mode=development",
     "build:release": "yarn generate:css_classes && webpack --config configs/webpack.config --mode=production && yarn optimize_wasm",
-    "build:release:prerender": "yarn build:release && yarn prerender",
+    "build:prerender": "yarn build:release && yarn prerender",
     "serve:dist": "yarn serve -s -l 8000 dist",
     "prerender": "yarn concurrently -k -s first \"yarn serve:dist\" \"wait-on http://localhost:8000/ && react-snap\"",
     "test": "yarn test:node",
