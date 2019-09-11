@@ -51,6 +51,8 @@ fn view_header<Ms: 'static>(show_photo: bool) -> impl View<Ms> {
                 img![
                     class![
                         C.w_xs,
+                        C.h_full,
+                        C.object_contain,
                     ],
                     attrs!{
                         At::Src => "/static/images/photo_1.png"
@@ -72,6 +74,7 @@ fn view_header<Ms: 'static>(show_photo: bool) -> impl View<Ms> {
                 class![
                     C.mx_8
                     C.h_16
+                    C.pt_2,
                     C.flex,
                     C.justify_between,
                     C.items_center,

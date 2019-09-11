@@ -122,7 +122,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_blue_6,
                             C.mr_1,
                         ],
-                        "▶"
+                        "▶\u{fe0e}"
                     ],
                     div![
                         "I was working as a ",
@@ -154,7 +154,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.text_blue_6,
                                 C.mr_1,
                             ],
-                            "▶"
+                            "▶\u{fe0e}"
                         ],
                         div![
                             "I'm also coming back to ",
@@ -190,7 +190,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_blue_6,
                             C.mr_1,
                         ],
-                        "▶"
+                        "▶\u{fe0e}"
                     ],
                     div![
                         "People make mistakes. That's why I setup linters, formatters, CI pipelines, etc., as ",
@@ -229,7 +229,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.text_blue_6,
                                 C.mr_1,
                             ],
-                            "▶"
+                            "▶\u{fe0e}"
                         ],
                         div![
                             "I often learn from ",
@@ -337,7 +337,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_yellow_4,
                             C.mr_1,
                         ],
-                        "▶"
+                        "▶\u{fe0e}"
                     ],
                     div![
                         "I've designed logos, my resume and this website in ",
@@ -368,7 +368,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.text_yellow_4,
                                 C.mr_1,
                             ],
-                            "▶"
+                            "▶\u{fe0e}"
                         ],
                         div![
                             "I'll use ",
@@ -394,7 +394,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_yellow_4,
                             C.mr_1,
                         ],
-                        "▶"
+                        "▶\u{fe0e}"
                     ],
                     div![
                         "I have some experience with ",
@@ -439,7 +439,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.text_yellow_4,
                                 C.mr_1,
                             ],
-                            "▶"
+                            "▶\u{fe0e}"
                         ],
                         div![
                             "I recommend to check ",
@@ -534,7 +534,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     C.text_yellow_4,
                                     C.mr_1,
                                 ],
-                                "▶"
+                                "▶\u{fe0e}"
                             ],
                             div![
                                 "I'm INTJ. When I'm not ",
@@ -558,7 +558,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     C.text_yellow_4,
                                     C.mr_1,
                                 ],
-                                "▶"
+                                "▶\u{fe0e}"
                             ],
                             div![
                                 "I like to spend my vacation at the cottage - hiking, cycling, driving, etc."
@@ -620,7 +620,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     C.text_yellow_4,
                                     C.mr_1,
                                 ],
-                                "▶"
+                                "▶\u{fe0e}"
                             ],
                             div![
                                 "I'm ",
@@ -651,7 +651,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     C.text_yellow_4,
                                     C.mr_1,
                                 ],
-                                "▶"
+                                "▶\u{fe0e}"
                             ],
                             div![
                                 "I like to ",
@@ -675,7 +675,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     C.text_yellow_4,
                                     C.mr_1,
                                 ],
-                                "▶"
+                                "▶\u{fe0e}"
                             ],
                             div![
                                 "I'd rather think about your project for free in a gym than sit and wait for ideas.",
@@ -732,7 +732,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_blue_6,
                             C.mr_1,
                         ],
-                        "▶"
+                        "▶\u{fe0e}"
                     ],
                     div![
                         "I programmed a real football cannon."
@@ -749,7 +749,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_blue_6,
                             C.mr_1,
                         ],
-                        "▶"
+                        "▶\u{fe0e}"
                     ],
                     div![
                         "I jumped off a plane",
@@ -762,6 +762,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         // Want to meet section
         section![
             class![
+                C.relative,
                 C.h_690px,
                 C.bg_blue_10,
                 C.rounded_br_140px,
@@ -778,11 +779,15 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ],
                 img![
                     class![
+                        C.relative,
+                        C.block,
                         C.ml_10vw,
                         C.w_265px,
+                        C.object_contain,
+                        C.h_full,
                     ],
                     attrs!{
-                        At::Src => "/static/images/photo_2.jpg"
+                        At::Src => "/static/images/photo_2.jpg",
                     }
                 ],
             ],
@@ -802,7 +807,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_yellow_4,
                             C.mr_1,
                         ],
-                        "▶"
+                        "▶\u{fe0e}"
                     ],
                     div![
                         "Want to meet somewhere in ",

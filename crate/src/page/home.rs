@@ -166,7 +166,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_blue_6,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    // https://stackoverflow.com/a/39900080
+                                    "▶\u{fe0e}"
                                 ],
                                 "To work on your project"
                             ]
@@ -185,7 +186,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_blue_6,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    "▶\u{fe0e}"
                                 ],
                                 "Readable code and UI"
                             ]
@@ -204,7 +205,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_blue_6,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    "▶\u{fe0e}"
                                 ],
                                 "Rust, Affinity Designer and Figma."
                             ]
@@ -223,7 +224,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_blue_6,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    "▶\u{fe0e}"
                                 ],
                                 div![
                                     "Receiving mails. ",
@@ -248,7 +249,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 // Section content container
                 div![
                     class![
-                        C.mt_16,
+                        C.mt_20,
                         C.w_xs,
                         C.px_2,
                     ],
@@ -276,14 +277,13 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     // Testimonial 1
                     div![
                         class![
-                            C.mt_16,
+                            C.mt_20,
                             C.text_right
                         ],
                         div![
                             class![
                                 C.font_display,
                                 C.italic,
-                                C.text_16,
                                 C.text_yellow_4
                             ],
                             "Awesome, awesome framework!"
@@ -302,17 +302,19 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     // Testimonial 2
                     div![
                         class![
-                            C.mt_3,
+                            C.mt_8,
                             C.text_right
                         ],
                         div![
                             class![
+                                C.mr_4,
                                 C.font_display,
                                 C.italic,
-                                C.text_16,
                                 C.text_yellow_4
                             ],
-                            "Seed rocks, and Martin makes it better."
+                            "Seed rocks, and ",
+                            br![],
+                            "Martin makes it better."
                         ],
                         div![
                             class![
@@ -379,7 +381,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_yellow_4,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    "▶\u{fe0e}"
                                 ],
                                 div![
                                     h3![
@@ -408,7 +410,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_yellow_4,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    "▶\u{fe0e}"
                                 ],
                                 "I'm the main contributor."
                             ]
@@ -427,7 +429,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_yellow_4,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    "▶\u{fe0e}"
                                 ],
                                 "I've designed the logo."
                             ]
@@ -563,7 +565,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_yellow_4,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    "▶\u{fe0e}"
                                 ],
                                 div![
                                     h3![
@@ -711,7 +713,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_yellow_4,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    "▶\u{fe0e}"
                                 ],
                                 div![
                                     h3![
@@ -740,7 +742,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_yellow_4,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    "▶\u{fe0e}"
                                 ],
                                 "You can fork it, modify it and use it as your own website."
                             ]
@@ -876,7 +878,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_yellow_4,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    "▶\u{fe0e}"
                                 ],
                                 div![
                                     h3![
@@ -991,7 +993,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_blue_6,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    "▶\u{fe0e}"
                                 ],
                                 div![
                                     h3![
@@ -1020,7 +1022,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         C.text_blue_6,
                                         C.mr_2,
                                     ],
-                                    "▶"
+                                    "▶\u{fe0e}"
                                 ],
                                 div![
                                     "What do you hate or what annoys you about ",
@@ -1071,6 +1073,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         class![
                             C.mt_20,
                             C.mb_16,
+                            C.ml_5,
                             C.flex,
                             C.items_center,
                             C.justify_center,
