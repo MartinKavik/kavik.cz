@@ -437,6 +437,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         class![
                             C.mt_10,
                             C.mb_24,
+                            C.mr_2,
                             C.text_right,
                             C.font_display,
                         ],
@@ -487,11 +488,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     div![
                         class![
                             C.mt_10,
+                            C.mr_2,
                             C.text_right,
                         ],
                         div![
                             class![
-                                C.mr_4,
+                                C.mr_3,
                                 C.font_display,
                                 C.italic,
                                 C.text_yellow_4
@@ -581,6 +583,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         class![
                             C.mt_10,
                             C.mb_24,
+                            C.mr_2,
                             C.text_right,
                             C.font_display,
                         ],
@@ -631,6 +634,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     div![
                         class![
                             C.mt_10,
+                            C.mr_3,
                             C.text_right
                         ],
                         div![
@@ -746,6 +750,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         class![
                             C.mt_10,
                             C.mb_24,
+                            C.mr_2,
                             C.text_right,
                             C.font_display,
                         ],
@@ -960,6 +965,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         img![
                             class![
                                 C.mt_1,
+                                C.ml_8,
                                 C.h_12
                             ],
                             attrs!{
@@ -1035,6 +1041,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     div![
                         class![
                             C.mt_10,
+                            C.mr_2,
                             C.text_right,
                         ],
                         span![
@@ -1066,6 +1073,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.mb_16,
                             C.flex,
                             C.items_center,
+                            C.justify_center,
                             C.text_19,
                             C.text_gray_10
                         ],
@@ -1088,6 +1096,67 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ]
                 ]
             ]
-        ]
+        ],
+        // Circles
+        div![
+            class![
+                C.absolute,
+                C.left_1of2,
+                C.top_0,
+                C.mt_310px,
+                C.ml_48,
+                C.w_1240px,
+                C.h_1240px,
+                C.rounded_full,
+                C.border_blue_2,
+                C.border_2,
+                C.opacity_10,
+            ]
+        ],
+        div![
+            class![
+                C.absolute,
+                C.right_1of2,
+                C.top_0,
+                C.mt_1050px,
+                C.mr_48,
+                C.w_1240px,
+                C.h_1240px,
+                C.rounded_full,
+                C.border_blue_2,
+                C.border_2,
+                C.opacity_10,
+            ]
+        ],
+        div![
+            class![
+                C.absolute,
+                C.left_1of2,
+                C.top_0,
+                C.mt_1760px,
+                C.ml_48,
+                C.w_1240px,
+                C.h_1240px,
+                C.rounded_full,
+                C.border_blue_2,
+                C.border_2,
+                C.opacity_10,
+            ]
+        ],
+        div![
+            class![
+                C.absolute,
+                C.right_1of2,
+                C.top_0,
+                C.mt_2340px,
+                C.mr_48,
+                C.w_1240px,
+                C.h_1240px,
+                C.rounded_full,
+                C.border_blue_2,
+                C.border_2,
+                C.opacity_10,
+            ]
+        ],
     ]
 }
