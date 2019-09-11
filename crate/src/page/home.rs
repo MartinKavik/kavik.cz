@@ -471,60 +471,141 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.bg_blue_10
             ],
             div![
+                class![
+                    C.flex,
+                    C.flex_col,
+                    C.items_center
+                ],
+                // Section content container
                 div![
                     class![
-                        C.font_display,
-                        C.italic,
-                        C.text_yellow_4
+                        C.mt_16,
+                        C.w_xs,
+                        C.px_2,
                     ],
-                    "Your real world example really is the mother of all examples."
-                ],
-                div![
-                    class![
-                        C.font_display,
-                        C.text_15,
-                        C.text_blue_3
-                    ],
-                    "- theduke"
-                ]
-            ],
-            div![
-                class![
-                    C.font_display,
-                    C.text_20,
-                    C.font_bold
-                ],
-                "RealWorld example app"
-            ],
-            ul![
-                class![
-                    C.text_blue_1
-                ],
-                li![
-                    h3![
+                    // Testimonial
+                    div![
                         class![
-                            C.font_bold,
+                            C.mt_10,
+                            C.text_right,
                         ],
-                        "RealWorld example"
+                        div![
+                            class![
+                                C.mr_4,
+                                C.font_display,
+                                C.italic,
+                                C.text_yellow_4
+                            ],
+                            "Your real world example really is the mother of all examples."
+                        ],
+                        div![
+                            class![
+                                C.mt_4,
+                                C.font_display,
+                                C.text_15,
+                                C.text_blue_3
+                            ],
+                            "- theduke"
+                        ]
                     ],
-                    " is a Seed codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the RealWorld spec and API."
-                ],
-            ],
-            div![
-                class![
-                    C.font_display,
-                ],
-                span![
-                    class![
-                        C.text_blue_4
+                    // RealWorld example app
+                    div![
+                        class![
+                            C.relative,
+                            C.mt_12,
+                            C.ml_1,
+                            C.pt_8,
+                            C.pb_6,
+                            C.rounded_tl_28px,
+                            C.bg_blue_2,
+                            C.shadow_glow,
+                        ],
+                        // Extended background
+                        div![
+                            class![
+                                C.absolute,
+                                C._right_50vw,
+                                C.inset_y_0,
+                                C.w_50vw,
+                                C.bg_blue_2,
+                                C.shadow_glow,
+                            ]
+                        ],
+                        // Logo
+                       img![
+                            class![
+                                C.h_12,
+                                C.max_w_none
+                            ],
+                            attrs!{
+                                At::Src => "/static/images/realworld_logo.png"
+                            }
+                        ]
                     ],
-                    "MartinKavik/"
-                ],
-                span![
-                    class![
-                        C.text_blue_2
+                    ul![
+                        class![
+                            C.mt_12,
+                            C.text_blue_1
+                        ],
+                        li![
+                            class![
+                                C.my_3,
+                            ],
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_yellow_4,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                div![
+                                    h3![
+                                        class![
+                                            C.inline,
+                                            C.text_18,
+                                            C.font_bold,
+                                        ],
+                                        "RealWorld example"
+                                    ],
+                                    "\u{00A0}is a Seed codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the RealWorld spec and API."
+                                ]
+                            ]
+                        ],
                     ],
-                    "seed-rs-realworld"
+                    div![
+                        class![
+                            C.mt_10,
+                            C.mb_24,
+                            C.text_right,
+                            C.font_display,
+                        ],
+                        span![
+                            class![
+                                C.text_blue_4
+                            ],
+                            "MartinKavik/"
+                        ],
+                        span![
+                            class![
+                                C.text_blue_2
+                            ],
+                            "seed-rs-realworld"
+                        ],
+                        img![
+                            class![
+                                C.mb_2,
+                                C.w_3,
+                            ],
+                            attrs!{
+                                At::Src => "/static/images/link_arrow.svg"
+                            }
+                        ]
+                    ]
                 ]
             ]
         ],
@@ -534,63 +615,162 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.bg_blue_6
             ],
             div![
+                class![
+                    C.flex,
+                    C.flex_col,
+                    C.items_center
+                ],
+                // Section content container
                 div![
                     class![
-                        C.font_display,
-                        C.italic,
-                        C.text_yellow_4
+                        C.mt_16,
+                        C.w_xs,
+                        C.px_2,
                     ],
-                    "Fork it, use it!"
-                ],
-                div![
-                    class![
-                        C.font_display,
-                        C.text_15,
-                        C.text_blue_3
-                    ],
-                    "- me"
-                ]
-            ],
-            div![
-                class![
-                    C.font_display,
-                    C.text_80,
-                    C.font_bold
-                ],
-                "MK"
-            ],
-            ul![
-                class![
-                    C.text_blue_1
-                ],
-                li![
-                    h3![
+                    // Testimonial
+                    div![
                         class![
-                            C.font_bold,
+                            C.mt_10,
+                            C.text_right
                         ],
-                        "kavik.cz"
+                        div![
+                            class![
+                                C.mr_4,
+                                C.font_display,
+                                C.italic,
+                                C.text_yellow_4
+                            ],
+                            "Fork it, use it!"
+                        ],
+                        div![
+                            class![
+                                C.mt_4,
+                                C.font_display,
+                                C.text_15,
+                                C.text_blue_3
+                            ],
+                            "- me"
+                        ]
                     ],
-                    " is this website."
-                ],
-                li![
-                    "You can fork it, modify it and use it as your own website."
-                ],
-            ],
-            div![
-                class![
-                    C.font_display,
-                ],
-                span![
-                    class![
-                        C.text_blue_4
+                    // MK
+                    div![
+                        class![
+                            C.relative,
+                            C.mt_8,
+                            C.pt_4,
+                            C.pb_2,
+                            C.w_36,
+                            C.rounded_tr_28px,
+                            C.bg_blue_2,
+                            C.shadow_glow,
+                        ],
+                        // Extended background
+                        div![
+                            class![
+                                C.absolute,
+                                C.left_0,
+                                C.inset_y_0,
+                                C._left_50vw,
+                                C.w_50vw,
+                                C.bg_blue_2,
+                                C.shadow_glow,
+                            ]
+                        ],
+                        // Logo
+                        img![
+                            class![
+                                C.ml_6,
+                                C.h_20,
+                                C.max_w_none
+                            ],
+                            attrs!{
+                                At::Src => "/static/images/logo.svg"
+                            }
+                        ]
                     ],
-                    "MartinKavik/"
-                ],
-                span![
-                    class![
-                        C.text_blue_2
+                    ul![
+                        class![
+                            C.mt_10,
+                            C.text_blue_1
+                        ],
+                        li![
+                            class![
+                                C.my_3,
+                            ],
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_yellow_4,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                div![
+                                    h3![
+                                        class![
+                                            C.inline,
+                                            C.text_18,
+                                            C.font_bold,
+                                        ],
+                                        "kavik.cz"
+                                    ],
+                                    "\u{00A0}is this website."
+                                ]
+                            ]
+                        ],
+                        li![
+                            class![
+                                C.my_3,
+                            ],
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_yellow_4,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                "You can fork it, modify it and use it as your own website."
+                            ]
+                        ],
                     ],
-                    "kavik.cz"
+                    div![
+                        class![
+                            C.mt_10,
+                            C.mb_24,
+                            C.text_right,
+                            C.font_display,
+                        ],
+                        span![
+                            class![
+                                C.text_blue_4
+                            ],
+                            "MartinKavik/"
+                        ],
+                        span![
+                            class![
+                                C.text_blue_2
+                            ],
+                            "kavik.cz"
+                        ],
+                        img![
+                            class![
+                                C.mb_2,
+                                C.w_3,
+                            ],
+                            attrs!{
+                                At::Src => "/static/images/link_arrow.svg"
+                            }
+                        ]
+                    ]
                 ]
             ]
         ],
@@ -600,61 +780,142 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.bg_blue_10
             ],
             div![
+                class![
+                    C.flex,
+                    C.flex_col,
+                    C.items_center
+                ],
+                // Section content container
                 div![
                     class![
-                        C.font_display,
-                        C.italic,
-                        C.text_yellow_4
+                        C.mt_16,
+                        C.w_xs,
+                        C.px_2,
                     ],
-                    "Its great!"
-                ],
-                div![
-                    class![
-                        C.font_display,
-                        C.text_15,
-                        C.text_blue_3
-                    ],
-                    "- rebo"
-                ]
-            ],
-            div![
-                class![
-                    C.font_display,
-                    C.font_bold,
-                    C.text_34
-                ],
-                "Seed Quickstart"
-            ],
-            ul![
-                class![
-                    C.text_blue_1
-                ],
-                li![
-                    h3![
+                    // Testimonial
+                    div![
                         class![
-                            C.font_bold,
+                            C.mt_10,
+                            C.ml_5,
                         ],
-                        "Seed Quickstart"
+                        div![
+                            class![
+                                C.font_display,
+                                C.italic,
+                                C.text_yellow_4
+                            ],
+                            "Its great!"
+                        ],
+                        div![
+                            class![
+                                C.ml_12,
+                                C.mt_4,
+                                C.font_display,
+                                C.text_15,
+                                C.text_blue_3
+                            ],
+                            "- rebo"
+                        ]
                     ],
-                    " is a template for web apps with Seed, TailwindCSS, Typescript and Webpack."
-                ],
-            ],
-            div![
-                class![
-                    C.font_display,
-                    C.text_15
-                ],
-                span![
-                    class![
-                        C.text_blue_4
+                    // Seed Quickstart
+                    div![
+                        class![
+                            C.relative,
+                            C.mt_12,
+                            C.ml_6,
+                            C.pt_8,
+                            C.pb_6,
+                            C.rounded_tl_28px,
+                            C.bg_blue_2,
+                            C.shadow_glow,
+                        ],
+                        // Extended background
+                        div![
+                            class![
+                                C.absolute,
+                                C._right_50vw,
+                                C.inset_y_0,
+                                C.w_50vw,
+                                C.bg_blue_2,
+                                C.shadow_glow,
+                            ]
+                        ],
+                        // Logo
+                        div![
+                            class![
+                                C.ml_2,
+                                C.font_display,
+                                C.font_bold,
+                                C.text_34
+                            ],
+                            "Seed Quickstart"
+                        ],
                     ],
-                    "MartinKavik/"
-                ],
-                span![
-                    class![
-                        C.text_blue_2
+                    ul![
+                        class![
+                            C.mt_10,
+                            C.text_blue_1
+                        ],
+                        li![
+                            class![
+                                C.my_3,
+                            ],
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_yellow_4,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                div![
+                                    h3![
+                                        class![
+                                            C.inline,
+                                            C.text_18,
+                                            C.font_bold,
+                                        ],
+                                        "Seed Quickstart"
+                                    ],
+                                    "\u{00A0}is a template for web apps with Seed, TailwindCSS, Typescript and Webpack."
+                                ]
+                            ]
+                        ],
                     ],
-                    "seed-quickstart-webpack"
+                    div![
+                        class![
+                            C.mt_10,
+                            C.mb_24,
+                            C.text_right,
+                            C.font_display,
+                            C.text_15
+                        ],
+                        span![
+                            class![
+                                C.text_blue_4
+                            ],
+                            "MartinKavik/"
+                        ],
+                        span![
+                            class![
+                                C.text_blue_2
+                            ],
+                            "seed-quickstart-webpack"
+                        ],
+                        img![
+                            class![
+                                C.mb_2,
+                                C.w_3,
+                            ],
+                            attrs!{
+                                At::Src => "/static/images/link_arrow.svg"
+                            }
+                        ]
+                    ]
                 ]
             ]
         ],
@@ -674,25 +935,63 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.text_gray_10
                 ],
                 li![
-                    h3![
-                        class![
-                            C.font_bold,
-                        ],
-                        "Hellweb"
+                    class![
+                        C.my_3,
                     ],
-                    " will be a collection of Rust libraries and applications which solve your pain points and explore new ideas."
+                    div![
+                        class![
+                            C.flex,
+                            C.flex_no_wrap,
+                        ],
+                        div![
+                            class![
+                                C.text_blue_6,
+                                C.mr_2,
+                            ],
+                            "▶"
+                        ],
+                        div![
+                            h3![
+                                class![
+                                    C.inline,
+                                    C.text_18,
+                                    C.font_bold,
+                                ],
+                                "Hellweb"
+                            ],
+                            "\u{00A0}will be a collection of Rust libraries and applications which solve your pain points and explore new ideas."
+                        ]
+                    ]
                 ],
                 li![
-                    "What do you hate or what annoys you about ",
-                    span![
-                        class![
-                            C.font_bold,
-                        ],
-                        "web design & development"
+                    class![
+                        C.my_3,
                     ],
-                    "? Don't hesitate to create an issue or contact me - ",
-                    span![
-                        "martin@kavik.cz"
+                    div![
+                        class![
+                            C.flex,
+                            C.flex_no_wrap,
+                        ],
+                        div![
+                            class![
+                                C.text_blue_6,
+                                C.mr_2,
+                            ],
+                            "▶"
+                        ],
+                        div![
+                            "What do you hate or what annoys you about ",
+                            span![
+                                class![
+                                    C.font_bold,
+                                ],
+                                "web design & development"
+                            ],
+                            "? Don't hesitate to create an issue or contact me - ",
+                            span![
+                                "martin@kavik.cz"
+                            ]
+                        ]
                     ]
                 ]
             ],
@@ -708,6 +1007,15 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.text_gray_9
                     ],
                     "hellweb-pain"
+                ],
+                img![
+                    class![
+                        C.mb_2,
+                        C.w_3,
+                    ],
+                    attrs!{
+                        At::Src => "/static/images/link_arrow.svg"
+                    }
                 ]
             ],
             div![
@@ -716,6 +1024,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.text_gray_10
                 ],
                 span![
+                    class![
+                        C.font_semibold
+                    ],
                     "About"
                 ],
                 " your new developer",

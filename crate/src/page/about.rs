@@ -582,9 +582,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 div![
                     class![
                         C.absolute,
-                        C.right_0,
-                        C.inset_y_0,
                         C._right_50vw,
+                        C.inset_y_0,
                         C.w_50vw,
                         C.bg_blue_10,
                     ]
