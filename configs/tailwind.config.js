@@ -76,7 +76,8 @@ module.exports = {
     })(),
     extend: {
         boxShadow: {
-          "2xl-above": '0 25px 50px 15px rgba(0, 0, 0, 0.25), 0 10px 10px 10px rgba(0, 0, 0, 0.25)'
+          '2xl-above': '0 25px 50px 15px rgba(0, 0, 0, 0.25), 0 10px 10px 10px rgba(0, 0, 0, 0.25)',
+          'glow': '0 0 5px 2px hsl(205, 97%, 85%)'
         },
         margin: {
           '-10vh': '-10vh',
@@ -90,6 +91,7 @@ module.exports = {
           '-50vw': '-50vw',
         },
         width: {
+          '36': '9rem',
           '76': '19rem',
           'xs': '20rem',
           'md': '28rem',
@@ -103,6 +105,7 @@ module.exports = {
           'none': 'none',
         },
         height: {
+          '18': '4.5rem',
           '300px': '300px',
           '320px': '320px',
           '360px': '360px',
@@ -115,6 +118,7 @@ module.exports = {
           '1580px': '1580px',
         },
         borderRadius: {
+          '28px': '28px',
           '45px': '45px',
           '90px': '90px',
           '110px': '110px',

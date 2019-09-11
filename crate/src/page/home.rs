@@ -248,13 +248,17 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 // Section content container
                 div![
                     class![
-                        C.w_xs
+                        C.mt_16,
+                        C.w_xs,
+                        C.px_2,
                     ],
+                    // Github projects
                     h2![
                         class![
                             C.font_display,
                             C.text_23,
-                            C.text_blue_3
+                            C.text_blue_3,
+                            C.text_center
                         ],
                         span![
                             class![
@@ -269,7 +273,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             " GITHUB PROJECTS"
                         ]
                     ],
+                    // Testimonial 1
                     div![
+                        class![
+                            C.mt_16,
+                            C.text_right
+                        ],
                         div![
                             class![
                                 C.font_display,
@@ -281,6 +290,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         ],
                         div![
                             class![
+                                C.mt_2,
+                                C.mr_2,
                                 C.font_display,
                                 C.text_15,
                                 C.text_blue_3
@@ -288,7 +299,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             "- rebo"
                         ]
                     ],
+                    // Testimonial 2
                     div![
+                        class![
+                            C.mt_3,
+                            C.text_right
+                        ],
                         div![
                             class![
                                 C.font_display,
@@ -300,6 +316,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         ],
                         div![
                             class![
+                                C.mt_2,
+                                C.mr_5,
                                 C.font_display,
                                 C.text_15,
                                 C.text_blue_3
@@ -307,36 +325,119 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             "- robwebbjr"
                         ]
                     ],
+                    // Seed
                     div![
                         class![
-                            C.font_display,
-                            C.text_70,
-                            C.font_semibold
+                            C.relative,
+                            C.mt_8,
+                            C.pt_5,
+                            C.pb_3,
+                            C.w_36,
+                            C.rounded_tr_28px,
+                            C.bg_blue_2,
+                            C.shadow_glow,
                         ],
-                        "Seed"
+                        // Extended background
+                        div![
+                            class![
+                                C.absolute,
+                                C.left_0,
+                                C.inset_y_0,
+                                C._left_50vw,
+                                C.w_50vw,
+                                C.bg_blue_2,
+                                C.shadow_glow,
+                            ]
+                        ],
+                        // Logo
+                        img![
+                            class![
+                                C.h_18,
+                                C.max_w_none
+                            ],
+                            attrs!{
+                                At::Src => "/static/images/seed_logo.svg"
+                            }
+                        ]
                     ],
                     ul![
                         class![
+                            C.mt_10,
                             C.text_blue_1
                         ],
                         li![
-                            h3![
-                                class![
-                                    C.font_bold,
-                                ],
-                                "Seed"
+                            class![
+                                C.my_3,
                             ],
-                            " is an open-source Rust framework for creating fast and reliable web apps running in WebAssembly."
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_yellow_4,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                div![
+                                    h3![
+                                        class![
+                                            C.inline,
+                                            C.text_18,
+                                            C.font_bold,
+                                        ],
+                                        "Seed"
+                                    ],
+                                    "\u{00A0}is an open-source Rust framework for creating fast and reliable web apps running in WebAssembly."
+                                ]
+                            ]
                         ],
                         li![
-                            "I'm the main contributor."
+                            class![
+                                C.my_3,
+                            ],
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_yellow_4,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                "I'm the main contributor."
+                            ]
                         ],
                         li![
-                            "I've designed the logo."
+                            class![
+                                C.my_3,
+                            ],
+                            div![
+                                class![
+                                    C.flex,
+                                    C.flex_no_wrap,
+                                ],
+                                div![
+                                    class![
+                                        C.text_yellow_4,
+                                        C.mr_2,
+                                    ],
+                                    "▶"
+                                ],
+                                "I've designed the logo."
+                            ]
                         ],
                     ],
                     div![
                         class![
+                            C.mt_10,
+                            C.mb_24,
+                            C.text_right,
                             C.font_display,
                         ],
                         span![
@@ -350,6 +451,15 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.text_blue_2
                             ],
                             "awesome-seed-rs"
+                        ],
+                        img![
+                            class![
+                                C.mb_2,
+                                C.w_3,
+                            ],
+                            attrs!{
+                                At::Src => "/static/images/link_arrow.svg"
+                            }
                         ]
                     ]
                 ]
