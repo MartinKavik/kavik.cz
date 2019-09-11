@@ -169,7 +169,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     // https://stackoverflow.com/a/39900080
                                     "▶\u{fe0e}"
                                 ],
-                                "To work on your project"
+                                "To work on your project."
                             ]
                         ],
                         li![
@@ -188,7 +188,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     ],
                                     "▶\u{fe0e}"
                                 ],
-                                "Readable code and UI"
+                                "Readable code and UI."
                             ]
                         ],
                         li![
