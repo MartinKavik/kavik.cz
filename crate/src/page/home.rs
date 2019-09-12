@@ -1,12 +1,12 @@
 use crate::generated::css_classes::C;
 use seed::prelude::*;
 use seed::*;
-use super::{view_header, view_footer};
+use super::{view_header, view_footer, Page};
 
 pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
     vec![
         view_content().els(),
-        view_header(false).els(),
+        view_header(Page::Home).els(),
         view_footer().els(),
     ]
     .into_iter()
@@ -457,7 +457,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         ],
                         img![
                             class![
-                                C.mb_2,
+                                C.inline
+                                C.mb_4,
+                                C.ml_px,
                                 C.w_3,
                             ],
                             attrs!{
@@ -603,7 +605,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         ],
                         img![
                             class![
-                                C.mb_2,
+                                C.inline
+                                C.mb_4,
+                                C.ml_px,
                                 C.w_3,
                             ],
                             attrs!{
@@ -770,7 +774,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         ],
                         img![
                             class![
-                                C.mb_2,
+                                C.inline
+                                C.mb_4,
+                                C.ml_px,
                                 C.w_3,
                             ],
                             attrs!{
@@ -916,7 +922,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         ],
                         img![
                             class![
-                                C.mb_2,
+                                C.inline
+                                C.mb_4,
+                                C.ml_px,
                                 C.w_3,
                             ],
                             attrs!{
@@ -1060,7 +1068,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         ],
                         img![
                             class![
-                                C.mb_2,
+                                C.inline
+                                C.mb_4,
+                                C.ml_px,
                                 C.w_3,
                             ],
                             attrs!{

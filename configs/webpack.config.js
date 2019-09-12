@@ -44,7 +44,9 @@ module.exports = (env, argv) => {
       }),
       // inline the critical part of styles, preload remainder
       new Critters({
-        logLevel: "warn"
+        logLevel: "warn",
+        // https://github.com/GoogleChromeLabs/critters/issues/34
+        pruneSource: false,
       }),
       // compile Rust
       new WasmPackPlugin({

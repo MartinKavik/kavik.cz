@@ -1,12 +1,12 @@
 use crate::generated::css_classes::C;
 use seed::prelude::*;
 use seed::*;
-use super::{view_header, view_footer};
+use super::{view_header, view_footer, Page};
 
 pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
     vec![
         view_content().els(),
-        view_header(true).els(),
+        view_header(Page::About).els(),
         view_footer().els(),
     ]
     .into_iter()
@@ -485,7 +485,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             div![
                 class![
                     C.relative,
-                    C.mt_12,
+                    C.mt_20,
                     C.pt_3,
                     C.pb_16,
                     C.px_12,
@@ -512,6 +512,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     h3![
                         class![
                             C.ml_8,
+                            C.mt_8,
                             C.font_display,
                             C.font_thin,
                             C.text_35,
@@ -521,6 +522,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ],
                     ul![
                         class![
+                            C.mt_8,
                             C.ml_1,
                             C.text_blue_1
                         ],
@@ -596,6 +598,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ],
                     h3![
                         class![
+                            C.mt_8,
                             C.mr_8,
                             C.text_right,
                             C.font_display,
@@ -607,6 +610,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ],
                     ul![
                         class![
+                            C.mt_8,
                             C.ml_1,
                             C.text_blue_1
                         ],

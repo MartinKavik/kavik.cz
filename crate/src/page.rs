@@ -6,7 +6,14 @@ pub mod about;
 pub mod home;
 pub mod not_found;
 
-fn view_header<Ms: 'static>(show_photo: bool) -> impl View<Ms> {
+#[derive(Clone, Copy, Eq, PartialEq)]
+pub enum Page {
+    Home,
+    About,
+    Other
+}
+
+fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
     vec![
         // Header background and line container
         div![
@@ -15,6 +22,8 @@ fn view_header<Ms: 'static>(show_photo: bool) -> impl View<Ms> {
                 C.top_0
                 C.inset_x_0,
                 C.h_16,
+                // sm__
+                C.sm__h_24,
             ],
             // Header background
             div![
@@ -33,12 +42,38 @@ fn view_header<Ms: 'static>(show_photo: bool) -> impl View<Ms> {
                     C.ml_12,
                     C.w_3of5,
                     C.h_px,
-                    C.bg_gray_2,
+                    // sm__
+                    C.sm__ml_0,
+                    C.sm__w_full,
+                    C.sm__h_3px
+                    C.sm__flex,
+                    C.sm__justify_center,
+                ],
+                div![
+                    class![
+                        C.h_full,
+                        C.bg_gray_2,
+                        // sm__
+                        C.sm__ml_6,
+                        C.sm__w_48,
+                        C.sm__bg_yellow_6 => page == Page::Home,
+                    ],
+                ],
+                div![
+                    class![
+                        C.hidden,
+                        // sm__
+                        C.sm__block,
+                        C.sm__h_full,
+                        C.sm__bg_gray_2,
+                        C.sm__w_24,
+                        C.sm__bg_yellow_6 => page == Page::About,
+                    ],
                 ]
             ],
         ],
         // Photo 1
-        if show_photo {
+        if let Page::About = page {
             div![
                 class![
                     C.absolute,
@@ -73,11 +108,12 @@ fn view_header<Ms: 'static>(show_photo: bool) -> impl View<Ms> {
             div![
                 class![
                     C.mx_8
-                    C.h_16
-                    C.pt_2,
+                    C.h_16,
                     C.flex,
                     C.justify_between,
                     C.items_center,
+                    // sm__
+                    C.sm__h_24,
                 ],
                 // Logo
                 a![
@@ -86,12 +122,37 @@ fn view_header<Ms: 'static>(show_photo: bool) -> impl View<Ms> {
                     },
                     img![
                         class![
-                            C.h_6
+                            C.h_6,
+                            // sm__
+                            C.sm__h_10,
                         ],
                         attrs!{
                             At::Src => "/static/images/logo.svg"
                         }
                     ],
+                ],
+                // Links
+                ul![
+                    class![
+                        C.hidden,
+                        // sm__
+                        C.sm__flex,
+                        C.sm__text_21,
+                        C.sm__font_semibold,
+                        C.sm__text_gray_10
+                    ],
+                    li![
+                        class![
+                        ],
+                        "Home & Projects"
+                    ],
+                    li![
+                        class![
+                            // sm__
+                            C.sm__ml_8
+                        ],
+                        "About"
+                    ]
                 ],
                 // Hamburger
                 div![
@@ -100,7 +161,9 @@ fn view_header<Ms: 'static>(show_photo: bool) -> impl View<Ms> {
                     ],
                     img![
                         class![
-                            C.h_8
+                            C.h_8,
+                            // sm__
+                            C.sm__h_10
                         ],
                         attrs!{
                             At::Src => "/static/images/hamburger.svg"
@@ -108,7 +171,7 @@ fn view_header<Ms: 'static>(show_photo: bool) -> impl View<Ms> {
                     ]
                 ]
             ],
-            // Top header line
+            // Bottom header line
             div![
                 class![
                     C.absolute,
@@ -116,7 +179,33 @@ fn view_header<Ms: 'static>(show_photo: bool) -> impl View<Ms> {
                     C.ml_12,
                     C.w_3of5,
                     C.h_px,
-                    C.bg_gray_2,
+                    // sm__
+                    C.sm__ml_0,
+                    C.sm__w_full,
+                    C.sm__h_3px
+                    C.sm__flex,
+                    C.sm__justify_center,
+                ],
+                div![
+                    class![
+                        C.h_full,
+                        C.bg_gray_2,
+                        // sm__
+                        C.sm__ml_6,
+                        C.sm__w_48,
+                        C.sm__bg_yellow_6 => page == Page::Home,
+                    ],
+                ],
+                div![
+                    class![
+                        C.hidden,
+                        // sm__
+                        C.sm__block,
+                        C.sm__h_full,
+                        C.sm__bg_gray_2,
+                        C.sm__w_24,
+                        C.sm__bg_yellow_6 => page == Page::About,
+                    ],
                 ]
             ],
         ],
@@ -138,7 +227,7 @@ pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
                 C.px_5,
                 C.flex,
                 C.justify_between,
-                C.items_center
+                C.items_center,
             ],
             div![
                 img![
