@@ -15,6 +15,16 @@ Object.fromEntries = Object.fromEntries || ((iterable) => {
 
 module.exports = {
   theme: {
+    screens: {
+      'sm': '569px',
+      // => @media (min-width: 569px) { ... }
+
+      'md': '1025px',
+      // => @media (min-width: 1025px) { ... }
+
+      'lg': '1701px',
+      // => @media (min-width: 1701px) { ... }
+    },
     fontFamily: {
       display: ['Metropolis', 'sans-serif'],
       body: ['Inter', 'sans-serif'],
