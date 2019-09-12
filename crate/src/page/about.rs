@@ -22,6 +22,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.w_screen,
                 C.h_690px,
                 C.bg_blue_10,
+                // sm__
+                C.sm__h_790px,
             ],
             // Small photo background container
             div![
@@ -31,6 +33,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.inset_x_0,
                     C.flex,
                     C.justify_center,
+                    // sm__
+                    C.sm__hidden,
                 ],
                 // Small photo background
                 div![
@@ -50,6 +54,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.h_320px,
                     C.rounded_bl_140px,
                     C.bg_gray_1,
+                    // sm__
+                    C.sm__h_420px,
                 ],
             ],
             // Gear
@@ -77,6 +83,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.rounded_tr_140px,
                 C.bg_gray_1,
                 C.overflow_x_hidden,
+                // sm__
+                C.sm__h_1890px
             ],
             // Right background
             div![
@@ -86,6 +94,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.inset_y_0,
                     C.w_76,
                     C.bg_yellow_4
+                    // sm__
+                    C.sm__w_132,
                 ]
             ],
             // I, developer
@@ -99,13 +109,17 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.font_bold,
                     C.text_40,
                     C.text_blue_10
+                    // sm__
+                    C.sm__mt_40
+                    C.sm__mb_24
+                    C.sm__text_70
                 ],
                 "I, developer"
             ],
             ul![
                 class![
                     C.relative,
-                    C.text_gray_8
+                    C.text_gray_8,
                 ],
                 li![
                     class![
@@ -116,11 +130,17 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.bg_gray_1,
                         C.flex,
                         C.flex_no_wrap,
+                        // sm__
+                        C.sm__pl_4,
+                        C.sm__py_16,
+                        C.sm__w_132,
                     ],
                     div![
                         class![
                             C.text_blue_6,
                             C.mr_1,
+                            // sm__
+                            C.sm__mr_2,
                         ],
                         "▶\u{fe0e}"
                     ],
@@ -148,11 +168,17 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.py_10,
                             C.flex,
                             C.flex_no_wrap,
+                            // sm__
+                            C.sm__pl_4,
+                            C.sm__py_16,
+                            C.sm__w_132,
                         ],
                         div![
                             class![
                                 C.text_blue_6,
                                 C.mr_1,
+                                // sm__
+                                C.sm__mr_2,
                             ],
                             "▶\u{fe0e}"
                         ],
@@ -184,11 +210,17 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.flex,
                         C.flex_no_wrap,
                         C.bg_gray_1
+                        // sm__
+                        C.sm__pl_4,
+                        C.sm__py_16,
+                        C.sm__w_132,
                     ],
                     div![
                         class![
                             C.text_blue_6,
                             C.mr_1,
+                            // sm__
+                            C.sm__mr_2,
                         ],
                         "▶\u{fe0e}"
                     ],
@@ -223,11 +255,17 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.py_10,
                             C.flex,
                             C.flex_no_wrap,
+                            // sm__
+                            C.sm__pl_4,
+                            C.sm__py_16,
+                            C.sm__w_132,
                         ],
                         div![
                             class![
                                 C.text_blue_6,
                                 C.mr_1,
+                                // sm__
+                                C.sm__mr_2,
                             ],
                             "▶\u{fe0e}"
                         ],
@@ -303,6 +341,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.flex,
                     C.items_center,
                     C.justify_center,
+                    // sm__
+                    C.sm__mt_48,
+                    C.sm__h_40,
                 ],
                 h2![
                     class![
@@ -310,7 +351,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.font_display,
                         C.font_semibold,
                         C.text_40,
-                        C.text_yellow_4
+                        C.text_yellow_4,
+                        // sm__
+                        C.sm__text_70,
                     ],
                     "I, designer"
                 ],
@@ -331,6 +374,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.w_76,
                         C.flex,
                         C.flex_no_wrap
+                        // sm__
+                        C.sm__w_132,
                     ],
                     div![
                         class![
@@ -362,6 +407,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.w_64,
                             C.flex,
                             C.flex_no_wrap,
+                            // sm__
+                            C.sm__w_132,
                         ],
                         div![
                             class![
@@ -387,7 +434,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.mt_16,
                         C.w_76,
                         C.flex,
-                        C.flex_no_wrap
+                        C.flex_no_wrap,
+                        // sm__
+                        C.sm__w_132,
                     ],
                     div![
                         class![
@@ -432,7 +481,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.ml_6,
                             C.w_76,
                             C.flex,
-                            C.flex_no_wrap
+                            C.flex_no_wrap,
+                            // sm__
+                            C.sm__w_132,
                         ],
                         div![
                             class![

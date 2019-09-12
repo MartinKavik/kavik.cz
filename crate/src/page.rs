@@ -82,12 +82,16 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                     C.mt_6,
                     C.flex,
                     C.justify_center
+                    // sm__
+                    C.sm__mt_10,
                 ],
                 img![
                     class![
                         C.w_xs,
                         C.h_full,
                         C.object_contain,
+                        // sm__
+                        C.sm__w_100,
                     ],
                     attrs!{
                         At::Src => "/static/images/photo_1.png"
@@ -136,14 +140,13 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                     class![
                         C.hidden,
                         // sm__
+                        C.sm___mt_px,
                         C.sm__flex,
                         C.sm__text_21,
                         C.sm__font_semibold,
                         C.sm__text_gray_10
                     ],
                     li![
-                        class![
-                        ],
                         "Home & Projects"
                     ],
                     li![
