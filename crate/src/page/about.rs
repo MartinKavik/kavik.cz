@@ -830,6 +830,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.flex,
                 C.flex_col,
                 C.items_center,
+                // sm__
+                C.sm__h_980px,
             ],
             h2![
                 class![
@@ -838,7 +840,11 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.font_display,
                     C.font_semibold,
                     C.text_40,
-                    C.text_gray_5
+                    C.text_gray_5,
+                    // sm__
+                    C.sm__mt_56,
+                    C.sm__mb_32,
+                    C.sm__text_70,
                 ],
                 "Did you know..."
             ],
@@ -846,7 +852,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 class![
                     C.ml_12,
                     C.w_xs,
-                    C.text_gray_8
+                    C.text_gray_8,
+                    // sm__
+                    C.sm__w_md,
                 ],
                 li![
                     class![
@@ -857,6 +865,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         class![
                             C.text_blue_6,
                             C.mr_1,
+                            // sm__
+                            C.sm__mr_2,
                         ],
                         "▶\u{fe0e}"
                     ],
@@ -869,6 +879,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.mt_10,
                         C.flex,
                         C.flex_no_wrap
+                        // sm__
+                        C.sm__mt_20
                     ],
                     div![
                         class![
@@ -902,6 +914,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C._mt_6,
                     C.flex,
                     C.justify_center,
+                    // sm__
+                    C.sm___mt_10
                 ],
                 img![
                     class![
@@ -911,6 +925,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.w_265px,
                         C.object_contain,
                         C.h_full,
+                        // sm__
+                        C.sm__w_385px,
                     ],
                     attrs!{
                         At::Src => "/static/images/photo_2.jpg",
