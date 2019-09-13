@@ -235,6 +235,7 @@ pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
             div![
                 img![
                     class![
+                        C.inline,
                         C.w_6,
                     ],
                     attrs!{

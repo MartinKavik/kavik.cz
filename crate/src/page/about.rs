@@ -294,6 +294,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.rounded_tr_140px,
                 C.bg_blue_10,
                 C.overflow_hidden,
+                // sm__
+                C.sm__h_1580px,
             ],
             // Circles
             div![
@@ -305,6 +307,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.w_1090px,
                     C.h_1090px,
                     C.opacity_10,
+                    // sm__
+                    C.sm___ml_820px,
+                    C.sm__w_1640px,
+                    C.sm__h_1580px,
                 ],
                 div![
                     class![
@@ -316,6 +322,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.rounded_full,
                         C.border_yellow_4,
                         C.border_2
+                        // sm__
+                        C.sm__w_860px,
+                        C.sm__h_860px,
                     ]
                 ],
                 div![
@@ -327,7 +336,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.h_570px,
                         C.rounded_full,
                         C.border_yellow_4,
-                        C.border_2
+                        C.border_2,
+                        // sm__
+                        C.sm__w_860px,
+                        C.sm__h_860px,
                     ]
                 ],
             ],
@@ -368,6 +380,11 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.text_blue_1,
                     C.flex,
                     C.flex_col,
+                    // sm__
+                    C.sm__mt_24,
+                    C.sm__max_w_3xl,
+                    C.sm__pl_5,
+                    C.sm__pr_2,
                 ],
                 li![
                     class![
@@ -381,6 +398,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         class![
                             C.text_yellow_4,
                             C.mr_1,
+                            // sm__
+                            C.sm__mr_2,
                         ],
                         "▶\u{fe0e}"
                     ],
@@ -408,12 +427,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.flex,
                             C.flex_no_wrap,
                             // sm__
-                            C.sm__w_132,
+                            C.sm__mt_24,
+                            C.sm__ml_8,
+                            C.sm__w_md,
                         ],
                         div![
                             class![
                                 C.text_yellow_4,
                                 C.mr_1,
+                                // sm__
+                                C.sm__mr_2,
                             ],
                             "▶\u{fe0e}"
                         ],
@@ -436,12 +459,15 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.flex,
                         C.flex_no_wrap,
                         // sm__
+                        C.sm__mt_24,
                         C.sm__w_132,
                     ],
                     div![
                         class![
                             C.text_yellow_4,
                             C.mr_1,
+                            // sm__
+                            C.sm__mr_2,
                         ],
                         "▶\u{fe0e}"
                     ],
@@ -483,12 +509,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.flex,
                             C.flex_no_wrap,
                             // sm__
-                            C.sm__w_132,
+                            C.sm__mt_24,
+                            C.sm__ml_8,
+                            C.sm__w_md,
                         ],
                         div![
                             class![
                                 C.text_yellow_4,
                                 C.mr_1,
+                                // sm__
+                                C.sm__mr_2,
                             ],
                             "▶\u{fe0e}"
                         ],
@@ -520,6 +550,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.flex,
                 C.flex_col,
                 C.items_center,
+                // sm__
+                C.sm__h_2330px,
             ],
             // I, human
             h2![
@@ -528,7 +560,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.font_ordinary,
                     C.font_bold,
                     C.text_40,
-                    C.text_blue_2
+                    C.text_blue_2,
+                    // sm__
+                    C.sm__mt_48,
+                    C.sm__text_70
                 ],
                 "I, human"
             ],
@@ -542,6 +577,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.px_12,
                     C.bg_blue_10,
                     C.rounded_tr_110px,
+                    // sm__
+                    C.sm__mt_40,
+                    C.sm__pb_32
                 ],
                 // Extended background
                 div![
@@ -559,6 +597,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     class![
                         C.w_xs,
                         C.relative,
+                        // sm__
+                        C.sm__w_132,
                     ],
                     h3![
                         class![
@@ -567,7 +607,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.font_display,
                             C.font_thin,
                             C.text_35,
-                            C.text_blue_3
+                            C.text_blue_3,
+                            // sm__
+                            C.sm__mt_16,
+                            C.sm__text_60
                         ],
                         "Personal life"
                     ],
@@ -575,7 +618,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         class![
                             C.mt_8,
                             C.ml_1,
-                            C.text_blue_1
+                            C.text_blue_1,
+                            // sm__
+                            C.sm__mt_12,
                         ],
                         li![
                             class![
@@ -586,6 +631,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 class![
                                     C.text_yellow_4,
                                     C.mr_1,
+                                    // sm__
+                                    C.sm__mr_2
                                 ],
                                 "▶\u{fe0e}"
                             ],
@@ -604,12 +651,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             class![
                                 C.mt_10,
                                 C.flex,
-                                C.flex_no_wrap
+                                C.flex_no_wrap,
+                                // sm__
+                                C.sm__mt_16
                             ],
                             div![
                                 class![
                                     C.text_yellow_4,
                                     C.mr_1,
+                                    // sm__
+                                    C.sm__mr_2
                                 ],
                                 "▶\u{fe0e}"
                             ],
@@ -630,6 +681,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.px_12,
                     C.bg_blue_10,
                     C.rounded_tl_110px,
+                    // sm__
+                    C.sm__mt_24,
+                    C.sm__pb_32
                 ],
                 // Extended background
                 div![
@@ -645,7 +699,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 div![
                     class![
                         C.relative,
-                        C.w_xs
+                        C.w_xs,
+                        // sm__
+                        C.sm__w_132,
                     ],
                     h3![
                         class![
@@ -655,7 +711,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.font_display,
                             C.font_thin,
                             C.text_35,
-                            C.text_blue_3
+                            C.text_blue_3,
+                            // sm__
+                            C.sm__mt_16,
+                            C.sm__text_60
                         ],
                         "Work life"
                     ],
@@ -663,7 +722,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         class![
                             C.mt_8,
                             C.ml_1,
-                            C.text_blue_1
+                            C.text_blue_1,
+                            // sm__
+                            C.sm__mt_12,
                         ],
                         li![
                             class![
@@ -674,6 +735,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 class![
                                     C.text_yellow_4,
                                     C.mr_1,
+                                    // sm__
+                                    C.sm__mr_2
                                 ],
                                 "▶\u{fe0e}"
                             ],
@@ -699,12 +762,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             class![
                                 C.mt_10,
                                 C.flex,
-                                C.flex_no_wrap
+                                C.flex_no_wrap,
+                                // sm__
+                                C.sm__mt_16
                             ],
                             div![
                                 class![
                                     C.text_yellow_4,
                                     C.mr_1,
+                                    // sm__
+                                    C.sm__mr_2
                                 ],
                                 "▶\u{fe0e}"
                             ],
@@ -723,12 +790,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             class![
                                 C.mt_10,
                                 C.flex,
-                                C.flex_no_wrap
+                                C.flex_no_wrap,
+                                // sm__
+                                C.sm__mt_16
                             ],
                             div![
                                 class![
                                     C.text_yellow_4,
                                     C.mr_1,
+                                    // sm__
+                                    C.sm__mr_2
                                 ],
                                 "▶\u{fe0e}"
                             ],
