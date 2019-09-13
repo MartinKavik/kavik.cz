@@ -48,6 +48,8 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                     C.sm__h_3px
                     C.sm__flex,
                     C.sm__justify_center,
+                    // md__
+                    C.md___ml_30,
                 ],
                 div![
                     class![
@@ -155,12 +157,51 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                             C.sm__ml_8
                         ],
                         "About"
-                    ]
+                    ],
+                    li![
+                        class![
+                            C.hidden,
+                            // md__
+                            C.md__block,
+                            C.md__ml_12,
+                        ],
+                        "Resume",
+                        span![
+                            class![
+                                // md__
+                                C.md__text_gray_5,
+                            ],
+                            ".pdf"
+                        ]
+                    ],
+                    li![
+                        class![
+                            C.hidden,
+                            // md__
+                            C.md__block,
+                            C.md__ml_8,
+                        ],
+                        "GitHub",
+                        img![
+                            class![
+                                // md__
+                                C.md__inline
+                                C.md__mb_5,
+                                C.md__ml_px,
+                                C.md__w_4,
+                            ],
+                            attrs!{
+                                At::Src => "/static/images/link_arrow.svg"
+                            }
+                        ]
+                    ],
                 ],
                 // Hamburger
                 div![
                     class![
                         C.cursor_pointer,
+                        // md__
+                        C.md__hidden,
                     ],
                     img![
                         class![
@@ -172,7 +213,15 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                             At::Src => "/static/images/hamburger.svg"
                         }
                     ]
-                ]
+                ],
+                // Spacer
+                div![
+                    class![
+                        C.hidden,
+                        // md__
+                        C.md__block,
+                    ],
+                ],
             ],
             // Bottom header line
             div![
@@ -188,6 +237,8 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                     C.sm__h_3px
                     C.sm__flex,
                     C.sm__justify_center,
+                    // md__
+                    C.md___ml_30,
                 ],
                 div![
                     class![

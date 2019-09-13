@@ -19,10 +19,13 @@ module.exports = {
       'sm': '569px',
       // => @media (min-width: 569px) { ... }
 
-      'md': '1025px',
+      'md': '769px',
+      // => @media (min-width: 769px) { ... }
+
+      'lg': '1025px',
       // => @media (min-width: 1025px) { ... }
 
-      'lg': '1701px',
+      'xl': '1701px',
       // => @media (min-width: 1701px) { ... }
     },
     fontFamily: {
@@ -92,6 +95,7 @@ module.exports = {
         margin: {
           '-10vh': '-10vh',
           '10vw': '10vw',
+          '-30': '-7.5rem',
           '-260px': '-260px',
           '-545px': '-545px',
           '-820px': '-820px',
@@ -116,6 +120,7 @@ module.exports = {
           '265px': '265px',
           '385px': '385px',
           '570px': '570px',
+          '750px': '750px',
           '860px': '860px',
           '1090px': '1090px',
           '1240px': '1240px',

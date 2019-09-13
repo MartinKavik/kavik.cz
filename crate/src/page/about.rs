@@ -67,6 +67,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C._mt_56,
                     C.w_md,
                     C.blur,
+                    // sm__
+                    C.sm___mt_64,
+                    C.sm__w_750px,
                 ],
                 attrs!{
                     At::Src => "/static/images/gear.svg"
