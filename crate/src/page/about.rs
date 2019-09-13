@@ -24,6 +24,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.bg_blue_10,
                 // sm__
                 C.sm__h_790px,
+                // lg__
+                C.lg__h_1420px,
             ],
             // Small photo background container
             div![
@@ -56,6 +58,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.bg_gray_1,
                     // sm__
                     C.sm__h_420px,
+                    // lg__
+                    C.lg__h_600px,
+                    C.lg__rounded_bl_330px,
                 ],
             ],
             // Gear
@@ -81,210 +86,262 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             class![
                 C.relative,
                 C._mt_260px,
-                C.h_1480px,
-                C.pt_px,
                 C.rounded_tr_140px,
                 C.bg_gray_1,
                 C.overflow_x_hidden,
-                // sm__
-                C.sm__h_1890px
+                // lg__
+                C.lg___mt_670px,
+                C.lg__rounded_tr_330px,
             ],
-            // Right background
             div![
                 class![
-                    C.absolute,
-                    C.right_0,
-                    C.inset_y_0,
-                    C.w_76,
-                    C.bg_yellow_4
+                    C.relative,
+                    C.mx_auto,
+                    C.max_w_400,
+                    C.pb_84,
                     // sm__
-                    C.sm__w_132,
+                    C.pb_96
+                ],
+                // Right background
+                div![
+                    class![
+                        C.absolute,
+                        C.right_0,
+                        C.inset_y_0,
+                        C.w_76,
+                        C.bg_yellow_4
+                        // sm__
+                        C.sm__w_132,
+                        // lg__
+                        C.lg__w_236,
+                    ]
+                ],
+                // Extended background
+                div![
+                    class![
+                        C.absolute,
+                        C._right_50vw,
+                        C.inset_y_0,
+                        C.w_50vw,
+                        C.bg_yellow_4,
+                    ]
+                ],
+                // I, developer
+                h2![
+                    class![
+                        C.relative,
+                        C.mb_16,
+                        C.pt_32,
+                        C.text_center,
+                        C.font_monospace,
+                        C.font_bold,
+                        C.text_40,
+                        C.text_blue_10,
+                        // sm__
+                        C.sm__mb_24,
+                        C.sm__pt_40,
+                        C.sm__text_70,
+                        // lg__
+                        C.lg__mb_32,
+                        C.lg__pt_64,
+                        C.lg__text_120,
+                    ],
+                    "I, developer"
+                ],
+                ul![
+                    class![
+                        C.relative,
+                        C.text_gray_8,
+                    ],
+                    li![
+                        class![
+                            C.w_76,
+                            C.pl_2,
+                            C.pr_5,
+                            C.py_10,
+                            C.bg_gray_1,
+                            C.flex,
+                            C.flex_no_wrap,
+                            // sm__
+                            C.sm__pl_4,
+                            C.sm__py_16,
+                            C.sm__w_132,
+                            // lg__
+                            C.lg__pl_10,
+                            C.lg__py_32,
+                            C.lg__w_236,
+                        ],
+                        div![
+                            class![
+                                C.text_blue_6,
+                                C.mr_1,
+                                // sm__
+                                C.sm__mr_2,
+                                // lg__
+                                C.lg__mr_3,
+                            ],
+                            "▶\u{fe0e}"
+                        ],
+                        div![
+                            "I was working as a ",
+                            span![
+                                class![
+                                    C.font_bold,
+                                ],
+                                "backend"
+                            ],
+                            " developer in a bank and for some startups and agencies last years."
+                        ]
+                    ],
+                    li![
+                        class![
+                            C.flex,
+                            C.justify_end
+                        ],
+                        div![
+                            class![
+                                C.w_76,
+                                C.pl_2,
+                                C.pr_5,
+                                C.py_10,
+                                C.flex,
+                                C.flex_no_wrap,
+                                // sm__
+                                C.sm__pl_4,
+                                C.sm__py_16,
+                                C.sm__w_132,
+                                // lg__
+                                C.lg__pl_10,
+                                C.lg__py_32,
+                                C.lg__pr_10,
+                                C.lg__w_236,
+                            ],
+                            div![
+                                class![
+                                    C.text_blue_6,
+                                    C.mr_1,
+                                    // sm__
+                                    C.sm__mr_2,
+                                    // lg__
+                                    C.lg__mr_3,
+                                ],
+                                "▶\u{fe0e}"
+                            ],
+                            div![
+                                "I'm also coming back to ",
+                                span![
+                                    class![
+                                        C.font_bold,
+                                    ],
+                                    "frontend"
+                                ],
+                                " because it's finally possible to write reliable web apps and I want to make more use of my ",
+                                span![
+                                    class![
+                                        C.font_bold,
+                                    ],
+                                    "artistic"
+                                ],
+                                " self."
+                            ]
+                        ]
+                    ],
+                    li![
+                        class![
+                            C.w_76,
+                            C.pl_2,
+                            C.pr_4,
+                            C.py_10,
+                            C.flex,
+                            C.flex_no_wrap,
+                            C.bg_gray_1
+                            // sm__
+                            C.sm__pl_4,
+                            C.sm__py_16,
+                            C.sm__w_132,
+                            // lg__
+                            C.lg__pl_10,
+                            C.lg__py_32,
+                            C.lg__pr_10,
+                            C.lg__w_236,
+                        ],
+                        div![
+                            class![
+                                C.text_blue_6,
+                                C.mr_1,
+                                // sm__
+                                C.sm__mr_2,
+                                // lg__
+                                C.lg__mr_3,
+                            ],
+                            "▶\u{fe0e}"
+                        ],
+                        div![
+                            "People make mistakes. That's why I setup linters, formatters, CI pipelines, etc., as ",
+                            span![
+                                class![
+                                    C.font_bold,
+                                ],
+                                "strict"
+                            ],
+                            " as possible and I want to write in ",
+                            span![
+                                class![
+                                    C.font_bold,
+                                ],
+                                "Rust"
+                            ],
+                            ". Ideal tools \"bully\" me and don't have any configuration options."
+                        ]
+                    ],
+                    li![
+                        class![
+                            C.flex,
+                            C.justify_end
+                        ],
+                        div![
+                            class![
+                                C.w_76,
+                                C.pl_2,
+                                C.pr_5,
+                                C.py_10,
+                                C.flex,
+                                C.flex_no_wrap,
+                                // sm__
+                                C.sm__pl_4,
+                                C.sm__py_16,
+                                C.sm__w_132,
+                                // lg__
+                                C.lg__pl_10,
+                                C.lg__py_32,
+                                C.lg__pr_10,
+                                C.lg__w_236,
+                            ],
+                            div![
+                                class![
+                                    C.text_blue_6,
+                                    C.mr_1,
+                                    // sm__
+                                    C.sm__mr_2,
+                                    // lg__
+                                    C.lg__mr_3,
+                                ],
+                                "▶\u{fe0e}"
+                            ],
+                            div![
+                                "I often learn from ",
+                                span![
+                                    "packtpub.com"
+                                ],
+                                ". And I recommend to read book ",
+                                span![
+                                    "Domain Modeling Made Functional"
+                                ],
+                                "."
+                            ]
+                        ]
+                    ],
                 ]
-            ],
-            // I, developer
-            h2![
-                class![
-                    C.relative,
-                    C.mt_32,
-                    C.mb_16,
-                    C.text_center,
-                    C.font_monospace,
-                    C.font_bold,
-                    C.text_40,
-                    C.text_blue_10
-                    // sm__
-                    C.sm__mt_40
-                    C.sm__mb_24
-                    C.sm__text_70
-                ],
-                "I, developer"
-            ],
-            ul![
-                class![
-                    C.relative,
-                    C.text_gray_8,
-                ],
-                li![
-                    class![
-                        C.w_76,
-                        C.pl_2,
-                        C.pr_5,
-                        C.py_10,
-                        C.bg_gray_1,
-                        C.flex,
-                        C.flex_no_wrap,
-                        // sm__
-                        C.sm__pl_4,
-                        C.sm__py_16,
-                        C.sm__w_132,
-                    ],
-                    div![
-                        class![
-                            C.text_blue_6,
-                            C.mr_1,
-                            // sm__
-                            C.sm__mr_2,
-                        ],
-                        "▶\u{fe0e}"
-                    ],
-                    div![
-                        "I was working as a ",
-                        span![
-                            class![
-                                C.font_bold,
-                            ],
-                            "backend"
-                        ],
-                        " developer in a bank and for some startups and agencies last years."
-                    ]
-                ],
-                li![
-                    class![
-                        C.flex,
-                        C.justify_end
-                    ],
-                    div![
-                        class![
-                            C.w_76,
-                            C.pl_2,
-                            C.pr_5,
-                            C.py_10,
-                            C.flex,
-                            C.flex_no_wrap,
-                            // sm__
-                            C.sm__pl_4,
-                            C.sm__py_16,
-                            C.sm__w_132,
-                        ],
-                        div![
-                            class![
-                                C.text_blue_6,
-                                C.mr_1,
-                                // sm__
-                                C.sm__mr_2,
-                            ],
-                            "▶\u{fe0e}"
-                        ],
-                        div![
-                            "I'm also coming back to ",
-                            span![
-                                class![
-                                    C.font_bold,
-                                ],
-                                "frontend"
-                            ],
-                            " because it's finally possible to write reliable web apps and I want to make more use of my ",
-                            span![
-                                class![
-                                    C.font_bold,
-                                ],
-                                "artistic"
-                            ],
-                            " self."
-                        ]
-                    ]
-                ],
-                li![
-                    class![
-                        C.w_76,
-                        C.pl_2,
-                        C.pr_4,
-                        C.py_10,
-                        C.flex,
-                        C.flex_no_wrap,
-                        C.bg_gray_1
-                        // sm__
-                        C.sm__pl_4,
-                        C.sm__py_16,
-                        C.sm__w_132,
-                    ],
-                    div![
-                        class![
-                            C.text_blue_6,
-                            C.mr_1,
-                            // sm__
-                            C.sm__mr_2,
-                        ],
-                        "▶\u{fe0e}"
-                    ],
-                    div![
-                        "People make mistakes. That's why I setup linters, formatters, CI pipelines, etc., as ",
-                        span![
-                            class![
-                                C.font_bold,
-                            ],
-                            "strict"
-                        ],
-                        " as possible and I want to write in ",
-                        span![
-                            class![
-                                C.font_bold,
-                            ],
-                            "Rust"
-                        ],
-                        ". Ideal tools \"bully\" me and don't have any configuration options."
-                    ]
-                ],
-                li![
-                    class![
-                        C.flex,
-                        C.justify_end
-                    ],
-                    div![
-                        class![
-                            C.w_76,
-                            C.pl_2,
-                            C.pr_5,
-                            C.py_10,
-                            C.flex,
-                            C.flex_no_wrap,
-                            // sm__
-                            C.sm__pl_4,
-                            C.sm__py_16,
-                            C.sm__w_132,
-                        ],
-                        div![
-                            class![
-                                C.text_blue_6,
-                                C.mr_1,
-                                // sm__
-                                C.sm__mr_2,
-                            ],
-                            "▶\u{fe0e}"
-                        ],
-                        div![
-                            "I often learn from ",
-                            span![
-                                "packtpub.com"
-                            ],
-                            ". And I recommend to read book ",
-                            span![
-                                "Domain Modeling Made Functional"
-                            ],
-                            "."
-                        ]
-                    ]
-                ],
             ]
         ],
         // Designer section
@@ -299,6 +356,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.overflow_hidden,
                 // sm__
                 C.sm__h_1580px,
+                // lg__
+                C.lg__h_2360px,
+                C.lg__rounded_tr_330px,
             ],
             // Circles
             div![
@@ -314,6 +374,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.sm___ml_820px,
                     C.sm__w_1640px,
                     C.sm__h_1580px,
+                    // lg__
+                    C.lg___ml_1230px,
+                    C.lg__w_2460px,
+                    C.lg__h_2330px,
                 ],
                 div![
                     class![
@@ -328,6 +392,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         // sm__
                         C.sm__w_860px,
                         C.sm__h_860px,
+                        // lg__
+                        C.lg__w_1300px,
+                        C.lg__h_1300px,
                     ]
                 ],
                 div![
@@ -343,6 +410,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         // sm__
                         C.sm__w_860px,
                         C.sm__h_860px,
+                        // lg__
+                        C.lg__w_1300px,
+                        C.lg__h_1300px,
                     ]
                 ],
             ],
@@ -359,6 +429,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     // sm__
                     C.sm__mt_48,
                     C.sm__h_40,
+                    // lg__
+                    C.lg__mt_64,
+                    C.lg__h_56,
                 ],
                 h2![
                     class![
@@ -369,6 +442,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.text_yellow_4,
                         // sm__
                         C.sm__text_70,
+                        // lg__
+                        C.lg__text_120,
                     ],
                     "I, designer"
                 ],
@@ -388,6 +463,11 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.sm__max_w_3xl,
                     C.sm__pl_5,
                     C.sm__pr_2,
+                    // lg__
+                    C.lg__mt_40,
+                    C.lg__max_w_400,
+                    C.lg__pl_16,
+                    C.lg__pr_12,
                 ],
                 li![
                     class![
@@ -396,6 +476,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.flex_no_wrap
                         // sm__
                         C.sm__w_132,
+                        // lg__
+                        C.lg__w_236,
                     ],
                     div![
                         class![
@@ -403,6 +485,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.mr_1,
                             // sm__
                             C.sm__mr_2,
+                            // lg__
+                            C.lg__mr_4,
                         ],
                         "▶\u{fe0e}"
                     ],
@@ -433,6 +517,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.sm__mt_24,
                             C.sm__ml_8,
                             C.sm__w_md,
+                            // lg__
+                            C.lg__mt_48,
+                            C.lg__ml_16,
+                            C.lg__w_236,
                         ],
                         div![
                             class![
@@ -440,6 +528,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mr_1,
                                 // sm__
                                 C.sm__mr_2,
+                                // lg__
+                                C.lg__mr_4,
                             ],
                             "▶\u{fe0e}"
                         ],
@@ -464,6 +554,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         // sm__
                         C.sm__mt_24,
                         C.sm__w_132,
+                        // lg__
+                        C.lg__mt_48,
+                        C.lg__w_236,
                     ],
                     div![
                         class![
@@ -471,6 +564,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.mr_1,
                             // sm__
                             C.sm__mr_2,
+                            // lg__
+                            C.lg__mr_4,
                         ],
                         "▶\u{fe0e}"
                     ],
@@ -515,6 +610,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.sm__mt_24,
                             C.sm__ml_8,
                             C.sm__w_md,
+                            // lg__
+                            C.lg__mt_48,
+                            C.lg__ml_16,
+                            C.lg__w_236,
                         ],
                         div![
                             class![
@@ -522,6 +621,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mr_1,
                                 // sm__
                                 C.sm__mr_2,
+                                // lg__
+                                C.lg__mr_4,
                             ],
                             "▶\u{fe0e}"
                         ],
@@ -555,6 +656,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.items_center,
                 // sm__
                 C.sm__h_2330px,
+                // lg__
+                C.lg__h_3670px,
+                C.lg__rounded_tr_330px,
             ],
             // I, human
             h2![
@@ -566,7 +670,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.text_blue_2,
                     // sm__
                     C.sm__mt_48,
-                    C.sm__text_70
+                    C.sm__text_70,
+                    // lg__
+                    C.lg__mt_64,
+                    C.lg__text_120,
                 ],
                 "I, human"
             ],
@@ -583,6 +690,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     // sm__
                     C.sm__mt_40,
                     C.sm__pb_32
+                    // lg__
+                    C.lg__mt_56,
+                    C.lg__pb_48,
+                    C.lg__rounded_tr_260px,
                 ],
                 // Extended background
                 div![
@@ -602,6 +713,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.relative,
                         // sm__
                         C.sm__w_132,
+                        // lg__
+                        C.lg__w_236,
                     ],
                     h3![
                         class![
@@ -614,6 +727,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             // sm__
                             C.sm__mt_16,
                             C.sm__text_60
+                            // lg__
+                            C.lg__mt_32,
+                            C.lg__text_90
                         ],
                         "Personal life"
                     ],
@@ -624,6 +740,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_blue_1,
                             // sm__
                             C.sm__mt_12,
+                            // lg__
+                            C.lg__mt_24,
                         ],
                         li![
                             class![
@@ -636,6 +754,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     C.mr_1,
                                     // sm__
                                     C.sm__mr_2
+                                    // lg__
+                                    C.lg__mr_4
                                 ],
                                 "▶\u{fe0e}"
                             ],
@@ -656,7 +776,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.flex,
                                 C.flex_no_wrap,
                                 // sm__
-                                C.sm__mt_16
+                                C.sm__mt_16,
+                                // lg__
+                                C.lg__mt_24,
                             ],
                             div![
                                 class![
@@ -664,6 +786,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     C.mr_1,
                                     // sm__
                                     C.sm__mr_2
+                                    // lg__
+                                    C.lg__mr_4
                                 ],
                                 "▶\u{fe0e}"
                             ],
@@ -686,7 +810,11 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.rounded_tl_110px,
                     // sm__
                     C.sm__mt_24,
-                    C.sm__pb_32
+                    C.sm__pb_32,
+                    // lg__
+                    C.lg__mt_56,
+                    C.lg__pb_48,
+                    C.lg__rounded_tl_260px,
                 ],
                 // Extended background
                 div![
@@ -705,6 +833,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.w_xs,
                         // sm__
                         C.sm__w_132,
+                        // lg__
+                        C.lg__w_236,
                     ],
                     h3![
                         class![
@@ -717,7 +847,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_blue_3,
                             // sm__
                             C.sm__mt_16,
-                            C.sm__text_60
+                            C.sm__text_60,
+                             // lg__
+                            C.lg__mt_32,
+                            C.lg__text_90
                         ],
                         "Work life"
                     ],
@@ -728,6 +861,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_blue_1,
                             // sm__
                             C.sm__mt_12,
+                            // lg__
+                            C.lg__mt_24,
                         ],
                         li![
                             class![
@@ -740,6 +875,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     C.mr_1,
                                     // sm__
                                     C.sm__mr_2
+                                    // lg__
+                                    C.lg__mr_4
                                 ],
                                 "▶\u{fe0e}"
                             ],
@@ -768,13 +905,17 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.flex_no_wrap,
                                 // sm__
                                 C.sm__mt_16
+                                // lg__
+                                C.lg__mt_24,
                             ],
                             div![
                                 class![
                                     C.text_yellow_4,
                                     C.mr_1,
                                     // sm__
-                                    C.sm__mr_2
+                                    C.sm__mr_2,
+                                    // lg__
+                                    C.lg__mr_4
                                 ],
                                 "▶\u{fe0e}"
                             ],
@@ -795,14 +936,18 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.flex,
                                 C.flex_no_wrap,
                                 // sm__
-                                C.sm__mt_16
+                                C.sm__mt_16,
+                                // lg__
+                                C.lg__mt_24,
                             ],
                             div![
                                 class![
                                     C.text_yellow_4,
                                     C.mr_1,
                                     // sm__
-                                    C.sm__mr_2
+                                    C.sm__mr_2,
+                                    // lg__
+                                    C.lg__mr_4,
                                 ],
                                 "▶\u{fe0e}"
                             ],
@@ -835,6 +980,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.items_center,
                 // sm__
                 C.sm__h_980px,
+                // lg__
+                C.lg__h_1340px,
+                C.lg__rounded_tr_330px,
             ],
             h2![
                 class![
@@ -848,6 +996,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.sm__mt_56,
                     C.sm__mb_32,
                     C.sm__text_70,
+                    // lg__
+                    C.lg__mt_64,
+                    C.lg__mb_40,
+                    C.lg__text_120,
                 ],
                 "Did you know..."
             ],
@@ -858,6 +1010,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.text_gray_8,
                     // sm__
                     C.sm__w_md,
+                    // lg__
+                    C.lg__ml_32,
+                    C.lg__w_236,
                 ],
                 li![
                     class![
@@ -870,6 +1025,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.mr_1,
                             // sm__
                             C.sm__mr_2,
+                            // lg__
+                            C.lg__mr_4,
                         ],
                         "▶\u{fe0e}"
                     ],
@@ -884,11 +1041,17 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.flex_no_wrap
                         // sm__
                         C.sm__mt_20
+                        // lg__
+                        C.lg__mt_32
                     ],
                     div![
                         class![
                             C.text_blue_6,
                             C.mr_1,
+                            // sm__
+                            C.sm__mr_2,
+                            // lg__
+                            C.lg__mr_4,
                         ],
                         "▶\u{fe0e}"
                     ],
@@ -912,6 +1075,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.items_center,
                 // sm__
                 C.sm__h_930px,
+                // lg__
+                C.lg__h_1340px,
+                C.lg__rounded_br_330px,
             ],
             div![
                 class![
@@ -921,6 +1087,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.justify_center,
                     // sm__
                     C.sm___mt_10
+                    // lg__
+                    C.lg___mt_20
                 ],
                 img![
                     class![
@@ -932,6 +1100,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.h_full,
                         // sm__
                         C.sm__w_385px,
+                        // lg__
+                        C.lg__w_520px,
                     ],
                     attrs!{
                         At::Src => "/static/images/photo_2.jpg",
@@ -946,7 +1116,11 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     // sm__
                     C.sm__mt_24,
                     C.sm__w_132,
-                    C.sm__pl_2
+                    C.sm__pl_2,
+                    // lg__
+                    C.lg__mt_32,
+                    C.lg__w_236,
+                    C.lg__pl_6
                 ],
                 li![
                     class![
@@ -958,7 +1132,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_yellow_4,
                             C.mr_1,
                             // sm__
-                            C.sm__mr_2
+                            C.sm__mr_2,
+                            // lg__
+                            C.lg__mr_4,
                         ],
                         "▶\u{fe0e}"
                     ],
@@ -981,22 +1157,25 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         // Resume section
         section![
             class![
-                C.h_48,
                 C.flex,
+                C.flex_col,
                 C.justify_center,
                 C.items_center,
-                // sm__
-                C.sm__h_72
             ],
+            // Download my resume
             a![
                 class![
-                    C.mt_6,
+                    C.mt_24,
                     C.text_19,
                     C.text_gray_10,
                     C.flex,
                     C.whitespace_no_wrap,
                     // sm__
+                    C.sm__mt_32,
                     C.sm__text_29,
+                    // lg__
+                    C.lg__mt_48,
+                    C.lg__text_45,
                 ],
                 "Download my\u{00A0}",
                 span![
@@ -1016,12 +1195,57 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     class![
                         C._mt_1,
                         C.ml_1,
-                        C.w_12
+                        C.w_12,
                         // sm__
-                        C.sm__w_16
+                        C.sm__w_16,
+                        // lg__
+                        C.lg__ml_3,
+                        C.lg__w_24,
                     ],
                     attrs!{
                         At::Src => "/static/images/download.svg"
+                    }
+                ],
+            ],
+            // My GitHub profile
+            div![
+                class![
+                    C.mt_16,
+                    C.mb_20,
+                    C.flex,
+                    C.items_center,
+                    C.justify_center,
+                    C.text_19,
+                    C.text_gray_10,
+                    // sm__
+                    C.sm__mt_24,
+                    C.sm__mb_32,
+                    C.sm__text_29,
+                    // lg__
+                    C.lg__mt_40,
+                    C.lg__mb_40
+                    C.lg__text_45,
+                ],
+                "Go to my\u{00A0}",
+                span![
+                    class![
+                        C.font_semibold
+                    ],
+                    "GitHub"
+                ],
+                "\u{00A0}profile",
+                img![
+                    class![
+                        C._mt_4,
+                        C.w_4,
+                        // sm__
+                        C.sm__w_5,
+                        // lg__
+                        C.lg___mt_10,
+                        C.lg__w_8,
+                    ],
+                    attrs!{
+                        At::Src => "/static/images/link_arrow.svg"
                     }
                 ],
             ]

@@ -86,6 +86,8 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                     C.justify_center
                     // sm__
                     C.sm__mt_10,
+                    // md__
+                    C.md__mt_8,
                 ],
                 img![
                     class![
@@ -94,6 +96,8 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                         C.object_contain,
                         // sm__
                         C.sm__w_100,
+                        // lg
+                        C.lg__w_570px,
                     ],
                     attrs!{
                         At::Src => "/static/images/photo_1.png"
@@ -288,10 +292,15 @@ pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
                 C.sm__w_132
             ],
             div![
+                class![
+                    // lg__
+                    C.lg__pb_3,
+                ],
                 img![
                     class![
                         C.inline,
                         C.w_6,
+                        C.align_baseline,
                         // sm__
                         C.sm__w_12
                     ],
