@@ -907,6 +907,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.flex,
                 C.flex_col,
                 C.items_center,
+                // sm__
+                C.sm__h_930px,
             ],
             div![
                 class![
@@ -937,7 +939,11 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 class![
                     C.mt_16,
                     C.w_xs,
-                    C.text_blue_1
+                    C.text_blue_1,
+                    // sm__
+                    C.sm__mt_24,
+                    C.sm__w_132,
+                    C.sm__pl_2
                 ],
                 li![
                     class![
@@ -948,6 +954,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         class![
                             C.text_yellow_4,
                             C.mr_1,
+                            // sm__
+                            C.sm__mr_2
                         ],
                         "▶\u{fe0e}"
                     ],
@@ -974,6 +982,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.flex,
                 C.justify_center,
                 C.items_center,
+                // sm__
+                C.sm__h_72
             ],
             a![
                 class![
@@ -981,7 +991,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.text_19,
                     C.text_gray_10,
                     C.flex,
-                    C.whitespace_no_wrap
+                    C.whitespace_no_wrap,
+                    // sm__
+                    C.sm__text_29,
                 ],
                 "Download my\u{00A0}",
                 span![
@@ -1002,6 +1014,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C._mt_1,
                         C.ml_1,
                         C.w_12
+                        // sm__
+                        C.sm__w_16
                     ],
                     attrs!{
                         At::Src => "/static/images/download.svg"
