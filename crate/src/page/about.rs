@@ -235,7 +235,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     ],
                                     "frontend"
                                 ],
-                                " because it's finally possible to write reliable web apps and I want to make more use of my ",
+                                " because it's finally possible to write reliable web apps. And I want to make more use of my ",
                                 span![
                                     class![
                                         C.font_bold,
@@ -277,7 +277,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             "▶\u{fe0e}"
                         ],
                         div![
-                            "People make mistakes. That's why I setup linters, formatters, CI pipelines, etc., as ",
+                            "People make mistakes.",
+                            br![],
+                            "That's why I setup linters, formatters and CI pipelines as ",
                             span![
                                 class![
                                     C.font_bold,
@@ -291,7 +293,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 ],
                                 "Rust"
                             ],
-                            ". Ideal tools \"bully\" me and don't have any configuration options."
+                            ".",
+                            br![],
+                            "Ideal tools \"bully\" me and don't have any configuration options."
                         ]
                     ],
                     li![
@@ -1146,7 +1150,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             ],
                             "Prague"
                         ],
-                        "? Is there good coffee, tea, sushi or some spicy food? Ok! ",
+                        "?",
+                        br![],
+                        "Is there good coffee, tea, sushi or some spicy food? Ok! ",
                         span![
                             "martin@kavik.cz"
                         ]
