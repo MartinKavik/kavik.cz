@@ -15,7 +15,10 @@ pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
 }
 
 pub fn view_content<Ms: 'static>() -> impl View<Ms> {
-    vec![
+    div![
+        class![
+            C.flex_grow,
+        ],
         // Main section
         section![
             class![

@@ -1,11 +1,12 @@
 use crate::generated::css_classes::C;
 use seed::prelude::*;
 use seed::*;
+use super::{view_header, view_footer, Page};
 
 pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
     vec![
-        view_header().els(),
         view_content().els(),
+        view_header(Page::Other).els(),
         view_footer().els(),
     ]
     .into_iter()
@@ -13,33 +14,57 @@ pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
     .collect()
 }
 
-pub fn view_header<Ms: 'static>() -> impl View<Ms> {
-    header![class![C.text_27, C.text_gray_10], "MK"]
-}
-
 pub fn view_content<Ms: 'static>() -> impl View<Ms> {
-    vec![
+    div![
+        class![
+            C.mt_16,
+            C.flex_grow,
+            C.flex,
+            C.flex_col,
+            C.items_center,
+            C.justify_center,
+            // sm__
+            C.sm__mt_24,
+        ],
         h1![
-            class![C.font_display, C.font_thin, C.text_29, C.text_gray_10],
+            class![
+                C.font_display,
+                C.font_thin,
+                C.text_29,
+                C.text_gray_10,
+                // sm__
+                C.sm__text_45,
+                // lg__
+                C.lg__text_55,
+            ],
             "PAGE NOT FOUND!"
         ],
-        div!["loading..."],
-    ]
-}
-
-pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
-    footer![div![
-        div![
-            span![class![C.text_gray_10], "MK"],
-            span![
-                class![C.font_display, C.font_semibold, C.text_15, C.text_yellow_6],
-                "2019"
+        // Sad mouth
+        svg![
+            class![
+                C.mt_5,
+                C.w_16,
+                // sm__
+                C.sm__mt_6,
+                C.sm__w_20,
+                // lg__
+                C.lg__mt_8,
+                C.lg__w_24,
+            ],
+            style!{
+                "background" => "rgba(0, 0, 0, 0) none repeat scroll 0% 0%",
+                "transform" => "scaleY(-1)",
+            },
+            attrs!{
+                At::ViewBox => "0 0 100 100",
+                At::Custom("preserveAspectRatio".into()) => "xMidYMid",
+            },
+            path![
+                attrs!{
+                    At::Custom("stroke".into()) => "none",
+                    At::D => "M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50"
+                }
             ]
-        ],
-        div![
-            class![C.font_display, C.font_semibold, C.text_16, C.text_gray_10],
-            "martin@kavik.cz"
-        ],
-        div![class![C.text_yellow_6], "^"]
-    ]]
+        ]
+    ]
 }

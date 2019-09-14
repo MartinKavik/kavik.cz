@@ -46,10 +46,13 @@ pub fn view(model: &Model) -> impl View<Msg> {
     div![
         class![
             C.fade_in,
+            C.min_h_screen,
+            C.flex,
+            C.flex_col,
         ],
         page::home::view()
 //            page::about::view()
 //            page::not_found::view()
-        //    empty![]
+//            empty![]
     ]
 }
