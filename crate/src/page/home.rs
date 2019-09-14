@@ -22,6 +22,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.relative,
                 C.h_690px,
                 C.bg_gray_1,
+                // sm__
+                C.sm__h_890px,
             ],
             // Left background
             div![
@@ -45,6 +47,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.h_360px,
                         C.rounded_bl_90px,
                         C.bg_gray_1,
+                        // sm__
+                        C.sm__h_550px,
                     ],
                     // Martin Kavík
                     div![
@@ -53,6 +57,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.ml_12,
                             C.w_xs,
                             C.font_display,
+                            // sm__
+                            C.sm__mt_64,
+                            C.sm__ml_16,
+                            C.sm__w_md,
                         ],
                         h1![
                             class![
@@ -60,6 +68,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.leading_tight,
                                 C.text_31,
                                 C.text_gray_10
+                                // sm__
+                                C.sm__text_40
                             ],
                             span![
                                 "Martin "
@@ -74,7 +84,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         span![
                             class![
                                 C.text_21,
-                                C.text_gray_7
+                                C.text_gray_7,
+                                // sm__
+                                C.sm__text_32
                             ],
                             "\u{00A0}is",
                             br![],
@@ -98,6 +110,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.w_md,
                     C.max_w_none,
                     C.blur,
+                    // sm__
+                    C.sm___mt_64,
+                    C.sm__w_750px,
                 ],
                 attrs!{
                     At::Src => "/static/images/gear.svg"
@@ -111,7 +126,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C._mt_48,
                 C.pt_px,
                 C.rounded_tl_140px,
-                C.bg_blue_6,
+                C.bg_blue_8,
             ],
             // Main list
             div![
@@ -122,6 +137,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.flex,
                     C.justify_end,
                     C.relative,
+                    // sm__
+                    C.max_w_4xl,
                 ],
                 // Right background
                 div![
@@ -145,12 +162,18 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.text_gray_8,
                         C.bg_gray_1,
                         C.overflow_hidden,
+                        // sm__
+                        C.sm__pl_8,
+                        C.sm__pr_2,
+                        C.sm__text_26,
                     ],
                     ul![
                         class![
                             C.w_xs,
                             C.pl_2,
                             C.py_8,
+                            // sm__
+                            C.sm__w_120,
                         ],
                         li![
                             class![
@@ -252,6 +275,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.mt_20,
                         C.w_xs,
                         C.px_2,
+                        // sm__
+                        C.sm__mt_48,
+                        C.sm__w_md,
                     ],
                     // Github projects
                     h2![
@@ -259,7 +285,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.font_display,
                             C.text_23,
                             C.text_blue_3,
-                            C.text_center
+                            C.text_center,
+                            // sm__
+                            C.sm__text_50,
                         ],
                         span![
                             class![
@@ -278,7 +306,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     div![
                         class![
                             C.mt_20,
-                            C.text_right
+                            C.text_right,
+                            // sm__
+                            C.sm__mt_40,
                         ],
                         div![
                             class![
@@ -294,7 +324,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mr_2,
                                 C.font_display,
                                 C.text_15,
-                                C.text_blue_3
+                                C.text_blue_3,
+                                // sm__
+                                C.sm__mt_4,
+                                C.sm__text_20,
                             ],
                             "- rebo"
                         ]
@@ -303,7 +336,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     div![
                         class![
                             C.mt_8,
-                            C.text_right
+                            C.text_right,
+                            // sm__
+                            C.sm__mt_12,
                         ],
                         div![
                             class![
@@ -322,7 +357,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mr_5,
                                 C.font_display,
                                 C.text_15,
-                                C.text_blue_3
+                                C.text_blue_3,
+                                // sm__
+                                C.sm__mt_4,
+                                C.sm__text_20,
                             ],
                             "- robwebbjr"
                         ]
@@ -338,6 +376,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.rounded_tr_28px,
                             C.bg_blue_2,
                             C.shadow_glow,
+                            // sm__
+                            C.sm__mt_24,
+                            C.sm__pt_8,
+                            C.sm__pb_8,
+                            C.sm__w_64,
+                            C.sm__rounded_tr_55px,
                         ],
                         // Extended background
                         div![
@@ -355,7 +399,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         img![
                             class![
                                 C.h_18,
-                                C.max_w_none
+                                C.max_w_none,
+                                // sm__
+                                C.sm__h_32
                             ],
                             attrs!{
                                 At::Src => "/static/images/seed_logo.svg"
@@ -365,7 +411,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ul![
                         class![
                             C.mt_10,
-                            C.text_blue_1
+                            C.text_blue_1,
+                            // sm__
+                            C.sm__mt_20,
                         ],
                         li![
                             class![
@@ -389,6 +437,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                             C.inline,
                                             C.text_18,
                                             C.font_bold,
+                                            // sm__
+                                            C.sm__text_26,
                                         ],
                                         "Seed"
                                     ],
@@ -399,6 +449,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         li![
                             class![
                                 C.my_3,
+                                // sm__
+                                C.sm__mt_8,
                             ],
                             div![
                                 class![
@@ -418,6 +470,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         li![
                             class![
                                 C.my_3,
+                                // sm__
+                                C.sm__mt_8,
                             ],
                             div![
                                 class![
@@ -442,6 +496,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.mr_2,
                             C.text_right,
                             C.font_display,
+                            // sm__
+                            C.sm__mt_16,
+                            C.sm__mb_48,
                         ],
                         span![
                             class![
@@ -461,6 +518,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mb_4,
                                 C.ml_px,
                                 C.w_3,
+                                // sm__
+                                C.sm__mb_6,
+                                C.sm__w_4,
                             ],
                             attrs!{
                                 At::Src => "/static/images/link_arrow.svg"
@@ -487,6 +547,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.mt_16,
                         C.w_xs,
                         C.px_2,
+                        // sm__
+                        C.sm__mt_40,
+                        C.sm__w_132,
                     ],
                     // Testimonial
                     div![
@@ -509,7 +572,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mt_4,
                                 C.font_display,
                                 C.text_15,
-                                C.text_blue_3
+                                C.text_blue_3,
+                                // sm__
+                                C.sm__mt_6,
+                                C.sm__text_20,
                             ],
                             "- theduke"
                         ]
@@ -525,6 +591,11 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.rounded_tl_28px,
                             C.bg_blue_2,
                             C.shadow_glow,
+                            // sm__
+                            C.sm__mt_32,
+                            C.sm__pt_12,
+                            C.sm__pb_10,
+                            C.sm__rounded_tl_55px,
                         ],
                         // Extended background
                         div![
@@ -541,7 +612,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                        img![
                             class![
                                 C.h_12,
-                                C.max_w_none
+                                C.max_w_none,
+                                // sm__
+                                C.sm__h_20
                             ],
                             attrs!{
                                 At::Src => "/static/images/realworld_logo.png"
@@ -551,7 +624,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ul![
                         class![
                             C.mt_12,
-                            C.text_blue_1
+                            C.text_blue_1,
+                            // sm__
+                            C.sm__mt_24,
+                            C.sm__ml_8,
                         ],
                         li![
                             class![
@@ -575,6 +651,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                             C.inline,
                                             C.text_18,
                                             C.font_bold,
+                                            // sm__
+                                            C.sm__text_26,
                                         ],
                                         "RealWorld example"
                                     ],
@@ -590,6 +668,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.mr_2,
                             C.text_right,
                             C.font_display,
+                            // sm__
+                            C.sm__mt_20,
+                            C.sm__mb_48,
                         ],
                         span![
                             class![
@@ -635,6 +716,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.mt_16,
                         C.w_xs,
                         C.px_2,
+                        // sm__
+                        C.sm__mt_40,
+                        C.sm__w_md,
                     ],
                     // Testimonial
                     div![
@@ -657,7 +741,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mt_4,
                                 C.font_display,
                                 C.text_15,
-                                C.text_blue_3
+                                C.text_blue_3,
+                                // sm__
+                                C.sm__text_20,
                             ],
                             "- me"
                         ]
@@ -673,6 +759,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.rounded_tr_28px,
                             C.bg_blue_2,
                             C.shadow_glow,
+                            // sm__
+                            C.sm__mt_20,
+                            C.sm__w_56,
+                            C.sm__pt_10,
+                            C.sm__pb_8,
+                            C.sm__rounded_tr_55px,
                         ],
                         // Extended background
                         div![
@@ -691,7 +783,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             class![
                                 C.ml_6,
                                 C.h_20,
-                                C.max_w_none
+                                C.max_w_none,
+                                // sm__
+                                C.sm__h_32,
                             ],
                             attrs!{
                                 At::Src => "/static/images/logo.svg"
@@ -701,7 +795,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ul![
                         class![
                             C.mt_10,
-                            C.text_blue_1
+                            C.text_blue_1,
+                            // sm__
+                            C.sm__mt_24,
                         ],
                         li![
                             class![
@@ -725,6 +821,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                             C.inline,
                                             C.text_18,
                                             C.font_bold,
+                                            // sm__
+                                            C.sm__text_26,
                                         ],
                                         "kavik.cz"
                                     ],
@@ -735,6 +833,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         li![
                             class![
                                 C.my_3,
+                                // sm__
+                                C.sm__mt_8,
                             ],
                             div![
                                 class![
@@ -759,6 +859,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.mr_2,
                             C.text_right,
                             C.font_display,
+                            // sm__
+                            C.sm__mt_20,
+                            C.sm__mb_56,
                         ],
                         span![
                             class![
@@ -778,6 +881,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mb_4,
                                 C.ml_px,
                                 C.w_3,
+                                // sm__
+                                C.sm__mb_6,
+                                C.sm__w_4,
                             ],
                             attrs!{
                                 At::Src => "/static/images/link_arrow.svg"
@@ -805,12 +911,17 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.mt_16,
                         C.w_xs,
                         C.px_2,
+                        // sm__
+                        C.sm__mt_40,
+                        C.sm__w_132,
                     ],
                     // Testimonial
                     div![
                         class![
                             C.mt_10,
                             C.ml_5,
+                            // sm__
+                            C.sm__ml_12,
                         ],
                         div![
                             class![
@@ -826,7 +937,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mt_4,
                                 C.font_display,
                                 C.text_15,
-                                C.text_blue_3
+                                C.text_blue_3,
+                                // sm__
+                                C.sm__ml_20,
+                                C.sm__text_20,
                             ],
                             "- rebo"
                         ]
@@ -842,6 +956,11 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.rounded_tl_28px,
                             C.bg_blue_2,
                             C.shadow_glow,
+                             // sm__
+                            C.sm__mt_32,
+                            C.sm__pt_12,
+                            C.sm__pb_10,
+                            C.sm__rounded_tl_55px,
                         ],
                         // Extended background
                         div![
@@ -860,7 +979,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.ml_2,
                                 C.font_display,
                                 C.font_bold,
-                                C.text_34
+                                C.text_34,
+                                 // sm__
+                                C.sm__ml_4,
+                                C.sm__text_60,
                             ],
                             "Seed Quickstart"
                         ],
@@ -868,7 +990,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ul![
                         class![
                             C.mt_12,
-                            C.text_blue_1
+                            C.text_blue_1,
+                            // sm__
+                            C.sm__mt_24,
                         ],
                         li![
                             class![
@@ -892,6 +1016,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                             C.inline,
                                             C.text_18,
                                             C.font_bold,
+                                            // sm__
+                                            C.sm__text_26,
                                         ],
                                         "Seed Quickstart"
                                     ],
@@ -906,7 +1032,11 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.mb_56,
                             C.text_right,
                             C.font_display,
-                            C.text_15
+                            C.text_15,
+                            // sm__
+                            C.sm__mt_20,
+                            C.sm__mb_96,
+                            C.sm__text_26,
                         ],
                         span![
                             class![
@@ -926,6 +1056,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mb_4,
                                 C.ml_px,
                                 C.w_3,
+                                // sm__
+                                C.sm__mb_6,
+                                C.sm__w_4,
                             ],
                             attrs!{
                                 At::Src => "/static/images/link_arrow.svg"
@@ -949,6 +1082,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.mt_16,
                         C.w_xs,
                         C.px_2,
+                        // sm__
+                        C.sm__mt_40,
+                        C.sm__w_132,
                     ],
                     // Hellweb container
                     div![
@@ -959,6 +1095,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.py_12,
                             C.rounded_tr_140px,
                             C.bg_gray_1,
+                            // sm__
+                            C.sm__w_132,
+                            C.sm___mt_80,
                         ],
                         // Extended background
                         div![
@@ -976,7 +1115,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             class![
                                 C.mt_1,
                                 C.ml_8,
-                                C.h_12
+                                C.h_12,
+                                // sm__
+                                C.sm__mt_20,
+                                C.sm__h_20,
                             ],
                             attrs!{
                                 At::Src => "/static/images/hellweb_logo.svg"
@@ -985,7 +1127,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     ],
                     ul![
                         class![
-                            C.text_gray_10
+                            C.text_gray_10,
+                            // sm__
+                            C.sm__mt_16,
                         ],
                         li![
                             class![
@@ -1009,6 +1153,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                             C.inline,
                                             C.text_18,
                                             C.font_bold,
+                                            // sm__
+                                            C.sm__text_26,
                                         ],
                                         "Hellweb"
                                     ],
@@ -1019,6 +1165,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         li![
                             class![
                                 C.mt_8,
+                                // sm__
+                                C.sm__mt_16,
                             ],
                             div![
                                 class![
@@ -1053,6 +1201,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.mt_10,
                             C.mr_2,
                             C.text_right,
+                            // sm__
+                            C.sm__mt_20,
                         ],
                         span![
                             class![
@@ -1072,6 +1222,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mb_4,
                                 C.ml_px,
                                 C.w_3,
+                                // sm__
+                                C.sm__mb_6,
+                                C.sm__w_4,
                             ],
                             attrs!{
                                 At::Src => "/static/images/link_arrow.svg"
@@ -1088,7 +1241,11 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.items_center,
                             C.justify_center,
                             C.text_19,
-                            C.text_gray_10
+                            C.text_gray_10,
+                            // sm__
+                            C.sm__mt_40,
+                            C.sm__mb_24,
+                            C.sm__text_28,
                         ],
                         span![
                             class![
@@ -1100,7 +1257,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         img![
                             class![
                                 C.mt_1,
-                                C.h_12
+                                C.h_12,
+                                // sm__
+                                C.sm__h_16,
                             ],
                             attrs!{
                                 At::Src => "/static/images/next.svg"
@@ -1117,13 +1276,17 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.left_1of2,
                 C.top_0,
                 C.mt_310px,
-                C.ml_48,
+                C.ml_38,
                 C.w_1240px,
                 C.h_1240px,
                 C.rounded_full,
                 C.border_blue_2,
                 C.border_2,
                 C.opacity_10,
+                // sm__
+                C.sm__ml_64,
+                C.sm__h_2560px,
+                C.sm__w_2560px,
             ]
         ],
         div![
@@ -1131,14 +1294,19 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.absolute,
                 C.right_1of2,
                 C.top_0,
-                C.mt_1050px,
-                C.mr_48,
+                C.mt_790px,
+                C.mr_38,
                 C.w_1240px,
                 C.h_1240px,
                 C.rounded_full,
                 C.border_blue_2,
                 C.border_2,
                 C.opacity_10,
+                // sm__
+                C.sm__mt_1310px,
+                C.sm__mr_64,
+                C.sm__h_2560px,
+                C.sm__w_2560px,
             ]
         ],
         div![
@@ -1147,13 +1315,18 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.left_1of2,
                 C.top_0,
                 C.mt_1760px,
-                C.ml_48,
+                C.ml_38,
                 C.w_1240px,
                 C.h_1240px,
                 C.rounded_full,
                 C.border_blue_2,
                 C.border_2,
                 C.opacity_10,
+                // sm__
+                C.sm__mt_3040px,
+                C.sm__ml_64,
+                C.sm__h_2560px,
+                C.sm__w_2560px,
             ]
         ],
         div![
@@ -1162,13 +1335,18 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.right_1of2,
                 C.top_0,
                 C.mt_2340px,
-                C.mr_48,
+                C.mr_38,
                 C.w_1240px,
                 C.h_1240px,
                 C.rounded_full,
                 C.border_blue_2,
                 C.border_2,
                 C.opacity_10,
+                // sm__
+                C.sm__mt_3870px,
+                C.sm__mr_64,
+                C.sm__h_2560px,
+                C.sm__w_2560px,
             ]
         ],
     ]
