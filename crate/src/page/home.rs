@@ -24,6 +24,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.bg_gray_1,
                 // sm__
                 C.sm__h_890px,
+                // lg__
+                C.lg__h_1420px,
             ],
             // Left background
             div![
@@ -49,6 +51,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.bg_gray_1,
                         // sm__
                         C.sm__h_550px,
+                        // lg__
+                        C.lg__h_860px,
+                        C.lg__rounded_bl_260px,
                     ],
                     // Martin Kavík
                     div![
@@ -59,8 +64,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.font_display,
                             // sm__
                             C.sm__mt_64,
-                            C.sm__ml_16,
+                            C.sm__ml_20,
                             C.sm__w_md,
+                            // lg__
+                            C.lg__mt_72,
+                            C.lg__ml_20,
+                            C.lg__w_216,
                         ],
                         h1![
                             class![
@@ -69,7 +78,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.text_31,
                                 C.text_gray_10
                                 // sm__
-                                C.sm__text_40
+                                C.sm__text_40,
+                                // lg__
+                                C.lg__leading_none,
+                                C.lg__text_120,
                             ],
                             span![
                                 "Martin "
@@ -86,7 +98,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.text_21,
                                 C.text_gray_7,
                                 // sm__
-                                C.sm__text_32
+                                C.sm__text_32,
+                                // lg__
+                                C.lg__text_60,
                             ],
                             "\u{00A0}is",
                             br![],
@@ -113,6 +127,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     // sm__
                     C.sm___mt_64,
                     C.sm__w_750px,
+                    // lg__
+                    C.lg__w_900px,
                 ],
                 attrs!{
                     At::Src => "/static/images/gear.svg"
@@ -127,6 +143,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.pt_px,
                 C.rounded_tl_140px,
                 C.bg_blue_8,
+                // lg__
+                C.lg___mt_80,
+                C.lg__rounded_tl_330px,
             ],
             // Main list
             div![
@@ -139,6 +158,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.relative,
                     // sm__
                     C.max_w_4xl,
+                    // lg__
+                    C.lg___mt_92,
+                    C.lg__max_w_8xl,
+                    C.lg__mx_auto,
                 ],
                 // Right background
                 div![
@@ -166,6 +189,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         C.sm__pl_8,
                         C.sm__pr_2,
                         C.sm__text_26,
+                        // lg__
+                        C.lg__pl_16,
+                        C.lg__text_45,
+                        C.lg__rounded_bl_140px,
                     ],
                     ul![
                         class![
@@ -174,6 +201,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.py_8,
                             // sm__
                             C.sm__w_120,
+                            // lg__
+                            C.lg__w_204,
+                            C.lg__pt_32,
+                            C.lg__pb_24,
                         ],
                         li![
                             class![
@@ -188,6 +219,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_blue_6,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     // https://stackoverflow.com/a/39900080
                                     "▶\u{fe0e}"
@@ -208,6 +241,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_blue_6,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     "▶\u{fe0e}"
                                 ],
@@ -227,6 +262,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_blue_6,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     "▶\u{fe0e}"
                                 ],
@@ -246,6 +283,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_blue_6,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     "▶\u{fe0e}"
                                 ],
@@ -278,6 +317,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         // sm__
                         C.sm__mt_48,
                         C.sm__w_md,
+                        // lg__
+                        C.lg__mt_64,
+                        C.lg__w_236,
                     ],
                     // Github projects
                     h2![
@@ -288,6 +330,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_center,
                             // sm__
                             C.sm__text_50,
+                            // lg__
+                            C.lg__text_80,
                         ],
                         span![
                             class![
@@ -309,6 +353,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_right,
                             // sm__
                             C.sm__mt_40,
+                            // lg__
+                            C.lg__mt_64,
                         ],
                         div![
                             class![
@@ -328,6 +374,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 // sm__
                                 C.sm__mt_4,
                                 C.sm__text_20,
+                                // lg__
+                                C.lg__mt_6,
+                                C.lg__mr_8,
+                                C.lg__text_35,
                             ],
                             "- rebo"
                         ]
@@ -339,13 +389,17 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_right,
                             // sm__
                             C.sm__mt_12,
+                            // lg__
+                            C.lg__mt_16,
                         ],
                         div![
                             class![
                                 C.mr_4,
                                 C.font_display,
                                 C.italic,
-                                C.text_yellow_4
+                                C.text_yellow_4,
+                                // lg__
+                                C.lg__mr_16,
                             ],
                             "Seed rocks, and ",
                             br![],
@@ -361,6 +415,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 // sm__
                                 C.sm__mt_4,
                                 C.sm__text_20,
+                                // lg__
+                                C.lg__mt_8,
+                                C.lg__mr_20,
+                                C.lg__text_35,
                             ],
                             "- robwebbjr"
                         ]
@@ -382,6 +440,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.sm__pb_8,
                             C.sm__w_64,
                             C.sm__rounded_tr_55px,
+                            // lg__
+                            C.lg__mt_32,
+                            C.lg__pt_12,
+                            C.lg__pb_12,
+                            C.lg__w_md,
+                            C.lg__rounded_tr_90px,
                         ],
                         // Extended background
                         div![
@@ -402,6 +466,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.max_w_none,
                                 // sm__
                                 C.sm__h_32
+                                // lg__
+                                C.lg__ml_32,
+                                C.lg__h_40,
                             ],
                             attrs!{
                                 At::Src => "/static/images/seed_logo.svg"
@@ -414,6 +481,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_blue_1,
                             // sm__
                             C.sm__mt_20,
+                            // lg__
+                            C.lg__mt_32,
                         ],
                         li![
                             class![
@@ -428,6 +497,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_yellow_4,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     "▶\u{fe0e}"
                                 ],
@@ -439,6 +510,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                             C.font_bold,
                                             // sm__
                                             C.sm__text_26,
+                                            // lg__
+                                            C.lg__text_45,
                                         ],
                                         "Seed"
                                     ],
@@ -451,6 +524,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.my_3,
                                 // sm__
                                 C.sm__mt_8,
+                                // lg__
+                                C.lg__mt_16,
                             ],
                             div![
                                 class![
@@ -461,6 +536,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_yellow_4,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     "▶\u{fe0e}"
                                 ],
@@ -472,6 +549,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.my_3,
                                 // sm__
                                 C.sm__mt_8,
+                                // lg__
+                                C.lg__mt_16,
                             ],
                             div![
                                 class![
@@ -482,6 +561,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_yellow_4,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     "▶\u{fe0e}"
                                 ],
@@ -499,6 +580,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             // sm__
                             C.sm__mt_16,
                             C.sm__mb_48,
+                            // lg__
+                            C.lg__mt_24,
+                            C.lg__mb_64,
                         ],
                         span![
                             class![
@@ -521,6 +605,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 // sm__
                                 C.sm__mb_6,
                                 C.sm__w_4,
+                                // lg__
+                                C.lg__mb_8,
+                                C.lg__w_5,
                             ],
                             attrs!{
                                 At::Src => "/static/images/link_arrow.svg"
@@ -550,6 +637,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         // sm__
                         C.sm__mt_40,
                         C.sm__w_132,
+                        // lg__
+                        C.lg__mt_64,
+                        C.lg__w_236,
                     ],
                     // Testimonial
                     div![
@@ -576,6 +666,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 // sm__
                                 C.sm__mt_6,
                                 C.sm__text_20,
+                                // lg__
+                                C.lg__mt_8,
+                                C.lg__text_35,
                             ],
                             "- theduke"
                         ]
@@ -596,6 +689,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.sm__pt_12,
                             C.sm__pb_10,
                             C.sm__rounded_tl_55px,
+                            // lg__
+                            C.lg__mt_40,
+                            C.lg__ml_32,
+                            C.sm__pt_16,
+                            C.sm__pb_12,
+                            C.lg__rounded_tl_90px,
                         ],
                         // Extended background
                         div![
@@ -609,12 +708,14 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             ]
                         ],
                         // Logo
-                       img![
+                        img![
                             class![
                                 C.h_12,
                                 C.max_w_none,
                                 // sm__
                                 C.sm__h_20
+                                // lg__
+                                C.lg__h_32,
                             ],
                             attrs!{
                                 At::Src => "/static/images/realworld_logo.png"
@@ -628,6 +729,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             // sm__
                             C.sm__mt_24,
                             C.sm__ml_8,
+                            // lg__
+                            C.lg__mt_40,
+                            C.lg__ml_0,
                         ],
                         li![
                             class![
@@ -642,6 +746,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_yellow_4,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     "▶\u{fe0e}"
                                 ],
@@ -653,6 +759,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                             C.font_bold,
                                             // sm__
                                             C.sm__text_26,
+                                            // lg__
+                                            C.lg__text_45,
                                         ],
                                         "RealWorld example"
                                     ],
@@ -671,6 +779,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             // sm__
                             C.sm__mt_20,
                             C.sm__mb_48,
+                            // lg__
+                            C.lg__mt_32,
+                            C.lg__mb_64,
                         ],
                         span![
                             class![
@@ -690,6 +801,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mb_4,
                                 C.ml_px,
                                 C.w_3,
+                                // lg__
+                                C.lg__mb_8,
+                                C.lg__w_5,
                             ],
                             attrs!{
                                 At::Src => "/static/images/link_arrow.svg"
@@ -719,13 +833,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         // sm__
                         C.sm__mt_40,
                         C.sm__w_md,
+                        // lg__
+                        C.lg__mt_64,
+                        C.lg__w_204,
                     ],
                     // Testimonial
                     div![
                         class![
                             C.mt_10,
                             C.mr_3,
-                            C.text_right
+                            C.text_right,
                         ],
                         div![
                             class![
@@ -744,6 +861,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.text_blue_3,
                                 // sm__
                                 C.sm__text_20,
+                                // lg__
+                                C.lg__mt_8,
+                                C.lg__text_35,
                             ],
                             "- me"
                         ]
@@ -765,6 +885,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.sm__pt_10,
                             C.sm__pb_8,
                             C.sm__rounded_tr_55px,
+                            // lg__
+                            C.lg__w_96,
+                            C.lg__rounded_tr_90px,
                         ],
                         // Extended background
                         div![
@@ -786,6 +909,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.max_w_none,
                                 // sm__
                                 C.sm__h_32,
+                                // lg__
+                                C.lg__ml_32,
+                                C.lg__h_40,
                             ],
                             attrs!{
                                 At::Src => "/static/images/logo.svg"
@@ -798,6 +924,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_blue_1,
                             // sm__
                             C.sm__mt_24,
+                            // lg__
+                            C.lg__mt_32,
                         ],
                         li![
                             class![
@@ -812,6 +940,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_yellow_4,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     "▶\u{fe0e}"
                                 ],
@@ -823,6 +953,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                             C.font_bold,
                                             // sm__
                                             C.sm__text_26,
+                                            // lg__
+                                            C.lg__text_45,
                                         ],
                                         "kavik.cz"
                                     ],
@@ -835,6 +967,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.my_3,
                                 // sm__
                                 C.sm__mt_8,
+                                // lg__
+                                C.lg__mt_16,
                             ],
                             div![
                                 class![
@@ -845,6 +979,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_yellow_4,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     "▶\u{fe0e}"
                                 ],
@@ -862,10 +998,13 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             // sm__
                             C.sm__mt_20,
                             C.sm__mb_56,
+                            // lg__
+                            C.lg__mt_32,
+                            C.lg__mb_64,
                         ],
                         span![
                             class![
-                                C.text_blue_4
+                                C.text_blue_3
                             ],
                             "MartinKavik/"
                         ],
@@ -884,6 +1023,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 // sm__
                                 C.sm__mb_6,
                                 C.sm__w_4,
+                                // lg__
+                                C.lg__mb_8,
+                                C.lg__w_5,
                             ],
                             attrs!{
                                 At::Src => "/static/images/link_arrow.svg"
@@ -897,7 +1039,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
         section![
             class![
                 C.rounded_br_140px,
-                C.bg_blue_10
+                C.bg_blue_10,
+                // lg__
+                C.lg__rounded_br_330px,
             ],
             div![
                 class![
@@ -914,6 +1058,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         // sm__
                         C.sm__mt_40,
                         C.sm__w_132,
+                        // lg__
+                        C.lg__mt_64,
+                        C.lg__w_216,
                     ],
                     // Testimonial
                     div![
@@ -929,7 +1076,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.italic,
                                 C.text_yellow_4
                             ],
-                            "Its great!"
+                            "It's great!"
                         ],
                         div![
                             class![
@@ -941,6 +1088,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 // sm__
                                 C.sm__ml_20,
                                 C.sm__text_20,
+                                // lg__
+                                C.lg__mt_8,
+                                C.lg__ml_40,
+                                C.lg__text_35,
                             ],
                             "- rebo"
                         ]
@@ -956,11 +1107,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.rounded_tl_28px,
                             C.bg_blue_2,
                             C.shadow_glow,
-                             // sm__
+                            // sm__
                             C.sm__mt_32,
                             C.sm__pt_12,
                             C.sm__pb_10,
                             C.sm__rounded_tl_55px,
+                            // lg__
+                            C.lg__ml_48,
+                            C.lg__pt_16,
+                            C.lg__pb_12,
+                            C.lg__rounded_tl_90px,
                         ],
                         // Extended background
                         div![
@@ -980,9 +1136,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.font_display,
                                 C.font_bold,
                                 C.text_34,
-                                 // sm__
+                                // sm__
                                 C.sm__ml_4,
                                 C.sm__text_60,
+                                // lg__
+                                C.lg__ml_6,
+                                C.lg__text_80,
                             ],
                             "Seed Quickstart"
                         ],
@@ -993,6 +1152,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_blue_1,
                             // sm__
                             C.sm__mt_24,
+                            // lg__
+                            C.lg__mt_32,
                         ],
                         li![
                             class![
@@ -1007,6 +1168,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_yellow_4,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     "▶\u{fe0e}"
                                 ],
@@ -1018,6 +1181,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                             C.font_bold,
                                             // sm__
                                             C.sm__text_26,
+                                            // lg__
+                                            C.lg__text_45,
                                         ],
                                         "Seed Quickstart"
                                     ],
@@ -1037,6 +1202,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.sm__mt_20,
                             C.sm__mb_96,
                             C.sm__text_26,
+                            // lg__
+                            C.lg__mt_32,
+                            C.lg__mb_132,
+                            C.lg__text_45,
                         ],
                         span![
                             class![
@@ -1059,6 +1228,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 // sm__
                                 C.sm__mb_6,
                                 C.sm__w_4,
+                                // lg__
+                                C.lg__mb_8,
+                                C.lg__w_5,
                             ],
                             attrs!{
                                 At::Src => "/static/images/link_arrow.svg"
@@ -1085,6 +1257,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         // sm__
                         C.sm__mt_40,
                         C.sm__w_132,
+                        // lg__
+                        C.lg__mt_64,
+                        C.lg__w_236,
                     ],
                     // Hellweb container
                     div![
@@ -1098,6 +1273,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             // sm__
                             C.sm__w_132,
                             C.sm___mt_80,
+                            // lg__
+                            C.lg__w_204,
+                            C.lg___mt_120,
+                            C.lg__rounded_tr_330px,
                         ],
                         // Extended background
                         div![
@@ -1119,6 +1298,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 // sm__
                                 C.sm__mt_20,
                                 C.sm__h_20,
+                                // lg__
+                                C.lg__mt_24,
+                                C.lg__ml_16,
+                                C.lg__h_32,
                             ],
                             attrs!{
                                 At::Src => "/static/images/hellweb_logo.svg"
@@ -1130,6 +1313,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_gray_10,
                             // sm__
                             C.sm__mt_16,
+                            // lg__
+                            C.sm__mt_24,
                         ],
                         li![
                             class![
@@ -1144,6 +1329,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_blue_6,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     "▶\u{fe0e}"
                                 ],
@@ -1155,6 +1342,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                             C.font_bold,
                                             // sm__
                                             C.sm__text_26,
+                                            // lg__
+                                            C.lg__text_45,
                                         ],
                                         "Hellweb"
                                     ],
@@ -1167,6 +1356,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mt_8,
                                 // sm__
                                 C.sm__mt_16,
+                                // lg__
+                                C.lg__mt_32,
                             ],
                             div![
                                 class![
@@ -1177,6 +1368,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     class![
                                         C.text_blue_6,
                                         C.mr_2,
+                                        // lg__
+                                        C.lg__mr_4,
                                     ],
                                     "▶\u{fe0e}"
                                 ],
@@ -1203,6 +1396,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.text_right,
                             // sm__
                             C.sm__mt_20,
+                            // lg__
+                            C.lg__mt_32,
+                            C.lg__mr_16,
                         ],
                         span![
                             class![
@@ -1225,6 +1421,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 // sm__
                                 C.sm__mb_6,
                                 C.sm__w_4,
+                                // lg__
+                                C.lg__mb_8,
+                                C.lg__w_5,
                             ],
                             attrs!{
                                 At::Src => "/static/images/link_arrow.svg"
@@ -1246,6 +1445,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.sm__mt_40,
                             C.sm__mb_24,
                             C.sm__text_28,
+                            // lg__
+                            C.lg__mt_64,
+                            C.lg__mb_48,
+                            C.lg__text_50,
                         ],
                         span![
                             class![
@@ -1260,6 +1463,8 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.h_12,
                                 // sm__
                                 C.sm__h_16,
+                                // lg__
+                                C.lg__h_32,
                             ],
                             attrs!{
                                 At::Src => "/static/images/next.svg"
@@ -1287,6 +1492,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.sm__ml_64,
                 C.sm__h_2560px,
                 C.sm__w_2560px,
+                // lg__
+                C.lg__mt_1290px,
+                C.lg__ml_108,
             ]
         ],
         div![
@@ -1307,6 +1515,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.sm__mr_64,
                 C.sm__h_2560px,
                 C.sm__w_2560px,
+                // lg__
+                C.lg__mt_2840px,
+                C.lg__mr_108,
             ]
         ],
         div![
@@ -1327,6 +1538,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.sm__ml_64,
                 C.sm__h_2560px,
                 C.sm__w_2560px,
+                // lg__
+                C.lg__mt_5030px,
+                C.lg__ml_108,
             ]
         ],
         div![
@@ -1347,6 +1561,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 C.sm__mr_64,
                 C.sm__h_2560px,
                 C.sm__w_2560px,
+                // lg__
+                C.lg__mt_6070px,
+                C.lg__mr_108,
             ]
         ],
     ]
