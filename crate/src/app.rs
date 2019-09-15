@@ -29,10 +29,12 @@ impl Default for Model {
 // ------ ------
 
 pub fn init(url: Url, orders: &mut impl Orders<Msg>) -> Model {
-    document()
-        .get_element_by_id("loading-page")
-        .expect("cannot find element with id `loading-page`")
-        .remove();
+    let mount_point = document()
+        .get_element_by_id("app");
+
+    if let Some(mount_point_element) = mount_point {
+        mount_point_element.set_inner_html("");
+    }
 
     orders.send_msg(Msg::RouteChanged(url.try_into().ok()));
     Model::default()
@@ -94,7 +96,7 @@ fn scroll_to_top() {
 pub fn view(model: &Model) -> impl View<Msg> {
     div![
         class![
-            C.fade_in,
+//            C.fade_in,
             C.min_h_screen,
             C.flex,
             C.flex_col,
