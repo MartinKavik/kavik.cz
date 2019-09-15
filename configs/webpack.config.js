@@ -17,7 +17,7 @@ module.exports = (env, argv) => {
     },
     output: {
       // TravicCI or you can deploy your site from this folder (after `yarn build:release`)
-      path: dist
+      path: dist,
     },
     devServer: {
       contentBase: dist,
