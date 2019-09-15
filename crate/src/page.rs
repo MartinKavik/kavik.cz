@@ -7,11 +7,13 @@ pub mod home;
 pub mod not_found;
 
 #[derive(Clone, Copy, Eq, PartialEq)]
-pub enum Page {
+enum Page {
     Home,
     About,
     Other
 }
+
+const MAILTO: &str = "mailto:martin@kavik.cz?subject=Something%20for%20Martin&body=Hi!%0A%0AI%20am%20Groot.%20I%20like%20trains.";
 
 fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
     vec![
@@ -381,12 +383,17 @@ pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
                     "2019"
                 ]
             ],
-            div![
+            a![
+                attrs!{
+                    At::Href => MAILTO,
+                },
                 class![
                     C.font_display,
                     C.font_semibold,
                     C.text_16,
                     C.text_gray_10,
+                    C.underline,
+                    C.underline_yellow_7,
                     // sm__
                     C.sm__text_26
                 ],

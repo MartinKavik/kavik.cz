@@ -50,8 +50,8 @@ pub fn view(model: &Model) -> impl View<Msg> {
             C.flex,
             C.flex_col,
         ],
-        page::home::view()
-//            page::about::view()
+//        page::home::view()
+            page::about::view()
 //            page::not_found::view()
 //            empty![]
     ]

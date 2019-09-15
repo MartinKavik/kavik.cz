@@ -1,7 +1,7 @@
 use crate::generated::css_classes::C;
 use seed::prelude::*;
 use seed::*;
-use super::{view_header, view_footer, Page};
+use super::{view_header, view_footer, Page, MAILTO};
 
 pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
     vec![
@@ -293,8 +293,13 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 ],
                                 div![
                                     "Receiving mails. ",
-                                    span![
+                                    a![
+                                        attrs!{
+                                            At::Href => MAILTO
+                                        },
                                         class![
+                                            C.underline,
+                                            C.underline_yellow_7,
                                             C.font_semibold
                                         ],
                                         "martin@kavik.cz"
@@ -1490,8 +1495,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                         "web design & development"
                                     ],
                                     "? Don't hesitate to create an issue or contact me - ",
-                                    span![
-                                        "martin@kavik.cz"
+                                    a![
+                                        attrs!{
+                                            // https://mailtolink.me/
+                                            At::Href => "mailto:martin@hellweb.app?subject=Hellweb%20-%20pain&body=Hi!%0A%0AI%20hate"
+                                        },
+                                        class![
+                                            C.underline,
+                                            C.underline_yellow_7,
+                                        ],
+                                        "martin@hellweb.app"
                                     ]
                                 ]
                             ]

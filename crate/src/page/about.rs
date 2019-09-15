@@ -1,7 +1,7 @@
 use crate::generated::css_classes::C;
 use seed::prelude::*;
 use seed::*;
-use super::{view_header, view_footer, Page};
+use super::{view_header, view_footer, Page, MAILTO};
 
 pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
     vec![
@@ -1193,7 +1193,14 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         "?",
                         br![],
                         "Is there good coffee, tea, sushi or some spicy food? Ok! ",
-                        span![
+                        a![
+                            attrs!{
+                                At::Href => MAILTO,
+                            },
+                            class![
+                                C.underline,
+                                C.underline_yellow_7,
+                            ],
                             "martin@kavik.cz"
                         ]
                     ]
