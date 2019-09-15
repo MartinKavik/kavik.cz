@@ -1,7 +1,14 @@
 
-
 .blur {
   filter: blur(7px);
+}
+
+.underline-yellow-7 {
+  text-decoration-color: hsl(36, 77%, 49%)
+}
+
+.underline-blue-5 {
+  text-decoration-color: hsl(205, 65%, 55%)
 }
 
 

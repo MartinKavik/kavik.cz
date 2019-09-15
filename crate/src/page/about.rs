@@ -337,11 +337,27 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             ],
                             div![
                                 "I often learn from ",
-                                span![
+                                a![
+                                    attrs!{
+                                        At::Href => "https://www.packtpub.com/"
+                                    },
+                                    class![
+                                        C.underline,
+                                        C.underline_yellow_7
+                                    ],
                                     "packtpub.com"
                                 ],
-                                ". And I recommend to read book ",
-                                span![
+                                ".",
+                                br![],
+                                "And I recommend to read book ",
+                                a![
+                                    attrs!{
+                                        At::Href => "https://fsharpforfunandprofit.com/books/"
+                                    },
+                                    class![
+                                        C.underline,
+                                        C.underline_yellow_7
+                                    ],
                                     "Domain Modeling Made Functional"
                                 ],
                                 "."
@@ -635,11 +651,25 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         ],
                         div![
                             "I recommend to check ",
-                            span![
+                            a![
+                                attrs!{
+                                    At::Href => "https://refactoringui.com/"
+                                },
+                                class![
+                                    C.underline,
+                                    C.underline_yellow_7
+                                ],
                                 "refactoringui.com"
                             ],
                             ". I've bought their book and I use their ",
-                            span![
+                            a![
+                                attrs!{
+                                    At::Href => "https://tailwindcss.com/"
+                                },
+                                class![
+                                    C.underline,
+                                    C.underline_yellow_7
+                                ],
                                 "TailwindCSS"
                             ],
                             " in my projects."
@@ -962,7 +992,14 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 "I'd rather think about your project for free in a gym than sit and wait for ideas.",
                                 br![],
                                 "I also recommend to read ",
-                                span![
+                                a![
+                                    attrs!{
+                                        At::Href => "https://medium.com/@jsonpify/you-dont-need-standup-9a74782517c1"
+                                    },
+                                    class![
+                                        C.underline,
+                                        C.underline_yellow_7
+                                    ],
                                     "You don’t need standup"
                                 ],
                                 "."
@@ -1173,12 +1210,16 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
             ],
             // Download my resume
             a![
+                attrs!{
+                    At::Href => "/static/Martin_Kavik_resume.pdf"
+                },
                 class![
                     C.mt_24,
                     C.text_19,
                     C.text_gray_10,
                     C.flex,
                     C.whitespace_no_wrap,
+                    C.md__hover__text_yellow_7,
                     // sm__
                     C.sm__mt_32,
                     C.sm__text_29,
@@ -1217,7 +1258,10 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                 ],
             ],
             // My GitHub profile
-            div![
+            a![
+                attrs!{
+                    At::Href => "https://github.com/MartinKavik"
+                },
                 class![
                     C.mt_16,
                     C.mb_20,
@@ -1226,6 +1270,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                     C.justify_center,
                     C.text_19,
                     C.text_gray_10,
+                    C.md__hover__text_yellow_7,
                     // sm__
                     C.sm__mt_24,
                     C.sm__mb_32,

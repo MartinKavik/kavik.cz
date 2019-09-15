@@ -147,20 +147,53 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                         C.hidden,
                         // sm__
                         C.sm___mt_px,
-                        C.sm__flex,
                         C.sm__text_21,
                         C.sm__font_semibold,
-                        C.sm__text_gray_10
-                    ],
-                    li![
-                        "Home & Projects"
+                        C.sm__text_gray_10,
+                        C.sm__flex,
+                        C.sm__items_center,
+                        C.sm__h_full,
                     ],
                     li![
                         class![
                             // sm__
-                            C.sm__ml_8
+                            C.sm__block,
+                            C.sm__h_full,
                         ],
-                        "About"
+                        a![
+                            class![
+                                // sm__
+                                C.sm__h_full,
+                                C.sm__flex,
+                                C.sm__items_center,
+                                C.sm__hover__text_yellow_7,
+                            ],
+                            attrs!{
+                                At::Href => "/"
+                            },
+                            "Home & Projects"
+                        ]
+                    ],
+                    li![
+                        class![
+                            // sm__
+                            C.sm__block,
+                            C.sm__ml_8
+                            C.sm__h_full,
+                        ],
+                        a![
+                            class![
+                                // sm__
+                                C.sm__h_full,
+                                C.sm__flex,
+                                C.sm__items_center,
+                                C.sm__hover__text_yellow_7,
+                            ],
+                            attrs!{
+                                At::Href => "/about"
+                            },
+                            "About"
+                        ]
                     ],
                     li![
                         class![
@@ -168,14 +201,27 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                             // md__
                             C.md__block,
                             C.md__ml_12,
+                            C.md__h_full,
                         ],
-                        "Resume",
-                        span![
+                        a![
                             class![
                                 // md__
-                                C.md__text_gray_5,
+                                C.md__h_full,
+                                C.md__flex,
+                                C.md__items_center,
+                                C.md__hover__text_yellow_7,
                             ],
-                            ".pdf"
+                            attrs!{
+                                At::Href => "/static/Martin_Kavik_resume.pdf"
+                            },
+                            "Resume",
+                            span![
+                                class![
+                                    // md__
+                                    C.md__text_gray_5,
+                                ],
+                                ".pdf"
+                            ]
                         ]
                     ],
                     li![
@@ -184,19 +230,32 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                             // md__
                             C.md__block,
                             C.md__ml_8,
+                            C.md__h_full,
                         ],
-                        "GitHub",
-                        img![
+                        a![
                             class![
                                 // md__
-                                C.md__inline
-                                C.md__mb_5,
-                                C.md__ml_px,
-                                C.md__w_4,
+                                C.md__h_full,
+                                C.md__flex,
+                                C.md__items_center,
+                                C.md__hover__text_yellow_7,
                             ],
                             attrs!{
-                                At::Src => "/static/images/link_arrow.svg"
-                            }
+                                At::Href => "https://github.com/MartinKavik"
+                            },
+                            "GitHub",
+                            img![
+                                class![
+                                    // md__
+                                    C.md__inline
+                                    C.md__mb_5,
+                                    C.md__ml_px,
+                                    C.md__w_4,
+                                ],
+                                attrs!{
+                                    At::Src => "/static/images/link_arrow.svg"
+                                }
+                            ]
                         ]
                     ],
                 ],

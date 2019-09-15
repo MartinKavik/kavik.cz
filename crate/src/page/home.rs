@@ -382,7 +382,17 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.lg__mr_8,
                                 C.lg__text_35,
                             ],
-                            "- rebo"
+                            "- ",
+                            a![
+                                attrs!{
+                                    At::Href => "https://github.com/David-OConnor/seed/issues/193#issue-479188076"
+                                },
+                                class![
+                                    C.underline,
+                                    C.underline_blue_5,
+                                ],
+                                "rebo"
+                            ]
                         ]
                     ],
                     // Testimonial 2
@@ -423,12 +433,26 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.lg__mr_20,
                                 C.lg__text_35,
                             ],
-                            "- robwebbjr"
+                            "- ",
+                            a![
+                                attrs!{
+                                    At::Href => "https://github.com/MartinKavik/seed-rs-realworld/issues/1#issuecomment-525413644"
+                                },
+                                class![
+                                    C.underline,
+                                    C.underline_blue_5,
+                                ],
+                                "robwebbjr"
+                            ]
                         ]
                     ],
                     // Seed
-                    div![
+                    a![
+                        attrs!{
+                            At::Href => "https://github.com/MartinKavik/awesome-seed-rs"
+                        },
                         class![
+                            C.block,
                             C.relative,
                             C.mt_8,
                             C.pt_5,
@@ -506,17 +530,22 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     "▶\u{fe0e}"
                                 ],
                                 div![
-                                    h3![
-                                        class![
-                                            C.inline,
-                                            C.text_18,
-                                            C.font_bold,
-                                            // sm__
-                                            C.sm__text_26,
-                                            // lg__
-                                            C.lg__text_45,
+                                    a![
+                                        attrs!{
+                                            At::Href => "https://github.com/MartinKavik/awesome-seed-rs"
+                                        },
+                                        h3![
+                                            class![
+                                                C.inline,
+                                                C.text_18,
+                                                C.font_bold,
+                                                // sm__
+                                                C.sm__text_26,
+                                                // lg__
+                                                C.lg__text_45,
+                                            ],
+                                            "Seed"
                                         ],
-                                        "Seed"
                                     ],
                                     "\u{00A0}is an open-source Rust framework for creating fast and reliable web apps running in WebAssembly."
                                 ]
@@ -573,8 +602,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             ]
                         ],
                     ],
-                    div![
+                    a![
+                        attrs!{
+                            At::Href => "https://github.com/MartinKavik/awesome-seed-rs"
+                        },
                         class![
+                            C.block,
                             C.mt_10,
                             C.mb_24,
                             C.mr_2,
@@ -673,12 +706,26 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.lg__mt_8,
                                 C.lg__text_35,
                             ],
-                            "- theduke"
+                            "- ",
+                            a![
+                                attrs!{
+                                    At::Href => "https://github.com/David-OConnor/seed/pull/189#issuecomment-516095587"
+                                },
+                                class![
+                                    C.underline,
+                                    C.underline_blue_5,
+                                ],
+                                "theduke"
+                            ]
                         ]
                     ],
                     // RealWorld example app
-                    div![
+                    a![
+                        attrs!{
+                            At::Href => "https://github.com/MartinKavik/seed-rs-realworld"
+                        },
                         class![
+                            C.block,
                             C.relative,
                             C.mt_12,
                             C.ml_1,
@@ -755,25 +802,34 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     "▶\u{fe0e}"
                                 ],
                                 div![
-                                    h3![
-                                        class![
-                                            C.inline,
-                                            C.text_18,
-                                            C.font_bold,
-                                            // sm__
-                                            C.sm__text_26,
-                                            // lg__
-                                            C.lg__text_45,
+                                    a![
+                                        attrs!{
+                                            At::Href => "https://github.com/MartinKavik/seed-rs-realworld"
+                                        },
+                                        h3![
+                                            class![
+                                                C.inline,
+                                                C.text_18,
+                                                C.font_bold,
+                                                // sm__
+                                                C.sm__text_26,
+                                                // lg__
+                                                C.lg__text_45,
+                                            ],
+                                            "RealWorld example"
                                         ],
-                                        "RealWorld example"
                                     ],
                                     "\u{00A0}is a Seed codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the RealWorld spec and API."
                                 ]
                             ]
                         ],
                     ],
-                    div![
+                    a![
+                        attrs!{
+                            At::Href => "https://github.com/MartinKavik/seed-rs-realworld"
+                        },
                         class![
+                            C.block,
                             C.mt_10,
                             C.mb_24,
                             C.mr_2,
@@ -804,6 +860,9 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.mb_4,
                                 C.ml_px,
                                 C.w_3,
+                                // sm__
+                                C.sm__mb_6,
+                                C.sm__w_4,
                                 // lg__
                                 C.lg__mb_8,
                                 C.lg__w_5,
@@ -872,8 +931,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         ]
                     ],
                     // MK
-                    div![
+                    a![
+                        attrs!{
+                            At::Href => "https://github.com/MartinKavik/kavik.cz"
+                        },
                         class![
+                            C.block,
                             C.relative,
                             C.mt_8,
                             C.pt_4,
@@ -949,17 +1012,22 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     "▶\u{fe0e}"
                                 ],
                                 div![
-                                    h3![
-                                        class![
-                                            C.inline,
-                                            C.text_18,
-                                            C.font_bold,
-                                            // sm__
-                                            C.sm__text_26,
-                                            // lg__
-                                            C.lg__text_45,
+                                    a![
+                                        attrs!{
+                                            At::Href => "https://github.com/MartinKavik/kavik.cz"
+                                        },
+                                        h3![
+                                            class![
+                                                C.inline,
+                                                C.text_18,
+                                                C.font_bold,
+                                                // sm__
+                                                C.sm__text_26,
+                                                // lg__
+                                                C.lg__text_45,
+                                            ],
+                                            "kavik.cz"
                                         ],
-                                        "kavik.cz"
                                     ],
                                     "\u{00A0}is this website."
                                 ]
@@ -991,8 +1059,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             ]
                         ],
                     ],
-                    div![
+                    a![
+                        attrs!{
+                            At::Href => "https://github.com/MartinKavik/kavik.cz"
+                        },
                         class![
+                            C.block,
                             C.mt_10,
                             C.mb_24,
                             C.mr_2,
@@ -1096,12 +1168,26 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                 C.lg__ml_40,
                                 C.lg__text_35,
                             ],
-                            "- rebo"
+                            "- ",
+                            a![
+                                attrs!{
+                                    At::Href => "https://github.com/David-OConnor/seed/issues/200#issuecomment-522247909"
+                                },
+                                class![
+                                    C.underline,
+                                    C.underline_blue_5,
+                                ],
+                                "rebo"
+                            ]
                         ]
                     ],
                     // Seed Quickstart
-                    div![
+                    a![
+                        attrs!{
+                            At::Href => "https://github.com/MartinKavik/seed-quickstart-webpack"
+                        },
                         class![
+                            C.block,
                             C.relative,
                             C.mt_12,
                             C.ml_6,
@@ -1177,25 +1263,34 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     "▶\u{fe0e}"
                                 ],
                                 div![
-                                    h3![
-                                        class![
-                                            C.inline,
-                                            C.text_18,
-                                            C.font_bold,
-                                            // sm__
-                                            C.sm__text_26,
-                                            // lg__
-                                            C.lg__text_45,
+                                    a![
+                                        attrs!{
+                                            At::Href => "https://github.com/MartinKavik/seed-quickstart-webpack"
+                                        },
+                                        h3![
+                                            class![
+                                                C.inline,
+                                                C.text_18,
+                                                C.font_bold,
+                                                // sm__
+                                                C.sm__text_26,
+                                                // lg__
+                                                C.lg__text_45,
+                                            ],
+                                            "Seed Quickstart"
                                         ],
-                                        "Seed Quickstart"
                                     ],
                                     "\u{00A0}is a template for web apps with Seed, TailwindCSS, Typescript and Webpack."
                                 ]
                             ]
                         ],
                     ],
-                    div![
+                    a![
+                        attrs!{
+                            At::Href => "https://github.com/MartinKavik/seed-quickstart-webpack"
+                        },
                         class![
+                            C.block,
                             C.mt_10,
                             C.mb_56,
                             C.text_right,
@@ -1293,23 +1388,28 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             ]
                         ],
                         // Hellweb
-                        img![
-                            class![
-                                C.mt_1,
-                                C.ml_8,
-                                C.h_12,
-                                // sm__
-                                C.sm__mt_20,
-                                C.sm__h_20,
-                                // lg__
-                                C.lg__mt_24,
-                                C.lg__ml_16,
-                                C.lg__h_32,
-                            ],
+                        a![
                             attrs!{
-                                At::Src => "/static/images/hellweb_logo.svg"
-                            }
-                        ],
+                                At::Href => "https://github.com/MartinKavik/hellweb-pain"
+                            },
+                            img![
+                                class![
+                                    C.mt_1,
+                                    C.ml_8,
+                                    C.h_12,
+                                    // sm__
+                                    C.sm__mt_20,
+                                    C.sm__h_20,
+                                    // lg__
+                                    C.lg__mt_24,
+                                    C.lg__ml_16,
+                                    C.lg__h_32,
+                                ],
+                                attrs!{
+                                    At::Src => "/static/images/hellweb_logo.svg"
+                                }
+                            ],
+                        ]
                     ],
                     ul![
                         class![
@@ -1338,17 +1438,22 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                                     "▶\u{fe0e}"
                                 ],
                                 div![
-                                    h3![
-                                        class![
-                                            C.inline,
-                                            C.text_18,
-                                            C.font_bold,
-                                            // sm__
-                                            C.sm__text_26,
-                                            // lg__
-                                            C.lg__text_45,
+                                    a![
+                                        attrs!{
+                                            At::Href => "https://github.com/MartinKavik/hellweb-pain"
+                                        },
+                                        h3![
+                                            class![
+                                                C.inline,
+                                                C.text_18,
+                                                C.font_bold,
+                                                // sm__
+                                                C.sm__text_26,
+                                                // lg__
+                                                C.lg__text_45,
+                                            ],
+                                            "Hellweb"
                                         ],
-                                        "Hellweb"
                                     ],
                                     "\u{00A0}will be a collection of Rust libraries and applications which solve your pain points and explore new ideas."
                                 ]
@@ -1392,8 +1497,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             ]
                         ]
                     ],
-                    div![
+                    a![
+                        attrs!{
+                            At::Href => "https://github.com/MartinKavik/hellweb-pain"
+                        },
                         class![
+                            C.block
                             C.mt_10,
                             C.mr_2,
                             C.text_right,
@@ -1434,8 +1543,12 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                         ]
                     ],
                     // About your new developer
-                    div![
+                    a![
+                        attrs!{
+                            At::Href => "/about"
+                        },
                         class![
+                            C.block,
                             C.mt_20,
                             C.mb_16,
                             C.ml_5,
@@ -1444,6 +1557,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.justify_center,
                             C.text_19,
                             C.text_gray_10,
+                            C.hover__text_yellow_7,
                             // sm__
                             C.sm__mt_40,
                             C.sm__mb_24,

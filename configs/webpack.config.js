@@ -29,7 +29,8 @@ module.exports = (env, argv) => {
       overlay: {
         warnings: true,
         errors: true
-      }
+      },
+      historyApiFallback: true
     },
     plugins: [
       // show compilation progress bar in console
