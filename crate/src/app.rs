@@ -1,17 +1,26 @@
-use crate::generated::css_classes::C;
-use crate::page;
+use crate::{
+    generated::css_classes::C,
+    page,
+    route::Route
+};
 use seed::prelude::*;
 use seed::*;
+use std::convert::TryInto;
 
 // ------ ------
 //     Model
 // ------ ------
 
-pub struct Model {}
+pub enum Model {
+    Redirect,
+    NotFound,
+    Home,
+    About,
+}
 
 impl Default for Model {
     fn default() -> Self {
-        Self {}
+        Model::Redirect
     }
 }
 
@@ -19,12 +28,13 @@ impl Default for Model {
 //     Init
 // ------ ------
 
-pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
+pub fn init(url: Url, orders: &mut impl Orders<Msg>) -> Model {
     document()
         .get_element_by_id("loading-page")
         .expect("cannot find element with id `loading-page`")
         .remove();
 
+    orders.send_msg(Msg::RouteChanged(url.try_into().ok()));
     Model::default()
 }
 
@@ -32,10 +42,49 @@ pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
 //    Update
 // ------ ------
 
-pub enum Msg {}
+#[derive(Clone)]
+pub enum Msg {
+    RouteChanged(Option<Route>),
+    ScrollToTop,
+}
 
 pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
-    match msg {}
+    match msg {
+        Msg::RouteChanged(route) => {
+            change_model_by_route(route, model, orders);
+        }
+        Msg::ScrollToTop => scroll_to_top()
+    }
+}
+
+fn change_model_by_route(
+    route: Option<Route>,
+    model: &mut Model,
+    orders: &mut impl Orders<Msg>,
+) {
+    match route {
+        None => *model = Model::NotFound,
+        Some(route) => match route {
+            Route::Home => {
+                *model = Model::Home;
+            },
+            Route::About => {
+                *model = Model::About;
+            },
+            Route::Redirect => {
+                *model = Model::Redirect;
+            }
+        },
+    };
+}
+
+fn scroll_to_top() {
+    seed::window().scroll_to_with_scroll_to_options(
+        web_sys::ScrollToOptions::new()
+            .top(0.)
+            .left(0.)
+            .behavior(web_sys::ScrollBehavior::Auto),
+    )
 }
 
 // ------ ------
@@ -50,9 +99,11 @@ pub fn view(model: &Model) -> impl View<Msg> {
             C.flex,
             C.flex_col,
         ],
-//        page::home::view()
-            page::about::view()
-//            page::not_found::view()
-//            empty![]
+        match model {
+            Model::Redirect => page::blank::view(),
+            Model::Home => page::home::view(),
+            Model::About =>  page::about::view(),
+            Model::NotFound => page::not_found::view()
+        }
     ]
 }

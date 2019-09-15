@@ -12,7 +12,5 @@ declare global {
 (async () => {
   // We have to load wasm async
   // Note: files in crate/pkg/ will be created on first build
-  // See /crate/rust_apis.rs for more info about function `run()`
   window.rustModule = await import("../crate/pkg/index");
-  window.rustModule.run();
 })();

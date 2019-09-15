@@ -1,10 +1,16 @@
-use crate::generated::css_classes::C;
+use crate::{
+    generated::css_classes::C,
+    app::Msg,
+};
 use seed::prelude::*;
 use seed::*;
 
 pub mod about;
 pub mod home;
 pub mod not_found;
+pub mod blank;
+
+const MAILTO: &str = "mailto:martin@kavik.cz?subject=Something%20for%20Martin&body=Hi!%0A%0AI%20am%20Groot.%20I%20like%20trains.";
 
 #[derive(Clone, Copy, Eq, PartialEq)]
 enum Page {
@@ -13,9 +19,7 @@ enum Page {
     Other
 }
 
-const MAILTO: &str = "mailto:martin@kavik.cz?subject=Something%20for%20Martin&body=Hi!%0A%0AI%20am%20Groot.%20I%20like%20trains.";
-
-fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
+fn view_header(page: Page) -> impl View<Msg> {
     vec![
         // Header background and line container
         div![
@@ -132,6 +136,7 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                     attrs!{
                         At::Href => "/"
                     },
+                    simple_ev(Ev::Click, Msg::ScrollToTop),
                     img![
                         class![
                             C.h_6,
@@ -169,10 +174,12 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                                 C.sm__flex,
                                 C.sm__items_center,
                                 C.sm__hover__text_yellow_7,
+                                C.sm__outline_none,
                             ],
                             attrs!{
                                 At::Href => "/"
                             },
+                            simple_ev(Ev::Click, Msg::ScrollToTop),
                             "Home & Projects"
                         ]
                     ],
@@ -190,10 +197,12 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
                                 C.sm__flex,
                                 C.sm__items_center,
                                 C.sm__hover__text_yellow_7,
+                                C.sm__outline_none,
                             ],
                             attrs!{
                                 At::Href => "/about"
                             },
+                            simple_ev(Ev::Click, Msg::ScrollToTop),
                             "About"
                         ]
                     ],
@@ -331,7 +340,7 @@ fn view_header<Ms: 'static>(page: Page) -> impl View<Ms> {
     ]
 }
 
-pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
+pub fn view_footer() -> impl View<Msg> {
     footer![
         class![
             C.h_16,
@@ -399,17 +408,26 @@ pub fn view_footer<Ms: 'static>() -> impl View<Ms> {
                 ],
                 "martin@kavik.cz"
             ],
-            img![
+            div![
                 class![
-                    C.mt_1,
-                    C.w_12,
-                    // sm__
-                    C.sm__w_16
+                    C.cursor_pointer,
+                    C.h_full,
+                    C.flex,
+                    C.items_center,
                 ],
-                attrs!{
-                    At::Src => "/static/images/top.svg"
-                }
-            ],
+                simple_ev(Ev::Click, Msg::ScrollToTop),
+                img![
+                    class![
+                        C.mt_1,
+                        C.w_12,
+                        // sm__
+                        C.sm__w_16
+                    ],
+                    attrs!{
+                        At::Src => "/static/images/top.svg"
+                    }
+                ],
+            ]
         ]
     ]
 }

@@ -2,6 +2,7 @@ mod app;
 mod generated;
 mod page;
 mod rust_apis;
+mod route;
 
 // see cargo.toml for more info
 cfg_if::cfg_if! {

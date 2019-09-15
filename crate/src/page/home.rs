@@ -1,9 +1,12 @@
-use crate::generated::css_classes::C;
+use crate::{
+    generated::css_classes::C,
+    app::Msg,
+};
 use seed::prelude::*;
 use seed::*;
 use super::{view_header, view_footer, Page, MAILTO};
 
-pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
+pub fn view() -> Vec<Node<Msg>> {
     vec![
         view_content().els(),
         view_header(Page::Home).els(),
@@ -14,7 +17,7 @@ pub fn view<Ms: 'static>() -> Vec<Node<Ms>> {
     .collect()
 }
 
-pub fn view_content<Ms: 'static>() -> impl View<Ms> {
+pub fn view_content() -> impl View<Msg> {
     div![
         class![
             C.flex_grow,
@@ -1580,6 +1583,7 @@ pub fn view_content<Ms: 'static>() -> impl View<Ms> {
                             C.lg__mb_48,
                             C.lg__text_50,
                         ],
+                        simple_ev(Ev::Click, Msg::ScrollToTop),
                         span![
                             class![
                                 C.font_semibold

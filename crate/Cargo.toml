@@ -40,7 +40,9 @@ features = [
   "Node",
   "Window",
   "CustomEvent",
-  "DomTokenList"
+  "DomTokenList",
+  "ScrollBehavior",
+  "ScrollToOptions",
 ]
 
 [features]
