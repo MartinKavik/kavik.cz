@@ -139,6 +139,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                         C.w_56,
                         C.mx_auto,
                         C.flex,
+                        C.max_h_full,
                     ],
                     ul![
                         class![
