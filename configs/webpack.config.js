@@ -18,10 +18,11 @@ module.exports = (env, argv) => {
     output: {
       // TravicCI or you can deploy your site from this folder (after `yarn build:release`)
       path: dist,
+      filename:'[name].[contenthash].js'
     },
     devServer: {
       contentBase: dist,
-      // you can connect to dev server from devices in your network (e.g. 192.168.0.3:3000)
+      // you can connect to dev server from devices in your network (e.g. 192.168.0.3:8000)
       host: "0.0.0.0",
       port: 8000,
       noInfo: true,
@@ -30,7 +31,7 @@ module.exports = (env, argv) => {
         warnings: true,
         errors: true
       },
-      historyApiFallback: true
+      historyApiFallback: true,
     },
     plugins: [
       // show compilation progress bar in console
@@ -38,7 +39,9 @@ module.exports = (env, argv) => {
       // clean dist folder before compilation
       new CleanWebpackPlugin(),
       // extract CSS styles into a file
-      new MiniCssExtractPlugin(),
+      new MiniCssExtractPlugin({
+        filename:'[name].[contenthash].css'
+      }),
       // add scripts, css, ... to html template
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "../entries/index.hbs")
