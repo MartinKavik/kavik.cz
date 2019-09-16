@@ -72,6 +72,10 @@ module.exports = (env, argv) => {
         {
           from: "static",
           to: "static"
+        },
+        {
+          from: "favicons",
+          to: ""
         }
       ]),
     ],
