@@ -34,6 +34,7 @@ pub struct ScrollPosition {
 pub struct Model {
     pub page: Page,
     pub scroll_position: ScrollPosition,
+    pub menu_visible: bool,
 }
 
 // ------ ------
@@ -82,7 +83,9 @@ pub fn window_events(model: &Model) -> Vec<Listener<Msg>> {
 pub enum Msg {
     RouteChanged(Option<Route>),
     ScrollToTop,
-    Scrolled(i32)
+    Scrolled(i32),
+    ToggleMenu,
+    HideMenu,
 }
 
 pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
@@ -94,6 +97,12 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
         Msg::Scrolled(position) => {
             model.scroll_position.previous = model.scroll_position.current;
             model.scroll_position.current = position;
+        },
+        Msg::ToggleMenu => {
+            model.menu_visible = !model.menu_visible;
+        },
+        Msg::HideMenu => {
+            model.menu_visible = false;
         },
     }
 }

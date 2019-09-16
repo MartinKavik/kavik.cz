@@ -21,6 +21,7 @@ enum Page {
 
 fn view_header(model: &Model, page: Page) -> impl View<Msg> {
     let show_header =
+        model.menu_visible ||
         model.scroll_position.current <= 0 ||
         model.scroll_position.current <= model.scroll_position.previous;
 
@@ -121,6 +122,174 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
         } else {
             empty![]
         },
+        // Menu
+        if model.menu_visible {
+            div![
+                class![
+                    C.fixed,
+                    C.w_screen,
+                    C.bg_gray_1,
+                    C.opacity_90,
+                    C.h_screen,
+                    // md__
+                    C.md__hidden,
+                ],
+                div![
+                    class![
+                        C.w_56,
+                        C.mx_auto,
+                        C.flex,
+                    ],
+                    ul![
+                        class![
+                            C.mt_20,
+                            C.w_full,
+                            C.font_semibold,
+                            C.text_gray_10,
+                            C.flex,
+                            C.flex_col,
+                            C.mb_12,
+                            C.overflow_y_auto,
+                            // sm__
+                            C.sm__mt_24,
+                            C.sm__text_21,
+                        ],
+                        li![
+                            class![
+                                C.block,
+                                C.h_full,
+                                C.border_l_4,
+                                C.border_r_4,
+                                if page == Page::Home { C.border_yellow_6 } else { C.border_gray_2 },
+                                C.w_full,
+                                // sm__
+                                C.sm__hidden,
+                            ],
+                            a![
+                                class![
+                                    C.pl_8,
+                                    C.h_full,
+                                    C.flex,
+                                    C.items_center,
+                                    C.hover__text_yellow_7,
+                                    C.outline_none,
+                                    C.py_6,
+                                ],
+                                attrs!{
+                                    At::Href => "/"
+                                },
+                                simple_ev(Ev::Click, Msg::ScrollToTop),
+                                simple_ev(Ev::Click, Msg::HideMenu),
+                                "Home & Projects"
+                            ]
+                        ],
+                        li![
+                            class![
+                                C.block,
+                                C.h_full,
+                                C.border_l_4,
+                                C.border_r_4,
+                                if page == Page::About { C.border_yellow_6 } else { C.border_gray_2 },
+                                C.w_full,
+                                // sm__
+                                C.sm__hidden,
+                            ],
+                            a![
+                                class![
+                                    C.pl_8,
+                                    C.h_full,
+                                    C.flex,
+                                    C.items_center,
+                                    C.hover__text_yellow_7,
+                                    C.outline_none,
+                                    C.py_6,
+                                ],
+                                attrs!{
+                                    At::Href => "/about"
+                                },
+                                simple_ev(Ev::Click, Msg::ScrollToTop),
+                                simple_ev(Ev::Click, Msg::HideMenu),
+                                "About"
+                            ]
+                        ],
+                        li![
+                            class![
+                                C.block,
+                                C.h_full,
+                                C.w_full,
+                            ],
+                            a![
+                                class![
+                                    C.pl_8,
+                                    C.h_full,
+                                    C.flex,
+                                    C.items_center,
+                                    C.hover__text_yellow_7,
+                                    C.py_6,
+                                    // sm__
+                                    C.sm__py_8,
+                                    C.sm__pl_0,
+                                    C.sm__justify_center,
+                                ],
+                                attrs!{
+                                    At::Href => "/static/Martin_Kavik_resume.pdf"
+                                },
+                                simple_ev(Ev::Click, Msg::HideMenu),
+                                "Resume",
+                                span![
+                                    class![
+                                        C.text_gray_5,
+                                    ],
+                                    ".pdf"
+                                ]
+                            ]
+                        ],
+                        li![
+                            class![
+                                C.block,
+                                C.h_full,
+                                C.w_full,
+                            ],
+                            a![
+                                class![
+                                    C.pl_8,
+                                    C.h_full,
+                                    C.flex,
+                                    C.items_center,
+                                    C.hover__text_yellow_7,
+                                    C.py_6,
+                                    // sm__
+                                    C.sm__py_8,
+                                    C.sm__pl_0,
+                                    C.sm__justify_center,
+                                ],
+                                attrs!{
+                                    At::Href => "https://github.com/MartinKavik"
+                                },
+                                simple_ev(Ev::Click, Msg::HideMenu),
+                                "GitHub",
+                                img![
+                                    class![
+                                        C.inline
+                                        C.mb_3,
+                                        C.w_3,
+                                        // sm__
+                                        C.sm__mb_5,
+                                        C.sm__ml_px,
+                                        C.sm__w_4,
+                                    ],
+                                    attrs!{
+                                        At::Src => "/static/images/link_arrow.svg"
+                                    }
+                                ]
+                            ]
+                        ],
+                    ],
+                ]
+            ]
+        } else {
+            empty![]
+        },
         // Header
         if !show_header {
             empty![]
@@ -148,6 +317,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                             At::Href => "/"
                         },
                         simple_ev(Ev::Click, Msg::ScrollToTop),
+                        simple_ev(Ev::Click, Msg::HideMenu),
                         img![
                             class![
                                 C.h_6,
@@ -191,6 +361,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                     At::Href => "/"
                                 },
                                 simple_ev(Ev::Click, Msg::ScrollToTop),
+                                simple_ev(Ev::Click, Msg::HideMenu),
                                 "Home & Projects"
                             ]
                         ],
@@ -214,6 +385,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                     At::Href => "/about"
                                 },
                                 simple_ev(Ev::Click, Msg::ScrollToTop),
+                                simple_ev(Ev::Click, Msg::HideMenu),
                                 "About"
                             ]
                         ],
@@ -288,14 +460,21 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                             // md__
                             C.md__hidden,
                         ],
+                        simple_ev(Ev::Click, Msg::ToggleMenu),
                         img![
                             class![
                                 C.h_8,
+                                C.w_12,
                                 // sm__
                                 C.sm__h_10
+                                C.sm__w_16,
                             ],
                             attrs!{
-                                At::Src => "/static/images/hamburger.svg"
+                                At::Src => if model.menu_visible {
+                                    "/static/images/cross.svg"
+                                } else {
+                                    "/static/images/hamburger.svg"
+                                }
                             }
                         ]
                     ],
