@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate seed;
+
 mod app;
 mod generated;
 mod page;

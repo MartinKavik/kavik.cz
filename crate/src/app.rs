@@ -3,25 +3,37 @@ use crate::{
     page,
     route::Route
 };
-use seed::prelude::*;
-use seed::*;
+use seed::{*, prelude::*, events::Listener};
 use std::convert::TryInto;
 
 // ------ ------
 //     Model
 // ------ ------
 
-pub enum Model {
+pub enum Page {
     Redirect,
     NotFound,
     Home,
     About,
 }
 
-impl Default for Model {
+
+impl Default for Page {
     fn default() -> Self {
-        Model::Redirect
+        Page::Redirect
     }
+}
+
+#[derive(Default)]
+pub struct ScrollPosition {
+    pub current: i32,
+    pub previous: i32
+}
+
+#[derive(Default)]
+pub struct Model {
+    pub page: Page,
+    pub scroll_position: ScrollPosition,
 }
 
 // ------ ------
@@ -29,6 +41,7 @@ impl Default for Model {
 // ------ ------
 
 pub fn init(url: Url, orders: &mut impl Orders<Msg>) -> Model {
+    // Seed can't hydrate prerendered html (https://web.dev/prerender-with-react-snap)
     let mount_point = document()
         .get_element_by_id("app");
 
@@ -37,10 +50,28 @@ pub fn init(url: Url, orders: &mut impl Orders<Msg>) -> Model {
     }
 
     orders
-        .send_msg(Msg::RouteChanged(url.try_into().ok()))
-        .force_render_now();
+        .send_msg(Msg::RouteChanged(url.try_into().ok()));
 
     Model::default()
+}
+
+// ------ ------
+// Window Events
+// ------ ------
+
+pub fn window_events(model: &Model) -> Vec<Listener<Msg>> {
+    vec![
+        raw_ev(Ev::Scroll, |_| {
+            let mut position = seed::body().scroll_top();
+            if position == 0 {
+                position = seed::document()
+                    .document_element()
+                    .expect("cannot get document element")
+                    .scroll_top()
+            }
+            Msg::Scrolled(position)
+        })
+    ]
 }
 
 // ------ ------
@@ -51,6 +82,7 @@ pub fn init(url: Url, orders: &mut impl Orders<Msg>) -> Model {
 pub enum Msg {
     RouteChanged(Option<Route>),
     ScrollToTop,
+    Scrolled(i32)
 }
 
 pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
@@ -58,7 +90,11 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
         Msg::RouteChanged(route) => {
             change_model_by_route(route, model, orders);
         }
-        Msg::ScrollToTop => scroll_to_top()
+        Msg::ScrollToTop => scroll_to_top(),
+        Msg::Scrolled(position) => {
+            model.scroll_position.previous = model.scroll_position.current;
+            model.scroll_position.current = position;
+        },
     }
 }
 
@@ -68,16 +104,16 @@ fn change_model_by_route(
     orders: &mut impl Orders<Msg>,
 ) {
     match route {
-        None => *model = Model::NotFound,
+        None => model.page = Page::NotFound,
         Some(route) => match route {
             Route::Home => {
-                *model = Model::Home;
+                model.page = Page::Home;
             },
             Route::About => {
-                *model = Model::About;
+                model.page = Page::About;
             },
             Route::Redirect => {
-                *model = Model::Redirect;
+                model.page = Page::Redirect;
             }
         },
     };
@@ -104,11 +140,11 @@ pub fn view(model: &Model) -> impl View<Msg> {
             C.flex,
             C.flex_col,
         ],
-        match model {
-            Model::Redirect => page::blank::view(),
-            Model::Home => page::home::view(),
-            Model::About =>  page::about::view(),
-            Model::NotFound => page::not_found::view()
+        match model.page {
+            Page::Redirect => page::blank::view(model),
+            Page::Home => page::home::view(model),
+            Page::About =>  page::about::view(model),
+            Page::NotFound => page::not_found::view(model)
         }
     ]
 }

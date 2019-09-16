@@ -14,6 +14,7 @@ use std::convert::TryInto;
 pub fn run() {
     seed::App::build(app::init, app::update, app::view)
         .routes(|url| app::Msg::RouteChanged(url.try_into().ok()))
+        .window_events(app::window_events)
         .finish()
         .run();
 }
