@@ -36,7 +36,10 @@ pub fn init(url: Url, orders: &mut impl Orders<Msg>) -> Model {
         mount_point_element.set_inner_html("");
     }
 
-    orders.send_msg(Msg::RouteChanged(url.try_into().ok()));
+    orders
+        .send_msg(Msg::RouteChanged(url.try_into().ok()))
+        .force_render_now();
+
     Model::default()
 }
 
