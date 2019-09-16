@@ -4,6 +4,7 @@ use crate::{
 };
 use seed::prelude::*;
 use seed::*;
+use web_sys;
 
 pub mod about;
 pub mod home;
@@ -20,6 +21,14 @@ enum Page {
 }
 
 fn view_header(model: &Model, page: Page) -> impl View<Msg> {
+    let user_agent =
+        seed::window()
+            .navigator()
+            .user_agent()
+            .expect("cannot get user agent");
+
+    let prerendering = user_agent == "ReactSnap";
+
     let show_header =
         model.menu_visible ||
         model.scroll_position.current <= 0 ||
@@ -457,12 +466,13 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                     // Hamburger
                     div![
                         class![
-                            C.cursor_pointer,
+                            C.cursor_pointer => !prerendering,
                             // md__
                             C.md__hidden,
                         ],
                         simple_ev(Ev::Click, Msg::ToggleMenu),
                         img![
+                            id!("hamburger"),
                             class![
                                 C.h_8,
                                 C.w_12,
@@ -470,11 +480,17 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                 C.sm__h_10
                                 C.sm__w_16,
                             ],
-                            attrs!{
-                                At::Src => if model.menu_visible {
-                                    "/static/images/cross.svg"
-                                } else {
-                                    "/static/images/hamburger.svg"
+                            if prerendering {
+                                attrs!{
+                                    At::Src => "/static/images/loading.svg"
+                                }
+                            } else {
+                                attrs!{
+                                    At::Src => if model.menu_visible {
+                                        "/static/images/cross.svg"
+                                    } else {
+                                        "/static/images/hamburger.svg"
+                                    }
                                 }
                             }
                         ]
