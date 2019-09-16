@@ -1,5 +1,4 @@
 use crate::app;
-use crate::set_panic_hook;
 use seed;
 use wasm_bindgen::prelude::*;
 use std::convert::TryInto;

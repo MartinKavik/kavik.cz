@@ -4,7 +4,6 @@ use crate::{
 };
 use seed::prelude::*;
 use seed::*;
-use web_sys;
 
 pub mod about;
 pub mod home;

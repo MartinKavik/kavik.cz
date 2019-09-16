@@ -1,5 +1,3 @@
-use crate::app::Msg;
-use seed::prelude::*;
 use std::convert::TryFrom;
 
 // ------ Route ------

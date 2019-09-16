@@ -7,6 +7,8 @@ use seed::*;
 use super::{view_header, view_footer, Page, MAILTO};
 
 pub fn view(model: &Model) -> Vec<Node<Msg>> {
+    seed::document().set_title("Kavik.cz - About");
+
     vec![
         view_content().els(),
         view_header(model, Page::About).els(),

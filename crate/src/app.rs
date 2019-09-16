@@ -60,7 +60,7 @@ pub fn init(url: Url, orders: &mut impl Orders<Msg>) -> Model {
 // Window Events
 // ------ ------
 
-pub fn window_events(model: &Model) -> Vec<Listener<Msg>> {
+pub fn window_events(_: &Model) -> Vec<Listener<Msg>> {
     vec![
         raw_ev(Ev::Scroll, |_| {
             let mut position = seed::body().scroll_top();
@@ -110,7 +110,7 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
 fn change_model_by_route(
     route: Option<Route>,
     model: &mut Model,
-    orders: &mut impl Orders<Msg>,
+    _: &mut impl Orders<Msg>,
 ) {
     match route {
         None => model.page = Page::NotFound,
