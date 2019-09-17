@@ -5,10 +5,13 @@ use crate::{
 };
 use seed::{*, prelude::*, events::Listener};
 use std::convert::TryInto;
+use fixed_vec_deque::FixedVecDeque;
 
 // ------ ------
 //     Model
 // ------ ------
+
+type ScrollHistory = FixedVecDeque<[i32; 3]>;
 
 pub enum Page {
     Redirect,
@@ -17,24 +20,20 @@ pub enum Page {
     About,
 }
 
-
-impl Default for Page {
-    fn default() -> Self {
-        Page::Redirect
-    }
-}
-
-#[derive(Default)]
-pub struct ScrollPosition {
-    pub current: i32,
-    pub previous: i32
-}
-
-#[derive(Default)]
 pub struct Model {
     pub page: Page,
-    pub scroll_position: ScrollPosition,
+    pub scroll_history: ScrollHistory,
     pub menu_visible: bool,
+}
+
+impl Default for Model {
+    fn default() -> Self {
+        Self {
+            page: Page::Redirect,
+            scroll_history: ScrollHistory::new(),
+            menu_visible: false
+        }
+    }
 }
 
 // ------ ------
@@ -95,8 +94,7 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
         }
         Msg::ScrollToTop => scroll_to_top(),
         Msg::Scrolled(position) => {
-            model.scroll_position.previous = model.scroll_position.current;
-            model.scroll_position.current = position;
+            *model.scroll_history.push_back() = position;
         },
         Msg::ToggleMenu => {
             model.menu_visible = !model.menu_visible;

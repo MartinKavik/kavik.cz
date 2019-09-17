@@ -82,6 +82,11 @@ dependencies = [
 ]
 
 [[package]]
+name = "fixed-vec-deque"
+version = "0.1.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
 name = "futures"
 version = "0.1.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -126,8 +131,8 @@ version = "0.1.0"
 dependencies = [
  "cfg-if 0.1.9 (registry+https://github.com/rust-lang/crates.io-index)",
  "console_error_panic_hook 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "fixed-vec-deque 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "seed 0.4.0 (git+https://github.com/David-OConnor/seed)",
- "serde 1.0.97 (registry+https://github.com/rust-lang/crates.io-index)",
  "wasm-bindgen 0.2.48 (registry+https://github.com/rust-lang/crates.io-index)",
  "wasm-bindgen-test 0.2.48 (registry+https://github.com/rust-lang/crates.io-index)",
  "web-sys 0.3.25 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -487,6 +492,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum enclose 1.1.6 (registry+https://github.com/rust-lang/crates.io-index)" = "3b762b80547dcf67e427c99ab25dd421fe7d95938c1b10763824555b73b09c7c"
 "checksum failure 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = "795bd83d3abeb9220f257e597aa0080a508b27533824adf336529648f6abf7e2"
 "checksum failure_derive 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = "ea1063915fd7ef4309e222a5a07cf9c319fb9c7836b1f89b85458672dbb127e1"
+"checksum fixed-vec-deque 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)" = "02e36842ebc7fbe443d67ee1dafcab81103d5566b03c336a73439620d3723743"
 "checksum futures 0.1.28 (registry+https://github.com/rust-lang/crates.io-index)" = "45dc39533a6cae6da2b56da48edae506bb767ec07370f86f70fc062e9d435869"
 "checksum getopts 0.2.18 (registry+https://github.com/rust-lang/crates.io-index)" = "0a7292d30132fb5424b354f5dc02512a86e4c516fe544bb7a25e7f266951b797"
 "checksum heck 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)" = "20564e78d53d2bb135c343b3f47714a56af2061f1c928fdb541dc7b9fdd94205"

@@ -29,9 +29,9 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
     let prerendering = user_agent == "ReactSnap";
 
     let show_header =
-        model.menu_visible ||
-        model.scroll_position.current <= 0 ||
-        model.scroll_position.current <= model.scroll_position.previous;
+        model.menu_visible
+        || *model.scroll_history.back().unwrap_or(&0) == 0
+        || model.scroll_history.front() >= model.scroll_history.back();
 
     vec![
         // Header background and line container
