@@ -13,24 +13,13 @@ edition = "2018"
 crate-type = ["cdylib"]
 
 [dependencies]
-seed = { git = "https://github.com/David-OConnor/seed", branch="master" }
-cfg-if = "0.1.9"
-wasm-bindgen = "0.2.48"
+seed = "^0.4.1"
+cfg-if = "^0.1.10"
+wasm-bindgen = "^0.2.50" # sync with `wasm-bindgen-test`
 fixed-vec-deque = "0.1.8"
 
-# The `console_error_panic_hook` crate provides better debugging of panics by
-# logging them with `console.error`. This is great for development, but requires
-# all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
-# code size when deploying.
-console_error_panic_hook = { version ="0.1.6", optional = true }
-
-# `wee_alloc` is a tiny allocator for wasm that is only ~1K in code size
-# compared to the default allocator's ~10K. It is slower than the default
-# allocator, however.
-wee_alloc = { version = "0.4.4", optional = true }
-
 [dependencies.web-sys]
-version = "^0.3.25"
+version = "^0.3.27"
 features = [
   "Document",
   "Element",
@@ -44,11 +33,8 @@ features = [
   "Navigator",
 ]
 
-[features]
-default = ["console_error_panic_hook"]
-
 [dev-dependencies]
-wasm-bindgen-test = "0.2.48"
+wasm-bindgen-test = "^0.2.50" # sync with `wasm-bindgen`
 
 [profile.release]
 lto = true
