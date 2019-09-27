@@ -2,13 +2,13 @@ const path = require('path')
 const findFiles = require('find');
 const fs = require('fs');
 
-// Helpers are used by configs/postcss.config.js
+// Helpers are used by `configs/postcss.config.js`.
 
 module.exports = {
     escapeClassName: escapeClassName,
 
     /**
-     * Search in Rust and Handlebars files for CSS classes
+     * Search in Rust and Handlebars files for CSS classes.
      *
      * @returns Set of class names
      */
@@ -78,7 +78,7 @@ function getKeywords () {
 }
 
 /**
- * Search in Rust files for C.class_name
+ * Search in Rust files for C.class_name.
  *
  * @returns usedCssClasses Set of class names
  */
@@ -100,7 +100,7 @@ function getUsedCssClassesInRust() {
 }
 
 /**
- * Search in Handlebar templates for CSS classes
+ * Search in Handlebar templates for CSS classes.
  *
  * @returns usedCssClasses Set of class names
  */
@@ -131,7 +131,7 @@ function getUsedCssClassesInHandlebars() {
 }
 
 /**
- * Transform css class name into indentifier that can be used as Rust struct field name
+ * Transform css class name into indentifier that can be used as Rust struct field name.
  * (see https://github.com/MartinKavik/postcss-typed-css-classes/blob/master/generators/rust_generator.js)
  *
  * @param {string} name

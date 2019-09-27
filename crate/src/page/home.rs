@@ -1,25 +1,15 @@
 use crate::{
     generated::css_classes::C,
-    app::{Model, Msg},
+    Msg,
+    MAIL_TO_KAVIK,
+    MAIL_TO_HELLWEB,
+    image_src,
+    Page,
 };
 use seed::prelude::*;
 use seed::*;
-use super::{view_header, view_footer, Page, MAILTO};
 
-pub fn view(model: &Model) -> Vec<Node<Msg>> {
-    seed::document().set_title("Kavik.cz");
-
-    vec![
-        view_content().els(),
-        view_header(model, Page::Home).els(),
-        view_footer().els(),
-    ]
-    .into_iter()
-    .flatten()
-    .collect()
-}
-
-pub fn view_content() -> impl View<Msg> {
+pub fn view() -> impl View<Msg> {
     div![
         class![
             C.flex_grow,
@@ -139,7 +129,7 @@ pub fn view_content() -> impl View<Msg> {
                     C.lg__w_900px,
                 ],
                 attrs!{
-                    At::Src => "/static/images/gear.svg"
+                    At::Src => image_src("gear.svg")
                 }
             ],
         ],
@@ -300,7 +290,7 @@ pub fn view_content() -> impl View<Msg> {
                                     "Receiving mails. ",
                                     a![
                                         attrs!{
-                                            At::Href => MAILTO
+                                            At::Href => MAIL_TO_KAVIK
                                         },
                                         class![
                                             C.underline,
@@ -508,7 +498,7 @@ pub fn view_content() -> impl View<Msg> {
                                 C.lg__h_40,
                             ],
                             attrs!{
-                                At::Src => "/static/images/seed_logo.svg"
+                                At::Src => image_src("seed_logo.svg")
                             }
                         ]
                     ],
@@ -656,7 +646,7 @@ pub fn view_content() -> impl View<Msg> {
                                 C.lg__w_5,
                             ],
                             attrs!{
-                                At::Src => "/static/images/link_arrow.svg"
+                                At::Src => image_src("link_arrow.svg")
                             }
                         ]
                     ]
@@ -778,7 +768,7 @@ pub fn view_content() -> impl View<Msg> {
                                 C.lg__h_32,
                             ],
                             attrs!{
-                                At::Src => "/static/images/realworld_logo.png"
+                                At::Src => image_src("realworld_logo.png")
                             }
                         ]
                     ],
@@ -878,7 +868,7 @@ pub fn view_content() -> impl View<Msg> {
                                 C.lg__w_5,
                             ],
                             attrs!{
-                                At::Src => "/static/images/link_arrow.svg"
+                                At::Src => image_src("link_arrow.svg")
                             }
                         ]
                     ]
@@ -990,7 +980,7 @@ pub fn view_content() -> impl View<Msg> {
                                 C.lg__h_40,
                             ],
                             attrs!{
-                                At::Src => "/static/images/logo.svg"
+                                At::Src => image_src("logo.svg")
                             }
                         ]
                     ],
@@ -1113,7 +1103,7 @@ pub fn view_content() -> impl View<Msg> {
                                 C.lg__w_5,
                             ],
                             attrs!{
-                                At::Src => "/static/images/link_arrow.svg"
+                                At::Src => image_src("link_arrow.svg")
                             }
                         ]
                     ]
@@ -1341,7 +1331,7 @@ pub fn view_content() -> impl View<Msg> {
                                 C.lg__w_5,
                             ],
                             attrs!{
-                                At::Src => "/static/images/link_arrow.svg"
+                                At::Src => image_src("link_arrow.svg")
                             }
                         ]
                     ]
@@ -1416,7 +1406,7 @@ pub fn view_content() -> impl View<Msg> {
                                     C.lg__h_32,
                                 ],
                                 attrs!{
-                                    At::Src => "/static/images/hellweb_logo.svg"
+                                    At::Src => image_src("hellweb_logo.svg")
                                 }
                             ],
                         ]
@@ -1502,8 +1492,7 @@ pub fn view_content() -> impl View<Msg> {
                                     "? Don't hesitate to create an issue or contact me - ",
                                     a![
                                         attrs!{
-                                            // https://mailtolink.me/
-                                            At::Href => "mailto:martin@hellweb.app?subject=Hellweb%20-%20pain&body=Hi!%0A%0AI%20hate"
+                                            At::Href => MAIL_TO_HELLWEB
                                         },
                                         class![
                                             C.underline,
@@ -1556,14 +1545,14 @@ pub fn view_content() -> impl View<Msg> {
                                 C.lg__w_5,
                             ],
                             attrs!{
-                                At::Src => "/static/images/link_arrow.svg"
+                                At::Src => image_src("link_arrow.svg")
                             }
                         ]
                     ],
                     // About your new developer
                     a![
                         attrs!{
-                            At::Href => "/about"
+                            At::Href => Page::About.to_href()
                         },
                         class![
                             C.block,
@@ -1603,7 +1592,7 @@ pub fn view_content() -> impl View<Msg> {
                                 C.lg__h_32,
                             ],
                             attrs!{
-                                At::Src => "/static/images/next.svg"
+                                At::Src => image_src("next.svg")
                             }
                         ],
                     ]

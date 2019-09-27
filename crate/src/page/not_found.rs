@@ -1,25 +1,11 @@
 use crate::{
     generated::css_classes::C,
-    app::{Model, Msg},
+    Msg,
 };
 use seed::prelude::*;
 use seed::*;
-use super::{view_header, view_footer, Page};
 
-pub fn view(model: &Model) -> Vec<Node<Msg>> {
-    seed::document().set_title("Kavik.cz - 404");
-
-    vec![
-        view_content().els(),
-        view_header(model, Page::Other).els(),
-        view_footer().els(),
-    ]
-    .into_iter()
-    .flatten()
-    .collect()
-}
-
-pub fn view_content() -> impl View<Msg> {
+pub fn view() -> impl View<Msg> {
     div![
         class![
             C.mt_16,
@@ -62,10 +48,12 @@ pub fn view_content() -> impl View<Msg> {
             },
             attrs!{
                 At::ViewBox => "0 0 100 100",
+                // @TODO: Rewrite once `preserveAspectRatio` is supported.
                 At::Custom("preserveAspectRatio".into()) => "xMidYMid",
             },
             path![
                 attrs!{
+                    // @TODO: Rewrite once `stroke` is supported.
                     At::Custom("stroke".into()) => "none",
                     At::D => "M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50"
                 }

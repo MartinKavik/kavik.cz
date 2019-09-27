@@ -17,12 +17,10 @@
 
 ## Roadmap
 
-- Refactor.
-- Add tasks for formatting and linting.
 - Use it as the base for the next [MartinKavik/seed-quickstart-webpack](https://github.com/MartinKavik/seed-quickstart-webpack) version.
 - Write documentation.
 - Experiment with lightweight custom layout engine to make code simpler and more readable. (It will be a part of the [Hellweb project](https://github.com/MartinKavik/hellweb-pain)).
-- Write simple cookieless analytics based on [FaunaDB](https://fauna.com/). (Probably a part of the [Hellweb project](https://github.com/MartinKavik/hellweb-pain), too).
+- Write simple cookieless analytics. (Probably a part of the [Hellweb project](https://github.com/MartinKavik/hellweb-pain), too).
 
 ---
 

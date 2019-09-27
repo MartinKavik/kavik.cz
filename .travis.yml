@@ -10,8 +10,6 @@ cache:
   - yarn
   - directories:
       - node_modules
-      - crate/pkg
-      - crate/target
       - $HOME/.cargo
 
 # https://levans.fr/rust_travis_cache.html

@@ -1,38 +1,31 @@
 use crate::{
     generated::css_classes::C,
-    app::{Model, Msg},
+    Model,
+    Msg,
+    Visibility::{self, *},
+    ScrollHistory,
+    Page,
+    image_src,
+    asset_path,
 };
 use seed::prelude::*;
 use seed::*;
 
-pub mod about;
-pub mod home;
-pub mod not_found;
-pub mod blank;
+fn header_visibility(menu_visibility: Visibility, scroll_history: &ScrollHistory) -> Visibility {
+    let menu_is_visible = menu_visibility == Visible;
+    // You can go higher on the mobile phones.
+    let at_the_top_or_higher = *scroll_history.back().unwrap_or(&0) <= 0;
+    let scrolling_up = scroll_history.front() >= scroll_history.back();
 
-const MAILTO: &str = "mailto:martin@kavik.cz?subject=Something%20for%20Martin&body=Hi!%0A%0AI%20am%20Groot.%20I%20like%20trains.";
-
-#[derive(Clone, Copy, Eq, PartialEq)]
-enum Page {
-    Home,
-    About,
-    Other
+    if menu_is_visible || at_the_top_or_higher || scrolling_up {
+        Visible
+    } else {
+        Hidden
+    }
 }
 
-fn view_header(model: &Model, page: Page) -> impl View<Msg> {
-    let user_agent =
-        seed::window()
-            .navigator()
-            .user_agent()
-            .expect("cannot get user agent");
-
-    let prerendering = user_agent == "ReactSnap";
-
-    let show_header =
-        model.menu_visible
-        || *model.scroll_history.back().unwrap_or(&0) == 0
-        || model.scroll_history.front() >= model.scroll_history.back();
-
+pub fn view(model: &Model) -> impl View<Msg> {
+    let show_header = header_visibility(model.menu_visibility, &model.scroll_history) == Visible;
     vec![
         // Header background and line container
         if !show_header {
@@ -80,7 +73,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                             // sm__
                             C.sm__ml_6,
                             C.sm__w_48,
-                            C.sm__bg_yellow_6 => page == Page::Home,
+                            C.sm__bg_yellow_6 => model.page == Page::Home,
                         ],
                     ],
                     div![
@@ -91,14 +84,14 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                             C.sm__h_full,
                             C.sm__bg_gray_2,
                             C.sm__w_24,
-                            C.sm__bg_yellow_6 => page == Page::About,
+                            C.sm__bg_yellow_6 => model.page == Page::About,
                         ],
                     ]
                 ],
             ]
         },
         // Photo 1
-        if let Page::About = page {
+        if model.page == Page::About {
             div![
                 class![
                     C.absolute,
@@ -123,7 +116,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                         C.lg__w_570px,
                     ],
                     attrs!{
-                        At::Src => "/static/images/photo_1.png"
+                        At::Src => image_src("photo_1.png")
                     }
                 ],
             ]
@@ -131,7 +124,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
             empty![]
         },
         // Menu
-        if model.menu_visible {
+        if model.menu_visibility == Visible {
             div![
                 class![
                     C.fixed,
@@ -169,7 +162,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                 C.h_full,
                                 C.border_l_4,
                                 C.border_r_4,
-                                if page == Page::Home { C.border_yellow_6 } else { C.border_gray_2 },
+                                if model.page == Page::Home { C.border_yellow_6 } else { C.border_gray_2 },
                                 C.w_full,
                                 // sm__
                                 C.sm__hidden,
@@ -185,7 +178,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                     C.py_6,
                                 ],
                                 attrs!{
-                                    At::Href => "/"
+                                    At::Href => Page::Home.to_href()
                                 },
                                 simple_ev(Ev::Click, Msg::ScrollToTop),
                                 simple_ev(Ev::Click, Msg::HideMenu),
@@ -198,7 +191,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                 C.h_full,
                                 C.border_l_4,
                                 C.border_r_4,
-                                if page == Page::About { C.border_yellow_6 } else { C.border_gray_2 },
+                                if model.page == Page::About { C.border_yellow_6 } else { C.border_gray_2 },
                                 C.w_full,
                                 // sm__
                                 C.sm__hidden,
@@ -214,7 +207,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                     C.py_6,
                                 ],
                                 attrs!{
-                                    At::Href => "/about"
+                                    At::Href => Page::About.to_href()
                                 },
                                 simple_ev(Ev::Click, Msg::ScrollToTop),
                                 simple_ev(Ev::Click, Msg::HideMenu),
@@ -241,7 +234,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                     C.sm__justify_center,
                                 ],
                                 attrs!{
-                                    At::Href => "/static/Martin_Kavik_resume.pdf"
+                                    At::Href => asset_path("Martin_Kavik_resume.pdf")
                                 },
                                 simple_ev(Ev::Click, Msg::HideMenu),
                                 "Resume",
@@ -288,7 +281,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                         C.sm__w_4,
                                     ],
                                     attrs!{
-                                        At::Src => "/static/images/link_arrow.svg"
+                                        At::Src => image_src("link_arrow.svg")
                                     }
                                 ]
                             ]
@@ -323,7 +316,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                     // Logo
                     a![
                         attrs!{
-                            At::Href => "/"
+                            At::Href => Page::Home.to_href()
                         },
                         simple_ev(Ev::Click, Msg::ScrollToTop),
                         simple_ev(Ev::Click, Msg::HideMenu),
@@ -332,9 +325,10 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                 C.h_6,
                                 // sm__
                                 C.sm__h_10,
+                                C.sm__w_70px,
                             ],
                             attrs!{
-                                At::Src => "/static/images/logo.svg"
+                                At::Src => image_src("logo.svg")
                             }
                         ],
                     ],
@@ -367,7 +361,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                     C.sm__outline_none,
                                 ],
                                 attrs!{
-                                    At::Href => "/"
+                                    At::Href => Page::Home.to_href()
                                 },
                                 simple_ev(Ev::Click, Msg::ScrollToTop),
                                 simple_ev(Ev::Click, Msg::HideMenu),
@@ -391,7 +385,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                     C.sm__outline_none,
                                 ],
                                 attrs!{
-                                    At::Href => "/about"
+                                    At::Href => Page::About.to_href()
                                 },
                                 simple_ev(Ev::Click, Msg::ScrollToTop),
                                 simple_ev(Ev::Click, Msg::HideMenu),
@@ -415,7 +409,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                     C.md__hover__text_yellow_7,
                                 ],
                                 attrs!{
-                                    At::Href => "/static/Martin_Kavik_resume.pdf"
+                                    At::Href => asset_path("Martin_Kavik_resume.pdf")
                                 },
                                 "Resume",
                                 span![
@@ -456,7 +450,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                         C.md__w_4,
                                     ],
                                     attrs!{
-                                        At::Src => "/static/images/link_arrow.svg"
+                                        At::Src => image_src("link_arrow.svg")
                                     }
                                 ]
                             ]
@@ -465,7 +459,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                     // Hamburger
                     div![
                         class![
-                            C.cursor_pointer => !prerendering,
+                            C.cursor_pointer => !model.in_prerendering,
                             // md__
                             C.md__hidden,
                         ],
@@ -479,16 +473,16 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                                 C.sm__h_10
                                 C.sm__w_16,
                             ],
-                            if prerendering {
+                            if model.in_prerendering {
                                 attrs!{
-                                    At::Src => "/static/images/loading.svg"
+                                    At::Src => image_src("loading.svg")
                                 }
                             } else {
                                 attrs!{
-                                    At::Src => if model.menu_visible {
-                                        "/static/images/cross.svg"
+                                    At::Src => if model.menu_visibility == Visible {
+                                        image_src("cross.svg")
                                     } else {
-                                        "/static/images/hamburger.svg"
+                                        image_src("hamburger.svg")
                                     }
                                 }
                             }
@@ -527,7 +521,7 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                             // sm__
                             C.sm__ml_6,
                             C.sm__w_48,
-                            C.sm__bg_yellow_6 => page == Page::Home,
+                            C.sm__bg_yellow_6 => model.page == Page::Home,
                         ],
                     ],
                     div![
@@ -538,103 +532,11 @@ fn view_header(model: &Model, page: Page) -> impl View<Msg> {
                             C.sm__h_full,
                             C.sm__bg_gray_2,
                             C.sm__w_24,
-                            C.sm__bg_yellow_6 => page == Page::About,
+                            C.sm__bg_yellow_6 => model.page == Page::About,
                         ],
                     ]
                 ],
             ]
         }
-    ]
-}
-
-pub fn view_footer() -> impl View<Msg> {
-    footer![
-        class![
-            C.h_16,
-            C.shadow_2xl_above,
-            C.flex,
-            C.justify_center,
-            // sm__
-            C.sm__h_24,
-        ],
-        div![
-            class![
-                C.w_xs,
-                C.h_full,
-                C.px_5,
-                C.flex,
-                C.justify_between,
-                C.items_center,
-                // sm__
-                C.sm__w_132
-            ],
-            div![
-                class![
-                    // lg__
-                    C.lg__pb_3,
-                ],
-                img![
-                    class![
-                        C.inline,
-                        C.w_6,
-                        C.align_baseline,
-                        // sm__
-                        C.sm__w_12
-                    ],
-                    attrs!{
-                        At::Src => "/static/images/logo.svg"
-                    }
-                ],
-                span![
-                    class![
-                        C.ml_1,
-                        C.font_display,
-                        C.font_semibold,
-                        C.text_15,
-                        C.text_yellow_6,
-                        // sm__
-                        C.sm__mt_2,
-                        C.sm__text_25,
-                    ],
-                    "2019"
-                ]
-            ],
-            a![
-                attrs!{
-                    At::Href => MAILTO,
-                },
-                class![
-                    C.font_display,
-                    C.font_semibold,
-                    C.text_16,
-                    C.text_gray_10,
-                    C.underline,
-                    C.underline_yellow_7,
-                    // sm__
-                    C.sm__text_26
-                ],
-                "martin@kavik.cz"
-            ],
-            div![
-                class![
-                    C.cursor_pointer,
-                    C.h_full,
-                    C.flex,
-                    C.items_center,
-                ],
-                simple_ev(Ev::Click, Msg::ScrollToTop),
-                img![
-                    class![
-                        C.mt_1,
-                        C.w_12,
-                        // sm__
-                        C.sm__w_16
-                    ],
-                    attrs!{
-                        At::Src => "/static/images/top.svg"
-                    }
-                ],
-            ]
-        ]
     ]
 }

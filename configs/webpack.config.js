@@ -12,17 +12,17 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = (env, argv) => {
   return {
     entry: {
-      // bundle root with name app.js
+      // Bundle root with name `app.js`.
       app: path.resolve(__dirname, "../entries/index.ts")
     },
     output: {
-      // TravicCI or you can deploy your site from this folder (after `yarn build:release`)
+      // You can deploy your site from this folder (after build with e.g. `yarn build:release`)
       path: dist,
       filename:'[name].[contenthash].js'
     },
     devServer: {
       contentBase: dist,
-      // you can connect to dev server from devices in your network (e.g. 192.168.0.3:8000)
+      // You can connect to dev server from devices in your network (e.g. 192.168.0.3:8000).
       host: "0.0.0.0",
       port: 8000,
       noInfo: true,
@@ -34,40 +34,32 @@ module.exports = (env, argv) => {
       historyApiFallback: true,
     },
     plugins: [
-      // show compilation progress bar in console
+      // Show compilation progress bar in console.
       new WebpackBar(),
-      // clean dist folder before compilation
+      // Clean `dist` folder before compilation.
       new CleanWebpackPlugin(),
-      // extract CSS styles into a file
+      // Extract CSS styles into a file.
       new MiniCssExtractPlugin({
         filename:'[name].[contenthash].css'
       }),
-      // add scripts, css, ... to html template
+      // Add scripts, css, ... to html template.
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "../entries/index.hbs")
       }),
-      // inline the critical part of styles, preload remainder
+      // Inline the critical part of styles, preload remainder.
       new Critters({
         logLevel: "warn",
         // https://github.com/GoogleChromeLabs/critters/issues/34
         pruneSource: false,
       }),
-      // compile Rust
+      // Compile Rust.
       new WasmPackPlugin({
         crateDirectory: path.resolve(__dirname, "../crate"),
         outDir: path.resolve(__dirname, "../crate/pkg")
       }),
 
-      // Uncomment when you have problems with Edge (= when small polyfill in index.html doesn't work)
-      //
-      // Have this example work in Edge which doesn't ship `TextEncoder` or
-      // `TextDecoder` at this time.
-      // new webpack.ProvidePlugin({
-      //   TextDecoder: ['text-encoding', 'TextDecoder'],
-      //   TextEncoder: ['text-encoding', 'TextEncoder']
-      // }),
-
-      // you can find files from folder ../static on url http://my-site.com/static/
+      // You can find files from folder `../static` on url `http://my-site.com/static/`.
+      // And favicons in the root.
       new CopyWebpackPlugin([
         {
           from: "static",
@@ -79,7 +71,7 @@ module.exports = (env, argv) => {
         }
       ]),
     ],
-    // webpack try to guess how to resolve imports in this order:
+    // Webpack try to guess how to resolve imports in this order:
     resolve: {
       extensions: [".ts", ".js", ".wasm"],
       alias: {
@@ -105,8 +97,8 @@ module.exports = (env, argv) => {
             {
               loader: "file-loader",
               options: {
-                // don't copy files to dist, we do it through CopyWebpackPlugin (see above)
-                // - we only want to resolve urls to these files
+                // Don't copy files to `dist`, we do it through `CopyWebpackPlugin` (see above)
+                // - we only want to resolve urls to these files.
                 emitFile: false,
                 name: "[path][name].[ext]"
               }
@@ -126,9 +118,9 @@ module.exports = (env, argv) => {
               loader: "postcss-loader",
               options: {
                 config: {
-                  // path to postcss.config.js
+                  // Path to postcss.config.js.
                   path: __dirname,
-                  // send mode into postcss.config.js (see more info in that file)
+                  // Pass mode into `postcss.config.js` (see more info in that file).
                   ctx: { mode: argv.mode }
                 }
               }

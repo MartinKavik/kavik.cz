@@ -1,25 +1,14 @@
 use crate::{
     generated::css_classes::C,
-    app::{Model, Msg},
+    Msg,
+    MAIL_TO_KAVIK,
+    image_src,
+    asset_path,
 };
 use seed::prelude::*;
 use seed::*;
-use super::{view_header, view_footer, Page, MAILTO};
 
-pub fn view(model: &Model) -> Vec<Node<Msg>> {
-    seed::document().set_title("Kavik.cz - About");
-
-    vec![
-        view_content().els(),
-        view_header(model, Page::About).els(),
-        view_footer().els(),
-    ]
-    .into_iter()
-    .flatten()
-    .collect()
-}
-
-pub fn view_content() -> impl View<Msg> {
+pub fn view() -> impl View<Msg> {
     div![
         class![
             C.flex_grow,
@@ -85,7 +74,7 @@ pub fn view_content() -> impl View<Msg> {
                     C.sm__w_750px,
                 ],
                 attrs!{
-                    At::Src => "/static/images/gear.svg"
+                    At::Src => image_src("gear.svg")
                 }
             ],
         ],
@@ -1153,7 +1142,7 @@ pub fn view_content() -> impl View<Msg> {
                         C.lg__w_520px,
                     ],
                     attrs!{
-                        At::Src => "/static/images/photo_2.jpg",
+                        At::Src => image_src("photo_2.jpg"),
                     }
                 ],
             ],
@@ -1200,7 +1189,7 @@ pub fn view_content() -> impl View<Msg> {
                         "Is there good coffee, tea, sushi or some spicy food? Ok! ",
                         a![
                             attrs!{
-                                At::Href => MAILTO,
+                                At::Href => MAIL_TO_KAVIK,
                             },
                             class![
                                 C.underline,
@@ -1223,7 +1212,7 @@ pub fn view_content() -> impl View<Msg> {
             // Download my resume
             a![
                 attrs!{
-                    At::Href => "/static/Martin_Kavik_resume.pdf"
+                    At::Href => asset_path("Martin_Kavik_resume.pdf")
                 },
                 class![
                     C.mt_24,
@@ -1265,7 +1254,7 @@ pub fn view_content() -> impl View<Msg> {
                         C.lg__w_24,
                     ],
                     attrs!{
-                        At::Src => "/static/images/download.svg"
+                        At::Src => image_src("download.svg")
                     }
                 ],
             ],
@@ -1311,7 +1300,7 @@ pub fn view_content() -> impl View<Msg> {
                         C.lg__w_8,
                     ],
                     attrs!{
-                        At::Src => "/static/images/link_arrow.svg"
+                        At::Src => image_src("link_arrow.svg")
                     }
                 ],
             ]
