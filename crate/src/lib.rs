@@ -101,10 +101,8 @@ pub fn init(url: Url, orders: &mut impl Orders<Msg>) -> Model {
 }
 
 fn is_in_prerendering() -> bool {
-    let user_agent = window()
-        .navigator()
-        .user_agent()
-        .expect("cannot get user agent");
+    let user_agent =
+        window().navigator().user_agent().expect("cannot get user agent");
 
     user_agent == USER_AGENT_FOR_PRERENDERING
 }
@@ -140,7 +138,7 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
         Msg::RouteChanged(url) => {
             model.page = url.into();
             orders.send_msg(Msg::UpdatePageTitle);
-        }
+        },
         Msg::UpdatePageTitle => {
             let title = match model.page {
                 Page::Home => TITLE_SUFFIX.to_owned(),
@@ -148,17 +146,17 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
                 Page::NotFound => format!("404 - {}", TITLE_SUFFIX),
             };
             document().set_title(&title);
-        }
-        Msg::ScrollToTop => {
-            window().scroll_to_with_scroll_to_options(web_sys::ScrollToOptions::new().top(0.))
-        }
+        },
+        Msg::ScrollToTop => window().scroll_to_with_scroll_to_options(
+            web_sys::ScrollToOptions::new().top(0.),
+        ),
         Msg::Scrolled(position) => {
             *model.scroll_history.push_back() = position;
-        }
+        },
         Msg::ToggleMenu => model.menu_visibility.toggle(),
         Msg::HideMenu => {
             model.menu_visibility = Hidden;
-        }
+        },
     }
 }
 
@@ -166,14 +164,12 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
 //     View
 // ------ ------
 
-/*
- Notes:
-   - \u{00A0} is the non-breaking space
-     - https://codepoints.net/U+00A0
-
-   - "▶\u{fe0e}" - \u{fe0e} is the variation selector, it prevents ▶ to change to emoji in some browsers
-     - https://codepoints.net/U+FE0E
-*/
+// Notes:
+// - \u{00A0} is the non-breaking space
+//   - https://codepoints.net/U+00A0
+//
+// - "▶\u{fe0e}" - \u{fe0e} is the variation selector, it prevents ▶ to change to emoji in some browsers
+//   - https://codepoints.net/U+FE0E
 
 pub fn view(model: &Model) -> impl View<Msg> {
     // @TODO: Setup `prerendered` properly once https://github.com/David-OConnor/seed/issues/223 is resolved

@@ -4,10 +4,12 @@ use crate::{
     image_src, Model, Msg, Page, ScrollHistory,
     Visibility::{self, *},
 };
-use seed::prelude::*;
-use seed::*;
+use seed::{prelude::*, *};
 
-fn header_visibility(menu_visibility: Visibility, scroll_history: &ScrollHistory) -> Visibility {
+fn header_visibility(
+    menu_visibility: Visibility,
+    scroll_history: &ScrollHistory,
+) -> Visibility {
     let menu_is_visible = menu_visibility == Visible;
     // You can go higher on the mobile phones.
     let at_the_top_or_higher = *scroll_history.back().unwrap_or(&0) <= 0;
@@ -21,7 +23,9 @@ fn header_visibility(menu_visibility: Visibility, scroll_history: &ScrollHistory
 }
 
 pub fn view(model: &Model) -> impl View<Msg> {
-    let show_header = header_visibility(model.menu_visibility, &model.scroll_history) == Visible;
+    let show_header =
+        header_visibility(model.menu_visibility, &model.scroll_history)
+            == Visible;
     vec![
         // Header background and line container
         if show_header {
