@@ -24,9 +24,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
     let show_header = header_visibility(model.menu_visibility, &model.scroll_history) == Visible;
     vec![
         // Header background and line container
-        if !show_header {
-            empty![]
-        } else {
+        if show_header {
             div![
                 class![
                     C.fixed,
@@ -74,6 +72,8 @@ pub fn view(model: &Model) -> impl View<Msg> {
                     ],]
                 ],
             ]
+        } else {
+            empty![]
         },
         // Photo 1
         if model.page == Page::About {
@@ -268,9 +268,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
             empty![]
         },
         // Header
-        if !show_header {
-            empty![]
-        } else {
+        if show_header {
             header![
                 class![
                     C.fixed,
@@ -506,6 +504,8 @@ pub fn view(model: &Model) -> impl View<Msg> {
                     ],]
                 ],
             ]
+        } else {
+            empty![]
         },
     ]
 }

@@ -1,6 +1,10 @@
 // @TODO: uncomment once https://github.com/rust-lang/rust/issues/54726 stable
 //#![rustfmt::skip::macros(class)]
 
+#![allow(clippy::used_underscore_binding)]
+#![allow(clippy::non_ascii_literal)]
+#![allow(clippy::enum_glob_use)]
+
 mod generated;
 mod page;
 
@@ -56,21 +60,21 @@ pub enum Page {
 }
 
 impl Page {
-    pub fn to_href(&self) -> &'static str {
+    pub fn to_href(self) -> &'static str {
         match self {
-            Page::Home => "/",
-            Page::About => "/about",
-            Page::NotFound => "/404",
+            Self::Home => "/",
+            Self::About => "/about",
+            Self::NotFound => "/404",
         }
     }
 }
 
 impl From<Url> for Page {
-    fn from(url: Url) -> Page {
+    fn from(url: Url) -> Self {
         match url.path.first().map(String::as_str) {
-            None | Some("") => Page::Home,
-            Some("about") => Page::About,
-            _ => Page::NotFound,
+            None | Some("") => Self::Home,
+            Some("about") => Self::About,
+            _ => Self::NotFound,
         }
     }
 }
@@ -82,9 +86,9 @@ impl From<Url> for Page {
 pub fn init(url: Url, orders: &mut impl Orders<Msg>) -> Model {
     // @TODO: Seed can't hydrate prerendered html (yet).
     // https://github.com/David-OConnor/seed/issues/223
-    document()
-        .get_element_by_id("app")
-        .map(|mount_point_element| mount_point_element.set_inner_html(""));
+    if let Some(mount_point_element) = document().get_element_by_id("app") {
+        mount_point_element.set_inner_html("");
+    }
 
     orders.send_msg(Msg::UpdatePageTitle);
 
