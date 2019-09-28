@@ -1,9 +1,4 @@
-use crate::{
-    generated::css_classes::C,
-    Msg,
-    MAIL_TO_KAVIK,
-    image_src,
-};
+use crate::{generated::css_classes::C, image_src, Msg, MAIL_TO_KAVIK};
 use seed::prelude::*;
 use seed::*;
 
@@ -41,7 +36,7 @@ pub fn view() -> impl View<Msg> {
                         // sm__
                         C.sm__w_12
                     ],
-                    attrs!{
+                    attrs! {
                         At::Src => image_src("logo.svg")
                     }
                 ],
@@ -60,7 +55,7 @@ pub fn view() -> impl View<Msg> {
                 ]
             ],
             a![
-                attrs!{
+                attrs! {
                     At::Href => MAIL_TO_KAVIK,
                 },
                 class![
@@ -76,21 +71,14 @@ pub fn view() -> impl View<Msg> {
                 "martin@kavik.cz"
             ],
             div![
-                class![
-                    C.cursor_pointer,
-                    C.h_full,
-                    C.flex,
-                    C.items_center,
-                ],
+                class![C.cursor_pointer, C.h_full, C.flex, C.items_center,],
                 simple_ev(Ev::Click, Msg::ScrollToTop),
                 img![
                     class![
-                        C.mt_1,
-                        C.w_12,
-                        // sm__
+                        C.mt_1, C.w_12, // sm__
                         C.sm__w_16
                     ],
-                    attrs!{
+                    attrs! {
                         At::Src => image_src("top.svg")
                     }
                 ],

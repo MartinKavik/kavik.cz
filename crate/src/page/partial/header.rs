@@ -1,12 +1,8 @@
 use crate::{
-    generated::css_classes::C,
-    Model,
-    Msg,
-    Visibility::{self, *},
-    ScrollHistory,
-    Page,
-    image_src,
     asset_path,
+    generated::css_classes::C,
+    image_src, Model, Msg, Page, ScrollHistory,
+    Visibility::{self, *},
 };
 use seed::prelude::*;
 use seed::*;
@@ -41,14 +37,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                     C.sm__h_24,
                 ],
                 // Header background
-                div![
-                    class![
-                        C.absolute,
-                        C.inset_0,
-                        C.bg_gray_1,
-                        C.opacity_90
-                    ]
-                ],
+                div![class![C.absolute, C.inset_0, C.bg_gray_1, C.opacity_90]],
                 // Bottom header line
                 div![
                     class![
@@ -66,27 +55,23 @@ pub fn view(model: &Model) -> impl View<Msg> {
                         // md__
                         C.md___ml_30,
                     ],
-                    div![
-                        class![
-                            C.h_full,
-                            C.bg_gray_2,
-                            // sm__
-                            C.sm__ml_6,
-                            C.sm__w_48,
-                            C.sm__bg_yellow_6 => model.page == Page::Home,
-                        ],
-                    ],
-                    div![
-                        class![
-                            C.hidden,
-                            // sm__
-                            C.sm__block,
-                            C.sm__h_full,
-                            C.sm__bg_gray_2,
-                            C.sm__w_24,
-                            C.sm__bg_yellow_6 => model.page == Page::About,
-                        ],
-                    ]
+                    div![class![
+                        C.h_full,
+                        C.bg_gray_2,
+                        // sm__
+                        C.sm__ml_6,
+                        C.sm__w_48,
+                        C.sm__bg_yellow_6 => model.page == Page::Home,
+                    ],],
+                    div![class![
+                        C.hidden,
+                        // sm__
+                        C.sm__block,
+                        C.sm__h_full,
+                        C.sm__bg_gray_2,
+                        C.sm__w_24,
+                        C.sm__bg_yellow_6 => model.page == Page::About,
+                    ],]
                 ],
             ]
         },
@@ -115,7 +100,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                         // lg
                         C.lg__w_570px,
                     ],
-                    attrs!{
+                    attrs! {
                         At::Src => image_src("photo_1.png")
                     }
                 ],
@@ -136,12 +121,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                     C.md__hidden,
                 ],
                 div![
-                    class![
-                        C.w_56,
-                        C.mx_auto,
-                        C.flex,
-                        C.max_h_full,
-                    ],
+                    class![C.w_56, C.mx_auto, C.flex, C.max_h_full,],
                     ul![
                         class![
                             C.mt_20,
@@ -162,7 +142,11 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                 C.h_full,
                                 C.border_l_4,
                                 C.border_r_4,
-                                if model.page == Page::Home { C.border_yellow_6 } else { C.border_gray_2 },
+                                if model.page == Page::Home {
+                                    C.border_yellow_6
+                                } else {
+                                    C.border_gray_2
+                                },
                                 C.w_full,
                                 // sm__
                                 C.sm__hidden,
@@ -177,7 +161,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                     C.outline_none,
                                     C.py_6,
                                 ],
-                                attrs!{
+                                attrs! {
                                     At::Href => Page::Home.to_href()
                                 },
                                 simple_ev(Ev::Click, Msg::ScrollToTop),
@@ -191,7 +175,11 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                 C.h_full,
                                 C.border_l_4,
                                 C.border_r_4,
-                                if model.page == Page::About { C.border_yellow_6 } else { C.border_gray_2 },
+                                if model.page == Page::About {
+                                    C.border_yellow_6
+                                } else {
+                                    C.border_gray_2
+                                },
                                 C.w_full,
                                 // sm__
                                 C.sm__hidden,
@@ -206,7 +194,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                     C.outline_none,
                                     C.py_6,
                                 ],
-                                attrs!{
+                                attrs! {
                                     At::Href => Page::About.to_href()
                                 },
                                 simple_ev(Ev::Click, Msg::ScrollToTop),
@@ -215,11 +203,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                             ]
                         ],
                         li![
-                            class![
-                                C.block,
-                                C.h_full,
-                                C.w_full,
-                            ],
+                            class![C.block, C.h_full, C.w_full,],
                             a![
                                 class![
                                     C.pl_8,
@@ -233,25 +217,16 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                     C.sm__pl_0,
                                     C.sm__justify_center,
                                 ],
-                                attrs!{
+                                attrs! {
                                     At::Href => asset_path("Martin_Kavik_resume.pdf")
                                 },
                                 simple_ev(Ev::Click, Msg::HideMenu),
                                 "Resume",
-                                span![
-                                    class![
-                                        C.text_gray_5,
-                                    ],
-                                    ".pdf"
-                                ]
+                                span![class![C.text_gray_5,], ".pdf"]
                             ]
                         ],
                         li![
-                            class![
-                                C.block,
-                                C.h_full,
-                                C.w_full,
-                            ],
+                            class![C.block, C.h_full, C.w_full,],
                             a![
                                 class![
                                     C.pl_8,
@@ -265,7 +240,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                     C.sm__pl_0,
                                     C.sm__justify_center,
                                 ],
-                                attrs!{
+                                attrs! {
                                     At::Href => "https://github.com/MartinKavik"
                                 },
                                 simple_ev(Ev::Click, Msg::HideMenu),
@@ -280,7 +255,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                         C.sm__ml_px,
                                         C.sm__w_4,
                                     ],
-                                    attrs!{
+                                    attrs! {
                                         At::Src => image_src("link_arrow.svg")
                                     }
                                 ]
@@ -315,7 +290,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                     ],
                     // Logo
                     a![
-                        attrs!{
+                        attrs! {
                             At::Href => Page::Home.to_href()
                         },
                         simple_ev(Ev::Click, Msg::ScrollToTop),
@@ -327,7 +302,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                 C.sm__h_10,
                                 C.sm__w_70px,
                             ],
-                            attrs!{
+                            attrs! {
                                 At::Src => image_src("logo.svg")
                             }
                         ],
@@ -360,7 +335,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                     C.sm__hover__text_yellow_7,
                                     C.sm__outline_none,
                                 ],
-                                attrs!{
+                                attrs! {
                                     At::Href => Page::Home.to_href()
                                 },
                                 simple_ev(Ev::Click, Msg::ScrollToTop),
@@ -384,7 +359,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                     C.sm__hover__text_yellow_7,
                                     C.sm__outline_none,
                                 ],
-                                attrs!{
+                                attrs! {
                                     At::Href => Page::About.to_href()
                                 },
                                 simple_ev(Ev::Click, Msg::ScrollToTop),
@@ -408,7 +383,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                     C.md__items_center,
                                     C.md__hover__text_yellow_7,
                                 ],
-                                attrs!{
+                                attrs! {
                                     At::Href => asset_path("Martin_Kavik_resume.pdf")
                                 },
                                 "Resume",
@@ -437,7 +412,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                     C.md__items_center,
                                     C.md__hover__text_yellow_7,
                                 ],
-                                attrs!{
+                                attrs! {
                                     At::Href => "https://github.com/MartinKavik"
                                 },
                                 "GitHub",
@@ -449,7 +424,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                         C.md__ml_px,
                                         C.md__w_4,
                                     ],
-                                    attrs!{
+                                    attrs! {
                                         At::Src => image_src("link_arrow.svg")
                                     }
                                 ]
@@ -474,11 +449,11 @@ pub fn view(model: &Model) -> impl View<Msg> {
                                 C.sm__w_16,
                             ],
                             if model.in_prerendering {
-                                attrs!{
+                                attrs! {
                                     At::Src => image_src("loading.svg")
                                 }
                             } else {
-                                attrs!{
+                                attrs! {
                                     At::Src => if model.menu_visibility == Visible {
                                         image_src("cross.svg")
                                     } else {
@@ -489,13 +464,11 @@ pub fn view(model: &Model) -> impl View<Msg> {
                         ]
                     ],
                     // Spacer
-                    div![
-                        class![
-                            C.hidden,
-                            // md__
-                            C.md__block,
-                        ],
-                    ],
+                    div![class![
+                        C.hidden,
+                        // md__
+                        C.md__block,
+                    ],],
                 ],
                 // Bottom header line
                 div![
@@ -514,29 +487,25 @@ pub fn view(model: &Model) -> impl View<Msg> {
                         // md__
                         C.md___ml_30,
                     ],
-                    div![
-                        class![
-                            C.h_full,
-                            C.bg_gray_2,
-                            // sm__
-                            C.sm__ml_6,
-                            C.sm__w_48,
-                            C.sm__bg_yellow_6 => model.page == Page::Home,
-                        ],
-                    ],
-                    div![
-                        class![
-                            C.hidden,
-                            // sm__
-                            C.sm__block,
-                            C.sm__h_full,
-                            C.sm__bg_gray_2,
-                            C.sm__w_24,
-                            C.sm__bg_yellow_6 => model.page == Page::About,
-                        ],
-                    ]
+                    div![class![
+                        C.h_full,
+                        C.bg_gray_2,
+                        // sm__
+                        C.sm__ml_6,
+                        C.sm__w_48,
+                        C.sm__bg_yellow_6 => model.page == Page::Home,
+                    ],],
+                    div![class![
+                        C.hidden,
+                        // sm__
+                        C.sm__block,
+                        C.sm__h_full,
+                        C.sm__bg_gray_2,
+                        C.sm__w_24,
+                        C.sm__bg_yellow_6 => model.page == Page::About,
+                    ],]
                 ],
             ]
-        }
+        },
     ]
 }

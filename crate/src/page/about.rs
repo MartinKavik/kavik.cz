@@ -1,10 +1,4 @@
-use crate::{
-    generated::css_classes::C,
-    Msg,
-    MAIL_TO_KAVIK,
-    image_src,
-    asset_path,
-};
+use crate::{asset_path, generated::css_classes::C, image_src, Msg, MAIL_TO_KAVIK};
 use seed::prelude::*;
 use seed::*;
 

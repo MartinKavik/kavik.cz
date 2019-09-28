@@ -1,17 +1,19 @@
-#![rustfmt::skip::macros(class)]
+// @TODO: uncomment once https://github.com/rust-lang/rust/issues/54726 stable
+//#![rustfmt::skip::macros(class)]
 
 mod generated;
 mod page;
 
-use generated::css_classes::C;
-use seed::{*, prelude::*, events::Listener};
 use fixed_vec_deque::FixedVecDeque;
+use generated::css_classes::C;
+use seed::{events::Listener, prelude::*, *};
 use Visibility::*;
 
 const TITLE_SUFFIX: &str = "Kavik.cz";
 // https://mailtolink.me/
 const MAIL_TO_KAVIK: &str = "mailto:martin@kavik.cz?subject=Something%20for%20Martin&body=Hi!%0A%0AI%20am%20Groot.%20I%20like%20trains.";
-const MAIL_TO_HELLWEB: &str = "mailto:martin@hellweb.app?subject=Hellweb%20-%20pain&body=Hi!%0A%0AI%20hate";
+const MAIL_TO_HELLWEB: &str =
+    "mailto:martin@hellweb.app?subject=Hellweb%20-%20pain&body=Hi!%0A%0AI%20hate";
 const USER_AGENT_FOR_PRERENDERING: &str = "ReactSnap";
 const STATIC_PATH: &str = "static";
 const IMAGES_PATH: &str = "static/images";
@@ -26,7 +28,7 @@ impl Visibility {
     pub fn toggle(&mut self) {
         *self = match self {
             Visible => Hidden,
-            Hidden => Visible
+            Hidden => Visible,
         }
     }
 }
@@ -58,7 +60,7 @@ impl Page {
         match self {
             Page::Home => "/",
             Page::About => "/about",
-            Page::NotFound => "/404"
+            Page::NotFound => "/404",
         }
     }
 }
@@ -95,11 +97,10 @@ pub fn init(url: Url, orders: &mut impl Orders<Msg>) -> Model {
 }
 
 fn is_in_prerendering() -> bool {
-    let user_agent =
-        window()
-            .navigator()
-            .user_agent()
-            .expect("cannot get user agent");
+    let user_agent = window()
+        .navigator()
+        .user_agent()
+        .expect("cannot get user agent");
 
     user_agent == USER_AGENT_FOR_PRERENDERING
 }
@@ -139,25 +140,21 @@ pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
         Msg::UpdatePageTitle => {
             let title = match model.page {
                 Page::Home => TITLE_SUFFIX.to_owned(),
-                Page::About =>  format!("About - {}", TITLE_SUFFIX),
+                Page::About => format!("About - {}", TITLE_SUFFIX),
                 Page::NotFound => format!("404 - {}", TITLE_SUFFIX),
             };
             document().set_title(&title);
-        },
+        }
         Msg::ScrollToTop => {
-            window().scroll_to_with_scroll_to_options(
-                web_sys::ScrollToOptions::new().top(0.)
-            )
-        },
+            window().scroll_to_with_scroll_to_options(web_sys::ScrollToOptions::new().top(0.))
+        }
         Msg::Scrolled(position) => {
             *model.scroll_history.push_back() = position;
-        },
-        Msg::ToggleMenu => {
-            model.menu_visibility.toggle()
-        },
+        }
+        Msg::ToggleMenu => model.menu_visibility.toggle(),
         Msg::HideMenu => {
             model.menu_visibility = Hidden;
-        },
+        }
     }
 }
 
@@ -186,7 +183,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
         ],
         match model.page {
             Page::Home => page::home::view().els(),
-            Page::About =>  page::about::view().els(),
+            Page::About => page::about::view().els(),
             Page::NotFound => page::not_found::view().els(),
         },
         page::partial::header::view(model).els(),
@@ -207,20 +204,18 @@ pub fn asset_path(asset: &str) -> String {
 // ------ ------
 
 pub fn window_events(_: &Model) -> Vec<Listener<Msg>> {
-    vec![
-        raw_ev(Ev::Scroll, |_| {
-            // Some browsers use `document.body.scrollTop`
-            // and other ones `document.documentElement.scrollTop`.
-            let mut position = body().scroll_top();
-            if position == 0 {
-                position = document()
-                    .document_element()
-                    .expect("cannot get document element")
-                    .scroll_top()
-            }
-            Msg::Scrolled(position)
-        })
-    ]
+    vec![raw_ev(Ev::Scroll, |_| {
+        // Some browsers use `document.body.scrollTop`
+        // and other ones `document.documentElement.scrollTop`.
+        let mut position = body().scroll_top();
+        if position == 0 {
+            position = document()
+                .document_element()
+                .expect("cannot get document element")
+                .scroll_top()
+        }
+        Msg::Scrolled(position)
+    })]
 }
 
 // ------ ------
