@@ -6,6 +6,9 @@ use_try_shorthand = true
 
 # nightly
 
+ignore = [
+    "src/generated",
+]
 #normalize_doc_attributes = true
 #reorder_impl_items = true
 #normalize_comments = true
