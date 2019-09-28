@@ -1,12 +1,12 @@
 # ---- GENERAL ----
 
 [tasks.verify]
-description = "Format, lint with Clippy, build, run tests"
-dependencies = ["fmt", "clippy", "build", "test_h_firefox"]
+description = "Format, lint with Clippy and run tests"
+dependencies = ["fmt", "clippy", "test_h_firefox"]
 
 [tasks.verify_only]
-description = "Like `verify`, but fails if the code isn't formatted. Builds in release mode. Primarily for CI."
-dependencies = ["fmt_check", "clippy", "build_release", "test_h_firefox"]
+description = "Like `verify`, but fails if the code isn't formatted. Primarily for CI."
+dependencies = ["fmt_check", "clippy", "test_h_firefox"]
 
 # ---- TEST ----
 
