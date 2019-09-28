@@ -1,3 +1,5 @@
+#![rustfmt::skip::macros(class)]
+
 mod generated;
 mod page;
 
