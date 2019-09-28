@@ -18,9 +18,9 @@
 ## Quickstart
 
 1. Make sure you have [Rust](https://www.rust-lang.org), [Yarn](https://yarnpkg.com) and [Node.js](https://nodejs.org) installed.
-  - `rustc -V` should output something like `rustc 1.38.0 (625451e37 2019-09-23)`
-  - `yarn -v` should output something like `1.17.3`
-  - `node -v` should output something like `v10.16.3`
+    - `rustc -V` should output something like `rustc 1.38.0 (625451e37 2019-09-23)`
+    - `yarn -v` should output something like `1.17.3`
+    - `node -v` should output something like `v10.16.3`
 1. Fork it / Clone it / Download it.
 1. `yarn`
 1. `yarn start`
