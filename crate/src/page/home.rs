@@ -64,6 +64,13 @@ pub fn view() -> impl View<Msg> {
                             C.lg__ml_20,
                             C.lg__w_216,
                         ],
+                        div![
+                            class![
+                                C.text_gray_7,
+                                C.text_15,
+                            ],
+                            "[I'm testing a new layout engine here]"
+                        ],
                         h1![
                             class![
                                 C.inline,

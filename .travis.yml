@@ -34,7 +34,7 @@ env:
 
 script:
   - yarn
-  - yarn build:prerender # change it to `yarn build:release` if you don't want to prerender pages
+  - yarn build:release
   - cargo make --cwd ./crate verify_only # includes task `test_h_firefox`
 
 before_deploy:
@@ -45,5 +45,5 @@ deploy:
   script: netlify deploy -s $NETLIFY_SITE_ID_LAYOUT_ENGINE --auth $NETLIFY_ACCESS_TOKEN -p --dir ./dist
   skip_cleanup: true
   on:
-    branch: master
+    branch: layout_engine
     condition: $TRAVIS_OS_NAME = linux
