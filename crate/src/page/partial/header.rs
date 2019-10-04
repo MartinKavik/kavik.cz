@@ -30,6 +30,7 @@ pub fn view(model: &Model) -> impl View<Msg> {
         // Header background and line container
         if show_header {
             div![
+                id!(model.obs.header_container.id()),
                 class![
                     C.fixed,
                     C.top_0
