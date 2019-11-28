@@ -73,21 +73,27 @@ impl Object {
             z_index: 0,
         }
     }
+
     pub fn id(&self) -> &str {
         self.id
     }
+
     pub fn x(&self) -> f32 {
         self.x
     }
+
     pub fn y(&self) -> f32 {
         self.y
     }
+
     pub fn width(&self) -> f32 {
         self.width
     }
+
     pub fn height(&self) -> f32 {
         self.height
     }
+
     pub fn z_index(&self) -> i32 {
         self.z_index
     }
@@ -96,18 +102,22 @@ impl Object {
         self.x = x;
         self
     }
+
     pub fn set_y(mut self, y: f32) -> Self {
         self.y = y;
         self
     }
+
     pub fn set_width(mut self, width: f32) -> Self {
         self.width = width;
         self
     }
+
     pub fn set_height(mut self, height: f32) -> Self {
         self.height = height;
         self
     }
+
     pub fn set_z_index(mut self, z_index: i32) -> Self {
         self.z_index = z_index;
         self
@@ -171,7 +181,7 @@ pub fn init(url: Url, orders: &mut impl Orders<Msg>) -> Model {
         scroll_history: ScrollHistory::new(),
         menu_visibility: Hidden,
         in_prerendering: is_in_prerendering(),
-        obs: Objects::default()
+        obs: Objects::default(),
     }
 }
 
