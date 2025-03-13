@@ -84,11 +84,11 @@ avatar_url = "images/martin_coffee.png"
 # The `name` should be the file name of static/icons/*.svg or the icon name of https://simpleicons.org/
 [[extra.profile.social]]
 name = "github"
-url = "https://github.com/st1020/kita"
+url = "https://github.com/MartinKavik"
 
 [[extra.profile.social]]
 name = "twitter"
-url = "https://github.com/st1020/kita"
+url = "https://x.com/MartinKavik"
 
 [[extra.profile.social]]
 name = "rss"
@@ -99,23 +99,23 @@ url = "$BASE_URL/atom.xml"
 name = "Projects"
 url = "$BASE_URL/projects"
 
-[[extra.menu]]
-name = "Archive"
-url = "$BASE_URL/archive"
+# [[extra.menu]]
+# name = "Archive"
+# url = "$BASE_URL/archive"
 
-[[extra.menu]]
-name = "Tags"
-url = "$BASE_URL/tags"
+# [[extra.menu]]
+# name = "Tags"
+# url = "$BASE_URL/tags"
 
 [[extra.menu]]
 name = "About"
 url = "$BASE_URL/about"
 
 # The page footer options.
-[extra.footer]
-since = 2020
-license = "CC BY-SA 4.0"
-license_url = "https://creativecommons.org/licenses/by-sa/4.0/deed"
+# [extra.footer]
+# since = 2020
+# license = "CC BY-SA 4.0"
+# license_url = "https://creativecommons.org/licenses/by-sa/4.0/deed"
 
 # The giscus comment options, only available when comment is enabled.
 [extra.giscus]
