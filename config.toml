@@ -4,11 +4,11 @@ theme = "kita"
 base_url = "https://kavik.cz"
 
 # The site title and description; used in feeds by default.
-title = "Kita"
+title = "MK"
 description = "Kita is a clean, elegant and simple blog theme for Zola."
 
 # The default site author.
-author = "st1020"
+author = "Martin Kavík"
 
 # The default language; used in feeds.
 default_language = "en"
@@ -57,13 +57,13 @@ social_image = "icons/github.svg"
 
 [extra.style]
 # The custom background color.
-# bg_color = ""
+bg_color = "hsl(315, 40%, 94%)"
 
 # The custom background color in dark mode.
-# bg_dark_color = ""
+bg_dark_color = "hsl(315, 40%, 10%)"
 
 # Enable header blur.
-# header_blur = true
+header_blur = true
 
 # The custom header color, only available when `header_blur` is false.
 # header_color = ""
@@ -73,12 +73,12 @@ social_image = "icons/github.svg"
 
 # The profile on home page.
 [extra.profile]
-name = "Kita - Zola Theme"
-bio = "Kita is a clean, elegant and simple blog theme for Zola."
+name = "Martin Kavík"
+bio = "Rust freelancer & designer. I write apps, libs, cold emails and a lang."
 # The URL of avatar.
-avatar_url = "icons/github.svg"
+avatar_url = "images/martin_coffee.png"
 # Invert color in dark mode.
-avatar_invert = true
+# avatar_invert = true
 
 # The social icons below the profile on the home page.
 # The `name` should be the file name of static/icons/*.svg or the icon name of https://simpleicons.org/
