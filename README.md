@@ -5,6 +5,7 @@
     - Created with `zola 0.20.0`
 2. `zola serve`
 3. Go to `themes/kita`
-5. `npm install`
-4. `npm install -D tailwindcss@3`
+4. `npm install`
+5. `npm install -D tailwindcss@3`
 6. `npm run dev`
+7. `zola build`
