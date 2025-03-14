@@ -1,54 +1,40 @@
 [[project]]
-name = "lorem"
-desc = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, nisi saepe dolor unde iusto dolore nam, vero optio consequuntur repudiandae et! Atque libero expedita laudantium cupiditate, sit explicabo sequi ipsa!"
-tags = ["nisi", "saepe"]
+name = "Boon"
+desc = "Programming language for writing apps"
+tags = ["language", "functional", "persistent", "staticaly-typed"]
 links = [
-    { name = "github", url = "https://example.com" },
-    { name = "docs", url = "https://example.com" },
+    { name = "github", url = "https://github.com/BoonLang/boon" },
+    { name = "playground", url = "https://boon-playground.kavik.cz" },
 ]
 
 [[project]]
-name = "ipsum"
-desc = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, nisi saepe dolor unde iusto dolore nam, vero optio consequuntur repudiandae et! Atque libero expedita laudantium cupiditate, sit explicabo sequi ipsa!"
-tags = ["lorem", "ipsum"]
+name = "MoonZoon"
+desc = "Rust fullstack framework"
+tags = ["rust", "fullstack", "framework", "wasm", "messages"]
 links = [
-    { name = "homepage", url = "https://example.com" },
-    { name = "source", url = "https://example.com" },
-    { name = "docs", url = "https://example.com" },
+    { name = "github", url = "https://github.com/MoonZoon/MoonZoon" },
 ]
 
 [[project]]
-name = "dolor sit"
-desc = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, nisi saepe dolor unde iusto dolore nam, vero optio consequuntur repudiandae et! Atque libero expedita laudantium cupiditate, sit explicabo sequi ipsa!"
-tags = ["amet", "ipsum", "vero", "optio"]
-links = [{ name = "github", url = "https://example.com" }]
-
-[[project]]
-name = "amet"
-desc = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, nisi saepe dolor unde iusto dolore nam, vero optio consequuntur repudiandae et! Atque libero expedita laudantium cupiditate, sit explicabo sequi ipsa!"
-tags = ["lorem", "ipsum"]
+name = "FastWave"
+desc = "Modern GTKWave alternative"
+tags = ["waveform", "viewer", "wasm", "vcd", "fst", "fpga", "tauri"]
 links = [
-    { name = "website", url = "https://example.com" },
-    { name = "github", url = "https://example.com" },
-    { name = "docs", url = "https://example.com" },
-    { name = "wiki", url = "https://example.com" },
+    { name = "github", url = "https://github.com/FastWaveViewer/FastWave" }
 ]
 
 [[project]]
-name = "lorem-ipsum"
-desc = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, nisi saepe dolor unde iusto dolore nam, vero optio consequuntur repudiandae et! Atque libero expedita laudantium cupiditate, sit explicabo sequi ipsa!"
-tags = ["dolor", "lorem", "ipsum", "amet"]
+name = "Persons.pro"
+desc = "The app for freelancers, open-source creators and digital product makers"
+tags = ["hire", "sponsor", "sell"]
 links = [
-    { name = "github", url = "https://example.com" },
-    { name = "docs", url = "https://example.com" },
+    { name = "website", url = "https://persons.pro/" },
 ]
 
 [[project]]
-name = "praesentium"
-desc = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, nisi saepe dolor unde iusto dolore nam, vero optio consequuntur repudiandae et! Atque libero expedita laudantium cupiditate, sit explicabo sequi ipsa!"
-tags = ["lorem", "ipsum"]
+name = "LocalSearch"
+desc = "Client-side full-text library"
+tags = ["search", "full-text", "autocomplete", "rust", "wasm"]
 links = [
-    { name = "homepage", url = "https://example.com" },
-    { name = "github", url = "https://example.com" },
-    { name = "docs", url = "https://example.com" },
+    { name = "github", url = "https://github.com/Stremio/local-search" },
 ]
