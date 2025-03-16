@@ -9,3 +9,4 @@
 5. `npm install -D tailwindcss@3`
 6. `npm run dev`
 7. `zola build`
+8. Drag & Drop `public` folder to Netlify

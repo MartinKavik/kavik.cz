@@ -24,6 +24,14 @@ links = [
 ]
 
 [[project]]
+name = "Fast2D"
+desc = "Draw shapes and text using Canvas Web API or wgpu"
+tags = ["2D", "graphics", "canvas", "wgpu", "webgl", "webgpu", "wasm"]
+links = [
+    { name = "github", url = "https://github.com/FastWaveViewer/Fast2D" }
+]
+
+[[project]]
 name = "Persons.pro"
 desc = "The app for freelancers, open-source creators and digital product makers"
 tags = ["hire", "sponsor", "sell"]
