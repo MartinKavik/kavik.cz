@@ -16,11 +16,11 @@ links = [
 ]
 
 [[project]]
-name = "FastWave"
+name = "NovyWave"
 desc = "Modern GTKWave alternative"
 tags = ["waveform", "viewer", "wasm", "vcd", "fst", "fpga", "tauri"]
 links = [
-    { name = "github", url = "https://github.com/FastWaveViewer/FastWave" }
+    { name = "github", url = "https://github.com/NovyWave/NovyWave" }
 ]
 
 [[project]]
@@ -28,7 +28,7 @@ name = "Fast2D"
 desc = "Draw shapes and text using Canvas Web API or wgpu"
 tags = ["2D", "graphics", "canvas", "wgpu", "webgl", "webgpu", "wasm"]
 links = [
-    { name = "github", url = "https://github.com/FastWaveViewer/Fast2D" }
+    { name = "github", url = "https://github.com/NovyWave/Fast2D" }
 ]
 
 [[project]]
