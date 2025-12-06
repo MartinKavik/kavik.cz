@@ -1,0 +1,110 @@
+---
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About | Martin Kavík" description="Rust developer and designer based in Prague">
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero
+				title="About Martin"
+				tagline="Rust + WebAssembly builder living in Prague, designing and shipping tools for the web."
+			>
+				<img
+					width="1200"
+					height="800"
+					src="/images/martin_trondheim.jpg"
+					alt="Martin Kavík in a forest near Trondheim"
+				/>
+			</Hero>
+
+			<section>
+				<h2 class="section-title">Background</h2>
+				<div class="content">
+					<p>I'm Martin and I live in Prague (Czechia). My first paid task was writing a PHP web framework 15 years ago.</p>
+					<p>I still experiment, write libraries and apps, and design for clients — mostly in Rust. Remote work, one-on-one conversations, and flexible hours make me happy; daily status meetings do not.</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">What I'm building</h2>
+				<div class="content">
+					<p>
+						I maintain <strong>Boon</strong>, a declarative, statically-typed language with a runtime that remembers values across reloads. The playground is written with the Rust <strong>MoonZoon</strong> framework and compiles to WebAssembly.
+					</p>
+					<p>
+						I'm also building <strong>NovyWave</strong>, a modern waveform viewer, <strong>Fast2D</strong> for GPU-friendly 2D drawing, and <strong>Persons.pro</strong> — a platform for freelancers and open-source devs.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Away from the keyboard</h2>
+				<div class="content">
+					<p>I enjoy spicy food, poppy seed strudels, smaller towns, and travel with my family. I've jumped off a bridge and out of a plane, built hardware and software for a football launcher, and received a grant to work on the FastWave project for a year.</p>
+					<p>These days I lift toys more than weights. I once composed a short guitar piece; my hands are too small to play it well, but it still makes me smile.</p>
+					<p>Questions? <a href="mailto:martin@kavik.cz">martin@kavik.cz</a></p>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>

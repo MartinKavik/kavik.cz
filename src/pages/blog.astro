@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import ContactCTA from '../components/ContactCTA.astro';
+import Grid from '../components/Grid.astro';
+import Hero from '../components/Hero.astro';
+import PostPreview from '../components/PostPreview.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('posts')).sort(
+	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+---
+
+<BaseLayout
+	title="Blog | Martin Kavík"
+	description="Writing about Rust, WebAssembly, and product design experiments"
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-8">
+			<Hero
+				title="Blog"
+				tagline="Notes from experiments with Rust, WebAssembly, and the products I'm building."
+				align="start"
+			/>
+			<Grid variant="offset">
+				{
+					posts.map((post) => (
+						<li>
+							<PostPreview post={post} />
+						</li>
+					))
+				}
+			</Grid>
+		</main>
+		<ContactCTA />
+	</div>
+</BaseLayout>

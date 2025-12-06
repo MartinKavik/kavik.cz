@@ -1,0 +1,74 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	post: CollectionEntry<'posts'>;
+}
+
+const post = Astro.props.post;
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+	month: 'short',
+	day: 'numeric',
+	year: 'numeric',
+}).format(post.data.publishDate);
+---
+
+<a class="card" href={`/blog/${post.id}/`}>
+	<div class="meta">
+		<time datetime={post.data.publishDate.toISOString()}>{formattedDate}</time>
+		{post.data.tags.length > 0 && <span class="tags">{post.data.tags.join(' • ')}</span>}
+	</div>
+	<h3>{post.data.title}</h3>
+	<p>{post.data.description}</p>
+</a>
+
+<style>
+	.card {
+		display: grid;
+		gap: 0.5rem;
+		padding: 1.25rem;
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		box-shadow: var(--shadow-sm);
+		text-decoration: none;
+		color: inherit;
+		transition: box-shadow var(--theme-transition), transform var(--theme-transition);
+	}
+
+	.card:hover,
+	.card:focus {
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+
+	.meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		color: var(--gray-400);
+		font-size: var(--text-xs);
+		letter-spacing: 0.01em;
+	}
+
+	h3 {
+		font-size: var(--text-lg);
+		color: var(--gray-0);
+	}
+
+	p {
+		margin: 0;
+		color: var(--gray-300);
+	}
+
+	@media (min-width: 50em) {
+		.card {
+			gap: 0.75rem;
+			padding: 1.5rem;
+		}
+
+		h3 {
+			font-size: var(--text-xl);
+		}
+	}
+</style>
