@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Kavik Browser Control",
+  "version": "1.0.0",
+  "description": "Browser automation for kavik.cz development",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "alarms",
+    "debugger"
+  ],
+  "host_permissions": [
+    "http://localhost:4321/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Kavik Browser Control"
+  }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Kavik Browser Control</title>
+  <style>
+    body {
+      width: 280px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+      margin: 0;
+    }
+    h1 {
+      font-size: 16px;
+      margin: 0 0 16px 0;
+      color: #333;
+    }
+    .status {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: #f5f5f5;
+    }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .status-dot.connected { background: #22c55e; }
+    .status-dot.disconnected { background: #ef4444; }
+    .status-dot.pending { background: #f59e0b; }
+    .status-label { flex: 1; }
+    .section { margin-bottom: 16px; }
+    .section-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #555;
+    }
+    .info {
+      font-size: 12px;
+      color: #666;
+      background: #f9f9f9;
+      padding: 8px;
+      border-radius: 4px;
+      word-break: break-all;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #8b5cf6;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    button:hover { background: #7c3aed; }
+  </style>
+</head>
+<body>
+  <h1>Kavik Browser Control</h1>
+
+  <div class="section">
+    <div class="status">
+      <div id="ws-dot" class="status-dot pending"></div>
+      <span id="ws-status" class="status-label">Checking...</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Page URL</div>
+    <div id="page-url" class="info">-</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Viewport</div>
+    <div id="viewport" class="info">-</div>
+  </div>
+
+  <button id="refresh-btn">Refresh Status</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>

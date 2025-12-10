@@ -46,3 +46,30 @@ All pages use `src/layouts/BaseLayout.astro` which includes:
 
 - `public/assets/` — background images and SVGs
 - `public/images/` — project images and portraits
+
+## Browser Automation Tools
+
+The `tools/` directory contains Rust-based browser automation for visual debugging. Start these in order:
+
+```bash
+# Terminal 1: WebSocket server
+cd tools && cargo run --release -- server start --port 9223
+
+# Terminal 2: Launch Chromium with extension
+cd tools && cargo run --release -- browser launch --ws-port 9223
+```
+
+### CLI Commands
+
+```bash
+cargo run --release -- exec --port 9223 screenshot -o /tmp/screenshot.png
+cargo run --release -- exec --port 9223 resize --preset mobile   # 375x667
+cargo run --release -- exec --port 9223 resize --preset tablet   # 768x1024
+cargo run --release -- exec --port 9223 resize --preset desktop  # 1024x768
+cargo run --release -- exec --port 9223 resize --preset large    # 1440x900
+cargo run --release -- exec --port 9223 resize --width 800 --height 600
+cargo run --release -- exec --port 9223 navigate --url "http://localhost:4321/about"
+cargo run --release -- exec --port 9223 status
+```
+
+Port 9223 is used because 9222 is reserved for boon extension.

@@ -30,7 +30,7 @@ const posts = (await getCollection('posts'))
 <BaseLayout>
 	<div class="stack gap-20 lg:gap-48">
 		<div class="wrapper stack gap-8 lg:gap-20">
-			<header class="hero">
+			<header class="index-hero">
 				<Hero
 					title="Hi, I'm Martin Kavík"
 					tagline="Rust developer and designer building Boon, MoonZoon, NovyWave, and tools for faster products."
@@ -113,7 +113,7 @@ const posts = (await getCollection('posts'))
 </BaseLayout>
 
 <style>
-	.hero {
+	.index-hero {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -124,7 +124,7 @@ const posts = (await getCollection('posts'))
 		display: none;
 	}
 
-	.hero img {
+	.index-hero img {
 		width: min(15rem, 32vw);
 		aspect-ratio: 1 / 1;
 		height: auto;
@@ -138,21 +138,21 @@ const posts = (await getCollection('posts'))
 		transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 	}
 
-	:global(:root:not(.theme-dark)) .hero img {
+	:global(:root:not(.theme-dark)) .index-hero img {
 		filter: saturate(1.12) brightness(1.06);
 	}
 
-	.hero img:hover {
+	.index-hero img:hover {
 		transform: rotate(3deg) scale(1.025);
 		box-shadow: var(--shadow-lg);
 	}
 
 	@media (min-width: 50em) {
-		.hero {
+		.index-hero {
 			display: grid;
-			grid-template-columns: minmax(0, 3fr) auto;
+			grid-template-columns: minmax(0, 1fr) auto;
 			padding-inline: 2.5rem;
-			gap: clamp(2.5rem, 4vw, 4.5rem);
+			gap: 1rem;
 			align-items: center;
 		}
 
@@ -162,18 +162,18 @@ const posts = (await getCollection('posts'))
 			gap: 0.5rem;
 		}
 
-		.hero img {
+		.index-hero img {
 			width: min(17rem, 24vw);
 			align-self: center;
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.hero img {
+		.index-hero img {
 			transition: border-color 180ms ease;
 		}
 
-		.hero img:hover {
+		.index-hero img:hover {
 			transform: none;
 		}
 	}
