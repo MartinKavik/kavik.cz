@@ -5,18 +5,18 @@ import Icon from './Icon.astro';
 <section class="box skills">
 	<div class="stack gap-2 lg:gap-4">
 		<Icon icon="terminal-window" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>Rust & WebAssembly</h2>
-		<p>Fullstack apps, frameworks, and playgrounds with MoonZoon and Boon.</p>
+		<h2 set:html={"Rust&nbsp;&amp;<br>WebAssembly"} />
+		<p>Author of the MoonZoon web framework and Boon — a programming language with a Rust runtime and FPGA transpilation.</p>
 	</div>
 	<div class="stack gap-2 lg:gap-4">
-		<Icon icon="trophy" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>Product & UX Design</h2>
-		<p>Designing flows in Figma and Penpot, from waveform tools to freelancer platforms.</p>
+		<Icon icon="pencil-line" color="var(--accent-regular)" size="2.5rem" gradient />
+		<h2 set:html={"Product&nbsp;&amp;<br>UX&nbsp;Design"} />
+		<p>Design of business software and developer tools, including the NovyWave waveform visualizer.</p>
 	</div>
 	<div class="stack gap-2 lg:gap-4">
-		<Icon icon="strategy" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>Developer Experience</h2>
-		<p>Building docs, examples, and tooling that make it easy to ship real projects.</p>
+		<Icon icon="rocket-launch" color="var(--accent-regular)" size="2.5rem" gradient />
+		<h2 set:html={"Developer<br>Experience"} />
+		<p>Examples, playgrounds, and clear APIs that make software easy to adopt.</p>
 	</div>
 </section>
 
@@ -46,17 +46,27 @@ import Icon from './Icon.astro';
 	@media (min-width: 50em) {
 		.box {
 			border-radius: 1.5rem;
-			padding: 2.5rem;
+			padding: 1.5rem;
 		}
 
 		.skills {
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
-			gap: 5rem;
+			gap: 2rem;
 		}
 
 		.skills h2 {
 			font-size: var(--text-2xl);
+		}
+	}
+
+	@media (min-width: 70em) {
+		.box {
+			padding: 2.5rem;
+		}
+
+		.skills {
+			gap: 5rem;
 		}
 	}
 </style>

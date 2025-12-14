@@ -32,14 +32,14 @@ const posts = (await getCollection('posts'))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="index-hero">
 				<Hero
-					title="Hi, I'm Martin Kavík"
-					tagline="Rust developer and designer building Boon, MoonZoon, NovyWave, and tools for faster products."
+					title="Martin&nbsp;Kavík"
+					tagline="15+ years building the full stack.<br>From ideas and business requirements to silicon."
 					align="start"
 				>
 					<div class="roles">
 						<Pill><Icon icon="code" size="1.33em" /> Rust & Wasm</Pill>
 						<Pill><Icon icon="pencil-line" size="1.33em" /> Product Design</Pill>
-						<Pill><Icon icon="microphone-stage" size="1.33em" /> Open Source</Pill>
+						<Pill><Icon icon="heart" size="1.33em" /> Open Source</Pill>
 					</div>
 				</Hero>
 
@@ -147,12 +147,12 @@ const posts = (await getCollection('posts'))
 		box-shadow: var(--shadow-lg);
 	}
 
-	@media (min-width: 50em) {
+	@media (min-width: 900px) {
 		.index-hero {
 			display: grid;
-			grid-template-columns: minmax(0, 1fr) auto;
+			grid-template-columns: 6fr 4fr;
 			padding-inline: 2.5rem;
-			gap: 1rem;
+			gap: 2rem;
 			align-items: center;
 		}
 
@@ -163,7 +163,8 @@ const posts = (await getCollection('posts'))
 		}
 
 		.index-hero img {
-			width: min(17rem, 24vw);
+			width: min(15rem, 100%);
+			justify-self: start;
 			align-self: center;
 		}
 	}
