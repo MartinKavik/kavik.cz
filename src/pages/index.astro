@@ -118,6 +118,7 @@ const posts = (await getCollection('posts'))
 		flex-direction: column;
 		align-items: center;
 		gap: 2rem;
+		padding-block: 2rem;
 	}
 
 	.roles {
@@ -150,10 +151,12 @@ const posts = (await getCollection('posts'))
 	@media (min-width: 900px) {
 		.index-hero {
 			display: grid;
-			grid-template-columns: 6fr 4fr;
+			grid-template-columns: auto auto;
 			padding-inline: 2.5rem;
-			gap: 2rem;
+			padding-block: 7rem;
+			gap: 3rem;
 			align-items: center;
+			justify-content: center;
 		}
 
 		.roles {
