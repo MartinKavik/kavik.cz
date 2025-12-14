@@ -143,7 +143,9 @@ const isCurrentPage = (href: string) => {
 		font-family: var(--font-brand);
 		font-weight: 500;
 		margin-bottom: 3.5rem;
-		background: var(--gray-999);
+		background: transparent;
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
 	}
 
 	.menu-header {
