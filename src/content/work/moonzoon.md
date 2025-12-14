@@ -3,8 +3,8 @@ title: "MoonZoon"
 description: "Rust fullstack framework"
 publishDate: 2024-09-18
 tags: ["rust", "fullstack", "framework", "wasm", "messages"]
-img: "/assets/stock-1.jpg"
-img_alt: "Rust code editor and UI wireframe on a desk"
+img: "/images/moonzoon-logo.png"
+img_alt: "MoonZoon logo"
 links:
   - name: "GitHub"
     url: "https://github.com/MoonZoon/MoonZoon"

@@ -71,11 +71,12 @@ fn find_chromium_binary() -> Result<PathBuf, String> {
     )
 }
 
-/// Create a temporary user data directory for isolated browser profile
+/// Create a user data directory for browser profile
+/// Uses a consistent directory so developer mode settings persist across launches
 fn create_temp_profile() -> Result<PathBuf, String> {
-    let temp_dir = std::env::temp_dir().join(format!("kavik-chromium-{}", std::process::id()));
+    let temp_dir = std::env::temp_dir().join("kavik-chromium");
     std::fs::create_dir_all(&temp_dir)
-        .map_err(|e| format!("Failed to create temp profile: {}", e))?;
+        .map_err(|e| format!("Failed to create profile dir: {}", e))?;
     Ok(temp_dir)
 }
 
@@ -196,9 +197,10 @@ pub async fn wait_for_extension_connection(port: u16, timeout: Duration) -> Resu
 pub fn kill_browser_instances() -> Result<(), String> {
     #[cfg(target_os = "linux")]
     {
-        // Find and kill Chromium processes with our temp profile
+        // Find and kill Chromium processes with our profile
+        // Note: we don't delete the profile directory to preserve developer mode settings
         let output = Command::new("pkill")
-            .args(["-f", "kavik-chromium-"])
+            .args(["-f", "kavik-chromium"])
             .output();
 
         match output {
@@ -210,19 +212,6 @@ pub fn kill_browser_instances() -> Result<(), String> {
             }
             Err(e) => {
                 eprintln!("pkill failed: {}", e);
-            }
-        }
-
-        // Also clean up temp directories
-        let temp_dir = std::env::temp_dir();
-        if let Ok(entries) = std::fs::read_dir(&temp_dir) {
-            for entry in entries.flatten() {
-                let name = entry.file_name();
-                if name.to_string_lossy().starts_with("kavik-chromium-") {
-                    if let Err(e) = std::fs::remove_dir_all(entry.path()) {
-                        eprintln!("Failed to remove temp dir: {}", e);
-                    }
-                }
             }
         }
     }
