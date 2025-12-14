@@ -7,7 +7,7 @@ import PortfolioPreview from '../components/PortfolioPreview.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const projects = (await getCollection('work')).sort(
-	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+	(a, b) => (a.data.sortOrder ?? 999) - (b.data.sortOrder ?? 999),
 );
 ---
 

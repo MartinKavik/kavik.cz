@@ -8,10 +8,10 @@ export const collections = {
 		schema: z.object({
 			title: z.string(),
 			description: z.string(),
-			publishDate: z.coerce.date(),
 			tags: z.array(z.string()),
 			img: z.string(),
 			img_alt: z.string().optional(),
+			sortOrder: z.number().optional(),
 			links: z
 				.array(z.object({ name: z.string(), url: z.string().url() }))
 				.default([])

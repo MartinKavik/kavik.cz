@@ -1,7 +1,7 @@
 ---
 title: "Boon"
 description: "Programming language for writing apps"
-publishDate: 2025-05-10
+sortOrder: 1
 tags: ["language", "rust", "functional", "persistent"]
 img: "/images/boon_playground.png"
 img_alt: "Boon playground running in the browser"

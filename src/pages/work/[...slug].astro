@@ -24,10 +24,6 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const formattedDate = new Intl.DateTimeFormat('en-US', {
-	month: 'short',
-	year: 'numeric',
-}).format(entry.data.publishDate);
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
@@ -36,13 +32,11 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 			<header>
 				<div class="wrapper stack gap-2">
 					<a class="back-link" href="/work/"><Icon icon="arrow-left" /> Work</a>
-					<Hero title={entry.data.title} align="start">
+					<Hero title={entry.data.title} tagline={entry.data.description} align="start">
 						<div class="details">
-							<p class="meta">Updated {formattedDate}</p>
 							<div class="tags">
 								{entry.data.tags.map((t) => <Pill>{t}</Pill>)}
 							</div>
-							<p class="description">{entry.data.description}</p>
 							{entry.data.links && entry.data.links.length > 0 && (
 								<div class="links">
 									{entry.data.links.map((link) => (
@@ -86,11 +80,6 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 		align-items: center;
 	}
 
-	.meta {
-		margin: 0;
-		color: var(--gray-400);
-	}
-
 	.tags {
 		display: flex;
 		gap: 0.5rem;
@@ -121,11 +110,6 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 	.link-pill:focus {
 		box-shadow: var(--shadow-md);
 		transform: translateY(-1px);
-	}
-
-	.description {
-		font-size: var(--text-lg);
-		max-width: 54ch;
 	}
 
 	.content {
