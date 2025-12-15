@@ -3,8 +3,8 @@ title: "LocalSearch"
 description: "Client-side full-text search library"
 sortOrder: 10
 tags: ["search", "full-text", "autocomplete", "rust", "wasm"]
-img: "/assets/stock-2.jpg"
-img_alt: "Search UI concept with highlighted results"
+img: "/images/localsearch.jpg"
+img_alt: "LocalSearch - client-side full-text search"
 links:
   - name: "GitHub"
     url: "https://github.com/Stremio/local-search"
