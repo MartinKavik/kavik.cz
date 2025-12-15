@@ -6,18 +6,10 @@ interface Props {
 }
 
 const post = Astro.props.post;
-const formattedDate = new Intl.DateTimeFormat('en-US', {
-	month: 'short',
-	day: 'numeric',
-	year: 'numeric',
-}).format(post.data.publishDate);
 ---
 
 <a class="card" href={`/blog/${post.id}/`}>
-	<div class="meta">
-		<time datetime={post.data.publishDate.toISOString()}>{formattedDate}</time>
-		{post.data.tags.length > 0 && <span class="tags">{post.data.tags.join(' • ')}</span>}
-	</div>
+	{post.data.tags.length > 0 && <div class="tags">{post.data.tags.join(' • ')}</div>}
 	<h3>{post.data.title}</h3>
 	<p>{post.data.description}</p>
 </a>
@@ -42,10 +34,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 		transform: translateY(-2px);
 	}
 
-	.meta {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
+	.tags {
 		color: var(--gray-400);
 		font-size: var(--text-xs);
 		letter-spacing: 0.01em;

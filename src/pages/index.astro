@@ -20,7 +20,7 @@ const projects = (await getCollection('work'))
 	.slice(0, 4);
 
 const posts = (await getCollection('posts'))
-	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+	.sort((a, b) => (a.data.sortOrder ?? 999) - (b.data.sortOrder ?? 999))
 	.slice(0, 3);
 
 // Full Astro Component Syntax:
@@ -83,8 +83,8 @@ const posts = (await getCollection('posts'))
 
 			<section class="section with-background bg-variant with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Latest Writing</h3>
-					<p>Notes from experiments with Rust, WebAssembly, and the products I am building.</p>
+					<h3>News & Notes</h3>
+					<p>From the workshop.</p>
 				</header>
 
 				<div class="gallery">

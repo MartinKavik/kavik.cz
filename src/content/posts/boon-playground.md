@@ -1,7 +1,7 @@
 ---
 title: "Building the Boon playground"
 description: "Notes on experimenting with a Rust-inspired language for web apps."
-publishDate: 2025-04-15
+sortOrder: 1
 tags: ["boon", "rust", "wasm"]
 img: "/images/boon_playground.png"
 img_alt: "Boon playground UI"

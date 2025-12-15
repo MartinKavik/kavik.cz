@@ -21,11 +21,6 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const formattedDate = new Intl.DateTimeFormat('en-US', {
-	month: 'short',
-	day: 'numeric',
-	year: 'numeric',
-}).format(entry.data.publishDate);
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
@@ -36,7 +31,6 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 					<a class="back-link" href="/blog/"><Icon icon="arrow-left" /> Blog</a>
 					<Hero title={entry.data.title} align="start">
 						<div class="details">
-							<p class="meta">{formattedDate}</p>
 							{entry.data.tags.length > 0 && (
 								<div class="tags">
 									{entry.data.tags.map((t) => <Pill>{t}</Pill>)}
@@ -77,11 +71,6 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 		gap: 1rem;
 		justify-content: space-between;
 		align-items: center;
-	}
-
-	.meta {
-		margin: 0;
-		color: var(--gray-400);
 	}
 
 	.tags {

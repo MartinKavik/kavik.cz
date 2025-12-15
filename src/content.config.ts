@@ -23,7 +23,7 @@ export const collections = {
 		schema: z.object({
 			title: z.string(),
 			description: z.string(),
-			publishDate: z.coerce.date(),
+			sortOrder: z.number().optional(),
 			tags: z.array(z.string()).default([]),
 			img: z.string().optional(),
 			img_alt: z.string().optional(),

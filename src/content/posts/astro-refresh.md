@@ -1,7 +1,7 @@
 ---
 title: "Rebuilding kavik.cz with Astro"
 description: "Why I moved my personal site from a Zola theme to Astro's portfolio starter."
-publishDate: 2025-12-01
+sortOrder: 2
 tags: ["astro", "personal-site", "rewrite"]
 img: "/assets/stock-3.jpg"
 img_alt: "Laptop on a desk with design sketches"
