@@ -3,8 +3,8 @@ title: "Boon"
 description: "Programming language for writing apps"
 sortOrder: 1
 tags: ["language", "rust", "functional", "persistent"]
-img: "/images/boon_playground.png"
-img_alt: "Boon playground running in the browser"
+img: "/images/boon_logo.png"
+img_alt: "Boon - Timeless & Playful Language"
 links:
   - name: "GitHub"
     url: "https://github.com/BoonLang/boon"
