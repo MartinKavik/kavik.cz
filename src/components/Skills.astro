@@ -4,17 +4,17 @@ import Icon from './Icon.astro';
 
 <section class="box skills">
 	<div class="stack gap-2 lg:gap-4">
-		<Icon icon="terminal-window" color="var(--accent-regular)" size="2.5rem" gradient />
+		<Icon icon="terminal-window" size="2.5rem" rainbow />
 		<h2 set:html={"Rust&nbsp;&amp;<br>WebAssembly"} />
 		<p>Author of the MoonZoon web framework and Boon — a programming language with a Rust runtime and FPGA transpilation.</p>
 	</div>
 	<div class="stack gap-2 lg:gap-4">
-		<Icon icon="pencil-line" color="var(--accent-regular)" size="2.5rem" gradient />
+		<Icon icon="pencil-line" size="2.5rem" rainbow />
 		<h2 set:html={"Product&nbsp;&amp;<br>UX&nbsp;Design"} />
 		<p>Design of business software and developer tools, including the NovyWave waveform visualizer.</p>
 	</div>
 	<div class="stack gap-2 lg:gap-4">
-		<Icon icon="rocket-launch" color="var(--accent-regular)" size="2.5rem" gradient />
+		<Icon icon="rocket-launch" size="2.5rem" rainbow />
 		<h2 set:html={"Developer<br>Experience"} />
 		<p>Examples, playgrounds, and clear APIs that make software easy to adopt.</p>
 	</div>
@@ -23,7 +23,7 @@ import Icon from './Icon.astro';
 <style>
 	.box {
 		border: 1px solid var(--gray-800);
-		border-radius: 0.75rem;
+		border-radius: 0.5rem;
 		padding: 1.5rem;
 		background-color: var(--gray-999_40);
 		box-shadow: var(--shadow-sm);
@@ -45,7 +45,7 @@ import Icon from './Icon.astro';
 
 	@media (min-width: 50em) {
 		.box {
-			border-radius: 1.5rem;
+			border-radius: 0.75rem;
 			padding: 1.5rem;
 		}
 

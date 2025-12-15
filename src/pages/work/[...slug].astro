@@ -28,7 +28,11 @@ const { Content } = await render(entry);
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
 	<div class="stack gap-20">
-		<div class="stack gap-15">
+		<div class="stack gap-15 page-content">
+			<div class="deco-bricks" aria-hidden="true">
+				<div class="deco-brick b1"></div>
+				<div class="deco-brick b2"></div>
+			</div>
 			<header>
 				<div class="wrapper stack gap-2">
 					<a class="back-link" href="/work/"><Icon icon="arrow-left" /> Work</a>
@@ -62,6 +66,50 @@ const { Content } = await render(entry);
 </BaseLayout>
 
 <style>
+	.page-content {
+		position: relative;
+	}
+
+	.deco-bricks {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	.deco-brick {
+		position: absolute;
+		opacity: 0.15;
+	}
+
+	.b1 {
+		background: #3a86ff;
+		width: 60px;
+		height: 45px;
+		left: 2%;
+		top: 0;
+	}
+
+	.b2 {
+		background: #e63946;
+		width: 45px;
+		height: 55px;
+		right: 3%;
+		top: 1rem;
+	}
+
+	@media (min-width: 50em) {
+		.b1 {
+			width: 90px;
+			height: 60px;
+		}
+
+		.b2 {
+			width: 65px;
+			height: 80px;
+		}
+	}
+
 	header {
 		padding-bottom: 2.5rem;
 		border-bottom: 1px solid var(--gray-800);

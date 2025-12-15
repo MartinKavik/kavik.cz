@@ -16,7 +16,11 @@ const projects = (await getCollection('work')).sort(
 	description="Rust, WebAssembly, and product design projects by Martin Kavík"
 >
 	<div class="stack gap-20">
-		<main class="wrapper stack gap-8">
+		<main class="wrapper stack gap-8 page-content">
+			<div class="deco-bricks" aria-hidden="true">
+				<div class="deco-brick b1"></div>
+				<div class="deco-brick b2"></div>
+			</div>
 			<Hero
 				title="Work"
 				tagline="Things I design & build."
@@ -35,3 +39,49 @@ const projects = (await getCollection('work')).sort(
 		<ContactCTA />
 	</div>
 </BaseLayout>
+
+<style>
+	.page-content {
+		position: relative;
+	}
+
+	.deco-bricks {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	.deco-brick {
+		position: absolute;
+		opacity: 0.15;
+	}
+
+	.b1 {
+		background: #3a86ff;
+		width: 65px;
+		height: 45px;
+		left: 1%;
+		top: 0.5rem;
+	}
+
+	.b2 {
+		background: #e9c46a;
+		width: 45px;
+		height: 60px;
+		right: 5%;
+		top: 4rem;
+	}
+
+	@media (min-width: 50em) {
+		.b1 {
+			width: 95px;
+			height: 60px;
+		}
+
+		.b2 {
+			width: 65px;
+			height: 80px;
+		}
+	}
+</style>

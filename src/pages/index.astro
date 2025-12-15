@@ -31,6 +31,12 @@ const posts = (await getCollection('posts'))
 	<div class="stack gap-20 lg:gap-48">
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="index-hero">
+				<!-- Decorative bricks under nav -->
+				<div class="deco-bricks hero-bricks" aria-hidden="true">
+					<div class="deco-brick b1"></div>
+					<div class="deco-brick b2"></div>
+					<div class="deco-brick b3"></div>
+				</div>
 				<Hero
 					title="Martin&nbsp;Kavík"
 					tagline="15+ years building the full stack.<br>From ideas and business requirements to silicon."
@@ -43,12 +49,14 @@ const posts = (await getCollection('posts'))
 					</div>
 				</Hero>
 
-				<img
-					alt="Martin Kavík enjoying coffee"
-					width="480"
-					height="620"
-					src="/images/martin_coffee.png"
-				/>
+				<div class="photo-wrapper">
+					<img
+						alt="Martin Kavík enjoying coffee"
+						width="480"
+						height="620"
+						src="/images/martin_coffee.png"
+					/>
+				</div>
 			</header>
 
 			<Skills />
@@ -56,6 +64,11 @@ const posts = (await getCollection('posts'))
 
 		<main class="wrapper stack gap-20 lg:gap-48">
 			<section class="section with-background with-cta">
+				<!-- Decorative bricks for Selected Work -->
+				<div class="deco-bricks section-bricks" aria-hidden="true">
+					<div class="deco-brick b4"></div>
+					<div class="deco-brick b5"></div>
+				</div>
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Selected Work</h3>
 					<p>I'm mostly a toolmaker.</p>
@@ -82,6 +95,11 @@ const posts = (await getCollection('posts'))
 			</section>
 
 			<section class="section with-background bg-variant with-cta">
+				<!-- Decorative bricks for News & Notes -->
+				<div class="deco-bricks section-bricks-alt" aria-hidden="true">
+					<div class="deco-brick b6"></div>
+					<div class="deco-brick b7"></div>
+				</div>
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>News & Notes</h3>
 					<p>From the workshop.</p>
@@ -114,6 +132,7 @@ const posts = (await getCollection('posts'))
 
 <style>
 	.index-hero {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -125,27 +144,37 @@ const posts = (await getCollection('posts'))
 		display: none;
 	}
 
-	.index-hero img {
+	.photo-wrapper {
+		position: relative;
 		width: min(15rem, 32vw);
 		aspect-ratio: 1 / 1;
-		height: auto;
+		border-radius: 50%;
+		padding: var(--rainbow-border-width);
+		background: var(--rainbow-gradient);
+		background-size: 200% 100%;
+		background-position: 60% 0;
+		box-shadow: var(--shadow-md);
+		transition: transform 180ms ease, box-shadow 180ms ease;
+	}
+
+	.photo-wrapper:hover {
+		transform: scale(1.025);
+		box-shadow: var(--shadow-lg);
+		animation: rainbow-shift 4s linear infinite;
+	}
+
+	.index-hero img {
+		width: 100%;
+		height: 100%;
 		display: block;
 		object-fit: cover;
 		object-position: center;
 		border-radius: 50%;
-		border: 3px solid var(--accent-regular);
-		box-shadow: var(--shadow-md);
 		filter: saturate(1.05) brightness(1.02);
-		transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 	}
 
 	:global(:root:not(.theme-dark)) .index-hero img {
 		filter: saturate(1.12) brightness(1.06);
-	}
-
-	.index-hero img:hover {
-		transform: rotate(3deg) scale(1.025);
-		box-shadow: var(--shadow-lg);
 	}
 
 	@media (min-width: 900px) {
@@ -165,7 +194,7 @@ const posts = (await getCollection('posts'))
 			gap: 0.5rem;
 		}
 
-		.index-hero img {
+		.photo-wrapper {
 			width: min(15rem, 100%);
 			justify-self: start;
 			align-self: center;
@@ -173,12 +202,13 @@ const posts = (await getCollection('posts'))
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.index-hero img {
-			transition: border-color 180ms ease;
+		.photo-wrapper {
+			transition: none;
 		}
 
-		.index-hero img:hover {
+		.photo-wrapper:hover {
 			transform: none;
+			animation: none;
 		}
 	}
 
@@ -193,29 +223,6 @@ const posts = (await getCollection('posts'))
 		position: relative;
 	}
 
-	.with-background::before {
-		--hero-bg: var(--bg-image-subtle-2);
-
-		content: '';
-		position: absolute;
-		pointer-events: none;
-		left: 50%;
-		width: 100vw;
-		aspect-ratio: calc(2.25 / var(--bg-scale));
-		top: 0;
-		transform: translateY(-75%) translateX(-50%);
-		background:
-			url('/assets/backgrounds/noise.png') top center/220px repeat,
-			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
-			var(--gray-999);
-		background-blend-mode: overlay, normal, normal, normal;
-		mix-blend-mode: var(--bg-blend-mode);
-		z-index: -1;
-	}
-
-	.with-background.bg-variant::before {
-		--hero-bg: var(--bg-image-subtle-1);
-	}
 
 	.section-header {
 		justify-self: center;
@@ -282,6 +289,137 @@ const posts = (await getCollection('posts'))
 		.mention-card {
 			border-radius: 1.5rem;
 			height: 9.5rem;
+		}
+	}
+
+	/* ====================================================== */
+	/* Decorative bricks */
+
+	.deco-bricks {
+		position: absolute;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	.deco-brick {
+		position: absolute;
+		opacity: 0.18;
+	}
+
+	/* Hero bricks - under nav area */
+	.hero-bricks {
+		top: -4rem;
+		left: 0;
+		right: 0;
+		height: 200px;
+	}
+
+	.hero-bricks .b1 {
+		background: #3a86ff;
+		width: 80px;
+		height: 40px;
+		left: 5%;
+		top: 20px;
+	}
+
+	.hero-bricks .b2 {
+		background: #7209b7;
+		width: 50px;
+		height: 70px;
+		right: 10%;
+		top: 60px;
+	}
+
+	.hero-bricks .b3 {
+		background: #e9c46a;
+		width: 60px;
+		height: 35px;
+		left: 25%;
+		top: 100px;
+	}
+
+	/* Section bricks - Selected Work */
+	.section-bricks {
+		top: -3rem;
+		left: 0;
+		right: 0;
+		height: 150px;
+	}
+
+	.section-bricks .b4 {
+		background: #e63946;
+		width: 70px;
+		height: 45px;
+		left: 2%;
+		top: 0;
+	}
+
+	.section-bricks .b5 {
+		background: #00b4d8;
+		width: 55px;
+		height: 55px;
+		right: 5%;
+		top: 30px;
+	}
+
+	/* Section bricks alt - News & Notes */
+	.section-bricks-alt {
+		top: -3rem;
+		left: 0;
+		right: 0;
+		height: 150px;
+	}
+
+	.section-bricks-alt .b6 {
+		background: #2a9d8f;
+		width: 60px;
+		height: 50px;
+		right: 3%;
+		top: 10px;
+	}
+
+	.section-bricks-alt .b7 {
+		background: #f72585;
+		width: 45px;
+		height: 65px;
+		left: 8%;
+		top: 40px;
+	}
+
+	@media (min-width: 50em) {
+		.hero-bricks .b1 {
+			width: 120px;
+			height: 60px;
+		}
+
+		.hero-bricks .b2 {
+			width: 80px;
+			height: 100px;
+		}
+
+		.hero-bricks .b3 {
+			width: 90px;
+			height: 50px;
+		}
+
+		.section-bricks .b4 {
+			width: 100px;
+			height: 65px;
+		}
+
+		.section-bricks .b5 {
+			width: 80px;
+			height: 80px;
+		}
+
+		.section-bricks-alt .b6 {
+			width: 90px;
+			height: 70px;
+		}
+
+		.section-bricks-alt .b7 {
+			width: 65px;
+			height: 90px;
 		}
 	}
 </style>

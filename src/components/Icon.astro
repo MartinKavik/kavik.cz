@@ -6,16 +6,18 @@ interface Props {
 	icon: keyof typeof iconPaths;
 	color?: string;
 	gradient?: boolean;
+	rainbow?: boolean;
 	size?: string;
 }
 
-const { color = 'currentcolor', gradient, icon, size } = Astro.props;
+const { color = 'currentcolor', gradient, rainbow, icon, size } = Astro.props;
 const iconPath = iconPaths[icon];
 
 const attrs: HTMLAttributes<'svg'> = {};
 if (size) attrs.style = { '--size': size };
 
 const gradientId = 'icon-gradient-' + Math.round(Math.random() * 10e12).toString(36);
+const useGradient = gradient || rainbow;
 ---
 
 <svg
@@ -24,13 +26,13 @@ const gradientId = 'icon-gradient-' + Math.round(Math.random() * 10e12).toString
 	height="40"
 	viewBox="0 0 256 256"
 	aria-hidden="true"
-	stroke={gradient ? `url(#${gradientId})` : color}
-	fill={gradient ? `url(#${gradientId})` : color}
+	stroke={useGradient ? `url(#${gradientId})` : color}
+	fill={useGradient ? `url(#${gradientId})` : color}
 	{...attrs}
 >
 	<g set:html={iconPath} />
 	{
-		gradient && (
+		gradient && !rainbow && (
 			<linearGradient
 				id={gradientId}
 				x1="23"
@@ -42,6 +44,27 @@ const gradientId = 'icon-gradient-' + Math.round(Math.random() * 10e12).toString
 				<stop stop-color="var(--gradient-stop-1)" />
 				<stop offset=".5" stop-color="var(--gradient-stop-2)" />
 				<stop offset="1" stop-color="var(--gradient-stop-3)" />
+			</linearGradient>
+		)
+	}
+	{
+		rainbow && (
+			<linearGradient
+				id={gradientId}
+				x1="0"
+				x2="256"
+				y1="128"
+				y2="128"
+				gradientUnits="userSpaceOnUse"
+			>
+				<stop offset="0%" stop-color="#e63946" />
+				<stop offset="14%" stop-color="#f4a261" />
+				<stop offset="28%" stop-color="#e9c46a" />
+				<stop offset="42%" stop-color="#2a9d8f" />
+				<stop offset="57%" stop-color="#00b4d8" />
+				<stop offset="71%" stop-color="#3a86ff" />
+				<stop offset="85%" stop-color="#7209b7" />
+				<stop offset="100%" stop-color="#f72585" />
 			</linearGradient>
 		)
 	}

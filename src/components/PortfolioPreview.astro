@@ -15,23 +15,44 @@ const { data, id } = Astro.props.project;
 
 <style>
 	.card {
+		position: relative;
 		display: grid;
 		grid-template: auto 1fr / auto 1fr;
 		height: 11rem;
 		background: var(--gradient-subtle);
-		border: 3px solid var(--accent-regular);
-		border-radius: 0.75rem;
+		border-radius: 0.5rem;
 		overflow: hidden;
 		box-shadow: var(--shadow-sm);
 		text-decoration: none;
 		font-family: var(--font-brand);
 		font-size: var(--text-lg);
 		font-weight: 500;
-		transition: box-shadow var(--theme-transition);
+		transition: box-shadow var(--theme-transition), transform var(--theme-transition);
+	}
+
+	.card::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: 0.5rem;
+		padding: var(--rainbow-border-width);
+		background: var(--rainbow-gradient);
+		background-size: 200% 100%;
+		background-position: 60% 0;
+		-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+		pointer-events: none;
 	}
 
 	.card:hover {
 		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+
+	.card:hover::before {
+		animation: rainbow-shift 4s linear infinite;
 	}
 
 	.title {
@@ -54,11 +75,15 @@ const { data, id } = Astro.props.project;
 	@media (min-width: 50em) {
 		.card {
 			height: 22rem;
-			border-radius: 1.5rem;
+			border-radius: 0.75rem;
+		}
+
+		.card::before {
+			border-radius: 0.75rem;
 		}
 
 		.title {
-			border-radius: 0.9375rem;
+			border-radius: 0.5rem;
 		}
 	}
 </style>

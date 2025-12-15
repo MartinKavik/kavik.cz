@@ -16,22 +16,43 @@ const post = Astro.props.post;
 
 <style>
 	.card {
+		position: relative;
 		display: grid;
 		gap: 0.5rem;
 		padding: 1.25rem;
 		background: var(--gradient-subtle);
-		border: 3px solid var(--accent-regular);
-		border-radius: 1rem;
+		border-radius: 0.5rem;
 		box-shadow: var(--shadow-sm);
 		text-decoration: none;
 		color: inherit;
 		transition: box-shadow var(--theme-transition), transform var(--theme-transition);
 	}
 
+	.card::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: 0.5rem;
+		padding: var(--rainbow-border-width);
+		background: var(--rainbow-gradient);
+		background-size: 200% 100%;
+		background-position: 60% 0;
+		-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+		pointer-events: none;
+	}
+
 	.card:hover,
 	.card:focus {
 		box-shadow: var(--shadow-md);
 		transform: translateY(-2px);
+	}
+
+	.card:hover::before,
+	.card:focus::before {
+		animation: rainbow-shift 4s linear infinite;
 	}
 
 	.tags {
@@ -54,6 +75,11 @@ const post = Astro.props.post;
 		.card {
 			gap: 0.75rem;
 			padding: 1.5rem;
+			border-radius: 0.75rem;
+		}
+
+		.card::before {
+			border-radius: 0.75rem;
 		}
 
 		h3 {

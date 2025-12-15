@@ -30,6 +30,29 @@
 	--gradient-stop-2: var(--accent-regular);
 	--gradient-stop-3: var(--accent-dark);
 	--gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 150%);
+
+	/* Rainbow gradient (Boon-inspired) - vibrant contrasting colors with distinct bands */
+	--rainbow-gradient: linear-gradient(
+		90deg,
+		#e63946 0%,
+		#f4a261 15%,
+		#e9c46a 28%,
+		#2a9d8f 40%,
+		#00b4d8 52%,
+		#3a86ff 64%,
+		#7209b7 76%,
+		#9d4edd 88%,
+		#f72585 100%
+	);
+	--rainbow-border-width: 4px;
+
+	/* Pixel grid pattern - subtle */
+	--grid-color: rgba(100, 116, 162, 0.05);
+	--grid-size: 8px;
+	--grid-line: 1px;
+	--grid-pattern:
+		linear-gradient(var(--grid-color) var(--grid-line), transparent var(--grid-line)),
+		linear-gradient(90deg, var(--grid-color) var(--grid-line), transparent var(--grid-line));
 	--gradient-accent: linear-gradient(
 		150deg,
 		var(--gradient-stop-1),
@@ -261,5 +284,15 @@ h5 {
 	}
 	.lg\:gap-48 {
 		gap: 12rem;
+	}
+}
+
+/* Rainbow animation */
+@keyframes rainbow-shift {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 200% 50%;
 	}
 }

@@ -6,8 +6,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="About | Martin Kavík" description="Rust developer and designer based in Prague">
 	<div class="stack gap-20">
-		<main class="wrapper about">
-			<Hero
+		<div class="page-content">
+			<div class="deco-bricks" aria-hidden="true">
+				<div class="deco-brick b1"></div>
+				<div class="deco-brick b2"></div>
+			</div>
+			<main class="wrapper about">
+				<Hero
 				title="About Martin"
 				tagline="Rust + WebAssembly builder living in Prague, designing and shipping tools for the web."
 			>
@@ -44,14 +49,59 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					<p>These days I lift toys more than weights. I once composed a short guitar piece; my hands are too small to play it well, but it still makes me smile.</p>
 					<p>Questions? <a href="mailto:martin@kavik.cz">martin@kavik.cz</a></p>
 				</div>
-			</section>
-		</main>
+				</section>
+			</main>
+		</div>
 
 		<ContactCTA />
 	</div>
 </BaseLayout>
 
 <style>
+	.page-content {
+		position: relative;
+	}
+
+	.deco-bricks {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	.deco-brick {
+		position: absolute;
+		opacity: 0.15;
+	}
+
+	.b1 {
+		background: #f4a261;
+		width: 50px;
+		height: 45px;
+		left: 3%;
+		top: 1rem;
+	}
+
+	.b2 {
+		background: #7209b7;
+		width: 45px;
+		height: 55px;
+		right: 4%;
+		top: 3rem;
+	}
+
+	@media (min-width: 50em) {
+		.b1 {
+			width: 75px;
+			height: 60px;
+		}
+
+		.b2 {
+			width: 65px;
+			height: 75px;
+		}
+	}
+
 	.about {
 		display: flex;
 		flex-direction: column;

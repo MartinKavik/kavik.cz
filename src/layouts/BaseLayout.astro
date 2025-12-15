@@ -21,6 +21,16 @@ const { title, description } = Astro.props;
 	</head>
 	<body>
 		<div class="stack backgrounds">
+			<div class="floating-bricks" aria-hidden="true">
+				<div class="brick brick-1"></div>
+				<div class="brick brick-2"></div>
+				<div class="brick brick-3"></div>
+				<div class="brick brick-4"></div>
+				<div class="brick brick-5"></div>
+				<div class="brick brick-6"></div>
+				<div class="brick brick-7"></div>
+				<div class="brick brick-8"></div>
+			</div>
 			<Nav />
 			<slot />
 			<Footer />
@@ -92,18 +102,12 @@ const { title, description } = Astro.props;
 				min-height: 100%;
 				isolation: isolate;
 				background:
-					/*noise*/
-					url('/assets/backgrounds/noise.png') top center/220px repeat,
-					/*footer*/ var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
-					/*header1*/ var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
-					/*header2*/ var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
+					/*grid*/
+					var(--grid-pattern),
 					/*base*/ var(--gray-999);
-				background-blend-mode: /*noise*/
-					overlay,
-					/*footer*/ var(--bg-blend-mode),
-					/*header1*/ var(--bg-svg-blend-mode),
-					/*header2*/ normal,
-					/*base*/ normal;
+				background-size:
+					/*grid*/ var(--grid-size) var(--grid-size),
+					/*base*/ auto;
 			}
 			@media (forced-colors: active) {
 				/* Deactivate custom backgrounds for high contrast users. */
@@ -113,6 +117,87 @@ const { title, description } = Astro.props;
 					--bg-gradient-size: none;
 				}
 			}
+
+			/* Floating pixel bricks - small, animated */
+			.floating-bricks {
+				position: fixed;
+				inset: 0;
+				overflow: hidden;
+				pointer-events: none;
+				z-index: 1;
+			}
+
+			.brick {
+				position: absolute;
+				width: 12px;
+				height: 12px;
+				opacity: 0.12;
+			}
+
+			.brick-1 {
+				background: #e63946;
+				left: 5%;
+				animation: float-up 25s linear infinite;
+				animation-delay: -2s;
+			}
+			.brick-2 {
+				background: #f4a261;
+				left: 15%;
+				animation: float-up 30s linear infinite;
+				animation-delay: -8s;
+			}
+			.brick-3 {
+				background: #e9c46a;
+				left: 30%;
+				animation: float-up 22s linear infinite;
+				animation-delay: -5s;
+			}
+			.brick-4 {
+				background: #2a9d8f;
+				left: 45%;
+				animation: float-up 28s linear infinite;
+				animation-delay: -12s;
+			}
+			.brick-5 {
+				background: #00b4d8;
+				left: 60%;
+				animation: float-up 26s linear infinite;
+				animation-delay: -18s;
+			}
+			.brick-6 {
+				background: #3a86ff;
+				left: 75%;
+				animation: float-up 32s linear infinite;
+				animation-delay: -3s;
+			}
+			.brick-7 {
+				background: #7209b7;
+				left: 88%;
+				animation: float-up 24s linear infinite;
+				animation-delay: -15s;
+			}
+			.brick-8 {
+				background: #f72585;
+				left: 95%;
+				animation: float-up 29s linear infinite;
+				animation-delay: -22s;
+			}
+
+			@keyframes float-up {
+				0% {
+					transform: translateY(100vh) rotate(0deg);
+				}
+				100% {
+					transform: translateY(-20vh) rotate(180deg);
+				}
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.floating-bricks {
+					display: none;
+				}
+			}
+
 		</style>
 	</body>
 </html>

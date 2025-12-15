@@ -16,7 +16,11 @@ const posts = (await getCollection('posts')).sort(
 	description="Writing about Rust, WebAssembly, and product design experiments"
 >
 	<div class="stack gap-20">
-		<main class="wrapper stack gap-8">
+		<main class="wrapper stack gap-8 page-content">
+			<div class="deco-bricks" aria-hidden="true">
+				<div class="deco-brick b1"></div>
+				<div class="deco-brick b2"></div>
+			</div>
 			<Hero
 				title="Blog"
 				tagline="News, notes, and build logs."
@@ -35,3 +39,49 @@ const posts = (await getCollection('posts')).sort(
 		<ContactCTA />
 	</div>
 </BaseLayout>
+
+<style>
+	.page-content {
+		position: relative;
+	}
+
+	.deco-bricks {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	.deco-brick {
+		position: absolute;
+		opacity: 0.15;
+	}
+
+	.b1 {
+		background: #e63946;
+		width: 55px;
+		height: 50px;
+		right: 2%;
+		top: 0;
+	}
+
+	.b2 {
+		background: #2a9d8f;
+		width: 50px;
+		height: 40px;
+		left: 3%;
+		top: 3.5rem;
+	}
+
+	@media (min-width: 50em) {
+		.b1 {
+			width: 80px;
+			height: 70px;
+		}
+
+		.b2 {
+			width: 70px;
+			height: 55px;
+		}
+	}
+</style>
