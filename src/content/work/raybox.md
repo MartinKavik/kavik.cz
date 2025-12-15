@@ -1,21 +1,16 @@
 ---
 title: "RayBox"
-description: "WebGPU renderer for web UI"
+description: "3D web UI renderer with SDF and WebGPU"
 sortOrder: 4
-tags: ["rust", "webgpu", "wasm", "rendering", "canvas"]
-img: "/images/raybox-screenshot.png"
-img_alt: "RayBox rendering TodoMVC in WebGPU"
+tags: ["rust", "webgpu", "wasm", "sdf", "3d"]
+img: "/images/raybox.jpg"
+img_alt: "RayBox - 3D web UI with SDF and WebGPU"
 ---
 
-RayBox is a proof-of-concept WebGPU renderer that draws web UI elements entirely on the GPU.
-It renders TodoMVC with 97.74% visual similarity to Chrome's native rendering, demonstrating that GPU-accelerated web UIs are practical.
+RayBox renders web UI as real 3D objects using Signed Distance Functions and WebGPU.
 
-The hybrid Canvas2D + WebGPU approach keeps text rendering simple while pushing rectangles, borders, and backgrounds to the GPU.
-100% Rust, compiles to WebAssembly, and idles at less than 5% CPU.
+The idea is simple: buttons, inputs, and dialogs should be physical. A button has actual depth and sits closer to the camera. A dialog floats in front of content and casts real shadows. Inset effects emerge naturally from geometry instead of being faked with CSS.
 
-Technical highlights:
+The current version renders TodoMVC with 97.74% visual similarity to Chrome as a proof-of-concept. The next step is replacing flat rectangles with SDF-defined 3D shapes where shadows, highlights, and depth come from actual lighting and geometry.
 
-- Instanced rendering for rectangles and borders in a single draw call
-- Text rendered to Canvas2D, then uploaded as GPU textures
-- On-demand rendering instead of continuous animation loops
-- Complete Rust toolchain for development, testing, and screenshots
+Built entirely in Rust, compiles to WebAssembly. The same SDF models could eventually export to 3D printers.
