@@ -168,7 +168,7 @@ const isCurrentPage = (href: string) => {
 		position: relative;
 		display: flex;
 		border: 0;
-		border-radius: 0;
+		border-radius: 0.25rem;
 		padding: 0.5rem;
 		font-size: 1.5rem;
 		color: var(--gray-300);
@@ -188,6 +188,7 @@ const isCurrentPage = (href: string) => {
 	.menu-button::before {
 		position: absolute;
 		inset: 0;
+		border-radius: 0.25rem;
 		content: '';
 		padding: 2px;
 		background: var(--rainbow-gradient);
@@ -256,6 +257,7 @@ const isCurrentPage = (href: string) => {
 		text-decoration: none;
 		color: var(--gray-300);
 		background: var(--gray-800);
+		border-radius: 0.25rem;
 		transition: color var(--theme-transition);
 	}
 
@@ -263,6 +265,7 @@ const isCurrentPage = (href: string) => {
 		content: '';
 		position: absolute;
 		inset: 0;
+		border-radius: 0.25rem;
 		padding: 2px;
 		background: var(--rainbow-gradient);
 		background-size: 200% 100%;
@@ -317,7 +320,7 @@ const isCurrentPage = (href: string) => {
 			position: relative;
 			flex-direction: row;
 			font-size: var(--text-sm);
-			border-radius: 0;
+			border-radius: 0.375rem;
 			border: 0;
 			padding: 0.5rem 0.5625rem;
 			background: var(--gray-800);
@@ -327,6 +330,7 @@ const isCurrentPage = (href: string) => {
 		.nav-items::before {
 			position: absolute;
 			inset: 0;
+			border-radius: 0.375rem;
 			content: '';
 			padding: 2px;
 			background: var(--rainbow-gradient);
@@ -341,7 +345,7 @@ const isCurrentPage = (href: string) => {
 
 		.link {
 			padding: 0.5rem 1rem;
-			border-radius: 0;
+			border-radius: 0.25rem;
 			transition:
 				color var(--theme-transition),
 				background-color var(--theme-transition);
