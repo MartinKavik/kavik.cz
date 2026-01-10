@@ -35,7 +35,15 @@ const { variant } = Astro.props;
 		}
 
 		.grid.offset {
-			gap: 2rem;
+			gap: 2rem 2rem;
+			row-gap: 5rem;
+			--row-offset: 8rem;
+			padding-bottom: var(--row-offset);
+		}
+
+		/* Shift second item in each row down to create zigzag */
+		.grid.offset > :global(:nth-child(even)) {
+			transform: translateY(var(--row-offset));
 		}
 
 		.grid.small {
