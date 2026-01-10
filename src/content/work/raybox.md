@@ -1,7 +1,7 @@
 ---
 title: "RayBox"
 description: "3D web UI renderer with SDF and WebGPU"
-sortOrder: 4
+sortOrder: 5
 tags: ["rust", "webgpu", "wasm", "sdf", "3d"]
 img: "/images/raybox.jpg"
 img_alt: "RayBox - 3D web UI with SDF and WebGPU"

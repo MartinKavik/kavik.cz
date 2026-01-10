@@ -1,7 +1,7 @@
 ---
 title: "Prompter"
 description: "Web UI for Claude Code sessions"
-sortOrder: 2
+sortOrder: 10
 tags: ["rust", "cli", "ai", "pty", "axum"]
 img: "/images/prompter.png"
 img_alt: "Prompter web interface"

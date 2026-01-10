@@ -1,7 +1,7 @@
 ---
 title: "MoonZoon"
 description: "Rust fullstack framework"
-sortOrder: 5
+sortOrder: 3
 tags: ["rust", "fullstack", "framework", "wasm", "messages"]
 img: "/images/moonzoon-logo.png"
 img_alt: "MoonZoon logo"

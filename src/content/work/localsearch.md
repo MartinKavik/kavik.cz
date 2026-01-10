@@ -1,7 +1,7 @@
 ---
 title: "LocalSearch"
 description: "Client-side full-text search library"
-sortOrder: 10
+sortOrder: 11
 tags: ["search", "full-text", "autocomplete", "rust", "wasm"]
 img: "/images/localsearch.jpg"
 img_alt: "LocalSearch - client-side full-text search"

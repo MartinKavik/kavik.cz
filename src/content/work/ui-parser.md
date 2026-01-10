@@ -1,7 +1,7 @@
 ---
 title: "UI Parser"
 description: "Extract UI metadata from HTML+CSS pages"
-sortOrder: 3
+sortOrder: 12
 tags: ["rust", "chrome-extension", "cdp", "typescript", "mcp"]
 img: "/images/ui_parser.png"
 img_alt: "UI Parser overlay visualization"
