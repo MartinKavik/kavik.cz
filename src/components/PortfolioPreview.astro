@@ -17,7 +17,16 @@ const { Content } = await render(project);
 		<img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" />
 	</div>
 	<div class="content">
-		<h3 class="title">{data.title}</h3>
+		<div class="title-row">
+			<h3 class="title">{data.title}</h3>
+			{data.links && data.links.length > 0 && (
+				<div class="links">
+					{data.links.map((link) => (
+						<a class="link-btn" href={link.url} target="_blank" rel="noopener">{link.name}</a>
+					))}
+				</div>
+			)}
+		</div>
 		<p class="description">{data.description}</p>
 		<div class="body">
 			<Content />
@@ -25,13 +34,6 @@ const { Content } = await render(project);
 		<div class="tags">
 			{data.tags.map((t) => <Pill>{t}</Pill>)}
 		</div>
-		{data.links && data.links.length > 0 && (
-			<div class="links">
-				{data.links.map((link) => (
-					<a class="link-pill" href={link.url} target="_blank" rel="noopener">{link.name}</a>
-				))}
-			</div>
-		)}
 	</div>
 </article>
 
@@ -127,12 +129,69 @@ const { Content } = await render(project);
 		padding: 1.5rem;
 	}
 
+	.title-row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+	}
+
 	.title {
 		font-family: var(--font-brand);
 		font-size: var(--text-2xl);
 		font-weight: 600;
 		color: var(--gray-0);
 		margin: 0;
+	}
+
+	.links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.link-btn {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		padding: 0.4em 1em;
+		color: var(--gray-0);
+		text-decoration: none;
+		font-size: var(--text-sm);
+		font-weight: 500;
+		border-radius: 0.375rem;
+		background: var(--gray-800);
+		box-shadow: var(--shadow-sm);
+		transition: background var(--theme-transition);
+	}
+
+	.link-btn::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: 0.375rem;
+		padding: 2px;
+		background: var(--rainbow-gradient);
+		background-size: 200% 100%;
+		background-position: 60% 0;
+		-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+		pointer-events: none;
+		opacity: 0.5;
+	}
+
+	.link-btn:hover::before,
+	.link-btn:focus::before {
+		opacity: 1;
+		animation: rainbow-shift 4s linear infinite;
+	}
+
+	.link-btn:hover,
+	.link-btn:focus {
+		background: var(--gray-700);
 	}
 
 	.description {
@@ -171,33 +230,6 @@ const { Content } = await render(project);
 		flex-wrap: wrap;
 		gap: 0.5rem;
 		padding-top: 0.5rem;
-	}
-
-	.links {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-	}
-
-	.link-pill {
-		display: inline-flex;
-		align-items: center;
-		padding: 0.5rem 1rem;
-		border-radius: 999rem;
-		border: 1px solid var(--gray-800);
-		background: var(--gray-999_40);
-		color: var(--gray-0);
-		text-decoration: none;
-		font-weight: 600;
-		font-size: var(--text-sm);
-		box-shadow: var(--shadow-sm);
-		transition: box-shadow var(--theme-transition), transform var(--theme-transition);
-	}
-
-	.link-pill:hover,
-	.link-pill:focus {
-		box-shadow: var(--shadow-md);
-		transform: translateY(-1px);
 	}
 
 	@media (min-width: 50em) {
