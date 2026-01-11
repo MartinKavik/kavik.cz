@@ -221,6 +221,21 @@ const { Content } = await render(project);
 		padding-left: 1.5rem;
 	}
 
+	.body :global(ol) {
+		list-style: none;
+		counter-reset: item;
+	}
+
+	.body :global(ol li) {
+		counter-increment: item;
+	}
+
+	.body :global(ol li::before) {
+		content: counter(item) ". ";
+		color: var(--accent-regular);
+		font-weight: 600;
+	}
+
 	.body :global(li) {
 		margin: 0.35rem 0;
 	}
