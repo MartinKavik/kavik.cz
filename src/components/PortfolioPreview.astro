@@ -32,7 +32,7 @@ const { Content } = await render(project);
 			<Content />
 		</div>
 		<div class="tags">
-			{data.tags.map((t) => <Pill>{t}</Pill>)}
+			{data.tags.map((t) => <Pill variant={t === 'WIP' ? 'wip' : 'default'}>{t}</Pill>)}
 		</div>
 	</div>
 </article>

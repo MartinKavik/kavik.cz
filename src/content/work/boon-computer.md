@@ -2,7 +2,7 @@
 title: "BoonComputer"
 description: "RISC CPU on FPGA written in Boon"
 sortOrder: 4
-tags: ["boon", "risc", "fpga", "cpu", "hardware"]
+tags: ["boon", "risc", "fpga", "cpu", "hardware", "WIP"]
 img: "/images/boon_computer.jpg"
 img_alt: "BoonComputer - RISC CPU on FPGA"
 ---

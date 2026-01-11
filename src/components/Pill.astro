@@ -1,4 +1,11 @@
-<div class="pill"><slot /></div>
+---
+interface Props {
+	variant?: 'default' | 'wip';
+}
+const { variant = 'default' } = Astro.props;
+---
+
+<div class:list={['pill', { wip: variant === 'wip' }]}><slot /></div>
 
 <style>
 	.pill {
@@ -20,5 +27,11 @@
 
 	.pill:nth-child(3) {
 		border-left-color: #2a9d8f;
+	}
+
+	.pill.wip {
+		background-color: #7209b7 !important;
+		border-left-color: var(--gray-800) !important;
+		color: white !important;
 	}
 </style>

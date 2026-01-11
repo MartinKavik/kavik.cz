@@ -2,7 +2,7 @@
 title: "Boon"
 description: "One language for web apps, CLIs and hardware"
 sortOrder: 1
-tags: ["language", "rust", "declarative", "persistent"]
+tags: ["language", "rust", "declarative", "persistent", "WIP"]
 img: "/images/boon_logo.png"
 img_alt: "Boon - Timeless & Playful Language"
 links:

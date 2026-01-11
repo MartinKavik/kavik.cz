@@ -2,7 +2,7 @@
 title: "NovyWave"
 description: "Modern GTKWave alternative"
 sortOrder: 2
-tags: ["waveform", "viewer", "wasm", "fpga", "tauri"]
+tags: ["waveform", "viewer", "wasm", "fpga", "tauri", "WIP"]
 img: "/images/novywave_dark_linux.png"
 img_alt: "NovyWave waveform viewer on Linux"
 links:
