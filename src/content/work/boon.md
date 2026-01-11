@@ -11,7 +11,7 @@ links:
   - name: "GitHub"
     url: "https://github.com/BoonLang/boon"
   - name: "Playground"
-    url: "https://boon-playground.kavik.cz"
+    url: "https://play.boon.run"
 ---
 
 Boon is a declarative language where the runtime remembers values across reloads, enabling hot-reloading and state persistence without a database.

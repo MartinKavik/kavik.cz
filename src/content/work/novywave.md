@@ -10,7 +10,8 @@ links:
     url: "https://github.com/NovyWave/NovyWave"
 ---
 
-NovyWave aims to modernize the waveform viewer experience for FPGA and hardware debugging.
-The project mixes a WebAssembly front-end with a Tauri desktop shell so large capture files stay fast while the UI remains portable.
+A modern waveform viewer for FPGA and hardware debugging. Combines WebAssembly with Tauri so large captures stay fast while the UI remains portable.
 
-I worked on the interaction model, accessibility of dense traces, and fast zooming/panning so engineers can stay in flow instead of waiting on redraws.
+Cross-platform (Linux, macOS, Windows, browser + remote server). Plugin-based architecture. Built with MoonZoon, funded by NLnet Foundation.
+
+![WIT interface for a Wasmtime plugin](/images/novywave_plugin_wit.png)
