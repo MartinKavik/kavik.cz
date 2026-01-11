@@ -2,7 +2,7 @@
 title: "MoonZoon"
 description: "Rust fullstack framework"
 sortOrder: 3
-tags: ["rust", "fullstack", "framework", "wasm", "messages"]
+tags: ["rust", "fullstack", "framework", "wasm", "signals"]
 img: "/images/moonzoon-logo.png"
 img_alt: "MoonZoon logo"
 links:
@@ -10,12 +10,19 @@ links:
     url: "https://github.com/MoonZoon/MoonZoon"
 ---
 
-MoonZoon is a Rust fullstack framework that treats the frontend and backend as message-driven peers.
-It focuses on WebAssembly-first delivery while still giving you a productive server side written in Rust.
-I use it to prototype ideas quickly, wire hardware experiments, and build production-ready UIs that stay responsive under load.
+Fullstack Rust without HTML, CSS, or JavaScript. Wasm frontend with signals (no Virtual DOM), native Rust backend. Typed routes and `UpMsg`/`DownMsg` for real-time communication. Auto-reload with `mzoon` CLI. Also works as frontend-only for static hosting.
 
-Key ideas I keep iterating on:
+Boon Playground and NovyWave are built with MoonZoon.
 
-- Ergonomic state management with messages instead of global stores
-- Hot reloading while keeping application state intact
-- A developer experience that feels closer to game engines than to traditional web stacks
+<details>
+<summary>MoonZoon history</summary>
+
+After maintaining Seed (early Rust frontend framework), I got frustrated with VirtualDOM and Elm-style patterns. Even created Rust React Hooks — with less limitations than JS ones — but still didn't feel right. Writing HTML/CSS almost directly felt worse the more I dealt with CSS interactions and browser inconsistencies — complexity kept growing instead of shrinking.
+
+Signals and simplified styling felt better. Typed messages simplified frontend-backend communication. That became MoonZoon in 2021. Since then I've pushed its limits: web workers with shared memory, desktop apps, animations, JS interop — and contributed to `wasm-bindgen` along the way.
+
+</details>
+
+![Counter button example](/images/moonzoon_counter_button.png)
+
+![Send message example](/images/moonzoon_send_message.png)

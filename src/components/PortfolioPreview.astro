@@ -229,6 +229,31 @@ const { Content } = await render(project);
 		border-radius: 0.5rem;
 	}
 
+	.body :global(details) {
+		margin-top: 1.5rem;
+		scroll-margin-top: 2rem;
+	}
+
+	.body :global(summary) {
+		cursor: pointer;
+		color: var(--gray-100);
+		font-weight: 500;
+		padding: 0.5rem 0;
+		margin-bottom: 1rem;
+	}
+
+	.body :global(summary:hover) {
+		color: var(--accent-regular);
+	}
+
+	.body :global(details[open] summary) {
+		color: var(--accent-regular);
+	}
+
+	.body :global(details[open]) {
+		margin-bottom: 1.5rem;
+	}
+
 	.tags {
 		display: flex;
 		flex-wrap: wrap;
