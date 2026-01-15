@@ -1,11 +1,14 @@
 ---
 import Icon from './Icon.astro';
+
+const baseUrl = Astro.url.origin;
 ---
 
 <footer>
 	<div class="newsletter">
-		<form class="newsletter-form" action="https://formsubmit.co/martin@kavik.cz" method="POST">
+		<form class="newsletter-form" action="https://formsubmit.co/8abda0d9004b47458f4910b1826806ca" method="POST">
 			<input type="hidden" name="_subject" value="Newsletter Subscription">
+			<input type="hidden" name="_next" value={`${baseUrl}/subscribed`}>
 			<input type="hidden" name="_captcha" value="false">
 			<input type="hidden" name="_template" value="table">
 			<input type="hidden" name="_autoresponse" value="Thanks for subscribing! You'll receive occasional updates about new projects. You can unsubscribe anytime by replying to any email.">
@@ -286,3 +289,4 @@ import Icon from './Icon.astro';
 	}
 
 </style>
+

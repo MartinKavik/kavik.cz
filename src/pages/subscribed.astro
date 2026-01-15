@@ -1,0 +1,39 @@
+---
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Subscribed" description="Thanks for subscribing to the newsletter">
+	<div class="stack gap-20">
+	<div class="wrapper">
+		<Hero title="You're in!" tagline="Thanks for subscribing." />
+		<a href="/" class="back-link">Home</a>
+	</div>
+	<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+		padding: 4rem 1.5rem;
+	}
+
+	.back-link {
+		color: var(--gray-300);
+		text-decoration: none;
+		padding: 0.75rem 1.5rem;
+		background: var(--gray-800);
+		border-radius: 0.375rem;
+		transition: background 0.2s ease, color 0.2s ease;
+	}
+
+	.back-link:hover {
+		background: var(--gray-700);
+		color: var(--gray-0);
+	}
+</style>

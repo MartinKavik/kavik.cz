@@ -5,9 +5,6 @@ sortOrder: 12
 tags: ["rust", "chrome-extension", "cdp", "typescript", "mcp"]
 img: "/images/ui_parser.png"
 img_alt: "UI Parser overlay visualization"
-links:
-  - name: "GitHub"
-    url: "https://github.com/BoonLang/ui_parser"
 ---
 
 UI Parser extracts visual metadata from web pages for framework-agnostic recreation. It captures element positions, styles, and layout relationships so designs can be recreated in systems like Boon without reverse-engineering logic.
