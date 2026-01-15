@@ -1,14 +1,79 @@
 ---
-import CallToAction from './CallToAction.astro';
 import Icon from './Icon.astro';
 ---
 
 <aside>
-	<h2>Interested in working together?</h2>
-	<CallToAction href="mailto:martin@kavik.cz">
-		Email martin@kavik.cz
-		<Icon icon="paper-plane-tilt" size="1.2em" />
-	</CallToAction>
+	<div class="header">
+		<h2>Interested in working together?</h2>
+		<p class="subtitle">Support open source development or discuss a project.</p>
+	</div>
+	<div class="cards">
+		<!-- Sponsor Card -->
+		<div class="card sponsor-card">
+			<div class="card-title">
+				<span class="icon-wrapper heart-icon">
+					<Icon icon="heart" size="1.4em" />
+				</span>
+				<h3>Support Open Source</h3>
+			</div>
+			<p>Help fund Boon, MoonZoon, and future tools.</p>
+
+			<div class="benefits">
+				<span class="benefit">Sponsor-only repos</span>
+				<span class="benefit">Vote on roadmap</span>
+				<span class="benefit">Priority support</span>
+			</div>
+
+			<details class="tiers">
+				<summary>View tiers</summary>
+				<div class="tier">
+					<strong>Hero</strong> — $8/month
+					<span class="tier-desc">Access to sponsorware, discussions, email support</span>
+				</div>
+				<div class="tier">
+					<strong>Super Hero</strong> — $24/month
+					<span class="tier-desc">All Hero perks + priority support, premium projects</span>
+				</div>
+			</details>
+
+			<div class="social-proof">
+				<span>Join 1 active sponsor · 22 past supporters</span>
+			</div>
+
+			<a href="https://github.com/sponsors/MartinKavik" target="_blank" rel="noopener" class="cta-button sponsor-button">
+				<Icon icon="heart" size="1.1em" />
+				Sponsor on GitHub
+			</a>
+		</div>
+
+		<!-- Contract Card -->
+		<div class="card contract-card">
+			<div class="card-title">
+				<span class="icon-wrapper plane-icon">
+					<Icon icon="paper-plane-tilt" size="1.4em" />
+				</span>
+				<h3>Contract Work</h3>
+			</div>
+			<p>Available for Rust, WebAssembly & product projects.</p>
+
+			<div class="benefits">
+				<span class="benefit">Architecture</span>
+				<span class="benefit">Full-stack Rust</span>
+				<span class="benefit">WebAssembly</span>
+			</div>
+
+			<div class="contract-details">
+				<span class="detail">~$100/hour · 80h/month</span>
+				<span class="detail">Remote · Flexible · Long-term preferred</span>
+			</div>
+
+			<a href="mailto:martin@kavik.cz?subject=Contract%20Work%20Inquiry" class="cta-button contract-button">
+				<Icon icon="paper-plane-tilt" size="1.1em" />
+				Email to discuss
+			</a>
+		</div>
+
+	</div>
 </aside>
 
 <style>
@@ -24,23 +89,293 @@ import Icon from './Icon.astro';
 		box-shadow: var(--shadow-sm);
 	}
 
-	h2 {
-		font-size: var(--text-xl);
+	.header {
 		text-align: center;
-		max-width: 15ch;
 	}
 
+	h2 {
+		font-size: var(--text-xl);
+		margin: 0;
+	}
+
+	.subtitle {
+		font-size: var(--text-md);
+		color: var(--gray-300);
+		margin: 0.75rem 0 0;
+	}
+
+	.cards {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		width: 100%;
+		max-width: 80rem;
+	}
+
+	/* Base card styles */
+	.card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 1.5rem;
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		transition: box-shadow var(--theme-transition), border-color var(--theme-transition);
+	}
+
+	/* Rainbow border on hover */
+	.card::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: 1rem;
+		padding: 2px;
+		background: linear-gradient(
+			135deg,
+			#e63946 0%,
+			#f4a261 14%,
+			#e9c46a 28%,
+			#2a9d8f 42%,
+			#00b4d8 56%,
+			#3a86ff 70%,
+			#7209b7 84%,
+			#f72585 100%
+		);
+		background-size: 200% 200%;
+		-webkit-mask:
+			linear-gradient(#fff 0 0) content-box,
+			linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
+		mask:
+			linear-gradient(#fff 0 0) content-box,
+			linear-gradient(#fff 0 0);
+		mask-composite: exclude;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+		pointer-events: none;
+	}
+
+	.card:hover::before {
+		opacity: 1;
+		animation: rainbow-shift 4s linear infinite;
+	}
+
+	@keyframes rainbow-shift {
+		0% { background-position: 0% 0%; }
+		100% { background-position: 200% 200%; }
+	}
+
+	.card:hover {
+		box-shadow: var(--shadow-md);
+	}
+
+	/* Card color tints */
+	.sponsor-card {
+		background: linear-gradient(135deg, rgba(247, 37, 133, 0.05), rgba(114, 9, 183, 0.05));
+	}
+
+	.contract-card {
+		background: linear-gradient(135deg, rgba(58, 134, 255, 0.05), rgba(0, 180, 216, 0.05));
+	}
+
+	/* Card title with icon */
+	.card-title {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		color: var(--gray-0);
+	}
+
+	.icon-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: transform 0.3s ease;
+	}
+
+	/* Icon animations on card hover */
+	.card:hover .heart-icon {
+		animation: pulse 1s ease infinite;
+	}
+
+	.card:hover .plane-icon {
+		animation: fly 0.6s ease;
+	}
+
+	@keyframes pulse {
+		0%, 100% { transform: scale(1); }
+		50% { transform: scale(1.2); }
+	}
+
+	@keyframes fly {
+		0% { transform: translate(0, 0) rotate(0deg); }
+		50% { transform: translate(3px, -3px) rotate(-5deg); }
+		100% { transform: translate(0, 0) rotate(0deg); }
+	}
+
+	.card h3 {
+		font-size: var(--text-lg);
+		margin: 0;
+	}
+
+	.card > p {
+		font-size: var(--text-md);
+		color: var(--gray-300);
+		margin: 0;
+	}
+
+	/* Benefits pills */
+	.benefits {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.benefit {
+		font-size: var(--text-sm);
+		padding: 0.25rem 0.75rem;
+		background: var(--gray-800);
+		border-radius: 2rem;
+		color: var(--gray-200);
+	}
+
+	/* Tiers expandable */
+	.tiers {
+		margin-top: 0.5rem;
+	}
+
+	.tiers summary {
+		cursor: pointer;
+		color: var(--gray-200);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		padding: 0.5rem 0;
+	}
+
+	.tiers summary:hover {
+		color: var(--accent-regular);
+	}
+
+	.tiers[open] summary {
+		color: var(--accent-regular);
+	}
+
+	.tier {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 0.75rem;
+		margin-top: 0.5rem;
+		background: var(--gray-900);
+		border-radius: 0.5rem;
+	}
+
+	.tier strong {
+		color: var(--gray-0);
+	}
+
+	.tier-desc {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+	}
+
+	/* Social proof */
+	.social-proof {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		font-style: italic;
+	}
+
+	/* Contract details */
+	.contract-details {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.detail {
+		font-size: var(--text-sm);
+		color: var(--accent-regular);
+		font-weight: 500;
+	}
+
+	.detail:last-child {
+		color: var(--gray-400);
+		font-weight: 400;
+	}
+
+	/* CTA Buttons */
+	.cta-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		padding: 0.875rem 1.5rem;
+		font-size: var(--text-md);
+		font-weight: 600;
+		text-decoration: none;
+		border: none;
+		border-radius: 0.5rem;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		margin-top: auto;
+	}
+
+	.sponsor-button {
+		background: linear-gradient(135deg, #f72585, #7209b7);
+		color: white;
+	}
+
+	.sponsor-button:hover {
+		background: linear-gradient(135deg, #ff3d9a, #8b0fd0);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(247, 37, 133, 0.3);
+	}
+
+	.contract-button {
+		background: linear-gradient(135deg, #3a86ff, #00b4d8);
+		color: white;
+	}
+
+	.contract-button:hover {
+		background: linear-gradient(135deg, #5a9cff, #00c8ef);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(58, 134, 255, 0.3);
+	}
+
+	/* Responsive */
 	@media (min-width: 50em) {
 		aside {
 			padding: 7.5rem;
-			flex-direction: row;
-			flex-wrap: wrap;
-			justify-content: space-between;
 		}
 
 		h2 {
 			font-size: var(--text-3xl);
-			text-align: left;
+		}
+
+		.subtitle {
+			font-size: var(--text-lg);
+		}
+
+		.cards {
+			flex-direction: row;
+			align-items: stretch;
+		}
+
+		.card {
+			flex: 1;
+			padding: 2rem;
+		}
+
+		/* Make sponsor card slightly larger for emphasis */
+		.sponsor-card {
+			flex: 1.1;
+		}
+
+		.card h3 {
+			font-size: var(--text-xl);
 		}
 	}
 </style>
