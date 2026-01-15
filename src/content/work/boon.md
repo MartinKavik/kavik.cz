@@ -20,4 +20,16 @@ Statically typed with a Factorio-inspired visual debugger.
 
 Currently powered by a Rust interpreter with a custom lock-free actor-based engine. Exploring Differential Dataflow as an alternative — engines switchable in the Playground.
 
+<details>
+<summary>Related work</summary>
+
+1. **MoonZoon** — powers Boon Playground and the HTML renderer; its signals and styling influenced Boon's design
+2. **UI Parser** — extracts UI metadata from web pages for UI recreation and visual testing in Boon
+3. **RayBox** — 3D SDF renderer that will render Boon UIs with real depth and lighting
+4. **BoonComputer** — RISC CPU on FPGA proving Boon describes hardware as naturally as software
+
+</details>
+
+<br>
+
 ![Boon interval example](/images/boon_interval_small.png)
