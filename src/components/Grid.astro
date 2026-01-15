@@ -1,12 +1,12 @@
 ---
 interface Props {
-	variant?: 'offset' | 'small';
+	variant?: 'offset' | 'offset-large' | 'small';
 }
 
 const { variant } = Astro.props;
 ---
 
-<ul class:list={['grid', { offset: variant === 'offset', small: variant === 'small' }]}>
+<ul class:list={['grid', { offset: variant === 'offset', 'offset-large': variant === 'offset-large', small: variant === 'small' }]}>
 	<slot />
 </ul>
 
@@ -36,13 +36,29 @@ const { variant } = Astro.props;
 
 		.grid.offset {
 			gap: 2rem 2rem;
-			row-gap: 14rem;
-			--row-offset: 30rem;
+			row-gap: 5rem;
+			--row-offset: 8rem;
 			padding-bottom: var(--row-offset);
 		}
 
 		/* Shift second item in each row down to create zigzag */
 		.grid.offset > :global(:nth-child(even)) {
+			transform: translateY(var(--row-offset));
+		}
+
+		.grid.offset-large {
+			gap: 2rem 2rem;
+			row-gap: 14rem;
+			--row-offset: 30rem;
+			padding-bottom: 0;
+		}
+
+		/* Only add padding when last item is offset (even position) */
+		.grid.offset-large:has(> :last-child:nth-child(even)) {
+			padding-bottom: var(--row-offset);
+		}
+
+		.grid.offset-large > :global(:nth-child(even)) {
 			transform: translateY(var(--row-offset));
 		}
 

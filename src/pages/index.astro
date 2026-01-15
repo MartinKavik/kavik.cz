@@ -75,7 +75,7 @@ const posts = (await getCollection('posts'))
 				</header>
 
 				<div class="gallery">
-					<Grid variant="offset">
+					<Grid variant="offset-large">
 						{
 							projects.map((project) => (
 								<li>
@@ -230,6 +230,7 @@ const posts = (await getCollection('posts'))
 		max-width: 50ch;
 		font-size: var(--text-md);
 		color: var(--gray-300);
+		margin-bottom: 2rem;
 	}
 
 	.section-header h3 {
