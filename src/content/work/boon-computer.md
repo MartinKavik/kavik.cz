@@ -18,6 +18,6 @@ Proving Boon can describe hardware as naturally as software — the same languag
 
 **Ultimate goal:** run Boon in Wasm executed on a CPU designed in Boon.
 
-Along the way: Boon Visual Debugger and a Boon plugin for NovyWave.
+Future possibility: MRAM integration — instant resume, zero data loss, minimal standby power.
 
 ![Raspberry Pi and iCESugar FPGA](/images/raspberry_pi_and_icesugar.jpg)
