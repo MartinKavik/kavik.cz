@@ -1,39 +1,214 @@
 ---
 import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Subscribed" description="Thanks for subscribing to the newsletter">
+<BaseLayout title="Subscribed | Martin Kavík" description="Thanks for subscribing to the newsletter">
 	<div class="stack gap-20">
-	<div class="wrapper">
-		<Hero title="You're in!" tagline="Thanks for subscribing." />
-		<a href="/" class="back-link">Home</a>
-	</div>
-	<ContactCTA />
+		<div class="wrapper">
+			<div class="deco-bricks" aria-hidden="true">
+				<div class="deco-brick b1"></div>
+				<div class="deco-brick b2"></div>
+				<div class="deco-brick b3"></div>
+			</div>
+
+			<div class="confetti" aria-hidden="true">
+				{Array.from({ length: 30 }).map((_, i) => (
+					<div class="confetti-piece" style={`--i: ${i}`} />
+				))}
+			</div>
+
+			<div class="title-row">
+				<Icon icon="envelope-simple" size="4rem" />
+				<Hero title="Subscribed!" tagline="A boon for your inbox." />
+			</div>
+
+			<p class="back-text">
+				<Icon icon="arrow-left" size="1.2em" />
+				Go back or <a href="/" class="back-link">Home</a>
+			</p>
+		</div>
+		<ContactCTA />
 	</div>
 </BaseLayout>
 
 <style>
 	.wrapper {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 2rem;
 		padding: 4rem 1.5rem;
+		overflow: hidden;
+	}
+
+	/* Decorative bricks */
+	.deco-bricks {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	.deco-brick {
+		position: absolute;
+		opacity: 0.15;
+	}
+
+	.b1 {
+		background: #2a9d8f;
+		width: 60px;
+		height: 45px;
+		left: 5%;
+		top: 1rem;
+	}
+
+	.b2 {
+		background: #f72585;
+		width: 50px;
+		height: 60px;
+		right: 8%;
+		top: 3rem;
+	}
+
+	.b3 {
+		background: #3a86ff;
+		width: 45px;
+		height: 40px;
+		left: 15%;
+		top: 12rem;
+	}
+
+	@media (min-width: 50em) {
+		.b1 {
+			width: 90px;
+			height: 65px;
+		}
+
+		.b2 {
+			width: 75px;
+			height: 85px;
+		}
+
+		.b3 {
+			width: 65px;
+			height: 55px;
+		}
+	}
+
+	/* Confetti */
+	.confetti {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 100%;
+		pointer-events: none;
+		overflow: hidden;
+	}
+
+	.confetti-piece {
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		top: -20px;
+		left: calc(var(--i) * 3.33%);
+		background: hsl(calc(var(--i) * 12), 80%, 60%);
+		opacity: 0;
+		animation: confetti-fall 3s ease-out forwards;
+		animation-delay: calc(var(--i) * 0.05s);
+	}
+
+	.confetti-piece:nth-child(odd) {
+		border-radius: 50%;
+	}
+
+	.confetti-piece:nth-child(3n) {
+		width: 8px;
+		height: 14px;
+	}
+
+	@keyframes confetti-fall {
+		0% {
+			opacity: 1;
+			transform: translateY(0) rotate(0deg);
+		}
+		100% {
+			opacity: 0;
+			transform: translateY(400px) rotate(720deg);
+		}
+	}
+
+	/* Title row with envelope */
+	.title-row {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		color: var(--accent-regular);
+	}
+
+	.title-row :global(svg) {
+		animation: bounce 0.6s ease-out;
+	}
+
+	@keyframes bounce {
+		0%, 100% { transform: translateY(0); }
+		50% { transform: translateY(-10px); }
+	}
+
+	/* Back text and link */
+	.back-text {
+		color: var(--gray-400);
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
 
 	.back-link {
-		color: var(--gray-300);
+		position: relative;
+		color: var(--gray-0);
 		text-decoration: none;
-		padding: 0.75rem 1.5rem;
+		padding: 0.5rem 1rem;
 		background: var(--gray-800);
 		border-radius: 0.375rem;
-		transition: background 0.2s ease, color 0.2s ease;
+		transition: background 0.2s ease;
 	}
 
-	.back-link:hover {
+	.back-link::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: 0.375rem;
+		padding: 1.5px;
+		background: var(--rainbow-gradient);
+		background-size: 200% 100%;
+		background-position: 60% 0;
+		-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+		pointer-events: none;
+		opacity: 0.6;
+		animation: rainbow-shift 8s linear infinite;
+	}
+
+	.back-link:hover::before,
+	.back-link:focus::before {
+		opacity: 1;
+		animation: rainbow-shift 4s linear infinite;
+	}
+
+	.back-link:hover,
+	.back-link:focus {
 		background: var(--gray-700);
-		color: var(--gray-0);
+	}
+
+	@keyframes rainbow-shift {
+		0% { background-position: 0% 0; }
+		100% { background-position: 200% 0; }
 	}
 </style>
