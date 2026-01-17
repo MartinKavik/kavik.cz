@@ -53,17 +53,28 @@ import Pill from './Pill.astro';
 		<!-- Contract Card -->
 		<article class="contract-card">
 			<div class="contract-content">
-				<h3 class="title">Contract Work</h3>
+				<h3 class="title">Client Benefits</h3>
 				<div class="tags">
-					<Pill>Product Prototypes</Pill>
-					<Pill>Full-stack Rust</Pill>
-					<Pill>Tools & Libraries</Pill>
+					<Pill>Solo studio</Pill>
+					<Pill>Product-first</Pill>
+					<Pill>Delegate & relax</Pill>
 				</div>
-				<p class="description">Rust specialist. Product thinker. Polyglot when needed.</p>
-				<div class="contract-body">
-					<p>~$100/hour · 80h/month</p>
-					<p>Remote, long-term contracts. Async communication.</p>
+				<div class="tiers-grid single-tier">
+					<div class="tier tier-featured">
+						<div class="tier-header">
+							<strong><span class="tier-star">★★★★★</span> General</strong>
+							<span class="tier-price">$100/h <span class="divider"></span>€85</span>
+						</div>
+						<ul class="tier-perks">
+							<li>Apps, libraries, experiments, debug</li>
+							<li>Specs, demos, docs</li>
+							<li>Up to 80h/month</li>
+							<li>Long-term contracts</li>
+							<li>Any timezone (async communication)</li>
+						</ul>
+					</div>
 				</div>
+				<p class="social-proof">I've helped 10+ great companies</p>
 				<a href="mailto:martin@kavik.cz?subject=Contract%20Work%20Inquiry" class="cta-button contract-button">
 					<Icon icon="paper-plane-tilt" size="1.1em" />
 					Email to discuss
@@ -348,6 +359,10 @@ import Pill from './Pill.astro';
 		gap: 0.75rem;
 	}
 
+	.tiers-grid.single-tier {
+		grid-template-columns: 1fr;
+	}
+
 	.tier {
 		display: flex;
 		flex-direction: column;
@@ -393,6 +408,15 @@ import Pill from './Pill.astro';
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
+	}
+
+	.tier-price .divider {
+		display: inline-block;
+		width: 0.35em;
+		height: 0.35em;
+		margin: 0 0.3em;
+		background: linear-gradient(135deg, #f72585, #7209b7);
+		vertical-align: middle;
 	}
 
 	.tier-perks {
