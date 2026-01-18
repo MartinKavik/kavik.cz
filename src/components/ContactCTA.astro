@@ -4,7 +4,12 @@ import Pill from './Pill.astro';
 ---
 
 <aside>
-	<header class="section-header">
+	<!-- Decorative bricks for Let's Build Something -->
+	<div class="deco-bricks section-bricks-contact" aria-hidden="true">
+		<div class="deco-brick b8"></div>
+		<div class="deco-brick b9"></div>
+	</div>
+	<header class="section-header stack gap-2 lg:gap-4">
 		<h3>Let's Build Something</h3>
 		<p>Sponsor or hire me.</p>
 	</header>
@@ -82,6 +87,7 @@ import Pill from './Pill.astro';
 
 <style>
 	aside {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -93,14 +99,59 @@ import Pill from './Pill.astro';
 		box-shadow: var(--shadow-sm);
 	}
 
+	/* Decorative bricks */
+	.deco-bricks {
+		position: absolute;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.deco-brick {
+		position: absolute;
+		opacity: 0.18;
+	}
+
+	.section-bricks-contact {
+		top: 1rem;
+		left: 0;
+		right: 0;
+		height: 150px;
+	}
+
+	.section-bricks-contact .b8 {
+		background: #f4a261;
+		width: 65px;
+		height: 50px;
+		left: 4%;
+		top: 15px;
+	}
+
+	.section-bricks-contact .b9 {
+		background: #3a86ff;
+		width: 50px;
+		height: 60px;
+		right: 6%;
+		top: 35px;
+	}
+
+	@media (min-width: 50em) {
+		.section-bricks-contact .b8 {
+			width: 95px;
+			height: 70px;
+		}
+
+		.section-bricks-contact .b9 {
+			width: 75px;
+			height: 85px;
+		}
+	}
+
 	.section-header {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
 		text-align: center;
 		max-width: 50ch;
 		font-size: var(--text-md);
 		color: var(--gray-300);
+		margin-bottom: 1rem;
 	}
 
 	.section-header h3 {
@@ -116,7 +167,7 @@ import Pill from './Pill.astro';
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 2.5rem;
+		gap: 6rem;
 		width: 100%;
 		max-width: 80rem;
 	}
@@ -563,8 +614,8 @@ import Pill from './Pill.astro';
 		}
 
 		.section-header {
-			gap: 1rem;
 			font-size: var(--text-lg);
+			margin-bottom: 2rem;
 		}
 
 		.section-header h3 {

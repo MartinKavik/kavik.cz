@@ -2,19 +2,15 @@
 title: "Prompter"
 description: "Web UI for Claude Code sessions"
 sortOrder: 10
-tags: ["rust", "cli", "ai", "pty", "axum"]
+tags: ["rust", "cli", "ai", "pty", "axum", "htmx"]
 img: "/images/prompter.png"
 img_alt: "Prompter web interface"
 ---
 
 Prompter is a Rust CLI that wraps Claude Code in a pseudo-terminal while exposing a web dashboard for monitoring and interacting with AI sessions.
 
-It captures conversation history and makes it accessible via a real-time web interface, allowing both terminal and browser-based interaction with Claude simultaneously.
+Why I built it:
 
-Key capabilities:
-
-- Full PTY passthrough for transparent Claude Code usage
-- Automatic session detection and transcript monitoring
-- Web UI showing recent prompts and answers with live updates via SSE
-- Dual input from terminal and web interface
-- Proper signal forwarding for clean process management
+- **Mobile AI access**: Tunnel the web interface to your phone and interact with your CLI AI agent from anywhere - on a tram, in a waiting room, or away from your desk
+- **Agent supervisor**: Automatically nudges idle AI agents and protects critical files via content hashing - preventing agents from "cheating" by modifying deterministic tests meant to verify their own work
+- **Audit trail**: Stores complete prompt history for compliance, auditing, and bureaucratic requirements
