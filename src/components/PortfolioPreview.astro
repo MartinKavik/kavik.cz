@@ -215,7 +215,11 @@ const { Content } = await render(project);
 		margin-top: 1rem;
 	}
 
-	.body :global(ul),
+	.body :global(ul) {
+		margin: 0.75rem 0;
+		padding-left: 0.75rem;
+	}
+
 	.body :global(ol) {
 		margin: 0.75rem 0;
 		padding-left: 1.5rem;
@@ -234,6 +238,19 @@ const { Content } = await render(project);
 		content: counter(item) ". ";
 		color: var(--accent-regular);
 		font-weight: 600;
+	}
+
+	.body :global(ul) {
+		list-style: none;
+	}
+
+	.body :global(ul li::before) {
+		content: "■";
+		color: var(--accent-regular);
+		font-size: 0.6em;
+		margin-right: 0.75rem;
+		display: inline-block;
+		transform: translateY(-0.15em);
 	}
 
 	.body :global(li) {
