@@ -59,19 +59,20 @@ import Pill from './Pill.astro';
 					<Pill>Product-first</Pill>
 					<Pill>Delegate & relax</Pill>
 				</div>
-				<div class="tiers-grid single-tier">
-					<div class="tier tier-featured">
-						<div class="tier-header">
-							<strong><span class="tier-star">★★★★★</span> General</strong>
-							<span class="tier-price">$100/h <span class="divider"></span>€85</span>
+				<div class="tier tier-featured tier-general">
+					<div class="tier-header">
+						<strong><span class="tier-star">★★★★★</span> General</strong>
+						<span class="tier-price">$100/h <span class="divider"></span>€85</span>
+					</div>
+					<div class="tier-inner-grid">
+						<div class="tier-inner tier-inner-build">
+							<strong>🛠 I Build</strong>
+							<span>Apps <span class="divider"></span> Tools <span class="divider"></span> Libraries <span class="divider"></span> Experiments <span class="divider"></span> Docs <span class="divider"></span> Demos</span>
 						</div>
-						<ul class="tier-perks">
-							<li>Apps, libraries, experiments, debug</li>
-							<li>Specs, demos, docs</li>
-							<li>Up to 80h/month</li>
-							<li>Long-term contracts</li>
-							<li>Any timezone (async communication)</li>
-						</ul>
+						<div class="tier-inner tier-inner-work">
+							<strong>⚡ I Work</strong>
+							<span>Async-first <span class="divider"></span> Any timezone <span class="divider"></span> Long-term <span class="divider"></span> 80h/month</span>
+						</div>
 					</div>
 				</div>
 				<p class="social-proof">I've helped 10+ great companies</p>
@@ -359,8 +360,38 @@ import Pill from './Pill.astro';
 		gap: 0.75rem;
 	}
 
-	.tiers-grid.single-tier {
-		grid-template-columns: 1fr;
+	
+	.tier-inner-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.75rem;
+	}
+
+	.tier-inner {
+		padding: 0.75rem;
+		border-radius: 0.375rem;
+		background: var(--gray-900);
+	}
+
+	.tier-inner strong {
+		display: block;
+		color: var(--gray-0);
+		font-size: var(--text-sm);
+		margin-bottom: 0.5rem;
+	}
+
+	.tier-inner span {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		line-height: 1.5;
+	}
+
+	.tier-inner-build {
+		border-left: 3px solid #3a86ff;
+	}
+
+	.tier-inner-work {
+		border-left: 3px solid #7209b7;
 	}
 
 	.tier {
@@ -371,6 +402,10 @@ import Pill from './Pill.astro';
 		background: var(--gray-900);
 		border-radius: 0.5rem;
 		border: 1px solid var(--gray-800);
+	}
+
+	.tier-general {
+		gap: 0.75rem;
 	}
 
 	.tier-featured {
@@ -410,7 +445,7 @@ import Pill from './Pill.astro';
 		background-clip: text;
 	}
 
-	.tier-price .divider {
+	.divider {
 		display: inline-block;
 		width: 0.35em;
 		height: 0.35em;
