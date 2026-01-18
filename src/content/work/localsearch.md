@@ -10,7 +10,10 @@ links:
     url: "https://github.com/Stremio/local-search"
 ---
 
-LocalSearch delivers fast, client-side full-text search written in Rust and compiled to WebAssembly.
-It keeps indices in the browser, which means no round-trips for autocomplete or fuzzy lookups.
+Full-text search library in Rust, developed for browser Wasm. For super fast searching and autocomplete.
 
-I use it to keep personal projects snappy without adding another backend dependency, and to experiment with how much UX polish we can get when search feels instant.
+Able to index and search through 20 000 film titles in a few milliseconds.
+
+I was hired to write this library to mitigate problem with slow or DDOSed backend servers caused by too many users and search queries.
+
+It's also integrated in Persons.pro prototype for better decentralization and saving costs for full-fledged backend servers.
