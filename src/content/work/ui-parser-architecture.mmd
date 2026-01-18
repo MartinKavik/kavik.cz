@@ -1,0 +1,24 @@
+flowchart BT
+    subgraph chromium[Chromium]
+        T[DevTools Tab]
+        A["Extension (TypeScript)"]
+        T --- A
+        A <-->|CDP| B[Browser Internals]
+    end
+    S["Server (Rust)"]
+    A <-->|WebSocket| S
+    C[CLI] <-->|WebSocket| S
+    F[You] <--> C
+    G[Tests] <--> C
+    H[AI Agent] <-->|MCP| S
+    F <--> chromium
+
+    classDef container fill:#1c0056,stroke:#7611a6,color:#c561f6,rx:10,ry:10
+    classDef component fill:#283044,stroke:#7611a6,color:#c3cadb,rx:5,ry:5
+    classDef internal fill:#141925,stroke:#7611a6,color:#c3cadb,rx:5,ry:5
+    classDef user fill:#7611a6,stroke:#c561f6,color:#fff,rx:5,ry:5
+
+    class chromium,S container
+    class T,A,C component
+    class B internal
+    class F,G,H user
