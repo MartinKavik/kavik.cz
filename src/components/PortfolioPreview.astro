@@ -15,6 +15,14 @@ const { Content } = await render(project);
 <article class="card">
 	<div class="image-wrapper">
 		<img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" />
+		<button class="expand-btn" aria-label="Enlarge image">
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<polyline points="15 3 21 3 21 9"></polyline>
+				<polyline points="9 21 3 21 3 15"></polyline>
+				<line x1="21" y1="3" x2="14" y2="10"></line>
+				<line x1="3" y1="21" x2="10" y2="14"></line>
+			</svg>
+		</button>
 	</div>
 	<div class="content">
 		<div class="title-row">
@@ -120,6 +128,39 @@ const { Content } = await render(project);
 		object-fit: contain;
 		display: block;
 		border-radius: 0.5rem;
+		cursor: -webkit-zoom-in;
+		cursor: zoom-in;
+	}
+
+	.expand-btn {
+		position: absolute;
+		top: 1.5rem;
+		right: 1.5rem;
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--gray-900);
+		border: 1px solid var(--gray-700);
+		border-radius: 0.5rem;
+		color: var(--gray-300);
+		cursor: pointer;
+		opacity: 0.7;
+		transition: opacity 0.2s, background 0.2s, color 0.2s;
+	}
+
+	.expand-btn:hover {
+		opacity: 1;
+		background: var(--gray-800);
+		color: var(--gray-0);
+	}
+
+	@media (min-width: 50em) {
+		.expand-btn {
+			top: 2rem;
+			right: 2rem;
+		}
 	}
 
 	.content {
@@ -259,6 +300,8 @@ const { Content } = await render(project);
 
 	.body :global(img) {
 		border-radius: 0.5rem;
+		cursor: -webkit-zoom-in;
+		cursor: zoom-in;
 	}
 
 	.body :global(details) {
@@ -312,3 +355,4 @@ const { Content } = await render(project);
 		}
 	}
 </style>
+

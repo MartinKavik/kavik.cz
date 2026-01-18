@@ -37,8 +37,141 @@ const { title, description } = Astro.props;
 		</div>
 
 		<script>
-			// Add “loaded” class once the document has completely loaded.
+			// Add "loaded" class once the document has completely loaded.
 			addEventListener('load', () => document.documentElement.classList.add('loaded'));
+		</script>
+
+		<script>
+			// Lightbox for portfolio images
+			const expandIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<polyline points="15 3 21 3 21 9"></polyline>
+				<polyline points="9 21 3 21 3 15"></polyline>
+				<line x1="21" y1="3" x2="14" y2="10"></line>
+				<line x1="3" y1="21" x2="10" y2="14"></line>
+			</svg>`;
+
+			// Create lightbox overlay
+			const lightbox = document.createElement('div');
+			lightbox.id = 'lightbox';
+			lightbox.innerHTML = `
+				<button class="lightbox-close" aria-label="Close">&times;</button>
+				<img src="" alt="" />
+			`;
+			lightbox.style.cssText = `
+				position: fixed;
+				inset: 0;
+				z-index: 9999;
+				background: rgba(0, 0, 0, 0.9);
+				display: none;
+				align-items: center;
+				justify-content: center;
+				padding: 2rem;
+			`;
+			lightbox.style.cursor = '-webkit-zoom-out';
+			lightbox.style.cursor = 'zoom-out';
+
+			const closeBtn = lightbox.querySelector('.lightbox-close') as HTMLButtonElement;
+			closeBtn.style.cssText = `
+				position: absolute;
+				top: 1rem;
+				right: 1rem;
+				width: 44px;
+				height: 44px;
+				background: transparent;
+				border: none;
+				color: white;
+				font-size: 2rem;
+				cursor: pointer;
+				opacity: 0.7;
+				transition: opacity 0.2s;
+			`;
+			closeBtn.addEventListener('mouseenter', () => closeBtn.style.opacity = '1');
+			closeBtn.addEventListener('mouseleave', () => closeBtn.style.opacity = '0.7');
+
+			const lbImg = lightbox.querySelector('img') as HTMLImageElement;
+			lbImg.style.cssText = `
+				max-width: 100%;
+				max-height: 100%;
+				object-fit: contain;
+			`;
+			lbImg.style.cursor = '-webkit-zoom-out';
+			lbImg.style.cursor = 'zoom-out';
+
+			const closeLightbox = () => {
+				lightbox.style.display = 'none';
+				document.body.style.overflow = '';
+			};
+
+			lightbox.addEventListener('click', closeLightbox);
+
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+					closeLightbox();
+				}
+			});
+
+			document.body.appendChild(lightbox);
+
+			function openLightbox(imgSrc: string, imgAlt: string) {
+				lbImg.src = imgSrc;
+				lbImg.alt = imgAlt;
+				lightbox.style.display = 'flex';
+				document.body.style.overflow = 'hidden';
+			}
+
+			// Attach handlers to header images and their expand buttons
+			document.querySelectorAll('.image-wrapper').forEach((wrapper) => {
+				const img = wrapper.querySelector('img');
+				const btn = wrapper.querySelector('.expand-btn');
+
+				const open = (e: Event) => {
+					e.stopPropagation();
+					if (img) openLightbox((img as HTMLImageElement).src, (img as HTMLImageElement).alt);
+				};
+
+				img?.addEventListener('click', open);
+				btn?.addEventListener('click', open);
+			});
+
+			// Add expand buttons to body images
+			document.querySelectorAll('.body img').forEach((img) => {
+				const wrapper = document.createElement('span');
+				wrapper.className = 'body-img-wrapper';
+				wrapper.style.cssText = 'position: relative; display: inline-block;';
+
+				const btn = document.createElement('button');
+				btn.className = 'expand-btn body-expand-btn';
+				btn.setAttribute('aria-label', 'Enlarge image');
+				btn.innerHTML = expandIcon;
+				btn.style.cssText = `
+					position: absolute;
+					top: 0;
+					right: 0;
+					width: 32px;
+					height: 32px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					background: var(--gray-900);
+					border: 1px solid var(--gray-700);
+					border-radius: 0.5rem;
+					color: var(--gray-300);
+					cursor: pointer;
+					opacity: 0.7;
+					transition: opacity 0.2s, background 0.2s, color 0.2s;
+				`;
+
+				btn.addEventListener('mouseenter', () => { btn.style.opacity = '1'; btn.style.background = 'var(--gray-800)'; btn.style.color = 'var(--gray-0)'; });
+				btn.addEventListener('mouseleave', () => { btn.style.opacity = '0.7'; btn.style.background = 'var(--gray-900)'; btn.style.color = 'var(--gray-300)'; });
+
+				img.parentNode?.insertBefore(wrapper, img);
+				wrapper.appendChild(img);
+				wrapper.appendChild(btn);
+
+				const open = () => openLightbox((img as HTMLImageElement).src, (img as HTMLImageElement).alt);
+				img.addEventListener('click', open);
+				btn.addEventListener('click', open);
+			});
 		</script>
 
 		<style>
