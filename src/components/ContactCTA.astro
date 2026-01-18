@@ -26,7 +26,7 @@ import Pill from './Pill.astro';
 							</div>
 							<ul class="tier-perks">
 								<li>Sponsorware access</li>
-								<li>Request & vote on projects</li>
+								<li>Shape the roadmap</li>
 								<li>Email support</li>
 							</ul>
 						</div>
@@ -64,21 +64,15 @@ import Pill from './Pill.astro';
 						<strong><span class="tier-star">★★★★★</span> General</strong>
 						<span class="tier-price">$100/h <span class="divider"></span>€85</span>
 					</div>
-					<div class="tier-inner-grid">
-						<div class="tier-inner tier-inner-build">
-							<strong>🛠 I Build</strong>
-							<span>Apps <span class="divider"></span> Tools <span class="divider"></span> Libraries <span class="divider"></span> Experiments <span class="divider"></span> Docs <span class="divider"></span> Demos</span>
-						</div>
-						<div class="tier-inner tier-inner-work">
-							<strong>⚡ I Work</strong>
-							<span>Async-first <span class="divider"></span> Any timezone <span class="divider"></span> Long-term <span class="divider"></span> 80h/month</span>
-						</div>
-					</div>
+					<ul class="tier-perks tier-perks-general">
+						<li><strong>I build</strong> Apps <span class="divider"></span> Tools <span class="divider"></span> Libraries <span class="divider"></span> Demos</li>
+						<li><strong>I work</strong> Async-first <span class="divider"></span> Any timezone <span class="divider"></span> Long-term <span class="divider"></span> 80h/month</li>
+					</ul>
 				</div>
 				<p class="social-proof">I've helped 10+ great companies</p>
 				<a href="mailto:martin@kavik.cz?subject=Contract%20Work%20Inquiry" class="cta-button contract-button">
 					<Icon icon="paper-plane-tilt" size="1.1em" />
-					Email to discuss
+					Email martin@kavik.cz
 				</a>
 			</div>
 		</article>
@@ -121,9 +115,22 @@ import Pill from './Pill.astro';
 	.cards {
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
+		align-items: center;
+		gap: 2.5rem;
 		width: 100%;
 		max-width: 80rem;
+	}
+
+	.sponsor-card,
+	.contract-card {
+		width: 100%;
+	}
+
+	@media (min-width: 52em) {
+		.sponsor-card,
+		.contract-card {
+			max-width: 670px;
+		}
 	}
 
 	/* Sponsor card - matches PortfolioPreview style */
@@ -356,15 +363,27 @@ import Pill from './Pill.astro';
 	/* Tiers grid */
 	.tiers-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr;
 		gap: 0.75rem;
+	}
+
+	@media (min-width: 52em) {
+		.tiers-grid {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 
 	
 	.tier-inner-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr;
 		gap: 0.75rem;
+	}
+
+	@media (min-width: 30em) {
+		.tier-inner-grid {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 
 	.tier-inner {
@@ -376,12 +395,12 @@ import Pill from './Pill.astro';
 	.tier-inner strong {
 		display: block;
 		color: var(--gray-0);
-		font-size: var(--text-sm);
+		font-size: var(--text-md);
 		margin-bottom: 0.5rem;
 	}
 
 	.tier-inner span {
-		font-size: var(--text-sm);
+		font-size: var(--text-md);
 		color: var(--gray-400);
 		line-height: 1.5;
 	}
@@ -415,9 +434,18 @@ import Pill from './Pill.astro';
 
 	.tier-header {
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 0.5rem;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.25rem;
+	}
+
+	@media (min-width: 30em) {
+		.tier-header {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			gap: 0.5rem;
+		}
 	}
 
 	.tier strong {
@@ -458,7 +486,7 @@ import Pill from './Pill.astro';
 		margin: 0;
 		padding: 0;
 		list-style: none;
-		font-size: var(--text-sm);
+		font-size: var(--text-md);
 		color: var(--gray-400);
 	}
 
@@ -471,9 +499,18 @@ import Pill from './Pill.astro';
 		color: var(--accent-regular);
 	}
 
+	.tier-perks-general li::before {
+		content: none;
+	}
+
+	.tier-perks strong {
+		color: var(--gray-0);
+		margin-right: 0.4rem;
+	}
+
 	/* Social proof */
 	.social-proof {
-		font-size: var(--text-sm);
+		font-size: var(--text-md);
 		color: var(--gray-400);
 		font-style: italic;
 		margin: 0.5rem 0 0;
@@ -534,16 +571,6 @@ import Pill from './Pill.astro';
 			font-size: var(--text-4xl);
 		}
 
-		.cards {
-			flex-direction: row;
-			align-items: stretch;
-		}
-
-		.sponsor-card,
-		.contract-card {
-			flex: 1;
-		}
-
 		.sponsor-content,
 		.contract-content {
 			padding: 2rem;
@@ -553,6 +580,23 @@ import Pill from './Pill.astro';
 		.sponsor-card .title,
 		.contract-card .title {
 			font-size: var(--text-3xl);
+		}
+	}
+
+	/* Side-by-side zigzag layout only on wide screens */
+	@media (min-width: 91em) {
+		.cards {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+			align-items: start;
+			--row-offset: 6rem;
+			padding-bottom: var(--row-offset);
+		}
+
+		/* Zigzag: offset second card down */
+		.contract-card {
+			transform: translateY(var(--row-offset));
 		}
 	}
 </style>
