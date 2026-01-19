@@ -17,6 +17,6 @@ What it captures:
 - Actually used fonts
 - Layout relationships
 
-A Chromium TypeScript extension adds a new tab to DevTools, similar to the standard Elements panel.
+A browser extension adds a new tab to DevTools, similar to the standard Elements panel.
 
 ![UI Parser architecture](/images/ui-parser-architecture.png)
