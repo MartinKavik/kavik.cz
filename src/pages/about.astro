@@ -6,26 +6,25 @@ import VideoEmbed from '../components/VideoEmbed.astro';
 import Gallery from '../components/Gallery.astro';
 
 const artworks = [
-	{ src: "/images/about/blue_eye.jpg", alt: "Portrait" },
+	{ src: "/images/about/blue_eye.jpg", alt: "Portrait", focus: "top" },
 	{ src: "/images/about/mirror_boxer.jpg", alt: "Boxer" },
 	{ src: "/images/about/puzzle_man.jpg", alt: "Puzzle man" },
 	{ src: "/images/about/rain_girl.jpg", alt: "Rain" },
 	{ src: "/images/about/running_man.jpg", alt: "Runner" },
 	{ src: "/images/about/sunset_city.jpg", alt: "Sunset city" },
-	{ src: "/images/about/dino_rainbow_combined.jpg", alt: "Rainbow dinosaur", title: "Rainbow Dino (coauthor Victoria)", focus: "right" },
+	{ src: "/images/about/dino_rainbow_combined.jpg", alt: "Rainbow dinosaur", title: "Rainbow Dino (feat. Victoria)", focus: "right" },
 ];
 ---
 
 <BaseLayout title="About | Martin Kavík" description="Toolmaker. Explorer.">
-	<div class="stack gap-20">
-		<div class="page-content">
-			<div class="deco-bricks" aria-hidden="true">
-				<div class="deco-brick b1"></div>
-				<div class="deco-brick b2"></div>
-			</div>
-
-			<main class="wrapper about">
-				<!-- Hero Section -->
+	<div class="stack gap-20 lg:gap-32">
+		<main class="wrapper about">
+			<!-- Hero Section -->
+			<div class="hero-container">
+				<div class="deco-bricks" aria-hidden="true">
+					<div class="deco-brick" style="background: #f4a261; width: 50px; height: 45px; left: 3%; top: 1rem;"></div>
+					<div class="deco-brick" style="background: #7209b7; width: 45px; height: 55px; right: 4%; top: 3rem;"></div>
+				</div>
 				<Hero
 					title="About Martin"
 					tagline="Toolmaker. Explorer."
@@ -45,136 +44,213 @@ const artworks = [
 						/>
 					</button>
 				</Hero>
+			</div>
 
-				<!-- Philosophy Section -->
-				<section class="section">
-					<h2 class="section-title">How I Work</h2>
-					<p class="section-subtitle">Every project feeds the next.</p>
-					<div class="content">
-						<p>I wanted something different, so I built it. MoonZoon exists because existing frameworks felt wrong. Boon exists because MoonZoon wasn't enough. Eventually I ran out of software to fix — so I started on hardware.</p>
-						<p>Remote work, one-on-one conversations, and flexible hours make me happy. Daily status meetings do not. I prefer depth over breadth, building over maintaining, and shipping over planning.</p>
-					</div>
-				</section>
+			<!-- How I Work Section -->
+			<section class="section">
+				<div class="deco-bricks" aria-hidden="true">
+					<div class="deco-brick" style="background: #3a86ff; width: 55px; height: 40px; left: 2%; top: 0;"></div>
+				</div>
+				<header class="section-header">
+					<h2>How I Work</h2>
+					<p>Every project feeds the next.</p>
+				</header>
+				<div class="section-content">
+					<p>I wanted something different, so I built it. MoonZoon exists because existing frameworks felt wrong. Boon exists because MoonZoon wasn't enough. Eventually I ran out of software to fix — so I started on hardware.</p>
+					<p>Remote work, one-on-one conversations, and flexible hours make me happy. Daily status meetings do not. I prefer depth over breadth, building over maintaining, and shipping over planning.</p>
+				</div>
+			</section>
 
-				<!-- The Beginning Section -->
-				<section class="section">
-					<h2 class="section-title">The Beginning</h2>
-					<div class="content">
-						<p>At thirteen, I built an antenna holder to finally get internet. Then I learned C# from a Czech school website. I faced a choice: pursue 2D/3D graphics or programming.</p>
-						<p>I chose programming — because tools let you make better things later. Now, with RayBox, I'm coming full circle to 3D graphics.</p>
+			<!-- The Beginning Section -->
+			<section class="section">
+				<div class="deco-bricks" aria-hidden="true">
+					<div class="deco-brick" style="background: #e9c46a; width: 60px; height: 50px; right: 3%; top: 0.5rem;"></div>
+				</div>
+				<header class="section-header">
+					<h2>The Beginning</h2>
+					<p>Coming full circle.</p>
+				</header>
+				<div class="section-content">
+					<p>At thirteen, I built an antenna holder to finally get internet. Then I learned C# from a Czech school website. I faced a choice: pursue 3D graphics or programming.</p>
+					<p>I chose programming — because tools let you make better things later. Now, with RayBox, I'm coming full circle to 3D graphics.</p>
+				</div>
+				<div class="video-grid">
+					<div class="video-item">
+						<VideoEmbed url="https://youtu.be/FAJVs5GcArQ" title="3D Kitchen Render (early work)" />
+						<p class="video-caption">3D Kitchen, 2008</p>
 					</div>
-					<div class="video-grid">
-						<div class="video-item">
-							<VideoEmbed url="https://youtu.be/FAJVs5GcArQ" title="3D Kitchen Render (early work)" />
-							<p class="video-caption">3D rendering experiments</p>
-						</div>
-						<div class="video-item">
-							<VideoEmbed url="https://youtu.be/Ics_QWPZATk" title="Case Modding (2009)" />
-							<p class="video-caption">Case modding, 2009</p>
-						</div>
+					<div class="video-item">
+						<VideoEmbed url="https://youtu.be/Ics_QWPZATk" title="Case Modding (2009)" />
+						<p class="video-caption">Case modding, 2009</p>
 					</div>
-				</section>
+				</div>
+			</section>
 
-				<!-- Creative Gallery Section -->
-				<section class="section gallery-section">
-					<h2 class="section-title">Creative Work</h2>
-					<div class="content">
-						<p>Pencil drawings, digital art, and music. These aren't side projects — they're the other half of how I think.</p>
-					</div>
-					<Gallery items={artworks} />
+			<!-- Creative Work Section -->
+			<section class="section section-wide">
+				<div class="deco-bricks" aria-hidden="true">
+					<div class="deco-brick" style="background: #e63946; width: 50px; height: 45px; left: 5%; top: 0;"></div>
+					<div class="deco-brick" style="background: #00b4d8; width: 40px; height: 55px; right: 6%; top: 1rem;"></div>
+				</div>
+				<header class="section-header">
+					<h2>Drawings</h2>
+					<p>Frustration driven, sustained by curiosity.</p>
+				</header>
+				<Gallery items={artworks} />
+			</section>
 
-					<div class="music-section">
-						<div class="music-bg" aria-hidden="true"></div>
-						<h3>The Emptiness</h3>
-						<p>A guitar piece I composed. My hands are too small to play it well, but it still makes me smile.</p>
-						<VideoEmbed url="https://youtu.be/3mNv0QXfPhE" title="The Emptiness - Guitar Composition by Martin Kavík" />
+			<!-- Music Section -->
+			<section class="section">
+				<div class="deco-bricks" aria-hidden="true">
+					<div class="deco-brick" style="background: #2a9d8f; width: 45px; height: 50px; left: 1%; top: 0.5rem;"></div>
+				</div>
+				<header class="section-header">
+					<h2>The Emptiness</h2>
+					<p>A guitar composition.</p>
+				</header>
+				<div class="music-container">
+					<div class="music-bg" aria-hidden="true"></div>
+					<div class="section-content">
+						<p>A piece I composed. My hands are too small to play it well, but it still makes me smile.</p>
 					</div>
+					<VideoEmbed url="https://youtu.be/3mNv0QXfPhE" title="The Emptiness - Guitar Composition by Martin Kavík" />
+				</div>
+			</section>
 
-					<div class="poetry-section">
-						<div class="poetry-with-art">
-							<button
-								class="poetry-art-btn"
-								data-src="/images/about/street.jpg"
-								data-alt="Street drawing"
-								type="button"
-								aria-label="View full image"
-							>
-								<img
-									src="/images/about/street.jpg"
-									alt="Street drawing"
-									class="poetry-art"
-								/>
-								<span class="expand-icon">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-										<polyline points="15 3 21 3 21 9"></polyline>
-										<polyline points="9 21 3 21 3 15"></polyline>
-										<line x1="21" y1="3" x2="14" y2="10"></line>
-										<line x1="3" y1="21" x2="10" y2="14"></line>
-									</svg>
-								</span>
-							</button>
-							<blockquote>
-								<p>Silhouette in the window<br>
-								Watching street lamp in the moonlight<br>
-								Holding the cup of cocoa<br>
-								The clock's bell strikes the midnight<br>
-								...</p>
-							</blockquote>
-						</div>
-					</div>
-				</section>
+			<!-- Poetry Section -->
+			<section class="section">
+				<div class="deco-bricks" aria-hidden="true">
+					<div class="deco-brick" style="background: #f72585; width: 50px; height: 40px; right: 2%; top: 0;"></div>
+				</div>
+				<header class="section-header">
+					<h2>Poetry</h2>
+					<p>Words and lines.</p>
+				</header>
+				<div class="poetry-layout">
+					<button
+						class="poetry-art-btn"
+						data-src="/images/about/street.jpg"
+						data-alt="Street drawing"
+						type="button"
+						aria-label="View full image"
+					>
+						<img
+							src="/images/about/street.jpg"
+							alt="Street drawing"
+							class="poetry-art"
+						/>
+						<span class="expand-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<polyline points="15 3 21 3 21 9"></polyline>
+								<polyline points="9 21 3 21 3 15"></polyline>
+								<line x1="21" y1="3" x2="14" y2="10"></line>
+								<line x1="3" y1="21" x2="10" y2="14"></line>
+							</svg>
+						</span>
+					</button>
+					<blockquote>
+						<p>Silhouette in the window<br>
+						Watching street lamp in the moonlight<br>
+						Holding the cup of cocoa<br>
+						The clock's bell strikes the midnight<br>
+						...</p>
+					</blockquote>
+				</div>
+			</section>
 
-				<!-- Personal Section -->
-				<section class="section">
-					<h2 class="section-title">Away from the Keyboard</h2>
-					<div class="content">
-						<p>I live in Prague with my family. We enjoy spicy food, poppy seed strudels, smaller towns, and travel.</p>
-					</div>
-
-					<div class="adventure-grid">
-						<div class="adventure-item">
-							<button
-								class="lightbox-trigger"
-								data-src="/images/about/bridge_jump.jpg"
-								data-alt="Bridge jump"
-								type="button"
-								aria-label="View full image"
-							>
-								<img src="/images/about/bridge_jump.jpg" alt="Bridge jump" />
-							</button>
-							<p>Jumped off a bridge</p>
-						</div>
-						<div class="adventure-item">
-							<button
-								class="lightbox-trigger"
-								data-src="/images/about/skydiving.jpg"
-								data-alt="Skydiving"
-								type="button"
-								aria-label="View full image"
-							>
-								<img src="/images/about/skydiving.jpg" alt="Skydiving" />
-							</button>
-							<p>Jumped out of a plane</p>
-						</div>
-					</div>
-
-					<div class="story-block">
+			<!-- Hardware Detours Section -->
+			<section class="section">
+				<div class="deco-bricks" aria-hidden="true">
+					<div class="deco-brick" style="background: #fb8500; width: 55px; height: 45px; left: 3%; top: 0;"></div>
+					<div class="deco-brick" style="background: #8338ec; width: 40px; height: 50px; right: 4%; top: 1.5rem;"></div>
+				</div>
+				<header class="section-header">
+					<h2>Hardware Detours</h2>
+					<p>When code meets the physical world.</p>
+				</header>
+				<div class="hardware-grid">
+					<div class="hardware-story">
 						<button
-							class="lightbox-trigger story-img-btn"
-							data-src="/images/about/football_launcher.jpg"
-							data-alt="Football launcher setup"
+							class="lightbox-trigger"
+							data-src="/images/about/car_diagnostics.jpg"
+							data-alt="Car diagnostics with laptop and OBD"
 							type="button"
 							aria-label="View full image"
 						>
-							<img src="/images/about/football_launcher.jpg" alt="Football launcher setup" class="story-img" />
+							<img src="/images/about/car_diagnostics.jpg" alt="Car diagnostics with laptop and OBD" />
 						</button>
-						<div class="story-text">
-							<p>I built hardware and software for a football launcher. An ATTiny MCU controlled by a C# CLI app, connected through a PHP backend listening to the Facebook API. Users watched a live stream and picked where to shoot the ball at a real goalkeeper.</p>
-							<p>Fun project, but it motivated me to stay in software — debugging unreliable relays and EMP from huge capacitors isn't something you want to do every day.</p>
-						</div>
+						<h3>Car Diagnostics</h3>
+						<p>My car wouldn't start intermittently. I connected a laptop via OBD to hunt down the problem. Turned out to be an unreliable relay that was supposed to enable the fuel pump before starting — it would lose pressure and the engine couldn't fire.</p>
 					</div>
+					<div class="hardware-story">
+						<button
+							class="lightbox-trigger"
+							data-src="/images/about/football_launcher_studio.jpg"
+							data-alt="Football launcher studio setup"
+							type="button"
+							aria-label="View full image"
+						>
+							<img src="/images/about/football_launcher_studio.jpg" alt="Football launcher studio setup" />
+						</button>
+						<h3>Football Launcher</h3>
+						<p>An ATTiny MCU controlled by a C# CLI app, connected through a PHP backend listening to the Facebook API. Users watched a live stream and picked where to shoot the ball at a real goalkeeper.</p>
+					</div>
+				</div>
+				<p class="hardware-lesson">Both projects taught the same lesson: debugging unreliable relays and EMP from huge capacitors isn't something you want to do every day. I went back to software.</p>
+			</section>
 
-					<div class="cat-highlight">
+			<!-- Adventures Section -->
+			<section class="section">
+				<div class="deco-bricks" aria-hidden="true">
+					<div class="deco-brick" style="background: #06d6a0; width: 50px; height: 55px; right: 2%; top: 0;"></div>
+				</div>
+				<header class="section-header">
+					<h2>Adventures</h2>
+					<p>Sometimes gravity wins.</p>
+				</header>
+				<div class="adventure-grid">
+					<div class="adventure-item">
+						<button
+							class="lightbox-trigger"
+							data-src="/images/about/bridge_jump.jpg"
+							data-alt="Bridge jump"
+							type="button"
+							aria-label="View full image"
+						>
+							<img src="/images/about/bridge_jump.jpg" alt="Bridge jump" />
+						</button>
+						<p>Jumped off a bridge</p>
+					</div>
+					<div class="adventure-item">
+						<button
+							class="lightbox-trigger"
+							data-src="/images/about/skydiving.jpg"
+							data-alt="Skydiving"
+							type="button"
+							aria-label="View full image"
+						>
+							<img src="/images/about/skydiving.jpg" alt="Skydiving" />
+						</button>
+						<p>Jumped out of a plane</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Life Section -->
+			<section class="section">
+				<div class="deco-bricks" aria-hidden="true">
+					<div class="deco-brick" style="background: #118ab2; width: 45px; height: 40px; left: 1%; top: 0.5rem;"></div>
+				</div>
+				<header class="section-header">
+					<h2>Life</h2>
+					<p>Prague, family, and future plans.</p>
+				</header>
+				<div class="section-content">
+					<p>I live in Prague with my family. We enjoy spicy food, poppy seed strudels, smaller towns, and travel.</p>
+					<p>I received a grant from NLnet Foundation to work on FastWave (now NovyWave) for a year. These days I lift toys more than weights.</p>
+				</div>
+				<div class="norway-grid">
+					<div class="norway-item">
 						<button
 							class="lightbox-trigger"
 							data-src="/images/about/cat_alesund.jpg"
@@ -184,54 +260,43 @@ const artworks = [
 						>
 							<img src="/images/about/cat_alesund.jpg" alt="Cat in Ålesund" />
 						</button>
-						<p>Random cat in Ålesund. I hope to see her again — we're planning to move to Norway.</p>
+						<p>Met a cat in Ålesund. Petting was mandatory.</p>
 					</div>
-
-					<div class="content">
-						<p>I received a grant from NLnet Foundation to work on FastWave (now NovyWave) for a year. These days I lift toys more than weights.</p>
-						<p>Questions? <a href="mailto:martin@kavik.cz">martin@kavik.cz</a></p>
+					<div class="norway-item">
+						<button
+							class="lightbox-trigger"
+							data-src="/images/about/norway_trip.png"
+							data-alt="Norway road trip map"
+							type="button"
+							aria-label="View full image"
+						>
+							<img src="/images/about/norway_trip.png" alt="Norway road trip map" />
+						</button>
+						<p>No, we didn't stay (yet) — return tracking died.</p>
 					</div>
-				</section>
-			</main>
-		</div>
+				</div>
+			</section>
+		</main>
 
 		<ContactCTA />
 	</div>
 </BaseLayout>
 
 <style>
-	/* Lightbox trigger buttons */
-	.lightbox-trigger {
-		display: block;
-		border: none;
-		padding: 0;
-		background: none;
-		cursor: zoom-in;
-		width: 100%;
+	/* Base layout */
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 12rem;
 	}
 
-	.lightbox-trigger img {
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	@media (min-width: 50em) {
+		.about {
+			gap: 18rem;
+		}
 	}
 
-	.lightbox-trigger:hover img,
-	.lightbox-trigger:focus img {
-		transform: scale(1.02);
-		box-shadow: var(--shadow-lg);
-	}
-
-	.hero-img-btn img {
-		width: 100%;
-	}
-
-	.story-img-btn {
-		flex-shrink: 0;
-	}
-
-	.page-content {
-		position: relative;
-	}
-
+	/* Decorative bricks */
 	.deco-bricks {
 		position: absolute;
 		inset: 0;
@@ -244,86 +309,108 @@ const artworks = [
 		opacity: 0.15;
 	}
 
-	.b1 {
-		background: #f4a261;
-		width: 50px;
-		height: 45px;
-		left: 3%;
-		top: 1rem;
-	}
-
-	.b2 {
-		background: #7209b7;
-		width: 45px;
-		height: 55px;
-		right: 4%;
-		top: 3rem;
-	}
-
 	@media (min-width: 50em) {
-		.b1 {
-			width: 75px;
-			height: 60px;
-		}
-
-		.b2 {
-			width: 65px;
-			height: 75px;
+		.deco-brick {
+			transform: scale(1.4);
 		}
 	}
 
-	.about {
-		display: flex;
-		flex-direction: column;
-		gap: 3.5rem;
+	/* Hero container */
+	.hero-container {
+		position: relative;
 	}
 
-	.about > :global(:first-child) img {
+	.hero-container :global(.hero) img {
 		margin-top: 1.5rem;
 		border-radius: 1.5rem;
 		box-shadow: var(--shadow-md);
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
+	/* Section base styles */
 	.section {
+		position: relative;
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 1.5rem;
 		color: var(--gray-200);
 	}
 
-	.section-title {
-		font-size: var(--text-xl);
-		color: var(--gray-0);
-	}
-
-	.section-subtitle {
-		font-size: var(--text-md);
-		color: var(--gray-300);
-		font-style: italic;
-		margin-top: -0.5rem;
-	}
-
-	.content {
-		max-width: 65ch;
-	}
-
-	.content p {
+	.section-header {
+		text-align: center;
 		margin-bottom: 1rem;
 	}
 
-	.content p:last-child {
+	.section-header h2 {
+		font-size: var(--text-2xl);
+		color: var(--gray-0);
+		margin-bottom: 0.5rem;
+	}
+
+	.section-header p {
+		font-size: var(--text-md);
+		color: var(--gray-300);
+	}
+
+	@media (min-width: 50em) {
+		.section-header {
+			margin-bottom: 2rem;
+		}
+
+		.section-header h2 {
+			font-size: var(--text-4xl);
+		}
+
+		.section-header p {
+			font-size: var(--text-lg);
+		}
+	}
+
+	/* Section content */
+	.section-content {
+		max-width: 65ch;
+		margin: 0 auto;
+		font-size: var(--text-md);
+	}
+
+	@media (min-width: 50em) {
+		.section-content {
+			font-size: var(--text-lg);
+		}
+	}
+
+	.section-content p {
+		margin-bottom: 1rem;
+	}
+
+	.section-content p:last-child {
 		margin-bottom: 0;
 	}
 
-	.content :global(a) {
+	.section-content a {
 		text-decoration: 1px solid underline transparent;
 		text-underline-offset: 0.25em;
 		transition: text-decoration-color var(--theme-transition);
 	}
 
-	.content :global(a:hover),
-	.content :global(a:focus) {
+	.section-content a:hover,
+	.section-content a:focus {
 		text-decoration-color: currentColor;
+	}
+
+	/* Wide sections (gallery) */
+	.section-wide :global(.gallery) {
+		width: 100vw;
+		margin-left: calc(-50vw + 50%);
+		padding: 0 1rem;
+	}
+
+	@media (min-width: 50em) {
+		.section-wide :global(.gallery) {
+			padding: 0 2rem;
+		}
 	}
 
 	/* Video grid */
@@ -331,7 +418,7 @@ const artworks = [
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 1.5rem;
-		margin-top: 1.5rem;
+		margin-top: 2.5rem;
 	}
 
 	@media (min-width: 50em) {
@@ -347,31 +434,22 @@ const artworks = [
 	}
 
 	.video-caption {
-		font-size: var(--text-sm);
+		font-size: var(--text-md);
 		color: var(--gray-400);
 		text-align: center;
 	}
 
-	/* Gallery section */
-	.gallery-section {
-		padding-top: 2rem;
-	}
-
-	.music-section {
-		margin-top: 3rem;
-		padding-top: 2rem;
-		border-top: 1px solid var(--gray-800);
-	}
-
-	.music-section {
+	/* Music container */
+	.music-container {
 		position: relative;
-		padding: 2rem;
-		border-radius: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 	}
 
 	.music-bg {
 		position: absolute;
-		top: 4rem;
+		top: 0;
 		left: calc(-50vw + 50%);
 		width: 100vw;
 		height: 100%;
@@ -379,7 +457,7 @@ const artworks = [
 		background-size: cover;
 		background-position: center top;
 		background-repeat: no-repeat;
-		opacity: 0.1;
+		opacity: 0.08;
 		pointer-events: none;
 	}
 
@@ -387,29 +465,21 @@ const artworks = [
 		filter: invert(1);
 	}
 
-	.music-section h3 {
-		position: relative;
-		font-size: var(--text-lg);
-		color: var(--gray-0);
-		margin-bottom: 0.5rem;
-	}
-
-	.music-section p {
-		position: relative;
-		margin-bottom: 1rem;
-	}
-
-	.music-section :global(.video-embed) {
+	.music-container .section-content,
+	.music-container :global(.video-embed) {
 		position: relative;
 	}
 
-	.poetry-section {
-		margin-top: 2rem;
-		padding-top: 2rem;
-		border-top: 1px solid var(--gray-800);
+	.music-container :global(.video-embed) {
+		max-width: 800px;
+		margin: 2.5rem auto 0;
+		padding-bottom: 0;
+		height: auto;
+		aspect-ratio: 16/9;
 	}
 
-	.poetry-with-art {
+	/* Poetry layout */
+	.poetry-layout {
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
@@ -422,7 +492,7 @@ const artworks = [
 		padding: 0;
 		background: none;
 		cursor: zoom-in;
-		max-width: 320px;
+		max-width: 350px;
 		width: 100%;
 	}
 
@@ -464,17 +534,90 @@ const artworks = [
 		color: var(--gray-0);
 	}
 
-	.poetry-section blockquote {
+	.poetry-layout blockquote {
 		font-style: italic;
 		color: var(--gray-300);
 		padding-left: 1.5rem;
 		border-left: 3px solid var(--gray-700);
 		margin: 0;
-		text-align: center;
 	}
 
-	.poetry-section blockquote p {
+	.poetry-layout blockquote p {
 		line-height: 1.8;
+	}
+
+	@media (min-width: 50em) {
+		.poetry-layout {
+			flex-direction: row;
+			justify-content: center;
+			gap: 3rem;
+		}
+
+		.poetry-layout blockquote {
+			text-align: left;
+		}
+	}
+
+	/* Hardware grid */
+	.hardware-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+
+	@media (min-width: 50em) {
+		.hardware-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.hardware-story {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.hardware-story img {
+		width: 100%;
+		border-radius: 1rem;
+		box-shadow: var(--shadow-md);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.hardware-story h3 {
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+		margin-bottom: 0.25rem;
+	}
+
+	.hardware-story p {
+		color: var(--gray-300);
+		font-size: var(--text-md);
+	}
+
+	@media (min-width: 50em) {
+		.hardware-story h3 {
+			font-size: var(--text-2xl);
+		}
+
+		.hardware-story p {
+			font-size: var(--text-lg);
+		}
+	}
+
+	.hardware-lesson {
+		color: var(--gray-400);
+		font-style: italic;
+		text-align: center;
+		max-width: 65ch;
+		margin: 0 auto;
+		font-size: var(--text-md);
+	}
+
+	@media (min-width: 50em) {
+		.hardware-lesson {
+			font-size: var(--text-lg);
+		}
 	}
 
 	/* Adventure grid */
@@ -482,7 +625,6 @@ const artworks = [
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 1.5rem;
-		margin-top: 1.5rem;
 	}
 
 	.adventure-item {
@@ -498,61 +640,12 @@ const artworks = [
 		box-shadow: var(--shadow-md);
 		aspect-ratio: 4 / 3;
 		object-fit: cover;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
 	}
 
 	.adventure-item p {
-		font-size: var(--text-sm);
+		font-size: var(--text-md);
 		color: var(--gray-400);
-	}
-
-	/* Story block */
-	.story-block {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-		margin-top: 2rem;
-		padding: 1.5rem;
-		background: var(--gray-999);
-		border-radius: 1rem;
-		border: 1px solid var(--gray-800);
-	}
-
-	.story-img {
-		width: 100%;
-		border-radius: 0.75rem;
-		box-shadow: var(--shadow-sm);
-	}
-
-	.story-text p {
-		margin-bottom: 1rem;
-	}
-
-	.story-text p:last-child {
-		margin-bottom: 0;
-	}
-
-	/* Cat highlight */
-	.cat-highlight {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 1rem;
-		margin-top: 2rem;
-		text-align: center;
-	}
-
-	.cat-highlight img {
-		max-width: 280px;
-		width: 100%;
-		border-radius: 1rem;
-		box-shadow: var(--shadow-md);
-	}
-
-	.cat-highlight p {
-		font-size: var(--text-sm);
-		color: var(--gray-300);
-		font-style: italic;
-		max-width: 40ch;
 	}
 
 	@media (max-width: 600px) {
@@ -561,49 +654,64 @@ const artworks = [
 		}
 	}
 
-	@media (min-width: 50em) {
-		.story-block {
-			flex-direction: row;
-			align-items: flex-start;
-		}
+	/* Norway grid */
+	.norway-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+		max-width: 800px;
+		margin: 2rem auto 0;
+	}
 
-		.story-img-btn {
-			max-width: 300px;
-		}
+	.norway-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		text-align: center;
+	}
 
-		.story-img {
-			max-width: 100%;
+	.norway-item img {
+		width: 100%;
+		border-radius: 1rem;
+		box-shadow: var(--shadow-md);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.norway-item p {
+		font-size: var(--text-md);
+		color: var(--gray-300);
+		font-style: italic;
+	}
+
+	@media (max-width: 500px) {
+		.norway-grid {
+			grid-template-columns: 1fr;
+			max-width: 280px;
 		}
 	}
 
-	@media (min-width: 50em) {
-		.about {
-			display: grid;
-			grid-template-columns: 1fr 60% 1fr;
-		}
+	/* Lightbox trigger buttons */
+	.lightbox-trigger {
+		display: block;
+		border: none;
+		padding: 0;
+		background: none;
+		cursor: zoom-in;
+		width: 100%;
+	}
 
-		.about > :global(:first-child) {
-			grid-column-start: 2;
-		}
+	.lightbox-trigger img {
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
 
-		.section {
-			display: contents;
-			font-size: var(--text-lg);
-		}
+	.lightbox-trigger:hover img,
+	.lightbox-trigger:focus img {
+		transform: scale(1.02);
+		box-shadow: var(--shadow-lg);
+	}
 
-		.section > * {
-			grid-column: 2;
-		}
-
-		.gallery-section > :global(.gallery) {
-			grid-column: 1 / -1;
-			padding: 0 2rem;
-		}
-
-		.music-section,
-		.poetry-section {
-			grid-column: 2;
-		}
+	.hero-img-btn img {
+		width: 100%;
 	}
 </style>
 
