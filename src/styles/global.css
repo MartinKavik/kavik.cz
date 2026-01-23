@@ -303,7 +303,7 @@ h5 {
 	justify-content: center;
 	align-items: stretch;
 	gap: 2rem;
-	margin-bottom: 1.5rem;
+	margin-bottom: 3rem;
 }
 
 .minimap-logos {
@@ -320,76 +320,110 @@ h5 {
 	opacity: 0.35;
 }
 
-/* Left side - 7 logos scattered randomly */
+/* Dark icons need brightening in dark mode - target by filename */
+:root.theme-dark .tech-logo[src*="github"] {
+	filter: brightness(6);
+}
+
+:root.theme-dark .tech-logo[src*="riscv"] {
+	filter: brightness(3);
+}
+
+:root.theme-dark .tech-logo[src*="tailscale"],
+:root.theme-dark .tech-logo[src*="webgpu"] {
+	filter: brightness(4) contrast(0.9);
+}
+
+/* Left side - 9 logos scattered */
 .minimap-logos-left .tech-logo:nth-child(1) {
 	top: 0%;
-	right: 130px;
+	right: 160px;
 }
 
 .minimap-logos-left .tech-logo:nth-child(2) {
-	top: 18%;
-	right: 30px;
+	top: 12%;
+	right: 60px;
 }
 
 .minimap-logos-left .tech-logo:nth-child(3) {
-	top: 32%;
-	right: 110px;
-}
-
-.minimap-logos-left .tech-logo:nth-child(4) {
-	top: 48%;
-	right: 55px;
-}
-
-.minimap-logos-left .tech-logo:nth-child(5) {
-	top: 62%;
+	top: 24%;
 	right: 140px;
 }
 
+.minimap-logos-left .tech-logo:nth-child(4) {
+	top: 36%;
+	right: 20px;
+}
+
+.minimap-logos-left .tech-logo:nth-child(5) {
+	top: 48%;
+	right: 170px;
+}
+
 .minimap-logos-left .tech-logo:nth-child(6) {
-	top: 78%;
-	right: 25px;
+	top: 60%;
+	right: 80px;
 }
 
 .minimap-logos-left .tech-logo:nth-child(7) {
-	top: 92%;
-	right: 95px;
+	top: 72%;
+	right: 150px;
 }
 
-/* Right side - 7 logos scattered randomly */
+.minimap-logos-left .tech-logo:nth-child(8) {
+	top: 84%;
+	right: 40px;
+}
+
+.minimap-logos-left .tech-logo:nth-child(9) {
+	top: 22%;
+	right: 232px;
+}
+
+/* Right side - 9 logos scattered */
 .minimap-logos-right .tech-logo:nth-child(1) {
 	top: 0%;
-	left: 90px;
+	left: 120px;
 }
 
 .minimap-logos-right .tech-logo:nth-child(2) {
-	top: 15%;
+	top: 12%;
 	left: 20px;
 }
 
 .minimap-logos-right .tech-logo:nth-child(3) {
-	top: 30%;
-	left: 120px;
+	top: 24%;
+	left: 150px;
 }
 
 .minimap-logos-right .tech-logo:nth-child(4) {
-	top: 45%;
-	left: 45px;
+	top: 36%;
+	left: 60px;
 }
 
 .minimap-logos-right .tech-logo:nth-child(5) {
-	top: 58%;
-	left: 105px;
+	top: 48%;
+	left: 170px;
 }
 
 .minimap-logos-right .tech-logo:nth-child(6) {
-	top: 75%;
-	left: 15px;
+	top: 60%;
+	left: 30px;
 }
 
 .minimap-logos-right .tech-logo:nth-child(7) {
-	top: 90%;
-	left: 80px;
+	top: 72%;
+	left: 140px;
+}
+
+.minimap-logos-right .tech-logo:nth-child(8) {
+	top: 84%;
+	left: 70px;
+}
+
+.minimap-logos-right .tech-logo:nth-child(9) {
+	top: 12%;
+	left: 240px;
 }
 
 .minimap {
@@ -403,7 +437,7 @@ h5 {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 0.5rem 0.75rem;
+	padding: 0.5rem 1.25rem;
 	font-family: var(--font-brand);
 	background: var(--gray-900);
 	border: 1px solid var(--gray-800);
