@@ -2,53 +2,195 @@
 import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+import Gallery from '../components/Gallery.astro';
+
+const artworks = [
+	{ src: "/images/about/blue_eye.jpg", alt: "Portrait" },
+	{ src: "/images/about/mirror_boxer.jpg", alt: "Boxer" },
+	{ src: "/images/about/puzzle_man.jpg", alt: "Puzzle man" },
+	{ src: "/images/about/rain_girl.jpg", alt: "Rain" },
+	{ src: "/images/about/running_man.jpg", alt: "Runner" },
+	{ src: "/images/about/sunset_city.jpg", alt: "Sunset city" },
+	{ src: "/images/about/dino_rainbow_combined.jpg", alt: "Rainbow dinosaur", title: "Rainbow Dino (coauthor Victoria)", focus: "right" },
+];
 ---
 
-<BaseLayout title="About | Martin Kavík" description="Rust developer and designer based in Prague">
+<BaseLayout title="About | Martin Kavík" description="Toolmaker. Explorer.">
 	<div class="stack gap-20">
 		<div class="page-content">
 			<div class="deco-bricks" aria-hidden="true">
 				<div class="deco-brick b1"></div>
 				<div class="deco-brick b2"></div>
 			</div>
-			<main class="wrapper about">
-				<Hero
-				title="About Martin"
-				tagline="Rust + WebAssembly builder living in Prague, designing and shipping tools for the web."
-			>
-				<img
-					width="1200"
-					height="800"
-					src="/images/martin_trondheim.jpg"
-					alt="Martin Kavík in a forest near Trondheim"
-				/>
-			</Hero>
 
-			<section>
-				<h2 class="section-title">Background</h2>
-				<div class="content">
-					<p>I'm Martin and I live in Prague (Czechia). My first paid task was writing a PHP web framework 15 years ago.</p>
-					<p>I still experiment, write libraries and apps, and design for clients — mostly in Rust. Remote work, one-on-one conversations, and flexible hours make me happy; daily status meetings do not.</p>
-				</div>
-			</section>
-			<section>
-				<h2 class="section-title">What I'm building</h2>
-				<div class="content">
-					<p>
-						I maintain <strong>Boon</strong>, a declarative, statically-typed language with a runtime that remembers values across reloads. The playground is written with the Rust <strong>MoonZoon</strong> framework and compiles to WebAssembly.
-					</p>
-					<p>
-						I'm also building <strong>NovyWave</strong>, a modern waveform viewer, <strong>Fast2D</strong> for GPU-friendly 2D drawing, and <strong>Persons.pro</strong> — a platform for freelancers and open-source devs.
-					</p>
-				</div>
-			</section>
-			<section>
-				<h2 class="section-title">Away from the keyboard</h2>
-				<div class="content">
-					<p>I enjoy spicy food, poppy seed strudels, smaller towns, and travel with my family. I've jumped off a bridge and out of a plane, built hardware and software for a football launcher, and received a grant to work on the FastWave project for a year.</p>
-					<p>These days I lift toys more than weights. I once composed a short guitar piece; my hands are too small to play it well, but it still makes me smile.</p>
-					<p>Questions? <a href="mailto:martin@kavik.cz">martin@kavik.cz</a></p>
-				</div>
+			<main class="wrapper about">
+				<!-- Hero Section -->
+				<Hero
+					title="About Martin"
+					tagline="Toolmaker. Explorer."
+				>
+					<button
+						class="lightbox-trigger hero-img-btn"
+						data-src="/images/martin_trondheim.jpg"
+						data-alt="Martin Kavík in a forest near Trondheim"
+						type="button"
+						aria-label="View full image"
+					>
+						<img
+							width="1200"
+							height="800"
+							src="/images/martin_trondheim.jpg"
+							alt="Martin Kavík in a forest near Trondheim"
+						/>
+					</button>
+				</Hero>
+
+				<!-- Philosophy Section -->
+				<section class="section">
+					<h2 class="section-title">How I Work</h2>
+					<p class="section-subtitle">Driven by frustration. Sustained by curiosity.</p>
+					<div class="content">
+						<p>I wanted something different, so I built it. MoonZoon exists because existing frameworks felt wrong. Boon exists because MoonZoon wasn't enough. Eventually I ran out of software to fix — so I started on hardware.</p>
+						<p>Remote work, one-on-one conversations, and flexible hours make me happy. Daily status meetings do not. I prefer depth over breadth, building over maintaining, and shipping over planning.</p>
+					</div>
+				</section>
+
+				<!-- The Beginning Section -->
+				<section class="section">
+					<h2 class="section-title">The Beginning</h2>
+					<div class="content">
+						<p>At thirteen, I built an antenna holder to finally get internet. Then I learned C# from a Czech school website. I faced a choice: pursue 2D/3D graphics or programming.</p>
+						<p>I chose programming — because tools let you make better things later. Now, with RayBox, I'm coming full circle to 3D graphics.</p>
+					</div>
+					<div class="video-grid">
+						<div class="video-item">
+							<VideoEmbed url="https://youtu.be/FAJVs5GcArQ" title="3D Kitchen Render (early work)" />
+							<p class="video-caption">3D rendering experiments</p>
+						</div>
+						<div class="video-item">
+							<VideoEmbed url="https://youtu.be/Ics_QWPZATk" title="Case Modding (2009)" />
+							<p class="video-caption">Case modding, 2009</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Creative Gallery Section -->
+				<section class="section gallery-section">
+					<h2 class="section-title">Creative Work</h2>
+					<div class="content">
+						<p>Pencil drawings, digital art, and music. These aren't side projects — they're the other half of how I think.</p>
+					</div>
+					<Gallery items={artworks} />
+
+					<div class="music-section">
+						<div class="music-bg" aria-hidden="true"></div>
+						<h3>The Emptiness</h3>
+						<p>A guitar piece I composed. My hands are too small to play it well, but it still makes me smile.</p>
+						<VideoEmbed url="https://youtu.be/3mNv0QXfPhE" title="The Emptiness - Guitar Composition by Martin Kavík" />
+					</div>
+
+					<div class="poetry-section">
+						<div class="poetry-with-art">
+							<button
+								class="poetry-art-btn"
+								data-src="/images/about/street.jpg"
+								data-alt="Street drawing"
+								type="button"
+								aria-label="View full image"
+							>
+								<img
+									src="/images/about/street.jpg"
+									alt="Street drawing"
+									class="poetry-art"
+								/>
+								<span class="expand-icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<polyline points="15 3 21 3 21 9"></polyline>
+										<polyline points="9 21 3 21 3 15"></polyline>
+										<line x1="21" y1="3" x2="14" y2="10"></line>
+										<line x1="3" y1="21" x2="10" y2="14"></line>
+									</svg>
+								</span>
+							</button>
+							<blockquote>
+								<p>Silhouette in the window<br>
+								Watching street lamp in the moonlight<br>
+								Holding the cup of cocoa<br>
+								The clock's bell strikes the midnight<br>
+								...</p>
+							</blockquote>
+						</div>
+					</div>
+				</section>
+
+				<!-- Personal Section -->
+				<section class="section">
+					<h2 class="section-title">Away from the Keyboard</h2>
+					<div class="content">
+						<p>I live in Prague with my family. We enjoy spicy food, poppy seed strudels, smaller towns, and travel.</p>
+					</div>
+
+					<div class="adventure-grid">
+						<div class="adventure-item">
+							<button
+								class="lightbox-trigger"
+								data-src="/images/about/bridge_jump.jpg"
+								data-alt="Bridge jump"
+								type="button"
+								aria-label="View full image"
+							>
+								<img src="/images/about/bridge_jump.jpg" alt="Bridge jump" />
+							</button>
+							<p>Jumped off a bridge</p>
+						</div>
+						<div class="adventure-item">
+							<button
+								class="lightbox-trigger"
+								data-src="/images/about/skydiving.jpg"
+								data-alt="Skydiving"
+								type="button"
+								aria-label="View full image"
+							>
+								<img src="/images/about/skydiving.jpg" alt="Skydiving" />
+							</button>
+							<p>Jumped out of a plane</p>
+						</div>
+					</div>
+
+					<div class="story-block">
+						<button
+							class="lightbox-trigger story-img-btn"
+							data-src="/images/about/football_launcher.jpg"
+							data-alt="Football launcher setup"
+							type="button"
+							aria-label="View full image"
+						>
+							<img src="/images/about/football_launcher.jpg" alt="Football launcher setup" class="story-img" />
+						</button>
+						<div class="story-text">
+							<p>I built hardware and software for a football launcher. An ATTiny MCU controlled by a C# CLI app, connected through a PHP backend listening to the Facebook API. Users watched a live stream and picked where to shoot the ball at a real goalkeeper.</p>
+							<p>Fun project, but it motivated me to stay in software — debugging unreliable relays and EMP from huge capacitors isn't something you want to do every day.</p>
+						</div>
+					</div>
+
+					<div class="cat-highlight">
+						<button
+							class="lightbox-trigger"
+							data-src="/images/about/cat_alesund.jpg"
+							data-alt="Cat in Ålesund"
+							type="button"
+							aria-label="View full image"
+						>
+							<img src="/images/about/cat_alesund.jpg" alt="Cat in Ålesund" />
+						</button>
+						<p>Random cat in Ålesund. I hope to see her again — we're planning to move to Norway.</p>
+					</div>
+
+					<div class="content">
+						<p>I received a grant from NLnet Foundation to work on FastWave (now NovyWave) for a year. These days I lift toys more than weights.</p>
+						<p>Questions? <a href="mailto:martin@kavik.cz">martin@kavik.cz</a></p>
+					</div>
 				</section>
 			</main>
 		</div>
@@ -58,6 +200,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
+	/* Lightbox trigger buttons */
+	.lightbox-trigger {
+		display: block;
+		border: none;
+		padding: 0;
+		background: none;
+		cursor: zoom-in;
+		width: 100%;
+	}
+
+	.lightbox-trigger img {
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.lightbox-trigger:hover img,
+	.lightbox-trigger:focus img {
+		transform: scale(1.02);
+		box-shadow: var(--shadow-lg);
+	}
+
+	.hero-img-btn img {
+		width: 100%;
+	}
+
+	.story-img-btn {
+		flex-shrink: 0;
+	}
+
 	.page-content {
 		position: relative;
 	}
@@ -108,27 +278,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		gap: 3.5rem;
 	}
 
-	img {
+	.about > :global(:first-child) img {
 		margin-top: 1.5rem;
 		border-radius: 1.5rem;
 		box-shadow: var(--shadow-md);
 	}
 
-	section {
+	.section {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		gap: 1rem;
 		color: var(--gray-200);
 	}
 
 	.section-title {
-		grid-column-start: 1;
 		font-size: var(--text-xl);
 		color: var(--gray-0);
 	}
 
+	.section-subtitle {
+		font-size: var(--text-md);
+		color: var(--gray-300);
+		font-style: italic;
+		margin-top: -0.5rem;
+	}
+
 	.content {
-		grid-column: 2 / 4;
+		max-width: 65ch;
+	}
+
+	.content p {
+		margin-bottom: 1rem;
+	}
+
+	.content p:last-child {
+		margin-bottom: 0;
 	}
 
 	.content :global(a) {
@@ -142,6 +326,256 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		text-decoration-color: currentColor;
 	}
 
+	/* Video grid */
+	.video-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+	}
+
+	@media (min-width: 50em) {
+		.video-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.video-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.video-caption {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		text-align: center;
+	}
+
+	/* Gallery section */
+	.gallery-section {
+		padding-top: 2rem;
+	}
+
+	.music-section {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--gray-800);
+	}
+
+	.music-section {
+		position: relative;
+		padding: 2rem;
+		border-radius: 1rem;
+	}
+
+	.music-bg {
+		position: absolute;
+		top: 4rem;
+		left: calc(-50vw + 50%);
+		width: 100vw;
+		height: 100%;
+		background-image: url('/images/about/emptiness_tab.jpg');
+		background-size: cover;
+		background-position: center top;
+		background-repeat: no-repeat;
+		opacity: 0.1;
+		pointer-events: none;
+	}
+
+	:root:not(.theme-dark) .music-bg {
+		filter: invert(1);
+	}
+
+	.music-section h3 {
+		position: relative;
+		font-size: var(--text-lg);
+		color: var(--gray-0);
+		margin-bottom: 0.5rem;
+	}
+
+	.music-section p {
+		position: relative;
+		margin-bottom: 1rem;
+	}
+
+	.music-section :global(.video-embed) {
+		position: relative;
+	}
+
+	.poetry-section {
+		margin-top: 2rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--gray-800);
+	}
+
+	.poetry-with-art {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		align-items: center;
+	}
+
+	.poetry-art-btn {
+		position: relative;
+		border: none;
+		padding: 0;
+		background: none;
+		cursor: zoom-in;
+		max-width: 320px;
+		width: 100%;
+	}
+
+	.poetry-art {
+		width: 100%;
+		border-radius: 0.75rem;
+		box-shadow: var(--shadow-md);
+		display: block;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.poetry-art-btn:hover .poetry-art,
+	.poetry-art-btn:focus .poetry-art {
+		transform: scale(1.02);
+		box-shadow: var(--shadow-lg);
+	}
+
+	.expand-icon {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--gray-900);
+		border: 1px solid var(--gray-700);
+		border-radius: 0.5rem;
+		color: var(--gray-300);
+		opacity: 0.7;
+		transition: opacity 0.2s, background 0.2s, color 0.2s;
+	}
+
+	.poetry-art-btn:hover .expand-icon,
+	.poetry-art-btn:focus .expand-icon {
+		opacity: 1;
+		background: var(--gray-800);
+		color: var(--gray-0);
+	}
+
+	.poetry-section blockquote {
+		font-style: italic;
+		color: var(--gray-300);
+		padding-left: 1.5rem;
+		border-left: 3px solid var(--gray-700);
+		margin: 0;
+		text-align: center;
+	}
+
+	.poetry-section blockquote p {
+		line-height: 1.8;
+	}
+
+	/* Adventure grid */
+	.adventure-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+	}
+
+	.adventure-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		text-align: center;
+	}
+
+	.adventure-item img {
+		width: 100%;
+		border-radius: 1rem;
+		box-shadow: var(--shadow-md);
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+	}
+
+	.adventure-item p {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+	}
+
+	/* Story block */
+	.story-block {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		margin-top: 2rem;
+		padding: 1.5rem;
+		background: var(--gray-999);
+		border-radius: 1rem;
+		border: 1px solid var(--gray-800);
+	}
+
+	.story-img {
+		width: 100%;
+		border-radius: 0.75rem;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.story-text p {
+		margin-bottom: 1rem;
+	}
+
+	.story-text p:last-child {
+		margin-bottom: 0;
+	}
+
+	/* Cat highlight */
+	.cat-highlight {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		margin-top: 2rem;
+		text-align: center;
+	}
+
+	.cat-highlight img {
+		max-width: 280px;
+		width: 100%;
+		border-radius: 1rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	.cat-highlight p {
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+		font-style: italic;
+		max-width: 40ch;
+	}
+
+	@media (max-width: 600px) {
+		.adventure-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (min-width: 50em) {
+		.story-block {
+			flex-direction: row;
+			align-items: flex-start;
+		}
+
+		.story-img-btn {
+			max-width: 300px;
+		}
+
+		.story-img {
+			max-width: 100%;
+		}
+	}
+
 	@media (min-width: 50em) {
 		.about {
 			display: grid;
@@ -152,9 +586,48 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			grid-column-start: 2;
 		}
 
-		section {
+		.section {
 			display: contents;
 			font-size: var(--text-lg);
 		}
+
+		.section > * {
+			grid-column: 2;
+		}
+
+		.gallery-section > :global(.gallery) {
+			grid-column: 1 / -1;
+			padding: 0 2rem;
+		}
+
+		.music-section,
+		.poetry-section {
+			grid-column: 2;
+		}
 	}
 </style>
+
+<script>
+	// Hook all lightbox triggers into the gallery lightbox
+	const lightbox = document.getElementById('lightbox');
+	const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+	const lightboxCaption = document.getElementById('lightbox-caption');
+
+	// Get all lightbox trigger buttons (including poetry art button)
+	const triggers = document.querySelectorAll('.lightbox-trigger, .poetry-art-btn');
+
+	triggers.forEach((trigger) => {
+		trigger.addEventListener('click', () => {
+			const btn = trigger as HTMLElement;
+			if (lightboxImg) {
+				lightboxImg.src = btn.dataset.src || '';
+				lightboxImg.alt = btn.dataset.alt || '';
+			}
+			if (lightboxCaption) {
+				lightboxCaption.textContent = btn.dataset.title || '';
+			}
+			lightbox?.setAttribute('aria-hidden', 'false');
+			document.body.style.overflow = 'hidden';
+		});
+	});
+</script>

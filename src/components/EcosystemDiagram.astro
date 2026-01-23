@@ -1,0 +1,152 @@
+---
+interface Project {
+	id: string;
+	name: string;
+	subtitle: string;
+	href: string;
+	x: number;
+	y: number;
+}
+
+const projects: Project[] = [
+	{ id: "boon", name: "Boon", subtitle: "language", href: "/work/boon", x: 300, y: 40 },
+	{ id: "moonzoon", name: "MoonZoon", subtitle: "framework", href: "/work/moonzoon", x: 100, y: 160 },
+	{ id: "boon-computer", name: "BoonComputer", subtitle: "CPU/FPGA", href: "/work/boon-computer", x: 300, y: 160 },
+	{ id: "raybox", name: "RayBox", subtitle: "3D renderer", href: "/work/raybox", x: 500, y: 160 },
+	{ id: "novywave", name: "NovyWave", subtitle: "waveform viewer", href: "/work/novywave", x: 50, y: 280 },
+	{ id: "playground", name: "Playground", subtitle: "Boon IDE", href: "https://play.boon.run", x: 150, y: 280 },
+];
+
+// Connection lines (from -> to)
+const connections = [
+	{ from: "boon", to: "moonzoon" },
+	{ from: "boon", to: "boon-computer" },
+	{ from: "boon", to: "raybox" },
+	{ from: "moonzoon", to: "novywave" },
+	{ from: "moonzoon", to: "playground" },
+];
+
+function getProjectCenter(p: Project) {
+	return { x: p.x + 60, y: p.y + 25 };
+}
+---
+
+<div class="ecosystem-diagram">
+	<svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid meet">
+		<!-- Connection lines -->
+		<g class="connections">
+			{connections.map(conn => {
+				const from = projects.find(p => p.id === conn.from)!;
+				const to = projects.find(p => p.id === conn.to)!;
+				const fromCenter = getProjectCenter(from);
+				const toCenter = getProjectCenter(to);
+				return (
+					<line
+						x1={fromCenter.x}
+						y1={fromCenter.y}
+						x2={toCenter.x}
+						y2={toCenter.y}
+						stroke="var(--gray-700)"
+						stroke-width="2"
+						stroke-dasharray="4 4"
+					/>
+				);
+			})}
+		</g>
+
+		<!-- Project nodes -->
+		{projects.map(project => (
+			<a href={project.href} class="project-node" data-project={project.id}>
+				<g transform={`translate(${project.x}, ${project.y})`}>
+					<rect
+						width="120"
+						height="50"
+						rx="8"
+						ry="8"
+						fill="var(--gradient-subtle)"
+						stroke="var(--gray-700)"
+						stroke-width="1.5"
+						class="node-bg"
+					/>
+					<text x="60" y="22" text-anchor="middle" class="node-title">
+						{project.name}
+					</text>
+					<text x="60" y="38" text-anchor="middle" class="node-subtitle">
+						{project.subtitle}
+					</text>
+				</g>
+			</a>
+		))}
+	</svg>
+
+	<p class="diagram-hint">Click any project to learn more</p>
+</div>
+
+<style>
+	.ecosystem-diagram {
+		width: 100%;
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	svg {
+		width: 100%;
+		height: auto;
+	}
+
+	.project-node {
+		cursor: pointer;
+		text-decoration: none;
+	}
+
+	.node-bg {
+		transition: fill 0.2s ease, stroke 0.2s ease, transform 0.2s ease;
+	}
+
+	.project-node:hover .node-bg,
+	.project-node:focus .node-bg {
+		stroke: var(--accent-regular);
+		stroke-width: 2;
+		filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+	}
+
+	.node-title {
+		fill: var(--gray-0);
+		font-size: 14px;
+		font-weight: 600;
+		font-family: var(--font-brand);
+	}
+
+	.node-subtitle {
+		fill: var(--gray-300);
+		font-size: 11px;
+		font-family: var(--font-body);
+	}
+
+	.connections line {
+		opacity: 0.5;
+	}
+
+	.diagram-hint {
+		text-align: center;
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		margin-top: 1rem;
+	}
+
+	/* Mobile adjustments */
+	@media (max-width: 600px) {
+		.ecosystem-diagram {
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		svg {
+			min-width: 500px;
+		}
+
+		.diagram-hint {
+			font-size: var(--text-xs);
+		}
+	}
+</style>

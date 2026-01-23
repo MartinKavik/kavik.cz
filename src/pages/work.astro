@@ -5,6 +5,7 @@ import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
 import PortfolioPreview from '../components/PortfolioPreview.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import EcosystemDiagram from '../components/EcosystemDiagram.astro';
 
 const projects = (await getCollection('work')).sort(
 	(a, b) => (a.data.sortOrder ?? 999) - (b.data.sortOrder ?? 999),
@@ -26,6 +27,10 @@ const projects = (await getCollection('work')).sort(
 				tagline="Things I design & build."
 				align="center"
 			/>
+			<section class="ecosystem-section">
+				<p class="ecosystem-intro">Everything I build feeds into something else. Boon is the language. MoonZoon is the framework that powers its playground. NovyWave is built with MoonZoon. BoonComputer will run Boon on custom hardware. RayBox will render it all in 3D.</p>
+				<EcosystemDiagram />
+			</section>
 			<Grid variant="offset-large">
 				{
 					projects.map((project) => (
@@ -87,5 +92,20 @@ const projects = (await getCollection('work')).sort(
 			width: 65px;
 			height: 80px;
 		}
+	}
+
+	.ecosystem-section {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.ecosystem-intro {
+		max-width: 65ch;
+		margin: 0 auto;
+		text-align: center;
+		color: var(--gray-300);
+		font-size: var(--text-md);
 	}
 </style>

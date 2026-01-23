@@ -1,0 +1,261 @@
+---
+interface GalleryItem {
+	src: string;
+	alt: string;
+	title?: string;
+	focus?: 'left' | 'center' | 'right';
+}
+
+interface Props {
+	items: GalleryItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="gallery">
+	<div class="gallery-grid">
+		{items.map((item, index) => (
+			<button
+				class="gallery-item"
+				data-index={index}
+				data-src={item.src}
+				data-alt={item.alt}
+				data-title={item.title || ""}
+				type="button"
+				aria-label={`View ${item.alt}`}
+			>
+				<img src={item.src} alt={item.alt} loading="lazy" style={item.focus ? `object-position: ${item.focus}` : undefined} />
+				{item.title && <span class="item-title">{item.title}</span>}
+			</button>
+		))}
+	</div>
+
+	<!-- Lightbox -->
+	<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+		<button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+		<button class="lightbox-prev" aria-label="Previous image">&lsaquo;</button>
+		<button class="lightbox-next" aria-label="Next image">&rsaquo;</button>
+		<div class="lightbox-content">
+			<img id="lightbox-img" src="" alt="" />
+			<p class="lightbox-caption" id="lightbox-caption"></p>
+		</div>
+	</div>
+</div>
+
+<style>
+	.gallery-grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		justify-content: center;
+	}
+
+	.gallery-item {
+		flex: 0 0 calc(25% - 0.75rem);
+		min-width: 200px;
+	}
+
+	@media (max-width: 900px) {
+		.gallery-item {
+			flex: 0 0 calc(33.333% - 0.67rem);
+		}
+	}
+
+	.gallery-item {
+		position: relative;
+		aspect-ratio: 4 / 3;
+		overflow: hidden;
+		border-radius: 0.75rem;
+		cursor: zoom-in;
+		border: none;
+		padding: 0;
+		background: var(--gray-900);
+		box-shadow: var(--shadow-sm);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.gallery-item:hover,
+	.gallery-item:focus {
+		transform: scale(1.02);
+		box-shadow: var(--shadow-md);
+	}
+
+	.gallery-item img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.item-title {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding: 0.5rem;
+		background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+		color: white;
+		font-size: var(--text-sm);
+		text-align: center;
+	}
+
+	/* Lightbox styles */
+	.lightbox {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.95);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1000;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.3s ease, visibility 0.3s ease;
+		cursor: zoom-out;
+	}
+
+	.lightbox[aria-hidden="false"] {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.lightbox-content {
+		max-width: 90vw;
+		max-height: 90vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		cursor: zoom-out;
+	}
+
+	.lightbox-content img {
+		max-width: 100%;
+		max-height: 80vh;
+		object-fit: contain;
+		border-radius: 0.5rem;
+		cursor: zoom-out;
+	}
+
+	.lightbox-caption {
+		color: white;
+		margin-top: 1rem;
+		font-size: var(--text-md);
+		text-align: center;
+	}
+
+	.lightbox-close,
+	.lightbox-prev,
+	.lightbox-next {
+		position: absolute;
+		background: rgba(255, 255, 255, 0.1);
+		border: none;
+		color: white;
+		font-size: 2rem;
+		cursor: pointer;
+		padding: 0.5rem 1rem;
+		border-radius: 0.5rem;
+		transition: background 0.2s ease;
+	}
+
+	.lightbox-close:hover,
+	.lightbox-prev:hover,
+	.lightbox-next:hover {
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+	.lightbox-close {
+		top: 1rem;
+		right: 1rem;
+	}
+
+	.lightbox-prev {
+		left: 1rem;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.lightbox-next {
+		right: 1rem;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	@media (max-width: 600px) {
+		.gallery-grid {
+			gap: 0.75rem;
+		}
+
+		.gallery-item {
+			flex: 0 0 calc(50% - 0.375rem);
+			min-width: unset;
+		}
+
+		.lightbox-prev,
+		.lightbox-next {
+			display: none;
+		}
+	}
+</style>
+
+<script>
+	const gallery = document.querySelector('.gallery');
+	const lightbox = document.getElementById('lightbox');
+	const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+	const lightboxCaption = document.getElementById('lightbox-caption');
+	const items = document.querySelectorAll('.gallery-item');
+	let currentIndex = 0;
+
+	function openLightbox(index: number) {
+		const item = items[index] as HTMLElement;
+		currentIndex = index;
+		lightboxImg.src = item.dataset.src || '';
+		lightboxImg.alt = item.dataset.alt || '';
+		if (lightboxCaption) {
+			lightboxCaption.textContent = item.dataset.title || '';
+		}
+		lightbox?.setAttribute('aria-hidden', 'false');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeLightbox() {
+		lightbox?.setAttribute('aria-hidden', 'true');
+		document.body.style.overflow = '';
+	}
+
+	function showPrev() {
+		currentIndex = (currentIndex - 1 + items.length) % items.length;
+		openLightbox(currentIndex);
+	}
+
+	function showNext() {
+		currentIndex = (currentIndex + 1) % items.length;
+		openLightbox(currentIndex);
+	}
+
+	// Event listeners
+	items.forEach((item, index) => {
+		item.addEventListener('click', () => openLightbox(index));
+	});
+
+	gallery?.querySelector('.lightbox-close')?.addEventListener('click', closeLightbox);
+	gallery?.querySelector('.lightbox-prev')?.addEventListener('click', showPrev);
+	gallery?.querySelector('.lightbox-next')?.addEventListener('click', showNext);
+
+	// Close on click anywhere (except nav buttons)
+	lightbox?.addEventListener('click', (e) => {
+		const target = e.target as HTMLElement;
+		if (!target.closest('.lightbox-prev') && !target.closest('.lightbox-next')) {
+			closeLightbox();
+		}
+	});
+
+	// Keyboard navigation
+	document.addEventListener('keydown', (e) => {
+		if (lightbox?.getAttribute('aria-hidden') === 'false') {
+			if (e.key === 'Escape') closeLightbox();
+			if (e.key === 'ArrowLeft') showPrev();
+			if (e.key === 'ArrowRight') showNext();
+		}
+	});
+</script>
