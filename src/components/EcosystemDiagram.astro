@@ -13,14 +13,36 @@ const projects = [
 ];
 ---
 
-<nav class="minimap" aria-label="Jump to project">
-	{projects.map((project, i) => (
-		<a
-			href={`#${project.id}`}
-			class:list={["minimap-item", { offset: i % 2 === 1 }]}
-		>
-			<span class="minimap-name">{project.name}</span>
-			<span class="minimap-subtitle">{project.subtitle}</span>
-		</a>
-	))}
-</nav>
+<div class="minimap-wrapper">
+	<div class="minimap-logos minimap-logos-left" aria-hidden="true">
+		<img class="tech-logo" src="/images/tech/rust.svg" alt="Rust" />
+		<img class="tech-logo" src="/images/tech/wasm.svg" alt="WebAssembly" />
+		<img class="tech-logo" src="/images/tech/linux.svg" alt="Linux" />
+		<img class="tech-logo" src="/images/tech/riscv.svg" alt="RISC-V" />
+		<img class="tech-logo" src="/images/tech/claude.svg" alt="Claude" />
+		<img class="tech-logo" src="/images/tech/figma.svg" alt="Figma" />
+		<img class="tech-logo" src="/images/tech/tailscale.svg" alt="Tailscale" />
+	</div>
+
+	<nav class="minimap" aria-label="Jump to project">
+		{projects.map((project, i) => (
+			<a
+				href={`#${project.id}`}
+				class:list={["minimap-item", { offset: i % 2 === 1 }]}
+			>
+				<span class="minimap-name">{project.name}</span>
+				<span class="minimap-subtitle">{project.subtitle}</span>
+			</a>
+		))}
+	</nav>
+
+	<div class="minimap-logos minimap-logos-right" aria-hidden="true">
+		<img class="tech-logo" src="/images/tech/typescript.svg" alt="TypeScript" />
+		<img class="tech-logo" src="/images/tech/tauri.svg" alt="Tauri" />
+		<img class="tech-logo" src="/images/tech/htmx.svg" alt="htmx" />
+		<img class="tech-logo" src="/images/tech/chrome.svg" alt="Chrome" />
+		<img class="tech-logo" src="/images/tech/github.svg" alt="GitHub" />
+		<img class="tech-logo" src="/images/tech/popos.svg" alt="Pop!_OS" />
+		<img class="tech-logo" src="/images/tech/cloudflare.svg" alt="Cloudflare" />
+	</div>
+</div>
