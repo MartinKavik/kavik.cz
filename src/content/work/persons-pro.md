@@ -10,7 +10,7 @@ links:
     url: "https://persons.pro/"
 ---
 
-Hire a freelancer? Platform takes 10-20%. Sponsor a creator? 5-12%. Sell an ebook? Up to 30% gone. Plus 3-5% payment processing fees.
+Hire a freelancer? Platform takes 10-20%. Sponsor a creator? 5-12%. Sell an ebook? Up to 90% gone. Plus 3-5% payment processing fees.
 
 **The fix:**
 - Modern banking or stablecoins for near-zero fees.

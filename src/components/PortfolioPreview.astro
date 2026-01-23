@@ -12,7 +12,7 @@ const { data, id } = project;
 const { Content } = await render(project);
 ---
 
-<article class="card">
+<article class="card" id={id}>
 	<div class="image-wrapper">
 		<img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" />
 		<button class="expand-btn" aria-label="Enlarge image">
@@ -26,7 +26,15 @@ const { Content } = await render(project);
 	</div>
 	<div class="content">
 		<div class="title-row">
-			<h3 class="title">{data.title}</h3>
+			<h3 class="title">
+				{data.title}
+				<button class="link-copy-btn" data-id={id} aria-label="Copy link to this project" title="Copy link">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+						<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+					</svg>
+				</button>
+			</h3>
 			{data.links && data.links.length > 0 && (
 				<div class="links">
 					{data.links.map((link) => (
@@ -60,6 +68,22 @@ const { Content } = await render(project);
 
 	.card:hover {
 		box-shadow: var(--shadow-md);
+	}
+
+	.card.highlighted {
+		animation: highlight-pulse 1.5s ease-out;
+	}
+
+	@keyframes highlight-pulse {
+		0% {
+			box-shadow: 0 0 0 0 var(--accent-regular);
+		}
+		30% {
+			box-shadow: 0 0 0 8px color-mix(in srgb, var(--accent-regular) 40%, transparent);
+		}
+		100% {
+			box-shadow: var(--shadow-sm);
+		}
 	}
 
 	.image-wrapper {
@@ -184,6 +208,36 @@ const { Content } = await render(project);
 		font-weight: 600;
 		color: var(--gray-0);
 		margin: 0;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.link-copy-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 44px;
+		min-height: 44px;
+		padding: 0.5rem;
+		background: var(--gray-800);
+		border: 1px solid var(--gray-700);
+		border-radius: 0.5rem;
+		color: var(--gray-300);
+		cursor: pointer;
+		transition: background 0.2s, color 0.2s, border-color 0.2s;
+	}
+
+	.link-copy-btn:hover {
+		background: var(--gray-700);
+		color: var(--gray-0);
+		border-color: var(--gray-600);
+	}
+
+	.link-copy-btn.copied {
+		background: var(--accent-regular);
+		border-color: var(--accent-regular);
+		color: var(--gray-999);
 	}
 
 	.links {
@@ -354,5 +408,59 @@ const { Content } = await render(project);
 			font-size: var(--text-3xl);
 		}
 	}
+
+	.card {
+		scroll-margin-top: 2rem;
+	}
 </style>
 
+<script>
+	function initPortfolioLinks() {
+		// Handle hash navigation on page load
+		const hash = window.location.hash.slice(1);
+		if (hash) {
+			const target = document.getElementById(hash);
+			if (target?.classList.contains('card')) {
+				// Small delay to ensure layout is complete
+				setTimeout(() => {
+					target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					target.classList.add('highlighted');
+					target.addEventListener('animationend', () => {
+						target.classList.remove('highlighted');
+					}, { once: true });
+				}, 100);
+			}
+		}
+
+		// Handle copy link buttons
+		document.querySelectorAll('.link-copy-btn').forEach(btn => {
+			btn.addEventListener('click', async (e) => {
+				e.preventDefault();
+				const id = (btn as HTMLElement).dataset.id;
+				const url = `${window.location.origin}${window.location.pathname}#${id}`;
+
+				try {
+					await navigator.clipboard.writeText(url);
+					btn.classList.add('copied');
+					setTimeout(() => btn.classList.remove('copied'), 1500);
+				} catch {
+					// Fallback for older browsers
+					const textArea = document.createElement('textarea');
+					textArea.value = url;
+					document.body.appendChild(textArea);
+					textArea.select();
+					document.execCommand('copy');
+					document.body.removeChild(textArea);
+					btn.classList.add('copied');
+					setTimeout(() => btn.classList.remove('copied'), 1500);
+				}
+			});
+		});
+	}
+
+	// Run on initial load
+	initPortfolioLinks();
+
+	// Re-run on Astro page transitions
+	document.addEventListener('astro:page-load', initPortfolioLinks);
+</script>
