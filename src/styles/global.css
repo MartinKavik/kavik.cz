@@ -296,3 +296,71 @@ h5 {
 		background-position: 200% 50%;
 	}
 }
+
+/* Minimap (Work page) */
+.minimap {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.5rem 1rem;
+	max-width: 480px;
+	margin: 0 auto 1.5rem;
+}
+
+.minimap-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0.5rem 0.75rem;
+	font-family: var(--font-brand);
+	background: var(--gray-900);
+	border: 1px solid var(--gray-800);
+	border-radius: 6px;
+	text-decoration: none;
+	text-align: center;
+	transition: border-color 0.15s, background 0.15s;
+}
+
+.minimap-item:hover,
+.minimap-item:focus {
+	border-color: var(--accent-regular);
+	background: var(--gray-800);
+}
+
+.minimap-name {
+	font-size: var(--text-md);
+	font-weight: 600;
+	color: var(--gray-200);
+}
+
+.minimap-item:hover .minimap-name,
+.minimap-item:focus .minimap-name {
+	color: var(--gray-0);
+}
+
+.minimap-subtitle {
+	font-size: var(--text-sm);
+	color: var(--gray-400);
+}
+
+@media (min-width: 55em) {
+	.minimap-item.offset {
+		transform: translateY(1rem);
+	}
+
+	.minimap {
+		gap: 0.75rem 1.5rem;
+		padding-bottom: 1rem;
+	}
+}
+
+@media (max-width: 30em) {
+	.minimap {
+		grid-template-columns: 1fr;
+		max-width: 220px;
+	}
+
+	.minimap-item.offset {
+		transform: none;
+	}
+}
+
