@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import ShelfSection from '../components/shelf/ShelfSection.astro';
+import { bookCategories } from '../data/shelf-books';
+import { gameCategories } from '../data/shelf-games';
+---
+
+<BaseLayout title="Shelf | Martin Kavík" description="Books and games that shaped my thinking.">
+	<div class="stack gap-20 lg:gap-32">
+		<main class="wrapper shelf">
+			<div class="hero-container">
+				<div class="deco-bricks" aria-hidden="true">
+					<div class="deco-brick" style="background: #9b5de5; width: 50px; height: 45px; left: 3%; top: 1rem;"></div>
+					<div class="deco-brick" style="background: #00f5d4; width: 40px; height: 50px; right: 4%; top: 2rem;"></div>
+				</div>
+				<Hero
+					title="Shelf"
+					tagline="Books and games that shaped my thinking."
+				/>
+			</div>
+
+			<ShelfSection
+				title="Books"
+				categories={bookCategories}
+				counterPrefix="B"
+				sectionClass="books-section"
+			/>
+
+			<ShelfSection
+				title="Games"
+				categories={gameCategories}
+				counterPrefix="G"
+				sectionClass="games-section"
+			/>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.shelf {
+		display: flex;
+		flex-direction: column;
+		gap: 5rem;
+	}
+
+	.hero-container {
+		position: relative;
+	}
+
+	.deco-bricks {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	.deco-brick {
+		position: absolute;
+		opacity: 0.15;
+	}
+
+	@media (min-width: 50em) {
+		.deco-brick {
+			transform: scale(1.4);
+		}
+	}
+</style>
+
+<script>
+	function initShelfLinks() {
+		// Handle hash navigation on page load
+		const hash = window.location.hash.slice(1);
+		if (hash) {
+			const target = document.getElementById(hash);
+			if (target?.tagName === 'LI') {
+				setTimeout(() => {
+					target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+					target.classList.add('highlighted');
+					target.addEventListener('animationend', () => {
+						target.classList.remove('highlighted');
+					}, { once: true });
+				}, 100);
+			}
+		}
+
+		// Handle counter clicks to copy links
+		document.querySelectorAll('.counter-label').forEach(btn => {
+			btn.addEventListener('click', async (e) => {
+				e.preventDefault();
+				const id = (btn as HTMLElement).dataset.id;
+				const url = `${window.location.origin}${window.location.pathname}#${id}`;
+
+				try {
+					await navigator.clipboard.writeText(url);
+					btn.classList.add('copied');
+					setTimeout(() => btn.classList.remove('copied'), 1500);
+				} catch {
+					const textArea = document.createElement('textarea');
+					textArea.value = url;
+					document.body.appendChild(textArea);
+					textArea.select();
+					document.execCommand('copy');
+					document.body.removeChild(textArea);
+					btn.classList.add('copied');
+					setTimeout(() => btn.classList.remove('copied'), 1500);
+				}
+			});
+		});
+	}
+
+	initShelfLinks();
+	document.addEventListener('astro:page-load', initShelfLinks);
+</script>

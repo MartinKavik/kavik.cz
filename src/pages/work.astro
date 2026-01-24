@@ -5,7 +5,7 @@ import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
 import PortfolioPreview from '../components/PortfolioPreview.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import EcosystemDiagram from '../components/EcosystemDiagram.astro';
+import ProjectMinimap from '../components/ProjectMinimap.astro';
 
 const projects = (await getCollection('work')).sort(
 	(a, b) => (a.data.sortOrder ?? 999) - (b.data.sortOrder ?? 999),
@@ -27,7 +27,7 @@ const projects = (await getCollection('work')).sort(
 				tagline="Things I design & build."
 				align="center"
 			/>
-			<EcosystemDiagram />
+			<ProjectMinimap />
 			<Grid variant="offset-large">
 				{
 					projects.map((project) => (

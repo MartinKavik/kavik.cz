@@ -1,0 +1,46 @@
+---
+import ShelfItem from './ShelfItem.astro';
+import type { ShelfCategory } from '../../data/shelf-books';
+
+interface Props {
+  category: ShelfCategory;
+  counterPrefix: string;
+  counterStart: number;
+}
+
+const { category, counterPrefix, counterStart } = Astro.props;
+---
+
+<section class="item-category">
+  <h3>{category.title}</h3>
+  <ul class="item-list">
+    {category.items.map((item, i) => (
+      <ShelfItem item={item} counterLabel={`${counterPrefix}${counterStart + i}`} />
+    ))}
+  </ul>
+</section>
+
+<style>
+  .item-category h3 {
+    font-size: var(--text-lg);
+    color: var(--gray-0);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--gray-800);
+  }
+
+  @media (min-width: 50em) {
+    .item-category h3 {
+      font-size: var(--text-xl);
+    }
+  }
+
+  .item-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+</style>

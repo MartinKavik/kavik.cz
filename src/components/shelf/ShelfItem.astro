@@ -1,0 +1,235 @@
+---
+import Icon from '../Icon.astro';
+import type { ShelfItem } from '../../data/shelf-books';
+
+interface Props {
+  item: ShelfItem;
+  counterLabel: string;
+}
+
+const { item, counterLabel } = Astro.props;
+---
+
+<li class:list={[{ favorite: item.favorite }]} id={item.id}>
+  <button class="counter-label" data-id={item.id} aria-label="Copy link to this item" title="Copy link">{counterLabel}</button>
+  {item.favorite && (
+    <span class="favorite-icon"><Icon icon="heart-straight" size="1em" /></span>
+  )}
+  {item.tag ? (
+    <div class="item-title-row">
+      <span class="item-name">{item.name}</span>
+      <span class:list={["item-tag", `item-tag--${item.tag}`]}>{item.tagLabel || (item.tag === 'wishlist' ? 'Wishlist' : item.tag)}</span>
+    </div>
+  ) : (
+    <span class="item-name">{item.name}</span>
+  )}
+  {item.links.length > 0 && (
+    <span class="item-links">
+      {item.links.map((link, i) => (
+        <>
+          <a href={link.url} target="_blank" rel="noopener" class="item-source">{link.name}</a>
+          {i < item.links.length - 1 && <span class="link-divider">■</span>}
+        </>
+      ))}
+    </span>
+  )}
+  <span class="item-meta">{item.meta}</span>
+  <span class="item-note">{item.note}</span>
+</li>
+
+<style>
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem 1rem;
+    padding-left: 3.5rem;
+    border-radius: 0.5rem;
+    border-left: 3px solid transparent;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    scroll-margin-top: 2rem;
+  }
+
+  li.highlighted {
+    animation: highlight-pulse 1.5s ease-out;
+  }
+
+  @keyframes highlight-pulse {
+    0% {
+      box-shadow: 0 0 0 0 var(--section-accent, var(--accent-regular));
+    }
+    30% {
+      box-shadow: 0 0 0 8px color-mix(in srgb, var(--section-accent, var(--accent-regular)) 40%, transparent);
+    }
+    100% {
+      box-shadow: none;
+    }
+  }
+
+  li:nth-child(odd) {
+    background: var(--gray-800);
+  }
+
+  li:nth-child(even) {
+    background: var(--gray-900);
+    border-left-color: var(--section-accent, var(--gray-600));
+  }
+
+  li:nth-child(even) .item-name {
+    color: var(--section-accent, inherit);
+  }
+
+  li:hover {
+    outline: 1px solid var(--section-accent, var(--gray-600));
+    outline-offset: -1px;
+  }
+
+  /* Title rows */
+  .item-title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Item names */
+  .item-name {
+    font-size: var(--text-md);
+    color: var(--gray-100);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  @media (min-width: 50em) {
+    .item-name {
+      font-size: var(--text-lg);
+    }
+  }
+
+  /* Source links */
+  .item-source {
+    color: var(--gray-400);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+
+  .item-source:hover,
+  .item-source:focus {
+    color: var(--section-accent, var(--gray-200));
+  }
+
+  /* Meta info */
+  .item-meta {
+    font-size: var(--text-md);
+    color: var(--gray-400);
+  }
+
+  /* Links row */
+  .item-links {
+    font-size: var(--text-md);
+    color: var(--gray-400);
+    margin-top: -0.1rem;
+  }
+
+  .link-divider {
+    color: var(--section-accent, var(--gray-500));
+    font-size: 0.5em;
+    margin: 0 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* Notes */
+  .item-note {
+    font-size: var(--text-md);
+    color: var(--gray-300);
+    font-style: italic;
+  }
+
+  /* Special tags */
+  .item-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2em 0.6em;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+  }
+
+  .item-tag--wishlist {
+    color: #b45309;
+    background: rgba(251, 191, 36, 0.2);
+    border: 1px solid rgba(180, 83, 9, 0.4);
+  }
+
+  :global(:root.theme-dark) .item-tag--wishlist {
+    color: #fbbf24;
+    border-color: rgba(251, 191, 36, 0.5);
+  }
+
+  .item-tag--blocked {
+    color: #dc2626;
+    background: rgba(248, 113, 113, 0.2);
+    border: 1px solid rgba(220, 38, 38, 0.4);
+  }
+
+  /* Favorite items */
+  li.favorite .favorite-icon {
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: var(--section-accent);
+  }
+
+  li.favorite .favorite-icon :global(svg) {
+    display: block;
+  }
+
+  /* Counter label - clickable to copy link */
+  .counter-label {
+    position: absolute;
+    left: 0.5rem;
+    top: 0.75rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--gray-500);
+    min-width: 2rem;
+    background: none;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    margin: -0.25rem -0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .counter-label:hover {
+    background: var(--gray-700);
+    color: var(--gray-0);
+  }
+
+  .counter-label:focus {
+    outline: none;
+  }
+
+  .counter-label.copied {
+    color: var(--section-accent, var(--accent-regular));
+  }
+
+  li:nth-child(even) .counter-label {
+    color: var(--section-accent, inherit);
+  }
+
+  li:nth-child(even) .counter-label:hover {
+    color: var(--gray-0);
+  }
+
+</style>

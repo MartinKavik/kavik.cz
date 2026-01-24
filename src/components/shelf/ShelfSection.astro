@@ -1,0 +1,152 @@
+---
+import ShelfCategory from './ShelfCategory.astro';
+import type { ShelfCategory as ShelfCategoryType } from '../../data/shelf-books';
+
+interface Props {
+  title: string;
+  categories: ShelfCategoryType[];
+  counterPrefix: string;
+  sectionClass: string;
+}
+
+const { title, categories, counterPrefix, sectionClass } = Astro.props;
+
+// Calculate counter starts for each category
+let runningCounter = 1;
+const categoriesWithCounters = categories.map(category => {
+  const start = runningCounter;
+  runningCounter += category.items.length;
+  return { category, counterStart: start };
+});
+
+// Group categories by their groupWith property
+const grouped = new Map<string, { category: ShelfCategoryType; counterStart: number }[]>();
+const ungrouped: { category: ShelfCategoryType; counterStart: number }[] = [];
+
+categoriesWithCounters.forEach(item => {
+  if (item.category.groupWith) {
+    const existing = grouped.get(item.category.groupWith) || [];
+    existing.push(item);
+    grouped.set(item.category.groupWith, existing);
+  } else {
+    ungrouped.push(item);
+  }
+});
+
+// Convert to array for rendering, preserving order
+const renderOrder: ({ type: 'group'; items: { category: ShelfCategoryType; counterStart: number }[] } | { type: 'single'; item: { category: ShelfCategoryType; counterStart: number } })[] = [];
+const processedGroups = new Set<string>();
+
+categoriesWithCounters.forEach(item => {
+  if (item.category.groupWith) {
+    if (!processedGroups.has(item.category.groupWith)) {
+      processedGroups.add(item.category.groupWith);
+      renderOrder.push({ type: 'group', items: grouped.get(item.category.groupWith)! });
+    }
+  } else {
+    renderOrder.push({ type: 'single', item });
+  }
+});
+---
+
+<section class:list={["shelf-section", sectionClass]}>
+  <h2 class="section-title">{title}</h2>
+  <div class="items-grid">
+    {renderOrder.map(entry =>
+      entry.type === 'group' ? (
+        <div class="category-group">
+          {entry.items.map(({ category, counterStart }) => (
+            <ShelfCategory category={category} counterPrefix={counterPrefix} counterStart={counterStart} />
+          ))}
+        </div>
+      ) : (
+        <ShelfCategory category={entry.item.category} counterPrefix={counterPrefix} counterStart={entry.item.counterStart} />
+      )
+    )}
+  </div>
+</section>
+
+<style>
+  .shelf-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+  }
+
+  .shelf-section + .shelf-section {
+    margin-top: 4rem;
+  }
+
+  @media (min-width: 50em) {
+    .shelf-section + .shelf-section {
+      margin-top: 6rem;
+    }
+  }
+
+  .section-title {
+    font-size: var(--text-3xl);
+    font-family: var(--font-brand);
+    color: var(--gray-0);
+    text-align: center;
+    margin: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .section-title::before,
+  .section-title::after {
+    content: '';
+    height: 2px;
+    flex: 1;
+    max-width: 100px;
+    background: linear-gradient(90deg, transparent, var(--gray-700));
+  }
+
+  .section-title::after {
+    background: linear-gradient(90deg, var(--gray-700), transparent);
+  }
+
+  @media (min-width: 50em) {
+    .section-title {
+      font-size: var(--text-4xl);
+    }
+
+    .section-title::before,
+    .section-title::after {
+      max-width: 150px;
+    }
+  }
+
+  .items-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 50em) {
+    .items-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  .category-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+  }
+
+  /* Section accent colors */
+  .books-section {
+    --section-accent: #a855f7;
+  }
+
+  .games-section {
+    --section-accent: #0d9488;
+  }
+</style>
