@@ -45,7 +45,7 @@ const { Content } = await render(entry);
 					</Hero>
 				</div>
 			</header>
-			<main class="wrapper">
+			<main class="wrapper blog-wrapper">
 				<div class="stack gap-10 content">
 					{entry.data.img && <img src={entry.data.img} alt={entry.data.img_alt || ''} />}
 					<div class="content">
@@ -56,11 +56,22 @@ const { Content } = await render(entry);
 		</div>
 		<ContactCTA />
 	</div>
+
+	<!-- Lightbox -->
+	<div class="blog-lightbox" id="blog-lightbox">
+		<button class="blog-lightbox-close" aria-label="Close">&times;</button>
+		<img id="blog-lightbox-img" src="" alt="" />
+	</div>
 </BaseLayout>
 
 <style>
 	.page-content {
 		position: relative;
+		overflow-x: hidden;
+	}
+
+	.blog-wrapper {
+		overflow-x: hidden;
 	}
 
 	.deco-bricks {
@@ -134,9 +145,13 @@ const { Content } = await render(entry);
 
 	.content {
 		max-width: 65ch;
+		width: 100%;
 		margin-inline: auto;
 		font-size: var(--text-md);
 		line-height: 1.7;
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		overflow-x: hidden;
 	}
 
 	.content > :global(* + *) {
@@ -160,7 +175,9 @@ const { Content } = await render(entry);
 	.content :global(img) {
 		display: block;
 		margin-inline: auto;
-		border-radius: 1.5rem;
+		max-width: 100%;
+		height: auto;
+		border-radius: 0.5rem;
 		box-shadow: var(--shadow-sm);
 		background: var(--gradient-subtle);
 		border: 1px solid var(--gray-800);
@@ -188,13 +205,14 @@ const { Content } = await render(entry);
 	}
 
 	.content :global(pre) {
-		max-width: 63ch;
+		max-width: min(63ch, 100%);
 		margin-inline: auto;
 		margin-top: 2.5rem;
 		padding: 1rem 1.5rem;
 		border-radius: 0.75rem;
 		border: 1px solid var(--gray-800);
 		font-size: var(--text-md);
+		overflow-x: auto;
 	}
 
 	.content :global(pre + p > em:only-child) {
@@ -245,4 +263,167 @@ const { Content } = await render(entry);
 			font-size: var(--text-2xl);
 		}
 	}
+
+	/* Lightbox */
+	.blog-lightbox {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.95);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 10000;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.3s ease, visibility 0.3s ease;
+		cursor: zoom-out;
+	}
+
+	.blog-lightbox.active {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.blog-lightbox img {
+		max-width: 90vw;
+		max-height: 90vh;
+		object-fit: contain;
+		border-radius: 0.5rem;
+	}
+
+	.blog-lightbox-close {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		width: 44px;
+		height: 44px;
+		background: transparent;
+		border: none;
+		color: white;
+		font-size: 2rem;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0.7;
+		transition: opacity 0.2s ease;
+		z-index: 10001;
+	}
+
+	.blog-lightbox-close:hover {
+		opacity: 1;
+	}
+
+	.content :global(img) {
+		cursor: zoom-in;
+	}
+
+	.content :global(.blog-expand-btn) {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--gray-900);
+		border: 1px solid var(--gray-700);
+		border-radius: 0.5rem;
+		color: var(--gray-300);
+		cursor: pointer;
+		opacity: 0.7;
+		transition: opacity 0.2s, background 0.2s, color 0.2s;
+	}
+
+	.content :global(.blog-expand-btn:hover) {
+		opacity: 1;
+		background: var(--gray-800);
+		color: var(--gray-0);
+	}
 </style>
+
+<script is:inline>
+	(function() {
+		function initBlogLightbox() {
+			const lightbox = document.getElementById('blog-lightbox');
+			const lightboxImg = document.getElementById('blog-lightbox-img');
+			const closeBtn = document.querySelector('.blog-lightbox-close');
+			const contentImages = document.querySelectorAll('.content img');
+
+			if (!lightbox || !lightboxImg) return;
+
+			const expandIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<polyline points="15 3 21 3 21 9"></polyline>
+				<polyline points="9 21 3 21 3 15"></polyline>
+				<line x1="21" y1="3" x2="14" y2="10"></line>
+				<line x1="3" y1="21" x2="10" y2="14"></line>
+			</svg>`;
+
+			function openLightbox(imgSrc, imgAlt) {
+				lightboxImg.src = imgSrc;
+				lightboxImg.alt = imgAlt;
+				// Apply invert filter for Shape Up image in dark mode
+				if (imgSrc.includes('shapeup') && document.documentElement.classList.contains('theme-dark')) {
+					lightboxImg.style.filter = 'invert(0.7)';
+				} else {
+					lightboxImg.style.filter = '';
+				}
+				lightbox.classList.add('active');
+				document.body.style.overflow = 'hidden';
+			}
+
+			function closeLightbox() {
+				lightbox.classList.remove('active');
+				document.body.style.overflow = '';
+			}
+
+			contentImages.forEach((img) => {
+				if (img.parentElement?.classList.contains('blog-img-wrapper')) return;
+
+				// Create wrapper around image
+				const wrapper = document.createElement('span');
+				wrapper.className = 'blog-img-wrapper';
+				wrapper.style.cssText = 'position: relative; display: inline-block;';
+				img.parentNode.insertBefore(wrapper, img);
+				wrapper.appendChild(img);
+
+				const btn = document.createElement('button');
+				btn.className = 'blog-expand-btn';
+				btn.setAttribute('aria-label', 'Enlarge image');
+				btn.innerHTML = expandIcon;
+				wrapper.appendChild(btn);
+
+				img.addEventListener('click', (e) => {
+					e.preventDefault();
+					openLightbox(img.src, img.alt);
+				});
+
+				btn.addEventListener('click', (e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					openLightbox(img.src, img.alt);
+				});
+			});
+
+			closeBtn?.addEventListener('click', closeLightbox);
+			lightbox.addEventListener('click', (e) => {
+				if (e.target === lightbox || e.target === lightboxImg) {
+					closeLightbox();
+				}
+			});
+
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+					closeLightbox();
+				}
+			});
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initBlogLightbox);
+		} else {
+			initBlogLightbox();
+		}
+	})();
+</script>
