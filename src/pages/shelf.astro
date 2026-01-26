@@ -21,6 +21,60 @@ import { gameCategories } from '../data/shelf-games';
 				/>
 			</div>
 
+			<!-- Themes Section -->
+			<section class="themes-section">
+				<p class="themes-intro">
+					These aren't random picks. The same ideas keep surfacing — in the books I reach for, the games I remember, and the <a href="/work">tools I build</a>.
+				</p>
+
+				<div class="themes-grid">
+					<div class="theme">
+						<h3>Time & Dataflow</h3>
+						<p>Time as a first-class concept in <em>Lucid</em>. Time as a puzzle in <em>Braid</em>. Boon's runtime that remembers values across reloads. MoonZoon's signals reacting to change. <em>Factorio</em> where the factory IS the dataflow program. Programs as data pipelines flowing through time.</p>
+					</div>
+
+					<div class="theme">
+						<h3>Consciousness & Identity</h3>
+						<p><em>Detroit: Become Human</em> asking what makes us human. <em>SOMA</em> questioning if copied minds are still "you." <em>Hellblade</em> rendering psychosis as gameplay. <em>Thinking, Fast and Slow</em> revealing how the mind fools itself. Prompter watching AI think. The question runs through everything.</p>
+					</div>
+
+					<div class="theme">
+						<h3>Visual Beauty</h3>
+						<p><em>GRIS</em> painting grief in watercolor. <em>Ori</em> as beauty in motion. <em>Gorogoa</em> hand-drawn with obsessive care. <em>Refactoring UI</em> teaching design taste. RayBox using SDF and PBR for 3D interfaces. Boon's visual debugger inspired by <em>Factorio</em>. Beauty matters.</p>
+					</div>
+
+					<div class="theme">
+						<h3>Worlds Within Worlds</h3>
+						<p><em>COCOON</em> — worlds inside orbs inside worlds. <em>Portal</em> folding space. <em>Inscryption</em> as games within games. BoonComputer: Boon describing hardware that runs Boon. The deepest kind of recursion — systems containing themselves.</p>
+					</div>
+
+					<div class="theme">
+						<h3>Teaching Simply</h3>
+						<p><em>Computer Engineering for Babies</em> explains logic gates with colors. <em>Portal</em> teaches physics through play. Boon makes programming simpler. MoonZoon removes HTML, CSS, and JavaScript. The best tools hide complexity, not expose it.</p>
+					</div>
+
+					<div class="theme">
+						<h3>Escaping Constraints</h3>
+						<p><em>The 100-Year-Old Man</em> escaping a nursing home. <em>elm-ui</em> escaping CSS. <em>Rework</em> giving permission to stay small. MoonZoon escaping the frontend mess. RayBox escaping flat 2D. Boon escaping state management. Breaking free from what doesn't work.</p>
+					</div>
+
+					<div class="theme">
+						<h3>Becoming Better</h3>
+						<p>Kratos learning to be a father in <em>God of War</em>. Senua confronting her demons in <em>Hellblade</em>. <em>Way of the Peaceful Warrior</em> on spiritual growth. MoonZoon's evolution through years of iteration. The whole portfolio is self-improvement — building skills project by project.</p>
+					</div>
+
+					<div class="theme">
+						<h3>Bonds & Relationships</h3>
+						<p>Kratos and Atreus. Amicia protecting Hugo in <em>A Plague Tale</em>. Geralt and Ciri. <em>It Takes Two</em> saving a marriage through cooperation. My projects form a family tree too — MoonZoon birthed from Seed, NovyWave built with MoonZoon, BoonComputer as Boon's hardware child.</p>
+					</div>
+
+					<div class="theme theme-wide">
+						<h3>Descent & Return</h3>
+						<p><em>Hellblade</em> descending into Hel. <em>Ori</em> through dark forests toward light. <em>The Egyptian</em> and Sinuhe's exile. The MoonZoon history documents the frustration phase — Virtual DOM hell, failed experiments, dead ends. Each descent taught something. BoonComputer is the current descent: "run Boon on a CPU designed in Boon." The hero's journey pattern — escape the boring life, descend into struggle, return stronger, share what you learned.</p>
+					</div>
+				</div>
+			</section>
+
 			<ShelfSection
 				title="Books"
 				categories={bookCategories}
@@ -66,6 +120,101 @@ import { gameCategories } from '../data/shelf-games';
 	@media (min-width: 50em) {
 		.deco-brick {
 			transform: scale(1.4);
+		}
+	}
+
+	/* Themes section */
+	.themes-section {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.themes-intro {
+		font-size: var(--text-lg);
+		color: var(--gray-200);
+		text-align: center;
+		max-width: 50ch;
+		margin: 0 auto;
+		line-height: 1.6;
+	}
+
+	.themes-intro a {
+		color: var(--gray-0);
+		text-decoration: underline;
+		text-decoration-color: var(--gray-600);
+		text-underline-offset: 0.2em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.themes-intro a:hover {
+		text-decoration-color: currentColor;
+	}
+
+	.themes-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+
+	@media (min-width: 50em) {
+		.themes-grid {
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+		}
+	}
+
+	@media (min-width: 75em) {
+		.themes-grid {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+
+	.theme {
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		padding: 1.5rem;
+		transition: border-color var(--theme-transition), box-shadow var(--theme-transition);
+	}
+
+	.theme:hover {
+		border-color: var(--gray-700);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.theme h3 {
+		font-size: var(--text-lg);
+		color: var(--gray-0);
+		margin-bottom: 0.75rem;
+	}
+
+	.theme p {
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+		line-height: 1.65;
+	}
+
+	.theme em {
+		color: var(--gray-200);
+		font-style: normal;
+	}
+
+	.theme-wide {
+		grid-column: 1 / -1;
+	}
+
+	@media (min-width: 50em) {
+		.themes-intro {
+			font-size: var(--text-xl);
+		}
+
+		.theme h3 {
+			font-size: var(--text-xl);
+		}
+
+		.theme p {
+			font-size: var(--text-md);
 		}
 	}
 </style>

@@ -135,10 +135,18 @@ const { Content } = await render(entry);
 	.content {
 		max-width: 65ch;
 		margin-inline: auto;
+		font-size: var(--text-md);
+		line-height: 1.7;
 	}
 
 	.content > :global(* + *) {
 		margin-top: 1rem;
+	}
+
+	@media (min-width: 50em) {
+		.content {
+			font-size: var(--text-lg);
+		}
 	}
 
 	.content :global(h1),
@@ -150,10 +158,47 @@ const { Content } = await render(entry);
 	}
 
 	.content :global(img) {
+		display: block;
+		margin-inline: auto;
 		border-radius: 1.5rem;
 		box-shadow: var(--shadow-sm);
 		background: var(--gradient-subtle);
 		border: 1px solid var(--gray-800);
+	}
+
+	.content :global(p:has(img)) {
+		text-align: center;
+		margin-top: 2.5rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.content :global(p:has(img) + p > em:only-child),
+	.content :global(p:has(img) > em:last-child) {
+		display: block;
+		text-align: center;
+		font-size: var(--text-md);
+		color: var(--gray-400);
+		margin-top: 0.5rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.content :global(pre) {
+		max-width: 63ch;
+		margin-inline: auto;
+		margin-top: 2.5rem;
+		padding: 1rem 1.5rem;
+		border-radius: 0.75rem;
+		border: 1px solid var(--gray-800);
+		font-size: var(--text-md);
+	}
+
+	.content :global(pre + p > em:only-child) {
+		display: block;
+		text-align: center;
+		font-size: var(--text-md);
+		color: var(--gray-400);
+		margin-top: 0.5rem;
+		margin-bottom: 2.5rem;
 	}
 
 	.content :global(blockquote) {
