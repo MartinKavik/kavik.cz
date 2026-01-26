@@ -34,6 +34,7 @@ export const bookCategories: ShelfCategory[] = [
           { name: "Official", url: "https://dataintensive.net/" },
           { name: "O'Reilly", url: "https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/" },
         ],
+        favorite: true,
       },
       {
         id: "designing-data-intensive-applications-2nd",
