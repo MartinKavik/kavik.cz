@@ -9,17 +9,26 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 interface Props {
 	entry: CollectionEntry<'posts'>;
+	prevPost: CollectionEntry<'posts'> | null;
+	nextPost: CollectionEntry<'posts'> | null;
 }
 
 export async function getStaticPaths() {
 	const posts = await getCollection('posts');
-	return posts.map((entry) => ({
+	// Sort by sortOrder (lower = newer/first)
+	const sortedPosts = posts.sort((a, b) => (a.data.sortOrder ?? 0) - (b.data.sortOrder ?? 0));
+
+	return sortedPosts.map((entry, index) => ({
 		params: { slug: entry.id },
-		props: { entry },
+		props: {
+			entry,
+			prevPost: index > 0 ? sortedPosts[index - 1] : null,
+			nextPost: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
+		},
 	}));
 }
 
-const { entry } = Astro.props;
+const { entry, prevPost, nextPost } = Astro.props;
 const { Content } = await render(entry);
 ---
 
@@ -53,6 +62,26 @@ const { Content } = await render(entry);
 					</div>
 				</div>
 			</main>
+			{(prevPost || nextPost) && (
+				<nav class="post-navigation wrapper">
+					<div class="nav-link prev">
+						{prevPost && (
+							<a href={`/blog/${prevPost.id}/`}>
+								<span class="nav-label"><Icon icon="arrow-left" /> Previous</span>
+								<span class="nav-title">{prevPost.data.title}</span>
+							</a>
+						)}
+					</div>
+					<div class="nav-link next">
+						{nextPost && (
+							<a href={`/blog/${nextPost.id}/`}>
+								<span class="nav-label">Next <Icon icon="arrow-right" /></span>
+								<span class="nav-title">{nextPost.data.title}</span>
+							</a>
+						)}
+					</div>
+				</nav>
+			)}
 		</div>
 		<ContactCTA />
 	</div>
@@ -261,6 +290,83 @@ const { Content } = await render(entry);
 
 		.content :global(blockquote) {
 			font-size: var(--text-2xl);
+		}
+	}
+
+	/* Post Navigation */
+	.post-navigation {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding-top: 3rem;
+		margin-top: 3rem;
+		border-top: 1px solid var(--gray-800);
+	}
+
+	.nav-link {
+		flex: 1;
+	}
+
+	.nav-link a {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 1rem 1.25rem;
+		border-radius: 0.75rem;
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		text-decoration: none;
+		transition: border-color var(--theme-transition), box-shadow var(--theme-transition);
+	}
+
+	.nav-link a:hover {
+		border-color: var(--gray-700);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.nav-link.prev a {
+		align-items: flex-start;
+	}
+
+	.nav-link.next a {
+		align-items: flex-end;
+		text-align: right;
+	}
+
+	.nav-label {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.nav-title {
+		font-size: var(--text-lg);
+		font-weight: 600;
+		color: var(--gray-0);
+		line-height: 1.3;
+	}
+
+	.nav-link a :global(svg) {
+		color: var(--gray-400);
+		transition: color var(--theme-transition);
+	}
+
+	.nav-link a:hover :global(svg) {
+		color: var(--accent-regular);
+	}
+
+	@media (min-width: 50em) {
+		.post-navigation {
+			flex-direction: row;
+			gap: 2rem;
+		}
+
+		.nav-title {
+			font-size: var(--text-xl);
 		}
 	}
 

@@ -26,15 +26,17 @@ const posts = (await getCollection('posts')).sort(
 				tagline="News, notes, and build logs."
 				align="center"
 			/>
-			<Grid variant="offset">
-				{
-					posts.map((post) => (
-						<li>
-							<PostPreview post={post} />
-						</li>
-					))
-				}
-			</Grid>
+			<div class="blog-grid">
+				<Grid variant="offset">
+					{
+						posts.map((post) => (
+							<li>
+								<PostPreview post={post} />
+							</li>
+						))
+					}
+				</Grid>
+			</div>
 		</main>
 		<ContactCTA />
 	</div>
@@ -43,6 +45,11 @@ const posts = (await getCollection('posts')).sort(
 <style>
 	.page-content {
 		position: relative;
+	}
+
+	.blog-grid {
+		max-width: 63rem;
+		margin: 0 auto;
 	}
 
 	.deco-bricks {
