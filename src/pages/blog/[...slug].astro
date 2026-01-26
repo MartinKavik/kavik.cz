@@ -166,6 +166,11 @@ const { Content } = await render(entry);
 		border: 1px solid var(--gray-800);
 	}
 
+	:global(.theme-dark) .content :global(img[src*="shapeup"]) {
+		filter: invert(0.7);
+	}
+
+	
 	.content :global(p:has(img)) {
 		text-align: center;
 		margin-top: 2.5rem;

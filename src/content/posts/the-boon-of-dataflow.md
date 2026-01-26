@@ -27,7 +27,7 @@ Then books like [*Flow-Based Programming*](/shelf#flow-based-programming), [*Luc
 
 The simplest dataflow is an immutable tree — everything flows one direction, like blood in our vessels or water in river deltas. But in reality, almost nothing is acyclic. Blood returns to our hearts, rain falls on mountains, car engines adjust fuel based on exhaust sensors, users trigger events in browser DOM trees according to what they see on the website. Loops are everywhere. You can start gently — learn how latches work in [*Computer Engineering for Babies*](/shelf#computer-engineering-for-babies), then play [*Portal*](/shelf#portal) to think outside the box and create loops and shortcuts. Lastly, [*COCOON*](/shelf#cocoon) can intuitively teach you what recursion is — without any text.
 
-![COCOON - worlds within worlds](/images/blog/cocoon-worlds.gif)
+![COCOON - worlds within worlds](/images/blog/cocoon-worlds.webp)
 *GIF from [COCOON](https://www.cocoongame.com/) by Geometric Interactive, published by Annapurna Interactive.*
 
 Recursion is beautiful, but also a perfect example of "easy to demo, hard to reason about" once systems grow.
