@@ -9,9 +9,9 @@ import Note from '../../components/Note.astro';
 
 ![MoonZoon logo](/images/moonzoon-logo.png)
 
-The [previous retrospective](/blog/moonzoon-retrospective) covered [MoonZoon's](/#moonzoon) foundational concepts—signals over hooks, TEA vs components, and the lessons from the dev.to article series. That post ended in July 2021.
+[MoonZoon: Foundations (2021)](/blog/moonzoon-foundations-2021) summarized the early dev.to articles about [MoonZoon's](/#moonzoon) core concepts—signals over hooks, TEA vs components, fullstack architecture with virtual actors, and the WASM size optimization battles.
 
-This post picks up where that one left off, documenting 922 commits across 4.5 years of continued development. Where the first retrospective was thematic, this one follows the chronological arc: from HSLuv colors to oklch, from wasm-pack to wasm-bindgen, from browser-only to Tauri desktop, and finally to GPU-accelerated graphics with wgpu.
+This post continues from there, documenting 922 commits across 4.5 years. Where Foundations was thematic, this one is chronological: routing and animations, the migration from wasm-pack to wasm-bindgen, Web Workers for parallel computation, Tauri for desktop apps, and GPU-accelerated graphics with wgpu.
 
 ## Phase 1: Foundation (2021)
 
@@ -43,12 +43,11 @@ pub enum Route {
     Root,
 }
 
-// Usage with signals
-ROUTER.route().signal_ref(|route| match route {
-    KnownRoute(Route::Active) => Filter::Active,
-    KnownRoute(Route::Completed) => Filter::Completed,
-    _ => Filter::All,
-})
+// Navigate programmatically
+ROUTER.go(Route::Active);
+
+// Or use type-safe links
+Link::new().label("Active").to(Route::Active)
 ```
 </Note>
 
@@ -61,7 +60,8 @@ Standard HSL has a problem: colors with the same saturation and lightness values
 [HSLuv](https://www.hsluv.org/) solves this by warping the color space so that perceptual uniformity holds. MoonZoon adopted it in August 2021:
 
 ```rust
-.s(Background::new().color(hsluv!(240, 80, 60)))  // Predictable perceived brightness
+// Predictable perceived brightness
+.s(Background::new().color(hsluv!(240, 80, 60)))
 ```
 
 This made theming straightforward—you could generate color palettes programmatically and trust that the results would look balanced.
@@ -107,10 +107,14 @@ The migration touched the `mzoon` CLI, build scripts, and example projects. The 
 October 2022 brought a proper animation system. The core abstraction was `Tweened`—a value that smoothly interpolates to its target:
 
 ```rust
-let (radius, radius_signal) = Tweened::new_and_signal(20, Duration::seconds(1), ease::cubic_out);
+let (radius, radius_signal) = Tweened::new_and_signal(
+    20,
+    Duration::seconds(1),
+    ease::cubic_out
+);
 
 // Later, trigger animation:
-radius.go_to(100);  // Smoothly animates from 20 to 100 over 1 second
+radius.go_to(100);
 ```
 
 The signal-based design meant animations composed naturally with the rest of the reactive system. An animated SVG circle:
@@ -118,7 +122,9 @@ The signal-based design meant animations composed naturally with the rest of the
 ```rust
 RawSvgEl::new("circle")
     .attr_signal("r", radius_signal)
-    .attr_signal("fill", hue_signal.map(|h| oklch().l(0.5).c(0.4).h(h).to_css_string()))
+    .attr_signal("fill", hue_signal.map(|h| {
+        oklch().l(0.5).c(0.4).h(h).to_css_string()
+    }))
 ```
 
 The `Oscillator` type handled continuous animations—values that bounce between endpoints indefinitely, useful for loading indicators and attention-grabbing effects.
@@ -205,7 +211,7 @@ Task::start_blocking_with_tasks(
 The three-stage pipeline—input, blocking, output—keeps all locking on the main thread where it's safe. Workers only see owned data through channels.
 
 <Note>
-This limitation was one motivation for experimenting with Boon, a custom scripting language. Rust's type system can't fully prevent these threading footguns in WASM—the browser's constraints don't map cleanly to Rust's `Send`/`Sync` model.
+This limitation was one motivation for experimenting with [Boon](/#boon), a language I'm developing. Rust's type system can't fully prevent these threading footguns in WASM—the browser's constraints don't map cleanly to Rust's `Send`/`Sync` model.
 </Note>
 
 ### Lifecycle Refinements
@@ -225,18 +231,18 @@ element
 This was essential for integrating with third-party JavaScript libraries that needed DOM nodes to exist before initialization. For example, integrating the Quill.js rich text editor:
 
 ```rust
-El::new()
-    .child(RawHtmlEl::new("div").after_insert(move |html_element| {
+El::new().child(
+    RawHtmlEl::new("div").after_insert(move |html_element| {
         Task::start(async move {
             // Load external resources in parallel
-            join!(
-                load_stylesheet("https://cdn.quilljs.com/1.3.6/quill.snow.css"),
-                load_script("https://cdn.quilljs.com/1.3.6/quill.min.js"),
-            ).await;
+            let css = "https://cdn.quilljs.com/1.3.6/quill.snow.css";
+            let js = "https://cdn.quilljs.com/1.3.6/quill.min.js";
+            join!(load_stylesheet(css), load_script(js)).await;
             // Initialize JS library after DOM ready
             controller.set(Some(QuillController::new(&html_element)));
         });
-    }))
+    })
+)
 ```
 
 The pattern—wait for DOM insertion, load external scripts, then initialize—worked for any JavaScript library expecting a DOM node.
@@ -348,9 +354,9 @@ fill_tess.tessellate_path(&path, &options, &mut vertex_builder)?;
 
 The `rust_logo` example rendered the Rust logo as tessellated geometry—complex curves and fills, all GPU-accelerated.
 
-### Boon Interpreter Removal
+### Boon Becomes Its Own Project
 
-March 2025 removed the embedded Boon language interpreter (-5,343 lines). MoonZoon had experimented with embedding a custom scripting language; that experiment ended. The codebase is now pure Rust.
+March 2025 removed the embedded Boon interpreter from MoonZoon (-5,343 lines). The experiment didn't end—it graduated. [Boon](/blog/the-boon-of-dataflow) evolved into a standalone language with its own vision: dataflow programming that makes time manipulation natural. The ideas that started as a MoonZoon scripting layer became something bigger.
 
 ### Stripe Element Integration
 
@@ -388,4 +394,4 @@ The `stripe_element` example (March 2025) demonstrated embedding Stripe's paymen
 
 ---
 
-*This post covers MoonZoon development from July 2021 through 2025. For the foundational concepts and the dev.to article series summary, see [MoonZoon: Retrospective](/blog/moonzoon-retrospective). For where these ideas went next, see [The Boon of Dataflow](/blog/the-boon-of-dataflow).*
+*This post covers MoonZoon development from July 2021 through 2025. For the foundational concepts and the dev.to article series summary, see [MoonZoon: Foundations (2021)](/blog/moonzoon-foundations-2021). For where these ideas went next, see [The Boon of Dataflow](/blog/the-boon-of-dataflow).*

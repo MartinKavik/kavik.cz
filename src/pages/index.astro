@@ -108,9 +108,9 @@ const posts = (await getCollection('posts'))
 				<div class="gallery blog-grid">
 					<Grid variant="offset">
 						{
-							posts.map((post) => (
+							posts.map((post, index) => (
 								<li>
-									<PostPreview post={post} />
+									<PostPreview post={post} isLatest={index === 0} />
 								</li>
 							))
 						}

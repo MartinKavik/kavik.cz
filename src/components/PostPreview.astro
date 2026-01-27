@@ -3,13 +3,17 @@ import type { CollectionEntry } from 'astro:content';
 
 interface Props {
 	post: CollectionEntry<'posts'>;
+	isLatest?: boolean;
 }
 
-const post = Astro.props.post;
+const { post, isLatest } = Astro.props;
 ---
 
 <a class="card" href={`/blog/${post.id}/`}>
-	{post.data.tags.length > 0 && <div class="tags">{post.data.tags.join(' • ')}</div>}
+	<div class="top-row">
+		{post.data.tags.length > 0 && <div class="tags">{post.data.tags.join(' • ')}</div>}
+		{isLatest && <span class="latest-badge">Latest</span>}
+	</div>
 	<h3>{post.data.title}</h3>
 	<p>{post.data.description}</p>
 </a>
@@ -55,10 +59,28 @@ const post = Astro.props.post;
 		animation: rainbow-shift 4s linear infinite;
 	}
 
+	.top-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
 	.tags {
 		color: var(--gray-400);
 		font-size: var(--text-xs);
 		letter-spacing: 0.01em;
+	}
+
+	.latest-badge {
+		font-size: var(--text-xs);
+		font-weight: 600;
+		padding: 0.2em 0.5em;
+		border-radius: 0.25rem;
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
 	}
 
 	h3 {

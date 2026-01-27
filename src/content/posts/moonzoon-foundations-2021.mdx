@@ -1,5 +1,5 @@
 ---
-title: "MoonZoon: Retrospective"
+title: "MoonZoon: Foundations (2021)"
 description: "Signals over hooks, WASM size battles, and fullstack Rust lessons from building MoonZoon."
 sortOrder: 3
 tags: ["moonzoon", "rust", "wasm", "signals", "boon"]
@@ -195,15 +195,11 @@ Server-Sent Events for live-reload seemed simple but had edge cases:
 - **Firefox permanently closes SSE** after backend restart - requiring the `ReconnectingEventSource` library for automatic reconnection
 - **Certificate serial numbers** must be unique per generation, or Firefox throws `SEC_ERROR_REUSED_ISSUER_AND_SERIAL`
 
-## From MoonZoon to Boon
+## What Came Next
 
-![Boon logo](/images/boon_logo.png)
+Development continued for another 4.5 years after these articles. Routing, animations, Web Workers, Tauri desktop apps, and GPU graphics with wgpu all followed. Read [MoonZoon: 2021–2025](/blog/moonzoon-2021-2025) for the full story.
 
-Many ideas from MoonZoon carried forward into [Boon](/#boon). The reactive signals architecture evolved into Boon's dataflow model. The frustration with HTML/CSS abstraction led to new rendering approaches. And the WASM size battles? In Boon, that burden shifts from every app developer to a platform maintainer.
-
-The core insight remained: web development is too complex because we're working at the wrong abstraction level. Both MoonZoon and Boon attempt to find that better abstraction — one that makes building web applications feel as natural as describing what you want to build.
-
-Learn more at [boon.run](https://boon.run/). For the ideas that shaped it, read [The Boon of Dataflow](/blog/the-boon-of-dataflow).
+Many ideas from MoonZoon eventually carried forward into [Boon](/#boon). The reactive signals architecture evolved into Boon's dataflow model. The frustration with HTML/CSS abstraction led to new rendering approaches. For the ideas that shaped it, read [The Boon of Dataflow](/blog/the-boon-of-dataflow).
 
 ---
 
