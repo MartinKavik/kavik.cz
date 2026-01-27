@@ -33,6 +33,13 @@ import Icon from './Icon.astro';
 		display: flex;
 		flex-direction: column;
 		gap: 3rem;
+		max-width: 24rem;
+		margin-inline: auto;
+	}
+
+	.skills > div {
+		text-align: center;
+		align-items: center;
 	}
 
 	.skills h2 {
@@ -53,6 +60,12 @@ import Icon from './Icon.astro';
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
 			gap: 2rem;
+			max-width: none;
+		}
+
+		.skills > div {
+			text-align: left;
+			align-items: flex-start;
 		}
 
 		.skills h2 {
