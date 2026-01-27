@@ -16,7 +16,7 @@ links:
 
 Boon is a declarative language where the runtime remembers values across reloads, enabling hot-reloading and state persistence without a database.
 
-Statically typed with a Factorio-inspired visual debugger.
+Statically typed with a Factorio-inspired visual debugger. Other inspirations described in the blog post [The Boon of Dataflow](/blog/the-boon-of-dataflow).
 
 Currently powered by a Rust interpreter with a custom lock-free actor-based engine. Exploring Differential Dataflow as an alternative — engines switchable in the Playground.
 
