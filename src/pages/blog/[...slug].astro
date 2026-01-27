@@ -353,6 +353,53 @@ const { Content } = await render(entry);
 		font-size: var(--text-sm);
 	}
 
+	/* Lists */
+	.content :global(ul),
+	.content :global(ol) {
+		margin: 1.5rem 0;
+		padding-left: 0;
+	}
+
+	.content :global(ul) {
+		list-style: none;
+	}
+
+	.content :global(ol) {
+		list-style: none;
+		counter-reset: item;
+	}
+
+	.content :global(li) {
+		position: relative;
+		padding-left: 1.5rem;
+		margin: 0.75rem 0;
+	}
+
+	.content :global(ul li)::before {
+		content: "■";
+		position: absolute;
+		left: 0;
+		color: var(--accent-regular);
+		font-size: 0.6em;
+		line-height: 2.8;
+	}
+
+	.content :global(ol li) {
+		counter-increment: item;
+	}
+
+	.content :global(ol li)::before {
+		content: counter(item) ".";
+		position: absolute;
+		left: 0;
+		color: var(--accent-regular);
+		font-weight: 600;
+	}
+
+	.content :global(li strong) {
+		color: var(--gray-100);
+	}
+
 	.back-link,
 	.content :global(a) {
 		text-decoration: 1px solid underline transparent;

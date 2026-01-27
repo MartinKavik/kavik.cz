@@ -170,23 +170,18 @@ wasm-opt = ['-O4']  # or '-Os' for size
 
 MoonZoon's CLI generates both Gzip and Brotli variants of all assets. This uncovered several issues:
 
-**The async-compression bug**: During testing, the `async-compression` crate produced 9 KB output instead of the expected 16 KB. The fix was ensuring `.flush()` is always called after `.write_all()` - a subtle bug that would have shipped broken WASM files.
-
-**Browser quirks**: Firefox only supports Brotli over HTTPS, while Chrome accepts both Gzip and Brotli on HTTP. This meant serving both compression formats and selecting based on `Accept-Encoding`.
-
-**HTTP/2 necessity**: Browsers limit HTTP/1.x to 6 concurrent connections per domain. Since SSE holds a persistent connection, you quickly run out. HTTP/2 multiplexes everything over a single connection - but browsers only support HTTP/2 over HTTPS. This meant running HTTPS even in development.
+- **The async-compression bug** — The crate produced 9 KB output instead of the expected 16 KB. Fix: always call `.flush()` after `.write_all()`.
+- **Browser quirks** — Firefox only supports Brotli over HTTPS, while Chrome accepts both on HTTP. Solution: serve both formats and select based on `Accept-Encoding`.
+- **HTTP/2 necessity** — Browsers limit HTTP/1.x to 6 concurrent connections per domain. SSE holds a persistent connection, so you quickly run out. HTTP/2 multiplexes over a single connection — but browsers only support it over HTTPS. Result: HTTPS even in development.
 
 ### Build Tooling Challenges
 
 The mzoon CLI faced several unexpected hurdles:
 
-**File watcher debouncing**: The `notify` crate (5.0.0-pre) lacked built-in debouncing. A custom implementation using task abort-and-reset patterns was needed - new file changes cancel pending rebuilds and restart the timer.
-
-**Directory traversal without recursion**: Rust lacks tail-call optimization, so recursive directory walking risks stack overflow on deep trees. The solution used `futures::stream::unfold()` for iterative, non-blocking traversal.
-
-**Macro conflicts**: Combining `async-trait` with `fehler`'s `#[throws]` macro proved "deadly for the compiler" - requiring explicit `Result<()>` annotations to resolve return-type ambiguities.
-
-**wasm-pack auto-install**: The mzoon CLI auto-downloads wasm-pack from GitHub releases. Strict platform matching (e.g., requiring `linux-gnu` exactly) broke on environments like Heroku. The fix was relaxed matching - any Linux can run the `musl` binary.
+- **File watcher debouncing** — The `notify` crate (5.0.0-pre) lacked built-in debouncing. Custom implementation: abort-and-reset pattern where new file changes cancel pending rebuilds.
+- **Directory traversal** — Rust lacks tail-call optimization, so recursive walking risks stack overflow. Solution: `futures::stream::unfold()` for iterative, non-blocking traversal.
+- **Macro conflicts** — Combining `async-trait` with `fehler`'s `#[throws]` proved "deadly for the compiler." Fix: explicit `Result<()>` annotations.
+- **wasm-pack auto-install** — The CLI auto-downloads wasm-pack from GitHub. Strict platform matching broke on Heroku. Fix: relaxed matching — any Linux can run the `musl` binary.
 
 <Note>
 Later, wasm-pack was replaced with standalone `wasm-bindgen-cli` for more flexibility - we didn't need wasm-pack features like generating npm packages.
@@ -206,9 +201,11 @@ Server-Sent Events for live-reload seemed simple but had edge cases:
 
 Many ideas from MoonZoon carried forward into [Boon](/#boon). The reactive signals architecture evolved into Boon's dataflow model. The frustration with HTML/CSS abstraction led to exploring new rendering approaches.
 
-The WASM size optimization pain points should be far less painful in Boon. Problems like serde alternatives and formatting libraries become concerns for the Rust runtime and Boon extension maintainers - not Boon users. The burden shifts from every app developer fighting dependency bloat to a small team optimizing the platform once.
+<Note>
+In Boon, the WASM optimization battles move from app developers to platform maintainers. Dependency bloat becomes a runtime concern — users don't fight it, a small team solves it once.
+</Note>
 
-The core insight remained: web development is too complex because we're working at the wrong abstraction level. Both MoonZoon and Boon attempt to find that better abstraction - one that makes building web applications feel as natural as describing what you want to build.
+The core insight remained: web development is too complex because we're working at the wrong abstraction level. Both MoonZoon and Boon attempt to find that better abstraction — one that makes building web applications feel as natural as describing what you want to build.
 
 Learn more at [boon.run](https://boon.run/). For the ideas that shaped it, read [The Boon of Dataflow](/blog/the-boon-of-dataflow).
 
