@@ -1,0 +1,391 @@
+---
+title: "MoonZoon: 2021–2025"
+description: "922 commits, 4.5 years: routing, animations, Web Workers, Tauri desktop, and GPU graphics."
+sortOrder: 2
+tags: ["moonzoon", "rust", "wasm", "graphics", "tauri"]
+---
+
+import Note from '../../components/Note.astro';
+
+![MoonZoon logo](/images/moonzoon-logo.png)
+
+The [previous retrospective](/blog/moonzoon-retrospective) covered [MoonZoon's](/#moonzoon) foundational concepts—signals over hooks, TEA vs components, and the lessons from the dev.to article series. That post ended in July 2021.
+
+This post picks up where that one left off, documenting 922 commits across 4.5 years of continued development. Where the first retrospective was thematic, this one follows the chronological arc: from HSLuv colors to oklch, from wasm-pack to wasm-bindgen, from browser-only to Tauri desktop, and finally to GPU-accelerated graphics with wgpu.
+
+## Phase 1: Foundation (2021)
+
+**275 commits** — Routing, colors, and core UI primitives.
+
+### The Routing System
+
+URL-based routing arrived in August 2021. Rather than a declarative router configuration, MoonZoon tracked URL changes through signals:
+
+```rust
+#[s_var]
+fn route() -> Route {
+    url().map(Route::from)
+}
+```
+
+<Note>
+The `#[s_var]` macro was an early API experiment. The modern MoonZoon routing uses a cleaner derive-based approach:
+
+```rust
+#[route]
+#[derive(Clone)]
+pub enum Route {
+    #[route("active")]
+    Active,
+    #[route("completed")]
+    Completed,
+    #[route()]
+    Root,
+}
+
+// Usage with signals
+ROUTER.route().signal_ref(|route| match route {
+    KnownRoute(Route::Active) => Filter::Active,
+    KnownRoute(Route::Completed) => Filter::Completed,
+    _ => Filter::All,
+})
+```
+</Note>
+
+The router worked with the browser's history API, handling back/forward navigation naturally. Routes were just data—you could pattern match on them without framework magic.
+
+### HSLuv: Perceptually Uniform Colors
+
+Standard HSL has a problem: colors with the same saturation and lightness values don't *look* equally saturated or light. A yellow at 50% lightness appears much brighter than a blue at 50%.
+
+[HSLuv](https://www.hsluv.org/) solves this by warping the color space so that perceptual uniformity holds. MoonZoon adopted it in August 2021:
+
+```rust
+.s(Background::new().color(hsluv!(240, 80, 60)))  // Predictable perceived brightness
+```
+
+This made theming straightforward—you could generate color palettes programmatically and trust that the results would look balanced.
+
+<Note>
+HSLuv was eventually replaced by oklch in 2024. The web platform caught up with modern color science, and oklch became part of CSS Color Module Level 4. More on that later.
+</Note>
+
+### DOM Building Blocks
+
+The rest of 2021 filled out the component library: `Button`, `Checkbox`, `Row`, `Column`, `RoundedCorners`, `Borders`, `Shadows`. Each was a thin wrapper over DOM elements with a builder-pattern API:
+
+```rust
+Button::new()
+    .s(Width::exact(45))
+    .s(RoundedCorners::all_max())
+    .s(Background::new().color(hsluv!(300, 70, 80)))
+    .s(Borders::all(Border::new().width(2).color(hsluv!(300, 70, 40))))
+    .label("+")
+    .on_press(increment)
+```
+
+The `.s()` method (for "style") accepted any styling component. This avoided CSS entirely—no class names, no selector specificity battles, no separate stylesheets to keep in sync.
+
+## Phase 2: Architecture & Animation (2022)
+
+**408 commits** — The most active year. Build tooling overhaul, animation framework, Grid layout.
+
+### From wasm-pack to wasm-bindgen
+
+wasm-pack is convenient for getting started with Rust and WebAssembly, but MoonZoon needed more control. In June 2022, the project migrated to calling `wasm-bindgen-cli` directly.
+
+**Why migrate?**
+
+- **Smaller output** — wasm-pack includes npm package scaffolding we didn't need
+- **More control** — Direct access to wasm-bindgen flags like `--reference-types`
+- **Simpler pipeline** — One fewer abstraction layer to debug
+
+The migration touched the `mzoon` CLI, build scripts, and example projects. The main visible change was cleaner output directories—just `.wasm` and `.js` files, no `package.json` or npm artifacts.
+
+### The Animation Framework
+
+October 2022 brought a proper animation system. The core abstraction was `Tweened`—a value that smoothly interpolates to its target:
+
+```rust
+let (radius, radius_signal) = Tweened::new_and_signal(20, Duration::seconds(1), ease::cubic_out);
+
+// Later, trigger animation:
+radius.go_to(100);  // Smoothly animates from 20 to 100 over 1 second
+```
+
+The signal-based design meant animations composed naturally with the rest of the reactive system. An animated SVG circle:
+
+```rust
+RawSvgEl::new("circle")
+    .attr_signal("r", radius_signal)
+    .attr_signal("fill", hue_signal.map(|h| oklch().l(0.5).c(0.4).h(h).to_css_string()))
+```
+
+The `Oscillator` type handled continuous animations—values that bounce between endpoints indefinitely, useful for loading indicators and attention-grabbing effects.
+
+### Grid Layout
+
+CSS Grid support arrived in September 2022, complementing the existing Row/Column flexbox model:
+
+```rust
+Grid::new()
+    .s(Gap::both(10))
+    .row_wrap_cell_width(150)
+    .items(items.map(render_item))
+```
+
+The API abstracted Grid's complexity while preserving its power. You could create responsive layouts without media queries—`row_wrap_cell_width` handled the math of "as many 150px columns as fit."
+
+## Phase 3: Concurrency (2023)
+
+**117 commits** — Web Workers and browser-side parallelism.
+
+### Web Workers for Heavy Computation
+
+JavaScript's single-threaded nature is a liability for CPU-intensive work. The solution: Web Workers, which run JavaScript (or WebAssembly) in background threads.
+
+The September 2023 `local_search` example demonstrated the pattern: a search box filtering thousands of items in parallel without blocking the UI.
+
+```rust
+// Spawn computation in worker
+Task::start_blocking(async move {
+    let results = search_items(&query, &items);
+    // Signal results back to main thread
+    results_signal.set(results);
+});
+```
+
+<Note>
+"Blocking" here means blocking *the worker thread*, not the main thread. The main thread stays responsive while workers churn through data.
+</Note>
+
+The implementation required careful attention to data transfer. WASM memory isn't shared between workers by default—you either serialize data or use SharedArrayBuffer.
+
+<Note>
+SharedArrayBuffer enables true shared memory between threads, but comes with significant constraints:
+
+- **Security headers required:** The server must send `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: require-corp`
+- **HTTPS required:** These headers are only respected over HTTPS (or localhost)
+- **Nightly Rust required:** WASM atomics need `-Z build-std` and the nightly toolchain
+- **Special RUSTFLAGS:** `-C target-feature=+atomics,+bulk-memory,+mutable-globals`
+- **LTO breaks things:** Link-time optimization must be disabled when building with multithreading support
+- **Different wasm-bindgen output:** The output format changes from `"web"` to `"no-modules"` for multithreading
+
+MoonZoon's approach favored serialization for simplicity—the complexity of SharedArrayBuffer rarely justified the performance gains for typical web app workloads.
+</Note>
+
+### Channel-Based Worker Communication
+
+One subtle problem: you can't just clone a `Mutable<T>` into a worker. Browsers don't allow blocking the main thread, so if a worker tries to acquire a lock held by main, the app crashes. The solution was a channel-based API:
+
+```rust
+Task::start_blocking_with_tasks(
+    // Input task (main thread) - reads signals, sends to worker
+    |send_to_worker| async move {
+        my_signal.signal_cloned().for_each_sync(move |data| {
+            send_to_worker(data);
+        }).await
+    },
+    // Blocking task (worker thread) - processes data
+    |from_main, _, send_to_main| {
+        from_main.for_each_sync(move |data| {
+            let result = expensive_computation(data);
+            send_to_main(result);
+        })
+    },
+    // Output task (main thread) - receives results, updates signals
+    |from_worker| {
+        from_worker.for_each_sync(move |result| {
+            result_signal.set(result);
+        })
+    },
+);
+```
+
+The three-stage pipeline—input, blocking, output—keeps all locking on the main thread where it's safe. Workers only see owned data through channels.
+
+<Note>
+This limitation was one motivation for experimenting with Boon, a custom scripting language. Rust's type system can't fully prevent these threading footguns in WASM—the browser's constraints don't map cleanly to Rust's `Send`/`Sync` model.
+</Note>
+
+### Lifecycle Refinements
+
+The `HookableLifecycle` trait (September 2023) gave elements explicit setup/teardown hooks:
+
+```rust
+element
+    .on_mount(|el| {
+        // Element added to DOM
+    })
+    .on_unmount(|| {
+        // Element removed from DOM
+    })
+```
+
+This was essential for integrating with third-party JavaScript libraries that needed DOM nodes to exist before initialization. For example, integrating the Quill.js rich text editor:
+
+```rust
+El::new()
+    .child(RawHtmlEl::new("div").after_insert(move |html_element| {
+        Task::start(async move {
+            // Load external resources in parallel
+            join!(
+                load_stylesheet("https://cdn.quilljs.com/1.3.6/quill.snow.css"),
+                load_script("https://cdn.quilljs.com/1.3.6/quill.min.js"),
+            ).await;
+            // Initialize JS library after DOM ready
+            controller.set(Some(QuillController::new(&html_element)));
+        });
+    }))
+```
+
+The pattern—wait for DOM insertion, load external scripts, then initialize—worked for any JavaScript library expecting a DOM node.
+
+## Phase 4: Desktop & GPU Graphics (2024)
+
+**103 commits** — Experimental desktop (Tauri) and GPU graphics (wgpu) support, oklch for modern colors.
+
+<Note>
+Both Tauri and wgpu integrations were exploratory—proving that MoonZoon's architecture could extend beyond the browser. The wgpu work in particular informed the development of [NovyWave](/#novywave), a separate GPU-focused project.
+</Note>
+
+### Tauri: Native Desktop Applications
+
+March 2024 brought [Tauri](https://tauri.app/) v2 integration. Tauri wraps web applications in native windows, with Rust on the backend instead of Node.js (like Electron). A MoonZoon app could become a desktop app with minimal changes.
+
+The `tauri_todomvc` example showed the pattern: the same Zoon frontend code running in a native window, with Tauri handling the system chrome, file access, and native menus.
+
+```rust
+// Tauri IPC: call Rust from frontend
+#[tauri::command]
+fn greet(name: &str) -> String {
+    format!("Hello, {}!", name)
+}
+```
+
+The April 2024 `tauri_ipc` examples demonstrated advanced desktop features: transparent windows, custom menus, and system tray integration.
+
+### GPU Graphics with wgpu
+
+May 2024 added GPU rendering through [wgpu](https://wgpu.rs/), the Rust WebGPU implementation:
+
+```rust
+// Initialize wgpu surface from canvas
+let surface = instance.create_surface_from_canvas(canvas)?;
+let adapter = instance.request_adapter(&wgpu::RequestAdapterOptions {
+    compatible_surface: Some(&surface),
+    ..Default::default()
+}).await?;
+```
+
+This opened the door to hardware-accelerated graphics: 3D rendering, complex visualizations, and effects that would be too slow for the CPU.
+
+The `three_d` example integrated with the `three-d` crate for higher-level 3D abstractions. The raw `wgpu` example showed the lower-level approach for custom rendering pipelines.
+
+### Oklch: Modern Color Science
+
+February 2024 migrated from HSLuv to [oklch](https://oklch.com/), the color space adopted by CSS Color Module Level 4:
+
+```rust
+// Old (HSLuv)
+.color(hsluv!(240, 80, 60))
+
+// New (oklch) — builder style for runtime values
+.color(oklch().l(0.6).c(0.182).h(240.0))
+
+// Or use the color! macro for any CSS color format
+.color(color!("oklch(0.6 0.182 240)"))
+```
+
+**Why change?**
+
+- **Standard support** — oklch is in CSS now; browsers understand it natively
+- **Better gradients** — oklch interpolation avoids the gray zone that plagues HSL gradients
+- **Wider gamut** — oklch can represent colors outside sRGB for modern displays
+
+<Note>
+The `color!` macro uses Servo's CSS color parser under the hood, so it accepts any CSS color format—not just oklch:
+
+```rust
+color!("#ff6600")                          // hex
+color!("rgb(255, 102, 0)")                 // rgb
+color!("hsl(24, 100%, 50%)")               // hsl
+color!("oklch(0.7 0.15 50)")               // oklch
+color!("oklab(0.7 0.1 0.1)")               // oklab
+color!("color(display-p3 1 0.5 0)")        // wide gamut
+color!("oklch(0.6 0.182 350.53 / .7)")     // with alpha
+```
+
+The `oklch()` builder is a convenience helper for runtime color construction. Both approaches produce typed color values validated at compile time.
+</Note>
+
+## Phase 5: Advanced Graphics (2025)
+
+**19 commits** — GPU text, vector graphics, and project cleanup.
+
+### Glyphon: GPU-Accelerated Text
+
+February 2025 added [glyphon](https://github.com/grovesNL/glyphon), a GPU text rendering library. Standard web text rendering goes through the browser's text layout engine. Glyphon bypasses that, rasterizing glyphs directly on the GPU.
+
+**When would you use this?** Custom text editors, games, visualizations with thousands of text labels—anywhere the browser's text rendering is a bottleneck or doesn't offer enough control.
+
+### Lyon: Vector Graphics on the GPU
+
+Also February 2025, [lyon](https://github.com/nical/lyon) integration arrived. Lyon tessellates vector paths into triangles for GPU rendering:
+
+```rust
+// Tessellate a path
+let mut builder = Path::builder();
+builder.begin(point(0.0, 0.0));
+builder.line_to(point(1.0, 0.0));
+builder.line_to(point(1.0, 1.0));
+builder.close();
+let path = builder.build();
+
+// Render as triangles via wgpu
+fill_tess.tessellate_path(&path, &options, &mut vertex_builder)?;
+```
+
+The `rust_logo` example rendered the Rust logo as tessellated geometry—complex curves and fills, all GPU-accelerated.
+
+### Boon Interpreter Removal
+
+March 2025 removed the embedded Boon language interpreter (-5,343 lines). MoonZoon had experimented with embedding a custom scripting language; that experiment ended. The codebase is now pure Rust.
+
+### Stripe Element Integration
+
+The `stripe_element` example (March 2025) demonstrated embedding Stripe's payment form elements—the prebuilt, PCI-compliant card input fields—in a MoonZoon app. This required the lifecycle hooks from 2023, since Stripe.js expects a DOM node to mount its secure iframe into.
+
+## Technical Retrospective
+
+### What Worked Well
+
+- **Signals everywhere.** The reactive signal system scaled from simple counters to complex parallel search. Signals compose; you can map, filter, and combine them without callback spaghetti.
+
+- **Type-safe styling.** No CSS class name typos, no specificity wars. If it compiles, the styles apply. The IDE can autocomplete style properties.
+
+- **Incremental migration.** Moving from HSLuv to oklch, or from wasm-pack to wasm-bindgen, happened without rewriting the world. The abstraction boundaries held.
+
+### For Framework Builders
+
+- **Own your build pipeline.** wasm-pack is great for learning; wasm-bindgen-cli is better for production. The abstraction you don't control will eventually need debugging.
+
+- **Color is hard.** Pick a perceptually uniform color space (oklch today) and build your palette tools around it. sRGB HSL will cause problems. Consider using Servo's `cssparser-color` crate—it handles all CSS color formats and saves you from writing your own parser.
+
+- **Signals > Virtual DOM.** For Rust/WASM specifically, fine-grained reactivity (signals) outperforms diffing approaches. The Dominator benchmarks proved this years ago.
+
+![Browser logos: Chrome, Firefox, Safari, Edge](/images/browsers.png)
+
+- **Test on multiple browsers.** They all have different quirks, bugs, and implementations. Notes from debugging on Firefox:
+   - **Scrollbar styles:** Firefox uses smaller scrollbars by default compared to Chrome on some platforms
+   - **Scale animation jitter:** Firefox needs `translateZ(0.001px)` to force GPU layer composition and smooth scale animations
+   - **WebGPU/wgpu window sizing:** Firefox requires both `with_max_inner_size()` AND `with_inner_size()` to be set
+   - **CSS Font Face rules:** Firefox throws errors when setting properties on `CSSFontFaceRule`—needs graceful error handling
+   - **ResizeObserver differences:** Firefox returns `borderBoxSize` as an object, Chrome returns an array
+   - **Async timing:** Firefox has an event loop bug that causes race conditions. I tried to work around it by adding a synchronization Future to the browser executor, but the Rust executor maintainers rejected it due to performance concerns.
+
+   From my experience, the worst are WebView on Linux (used by Tauri)—problems with GPU, no multithreaded web workers—and Safari: difficult to test, breaks everything on iOS, often missing APIs or not respecting CSS specs.
+
+---
+
+*This post covers MoonZoon development from July 2021 through 2025. For the foundational concepts and the dev.to article series summary, see [MoonZoon: Retrospective](/blog/moonzoon-retrospective). For where these ideas went next, see [The Boon of Dataflow](/blog/the-boon-of-dataflow).*

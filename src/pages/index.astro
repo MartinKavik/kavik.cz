@@ -105,8 +105,8 @@ const posts = (await getCollection('posts'))
 					<p>From the workshop.</p>
 				</header>
 
-				<div class="gallery">
-					<Grid variant="small">
+				<div class="gallery blog-grid">
+					<Grid variant="offset">
 						{
 							posts.map((post) => (
 								<li>
@@ -268,6 +268,11 @@ const posts = (await getCollection('posts'))
 
 		.gallery {
 			grid-area: gallery;
+		}
+
+		.blog-grid {
+			max-width: 63rem;
+			margin: 0 auto;
 		}
 
 		.cta {
