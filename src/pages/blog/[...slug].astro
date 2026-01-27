@@ -22,8 +22,9 @@ export async function getStaticPaths() {
 		params: { slug: entry.id },
 		props: {
 			entry,
-			prevPost: index > 0 ? sortedPosts[index - 1] : null,
-			nextPost: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
+			// Previous = older post (higher sortOrder), Next = newer post (lower sortOrder)
+			prevPost: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
+			nextPost: index > 0 ? sortedPosts[index - 1] : null,
 		},
 	}));
 }
