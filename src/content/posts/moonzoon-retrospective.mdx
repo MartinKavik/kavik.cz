@@ -5,6 +5,8 @@ sortOrder: 3
 tags: ["moonzoon", "rust", "wasm", "signals", "boon"]
 ---
 
+import Note from '../../components/Note.astro';
+
 ![MoonZoon logo](/images/moonzoon-logo.png)
 
 In early 2021, I started writing a series of technical articles documenting the development of [MoonZoon](https://github.com/MoonZoon/MoonZoon) - a Rust fullstack framework where frontend and backend share one language, one type system, and work together from the start.
@@ -81,12 +83,9 @@ This approach proved more robust than React's index-based system, preventing dat
 
 Eventually, MoonZoon moved beyond hooks entirely to a **signals-based reactive system**. Signals provide reactive data binding without requiring a Virtual DOM, eliminating the need for call counters, location tracking overhead, and rules-of-hooks compliance checks.
 
-<aside class="note">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="24" height="24" fill="currentColor"><path d="M176,232a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,232Zm40-128a87.55,87.55,0,0,1-33.64,69.21A16.24,16.24,0,0,0,176,186v6a16,16,0,0,1-16,16H96a16,16,0,0,1-16-16v-6a16,16,0,0,0-6.23-12.66A87.59,87.59,0,0,1,40,104.49C39.74,56.83,78.26,17.14,125.88,16A88,88,0,0,1,216,104Zm-16,0a72,72,0,0,0-73.74-72c-39,.92-70.47,33.39-70.26,72.39a71.65,71.65,0,0,0,27.64,56.3A32,32,0,0,1,96,186v6h64v-6a32.15,32.15,0,0,1,12.47-25.35A71.65,71.65,0,0,0,200,104Zm-16.11-9.34a57.6,57.6,0,0,0-46.56-46.55,8,8,0,0,0-2.66,15.78c16.57,2.79,30.63,16.85,33.44,33.45A8,8,0,0,0,176,104a9,9,0,0,0,1.35-.11A8,8,0,0,0,183.89,94.66Z"/></svg>
-
+<Note>
 This identity problem extends beyond hooks. List rendering in frameworks like React still requires explicit `key` props to track elements across renders - without them, reordering breaks and performance suffers. Elm and Seed had the same issue. MoonZoon's signal vectors (`MutableVec`) solved both problems by transmitting only differences at the data level, making keys unnecessary.
-
-</aside>
+</Note>
 
 The performance difference was dramatic. Using the [Dominator](https://github.com/Pauan/rust-dominator) library under the hood, Zoon could update thousands of rows basically immediately, while other Rust frameworks needed to re-render entire pages.
 
@@ -147,12 +146,9 @@ A single float formatting call adds ~19 KB. The `regex` crate alone adds ~590 KB
 - **web_sys::Url** instead of the `url` crate
 - **ufmt** as an alternative to `std::fmt`
 
-<aside class="note">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="24" height="24" fill="currentColor"><path d="M176,232a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,232Zm40-128a87.55,87.55,0,0,1-33.64,69.21A16.24,16.24,0,0,0,176,186v6a16,16,0,0,1-16,16H96a16,16,0,0,1-16-16v-6a16,16,0,0,0-6.23-12.66A87.59,87.59,0,0,1,40,104.49C39.74,56.83,78.26,17.14,125.88,16A88,88,0,0,1,216,104Zm-16,0a72,72,0,0,0-73.74-72c-39,.92-70.47,33.39-70.26,72.39a71.65,71.65,0,0,0,27.64,56.3A32,32,0,0,1,96,186v6h64v-6a32.15,32.15,0,0,1,12.47-25.35A71.65,71.65,0,0,0,200,104Zm-16.11-9.34a57.6,57.6,0,0,0-46.56-46.55,8,8,0,0,0-2.66,15.78c16.57,2.79,30.63,16.85,33.44,33.45A8,8,0,0,0,176,104a9,9,0,0,0,1.35-.11A8,8,0,0,0,183.89,94.66Z"/></svg>
-
+<Note>
 These alternatives were hidden behind Cargo features, but they're no longer used. In practice, `serde` is everywhere - Rust's orphan rule (you can't implement foreign traits for foreign types) makes using alternatives nearly impossible when your dependencies expect serde. Similarly, `ufmt` wasn't a long-term solution because any regular float formatting in dependencies pulls in the standard formatting library anyway.
-
-</aside>
+</Note>
 
 The Cargo.toml optimization settings that worked best:
 
@@ -166,12 +162,9 @@ opt-level = 3  # or 's' for size
 wasm-opt = ['-O4']  # or '-Os' for size
 ```
 
-<aside class="note">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="24" height="24" fill="currentColor"><path d="M176,232a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,232Zm40-128a87.55,87.55,0,0,1-33.64,69.21A16.24,16.24,0,0,0,176,186v6a16,16,0,0,1-16,16H96a16,16,0,0,1-16-16v-6a16,16,0,0,0-6.23-12.66A87.59,87.59,0,0,1,40,104.49C39.74,56.83,78.26,17.14,125.88,16A88,88,0,0,1,216,104Zm-16,0a72,72,0,0,0-73.74-72c-39,.92-70.47,33.39-70.26,72.39a71.65,71.65,0,0,0,27.64,56.3A32,32,0,0,1,96,186v6h64v-6a32.15,32.15,0,0,1,12.47-25.35A71.65,71.65,0,0,0,200,104Zm-16.11-9.34a57.6,57.6,0,0,0-46.56-46.55,8,8,0,0,0-2.66,15.78c16.57,2.79,30.63,16.85,33.44,33.45A8,8,0,0,0,176,104a9,9,0,0,0,1.35-.11A8,8,0,0,0,183.89,94.66Z"/></svg>
-
+<Note>
 **The generics paradox**: Analysis with [Twiggy](https://github.com/nicholasjng/nicholasjng.github.io) showed that most code bloat from generics came from `futures-signals`. The intuitive fix - replacing generics with other constructs - made apps both slower AND bigger. Sometimes the compiler knows best.
-
-</aside>
+</Note>
 
 ### Compression Pipeline Gotchas
 
@@ -195,12 +188,9 @@ The mzoon CLI faced several unexpected hurdles:
 
 **wasm-pack auto-install**: The mzoon CLI auto-downloads wasm-pack from GitHub releases. Strict platform matching (e.g., requiring `linux-gnu` exactly) broke on environments like Heroku. The fix was relaxed matching - any Linux can run the `musl` binary.
 
-<aside class="note">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="24" height="24" fill="currentColor"><path d="M176,232a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,232Zm40-128a87.55,87.55,0,0,1-33.64,69.21A16.24,16.24,0,0,0,176,186v6a16,16,0,0,1-16,16H96a16,16,0,0,1-16-16v-6a16,16,0,0,0-6.23-12.66A87.59,87.59,0,0,1,40,104.49C39.74,56.83,78.26,17.14,125.88,16A88,88,0,0,1,216,104Zm-16,0a72,72,0,0,0-73.74-72c-39,.92-70.47,33.39-70.26,72.39a71.65,71.65,0,0,0,27.64,56.3A32,32,0,0,1,96,186v6h64v-6a32.15,32.15,0,0,1,12.47-25.35A71.65,71.65,0,0,0,200,104Zm-16.11-9.34a57.6,57.6,0,0,0-46.56-46.55,8,8,0,0,0-2.66,15.78c16.57,2.79,30.63,16.85,33.44,33.45A8,8,0,0,0,176,104a9,9,0,0,0,1.35-.11A8,8,0,0,0,183.89,94.66Z"/></svg>
-
+<Note>
 Later, wasm-pack was replaced with standalone `wasm-bindgen-cli` for more flexibility - we didn't need wasm-pack features like generating npm packages.
-
-</aside>
+</Note>
 
 ### SSE Reliability
 

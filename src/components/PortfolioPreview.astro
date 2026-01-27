@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import Pill from './Pill.astro';
+import Icon from './Icon.astro';
 
 interface Props {
 	project: CollectionEntry<'work'>;
@@ -16,12 +17,7 @@ const { Content } = await render(project);
 	<div class="image-wrapper">
 		<img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" />
 		<button class="expand-btn" aria-label="Enlarge image">
-			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-				<polyline points="15 3 21 3 21 9"></polyline>
-				<polyline points="9 21 3 21 3 15"></polyline>
-				<line x1="21" y1="3" x2="14" y2="10"></line>
-				<line x1="3" y1="21" x2="10" y2="14"></line>
-			</svg>
+			<Icon icon="expand" size="1.25rem" />
 		</button>
 	</div>
 	<div class="content">
@@ -29,10 +25,7 @@ const { Content } = await render(project);
 			<h3 class="title">
 				{data.title}
 				<button class="link-copy-btn" data-id={id} aria-label="Copy link to this project" title="Copy link">
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-						<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-					</svg>
+					<Icon icon="link" size="1.25rem" />
 				</button>
 			</h3>
 			{data.links && data.links.length > 0 && (

@@ -1,0 +1,11 @@
+---
+// Note component for blog posts - renders a styled aside with lightbulb icon
+import Icon from './Icon.astro';
+---
+
+<aside class="note">
+	<Icon icon="lightbulb" size="1.5rem" />
+	<div>
+		<slot />
+	</div>
+</aside>
