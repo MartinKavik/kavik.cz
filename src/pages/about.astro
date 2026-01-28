@@ -151,10 +151,30 @@ const artworks = [
 				<div class="music-container">
 					<div class="music-bg" aria-hidden="true"></div>
 					<div class="section-content">
-						<p>A piece I composed. My hands are too small to play it well, but it still makes me smile.</p>
+						<p>I rely on unconsciousness a lot for solving difficult problems or when I need creativity. It means I typically work in bursts through the day or night, including weekends. You can call it <a href="https://www.youtube.com/watch?v=WTr12dK2Se0&t=172s">Ping Pong method</a> or effective usage of <em>shower thoughts</em> and <a href="https://en.wikipedia.org/wiki/Incubation_(psychology)">incubation</a>.</p>
+						<p>So I needed some "filler" when the unconsciousness works. I also wanted to learn guitar. I can't sing, can't keep the rhythm and can't produce loud noises at night. Hence learning to play simpler fingerstyle songs started.</p>
+						<p>I was learning pieces like <em>Romanza</em> <span class="sep" aria-hidden="true"></span> <em>Un Dia de Noviembre</em> <span class="sep" aria-hidden="true"></span> <em>Dust in the Wind</em> <span class="sep" aria-hidden="true"></span> <em>The Heart Asks Pleasure First</em> <span class="sep" aria-hidden="true"></span> <em>Watermark</em> (Enya) <span class="sep" aria-hidden="true"></span> <em>Moonlight Sonata</em> (if my left hand was fresh before gym) <span class="sep" aria-hidden="true"></span> main themes from <em>Metro 2033</em> and <em>Requiem for a Dream</em>. It was on cheap guitar with small and slow fingers, but I felt the similar magic like writing code.</p>
+						<p>However, I'm creator so the urge to "compose" own song was stronger than motivation to improve my guitar skills. Those days, I was listening Philip Glass and similar, even electronic music with a lot of repetitions and patterns to keep me focused and relaxed. It was natural to draw some inspiration from them. I've written The Emptiness <a href="/documents/the_emptiness.pdf">tabulature</a> with pencil while testing on guitar and then (years later) I've recreated it in the app Steinberg Dorico.</p>
 					</div>
 					<VideoEmbed url="https://youtu.be/3mNv0QXfPhE" title="The Emptiness - Guitar Composition by Martin Kavík" />
 				</div>
+				<div class="section-content">
+					<p>There are 3 kinds of emptiness. Sad one, when you miss something. Better one, when fear of frustration is gone. The best one, when time is distorted, everything but a single thing ceases to exist and you get superpowers. Visualization in <a href="https://www.youtube.com/watch?v=pLVpJAVS27A">Pixar's Soul - Into The Zone</a>.</p>
+					<p>You get into the flow when balancing on the edge of your skill while doing things you believe in. A fresh mind and comfortable environment help too — I always felt like a <em>burlak</em> in classroom or office.</p>
+				</div>
+				<figure class="burlaks-figure">
+					<button
+						class="lightbox-trigger"
+						data-src="/images/about/burlaks_on_volga.jpg"
+						data-alt="Burlaks on the Volga by Ilya Repin"
+						data-title="Burlaks on the Volga (1870–1873) by Ilya Repin"
+						type="button"
+						aria-label="View full image"
+					>
+						<img src="/images/about/burlaks_on_volga.jpg" alt="Burlaks on the Volga by Ilya Repin" />
+					</button>
+					<figcaption>"Burlaks on the Volga" (1870–1873) by Ilya Repin. Public domain, via Wikimedia Commons.</figcaption>
+				</figure>
 			</section>
 
 			<!-- Hardware Detours Section -->
@@ -400,6 +420,23 @@ const artworks = [
 		text-decoration-color: currentColor;
 	}
 
+	/* Separator rectangles */
+	.sep {
+		display: inline-block;
+		width: 8px;
+		height: 8px;
+		margin: 0 0.25rem;
+		vertical-align: middle;
+		opacity: 0.7;
+	}
+
+	.sep:nth-of-type(1) { background: #3a86ff; }
+	.sep:nth-of-type(2) { background: #7209b7; }
+	.sep:nth-of-type(3) { background: #2a9d8f; }
+	.sep:nth-of-type(4) { background: #f4a261; }
+	.sep:nth-of-type(5) { background: #e63946; }
+	.sep:nth-of-type(6) { background: #06d6a0; }
+
 	/* Wide sections (gallery) */
 	.section-wide :global(.gallery) {
 		width: 100vw;
@@ -477,6 +514,26 @@ const artworks = [
 		padding-bottom: 0;
 		height: auto;
 		aspect-ratio: 16/9;
+	}
+
+	/* Burlaks figure */
+	.burlaks-figure {
+		margin: 2rem auto 0;
+		max-width: 700px;
+		text-align: center;
+	}
+
+	.burlaks-figure img {
+		width: 100%;
+		border-radius: 0.75rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	.burlaks-figure figcaption {
+		margin-top: 0.75rem;
+		font-size: var(--text-md);
+		color: var(--gray-400);
+		font-style: italic;
 	}
 
 	/* Poetry layout */
