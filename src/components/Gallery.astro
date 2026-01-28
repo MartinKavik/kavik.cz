@@ -203,8 +203,11 @@ const { items } = Astro.props;
 	const lightbox = document.getElementById('lightbox');
 	const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
 	const lightboxCaption = document.getElementById('lightbox-caption');
+	const lightboxPrev = gallery?.querySelector('.lightbox-prev') as HTMLElement;
+	const lightboxNext = gallery?.querySelector('.lightbox-next') as HTMLElement;
 	const items = document.querySelectorAll('.gallery-item');
 	let currentIndex = 0;
+	let isGalleryMode = false;
 
 	function openLightbox(index: number) {
 		const item = items[index] as HTMLElement;
@@ -214,21 +217,31 @@ const { items } = Astro.props;
 		if (lightboxCaption) {
 			lightboxCaption.textContent = item.dataset.title || '';
 		}
+		isGalleryMode = true;
+		showNavButtons(true);
 		lightbox?.setAttribute('aria-hidden', 'false');
 		document.body.style.overflow = 'hidden';
+	}
+
+	function showNavButtons(show: boolean) {
+		if (lightboxPrev) lightboxPrev.style.display = show ? '' : 'none';
+		if (lightboxNext) lightboxNext.style.display = show ? '' : 'none';
 	}
 
 	function closeLightbox() {
 		lightbox?.setAttribute('aria-hidden', 'true');
 		document.body.style.overflow = '';
+		isGalleryMode = false;
 	}
 
 	function showPrev() {
+		if (!isGalleryMode) return;
 		currentIndex = (currentIndex - 1 + items.length) % items.length;
 		openLightbox(currentIndex);
 	}
 
 	function showNext() {
+		if (!isGalleryMode) return;
 		currentIndex = (currentIndex + 1) % items.length;
 		openLightbox(currentIndex);
 	}
@@ -239,8 +252,8 @@ const { items } = Astro.props;
 	});
 
 	gallery?.querySelector('.lightbox-close')?.addEventListener('click', closeLightbox);
-	gallery?.querySelector('.lightbox-prev')?.addEventListener('click', showPrev);
-	gallery?.querySelector('.lightbox-next')?.addEventListener('click', showNext);
+	lightboxPrev?.addEventListener('click', showPrev);
+	lightboxNext?.addEventListener('click', showNext);
 
 	// Close on click anywhere (except nav buttons)
 	lightbox?.addEventListener('click', (e) => {
@@ -258,4 +271,10 @@ const { items } = Astro.props;
 			if (e.key === 'ArrowRight') showNext();
 		}
 	});
+
+	// Expose function to hide nav for standalone images
+	(window as any).openLightboxSingle = () => {
+		isGalleryMode = false;
+		showNavButtons(false);
+	};
 </script>

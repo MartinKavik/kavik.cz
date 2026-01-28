@@ -1,3 +1,12 @@
+/* Fonts */
+@font-face {
+	font-family: "JetBrains Mono";
+	src: url("/fonts/JetBrainsMono[wght].ttf") format("truetype");
+	font-weight: 100 800;
+	font-style: normal;
+	font-display: swap;
+}
+
 /* Global variables */
 :root {
 	/* Colors */
@@ -95,6 +104,7 @@
 		"Open Sans", "Helvetica Neue", sans-serif;
 	--font-body: "Public Sans", var(--font-system);
 	--font-brand: Rubik, var(--font-system);
+	--font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
 	/* Transitions */
 	--theme-transition: 0.2s ease-in-out;

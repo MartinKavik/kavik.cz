@@ -6,6 +6,13 @@ import VideoEmbed from '../components/VideoEmbed.astro';
 import Gallery from '../components/Gallery.astro';
 import Icon from '../components/Icon.astro';
 
+const codePoetry = `Duration[seconds: 4]
+|> Timer/interval()
+|> THEN { Bell/strike() }
+|> THEN { 1 }
+|> Math/sum()
+|> Scene/render()`;
+
 const artworks = [
 	{ src: "/images/about/blue_eye.jpg", alt: "Portrait", focus: "top" },
 	{ src: "/images/about/mirror_boxer.jpg", alt: "Boxer" },
@@ -47,21 +54,6 @@ const artworks = [
 				</Hero>
 			</div>
 
-			<!-- How I Work Section -->
-			<section class="section">
-				<div class="deco-bricks" aria-hidden="true">
-					<div class="deco-brick" style="background: #3a86ff; width: 55px; height: 40px; left: 2%; top: 0;"></div>
-				</div>
-				<header class="section-header">
-					<h2>How I Work</h2>
-					<p>Every project feeds the next.</p>
-				</header>
-				<div class="section-content">
-					<p>I wanted something different, so I built it. MoonZoon exists because existing frameworks felt wrong. Boon exists because MoonZoon wasn't enough. Eventually I ran out of software to fix — so I started on hardware.</p>
-					<p>Remote work, one-on-one conversations, and flexible hours make me happy. Daily status meetings do not. I prefer depth over breadth, building over maintaining, and shipping over planning.</p>
-				</div>
-			</section>
-
 			<!-- The Beginning Section -->
 			<section class="section">
 				<div class="deco-bricks" aria-hidden="true">
@@ -73,7 +65,7 @@ const artworks = [
 				</header>
 				<div class="section-content">
 					<p>When I returned from kindergarten, I noticed a weird box on the table in our living room. Dad whispered magic spells that a wizard had taught him: <em>"Restart in MS-DOS mode and then write <code>cd games</code>."</em> The curse started with <a href="/shelf/#supaplex">Supaplex</a>. Unfortunately, I killed the computer a couple of years later by trying to compress the hard disk.</p>
-					<p>At thirteen, I built an antenna holder to finally get internet. Then I learned C# from a Czech school website. I faced a choice: pursue 3D graphics or programming. I chose programming — because creating something from nothing is the ultimate creativity. Also, I couldn't afford a better PC or 3D software licenses.</p>
+					<p>At thirteen, I built an antenna holder to finally get internet. Then I learned C# from a Czech school website. I faced a choice: pursue 3D graphics or programming. I chose programming — because making something out of nothing is the ultimate creativity. Also, I couldn't afford a better PC or 3D software licenses.</p>
 					<p>Now, with <a href="/work/#raybox">RayBox</a>, I'm coming full circle to 3D graphics. And with AI in terminals, I'm coming full circle to MS-DOS.</p>
 				</div>
 				<div class="video-grid">
@@ -106,24 +98,6 @@ const artworks = [
 				<Gallery items={artworks} />
 			</section>
 
-			<!-- Music Section -->
-			<section class="section">
-				<div class="deco-bricks" aria-hidden="true">
-					<div class="deco-brick" style="background: #2a9d8f; width: 45px; height: 50px; left: 1%; top: 0.5rem;"></div>
-				</div>
-				<header class="section-header">
-					<h2>The Emptiness</h2>
-					<p>A guitar composition.</p>
-				</header>
-				<div class="music-container">
-					<div class="music-bg" aria-hidden="true"></div>
-					<div class="section-content">
-						<p>A piece I composed. My hands are too small to play it well, but it still makes me smile.</p>
-					</div>
-					<VideoEmbed url="https://youtu.be/3mNv0QXfPhE" title="The Emptiness - Guitar Composition by Martin Kavík" />
-				</div>
-			</section>
-
 			<!-- Poetry Section -->
 			<section class="section">
 				<div class="deco-bricks" aria-hidden="true">
@@ -150,13 +124,36 @@ const artworks = [
 							<Icon icon="expand" size="1.25rem" />
 						</span>
 					</button>
-					<blockquote>
-						<p>Silhouette in the window<br>
-						Watching street lamp in the moonlight<br>
-						Holding the cup of cocoa<br>
-						The clock's bell strikes the midnight<br>
-						...</p>
-					</blockquote>
+					<div class="poetry-text">
+						<blockquote>
+							<p>Silhouette in the window<br>
+							Watching street lamp in the moonlight<br>
+							Holding the cup of cocoa<br>
+							The clock's bell strikes the midnight<br>
+							...</p>
+						</blockquote>
+						<blockquote class="code-poetry">
+							<pre><code set:html={codePoetry} /></pre>
+						</blockquote>
+					</div>
+				</div>
+			</section>
+
+			<!-- Music Section -->
+			<section class="section">
+				<div class="deco-bricks" aria-hidden="true">
+					<div class="deco-brick" style="background: #2a9d8f; width: 45px; height: 50px; left: 1%; top: 0.5rem;"></div>
+				</div>
+				<header class="section-header">
+					<h2>The Emptiness</h2>
+					<p>A guitar composition.</p>
+				</header>
+				<div class="music-container">
+					<div class="music-bg" aria-hidden="true"></div>
+					<div class="section-content">
+						<p>A piece I composed. My hands are too small to play it well, but it still makes me smile.</p>
+					</div>
+					<VideoEmbed url="https://youtu.be/3mNv0QXfPhE" title="The Emptiness - Guitar Composition by Martin Kavík" />
 				</div>
 			</section>
 
@@ -486,7 +483,7 @@ const artworks = [
 	.poetry-layout {
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
+		gap: 4rem;
 		align-items: center;
 	}
 
@@ -496,7 +493,7 @@ const artworks = [
 		padding: 0;
 		background: none;
 		cursor: zoom-in;
-		max-width: 350px;
+		max-width: 400px;
 		width: 100%;
 	}
 
@@ -538,6 +535,12 @@ const artworks = [
 		color: var(--gray-0);
 	}
 
+	.poetry-text {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+	}
+
 	.poetry-layout blockquote {
 		font-style: italic;
 		color: var(--gray-300);
@@ -550,6 +553,24 @@ const artworks = [
 		line-height: 1.8;
 	}
 
+	.poetry-layout blockquote.code-poetry {
+		font-style: normal;
+		font-family: var(--font-mono);
+		font-feature-settings: "liga" 1, "calt" 1;
+		-webkit-font-feature-settings: "liga" 1, "calt" 1;
+	}
+
+	.poetry-layout blockquote.code-poetry pre,
+	.poetry-layout blockquote.code-poetry code {
+		margin: 0;
+		font-size: var(--text-sm);
+		line-height: 1.8;
+		font-family: var(--font-mono);
+		font-weight: 400;
+		font-feature-settings: "liga" 1, "calt" 1;
+		-webkit-font-feature-settings: "liga" 1, "calt" 1;
+	}
+
 	@media (min-width: 50em) {
 		.poetry-layout {
 			flex-direction: row;
@@ -559,6 +580,48 @@ const artworks = [
 
 		.poetry-layout blockquote {
 			text-align: left;
+		}
+	}
+
+	/* Music layout */
+	.music-layout {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		align-items: center;
+		position: relative;
+	}
+
+	.music-layout :global(.video-embed) {
+		max-width: 500px;
+		width: 100%;
+		margin: 0;
+	}
+
+	.music-layout blockquote {
+		font-family: var(--font-mono, monospace);
+		font-style: normal;
+		color: var(--gray-300);
+		padding-left: 1.5rem;
+		border-left: 3px solid var(--gray-700);
+		margin: 0;
+	}
+
+	.music-layout blockquote pre {
+		margin: 0;
+		font-size: var(--text-sm);
+		line-height: 1.8;
+	}
+
+	.music-layout blockquote code {
+		font-family: inherit;
+	}
+
+	@media (min-width: 50em) {
+		.music-layout {
+			flex-direction: row;
+			justify-content: center;
+			gap: 3rem;
 		}
 	}
 
@@ -740,6 +803,8 @@ const artworks = [
 			}
 			lightbox?.setAttribute('aria-hidden', 'false');
 			document.body.style.overflow = 'hidden';
+			// Hide nav buttons for standalone images
+			(window as any).openLightboxSingle?.();
 		});
 	});
 </script>
