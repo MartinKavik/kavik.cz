@@ -83,6 +83,13 @@ import Pill from './Pill.astro';
 		</article>
 
 	</div>
+
+	<div class="not-sure">
+		<p>Not sure yet? Learn <a href="/about">more about me</a> or just ask:</p>
+		<a href="mailto:martin@kavik.cz?subject=Question&body=Hey%20Martin%2C%0A%0AI%27m%20curious%20about%20" class="handwritten-cta">
+			"Hey Martin, I'm curious about..."
+		</a>
+	</div>
 </aside>
 
 <style>
@@ -648,6 +655,61 @@ import Pill from './Pill.astro';
 		/* Zigzag: offset second card down */
 		.contract-card {
 			transform: translateY(var(--row-offset));
+		}
+	}
+
+	/* Not sure section */
+	.not-sure {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+		margin-top: 1rem;
+		text-align: center;
+	}
+
+	.not-sure p {
+		font-size: var(--text-md);
+		color: var(--gray-400);
+		margin: 0;
+	}
+
+	.not-sure p a {
+		color: var(--gray-200);
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	.not-sure p a:hover {
+		color: var(--accent-regular);
+	}
+
+	.handwritten-cta {
+		font-family: 'Caveat', cursive;
+		font-size: 1.75rem;
+		font-weight: 500;
+		color: var(--accent-regular);
+		text-decoration: none;
+		transform: rotate(-1deg);
+		transition: transform 0.2s ease, color 0.2s ease;
+	}
+
+	.handwritten-cta:hover {
+		transform: rotate(0deg) scale(1.05);
+		color: #f72585;
+	}
+
+	@media (min-width: 50em) {
+		.not-sure {
+			margin-top: 2rem;
+		}
+
+		.not-sure p {
+			font-size: var(--text-lg);
+		}
+
+		.handwritten-cta {
+			font-size: 2rem;
 		}
 	}
 </style>
