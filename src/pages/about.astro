@@ -230,13 +230,15 @@ const artworks = [
 				<div class="video-grid">
 					<div class="video-item">
 						<VideoEmbed url="https://youtu.be/muVBtlwP4BQ" title="Bungee jumping" />
-						<p class="video-caption">Jumped off a bridge</p>
 					</div>
 					<div class="video-item">
 						<VideoEmbed url="https://youtu.be/0-UQKFUs02M" title="Skydiving" />
-						<p class="video-caption">Jumped out of a plane</p>
 					</div>
 				</div>
+				<blockquote class="honnold-quote">
+					<p>"If you don't experience real fear from time to time, then your mind just sort of creates fears out of nothing."</p>
+					<cite>— <a href="https://www.youtube.com/watch?v=_e6VqBZb_9M" target="_blank" rel="noopener">Alex Honnold</a></cite>
+				</blockquote>
 			</section>
 
 			<!-- Life Section -->
@@ -459,6 +461,45 @@ const artworks = [
 		font-size: var(--text-md);
 		color: var(--gray-400);
 		text-align: center;
+	}
+
+	/* Honnold quote */
+	.honnold-quote {
+		max-width: 55ch;
+		margin: 2rem auto 0;
+		text-align: center;
+		font-style: italic;
+		color: var(--gray-300);
+	}
+
+	.honnold-quote p {
+		font-size: var(--text-md);
+		margin: 0 0 0.5rem;
+	}
+
+	.honnold-quote cite {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+	}
+
+	.honnold-quote cite a {
+		color: inherit;
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	.honnold-quote cite a:hover {
+		color: var(--gray-200);
+	}
+
+	@media (min-width: 50em) {
+		.honnold-quote p {
+			font-size: var(--text-lg);
+		}
+
+		.honnold-quote cite {
+			font-size: var(--text-md);
+		}
 	}
 
 	/* Music container */
