@@ -1,6 +1,12 @@
 ---
 import Icon from './Icon.astro';
 import Pill from './Pill.astro';
+
+interface Props {
+	hideAboutLink?: boolean;
+}
+
+const { hideAboutLink = false } = Astro.props;
 ---
 
 <aside>
@@ -85,7 +91,11 @@ import Pill from './Pill.astro';
 	</div>
 
 	<div class="not-sure">
-		<p>Not sure yet? Learn <a href="/about">more about me</a> or just ask:</p>
+		{hideAboutLink ? (
+			<p>Not sure yet? Ask any questions:</p>
+		) : (
+			<p>Not sure yet? Learn <a href="/about">more about me</a> or just ask:</p>
+		)}
 		<a href="mailto:martin@kavik.cz?subject=Question&body=Hey%20Martin%2C%0A%0AI%27m%20curious%20about%20" class="handwritten-cta">
 			"Hey Martin, I'm curious about..."
 		</a>
