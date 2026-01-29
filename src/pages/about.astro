@@ -241,17 +241,28 @@ const artworks = [
 				</blockquote>
 			</section>
 
-			<!-- Life & Work Section -->
+			<!-- Life Section -->
 			<section class="section">
 				<div class="deco-bricks" aria-hidden="true">
 					<div class="deco-brick" style="background: #118ab2; width: 45px; height: 40px; left: 1%; top: 0.5rem;"></div>
 				</div>
 				<header class="section-header">
-					<h2>Life & Work</h2>
+					<h2>Life</h2>
 					<p>Who I am now.</p>
 				</header>
 				<div class="section-content">
-					<p>I live in Prague with three girls. Two of them are dwarfs. I lift mostly toys instead of heavy weights. I enjoy one-to-one conversations, spicy food & sushi, cozy cafés or tearooms, and hikes. Our Tour de Norge 2024 confirmed the plan to learn Norwegian and move to Norway.</p>
+					<p>I live in Prague with two hobbits and one queen. I'm nocturnal, but I enjoy those couple spring days before the warm sun turns into a Death Star.</p>
+				</div>
+				<div class="section-content">
+					<ul class="life-list">
+						<li>Lifting mostly toys and small creatures instead of dumbbells.</li>
+						<li>Like one-to-one conversations, spicy food & sushi, cozy cafés, and hikes.</li>
+						<li>Unoffendable. Relax, write, skip the formalities.</li>
+						<li>Slow replies? Probably on the kindergarten walk, thinking about your problem.</li>
+					</ul>
+				</div>
+				<div class="section-content">
+					<p>Our Tour de Norge 2024 confirmed the plan to learn Norwegian and move there.</p>
 				</div>
 				<div class="norway-grid">
 					<div class="norway-item">
@@ -279,25 +290,19 @@ const artworks = [
 						<p>No, we didn't stay (yet) — return tracking died.</p>
 					</div>
 				</div>
-				<div class="section-content">
-					<p>My workflow over the last six years has been very similar to the one described in the <a href="https://basecamp.com/shapeup">Shape Up</a> book (from the Basecamp authors) — 4–6 week cycles with progress reports including screenshots and demos at the end. I ask a lot of business-related questions. I'll help you fill the gaps; I like to hear "I don't know" from clients.</p>
+			</section>
+
+			<!-- Work Section -->
+			<section class="section">
+				<div class="deco-bricks" aria-hidden="true">
+					<div class="deco-brick" style="background: #f72585; width: 50px; height: 45px; right: 2%; top: 0.5rem;"></div>
 				</div>
-				<blockquote class="work-quote">
-					<p>"I'm not hired to write code — I'm hired to help you with your product."</p>
-					<cite>— me</cite>
-				</blockquote>
+				<header class="section-header">
+					<h2>As Your Partner</h2>
+					<p>I'm not hired to write code — I'm hired to help you with your product.</p>
+				</header>
 				<div class="section-content">
-					<p>I do what is needed. I've been paid to:</p>
-					<ul class="skills-list">
-						<li>teach Rust</li>
-						<li>get apps through Facebook review</li>
-						<li>make integration tests faster</li>
-						<li>audit smart contracts</li>
-						<li>write email templates</li>
-						<li>design apps in Figma or Penpot</li>
-						<li>write blog posts</li>
-						<li>edit photos or icons in Affinity</li>
-					</ul>
+					<p>Turns out how I naturally work has a name — <a href="https://basecamp.com/shapeup">Shape Up</a>. Six years of 4–6 week cycles ending with progress reports and demos. I ask a lot of business-related questions.</p>
 				</div>
 				<div class="trait-pills">
 					<span class="trait-pill">Systematic</span>
@@ -306,13 +311,26 @@ const artworks = [
 					<span class="trait-pill">INTJ-A</span>
 				</div>
 				<div class="section-content">
-					<p>I cannot be offended — skip the formalities, just say it. But I expect the same from you.</p>
-					<p>I like to think things through, so replies may take a while. Or maybe I'm just on the 4km walk from kindergarten, thinking about how to improve other parts of your business.</p>
-					<p>I work mostly part-time. Open-source, research, and two small creators in training need my attention. But I can switch to <a href="https://www.youtube.com/watch?v=ZN12-hJI7ws">Winston Wolf mode</a> when the situation calls for it.</p>
+					<p>I fill the gaps. I've also been paid to:</p>
+					<ul class="skills-list">
+						<li>teach Rust</li>
+						<li>get apps through Facebook review</li>
+						<li>design apps in Figma or Penpot</li>
+						<li>audit smart contracts</li>
+						<li>write email templates</li>
+						<li>make integration tests faster</li>
+						<li>write blog posts</li>
+						<li>edit photos or icons in Affinity</li>
+					</ul>
+				</div>
+				<div class="section-content">
+					<p>I work mostly part-time — open-source, research, and two small creators in training need my attention (but can switch to <a href="https://www.youtube.com/watch?v=ZN12-hJI7ws">Winston Wolf mode</a> when needed).</p>
 				</div>
 			</section>
 
 		</main>
+
+		<div class="cta-spacer"></div>
 
 		<ContactCTA />
 	</div>
@@ -577,6 +595,45 @@ const artworks = [
 	.skills-list li:nth-child(6)::before { background: #06d6a0; }
 	.skills-list li:nth-child(7)::before { background: #fb8500; }
 	.skills-list li:nth-child(8)::before { background: #8338ec; }
+
+	/* Life list */
+	.life-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		max-width: 65ch;
+		margin: 0 auto;
+	}
+
+	.life-list li {
+		position: relative;
+		padding-left: 1.5rem;
+		font-size: var(--text-md);
+	}
+
+	.life-list li::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0.5em;
+		width: 8px;
+		height: 8px;
+		opacity: 0.7;
+	}
+
+	.life-list li:nth-child(1)::before { background: #06d6a0; }
+	.life-list li:nth-child(2)::before { background: #f4a261; }
+	.life-list li:nth-child(3)::before { background: #3a86ff; }
+	.life-list li:nth-child(4)::before { background: #e63946; }
+
+	@media (min-width: 50em) {
+		.life-list li {
+			font-size: var(--text-lg);
+		}
+	}
 
 	@media (min-width: 50em) {
 		.skills-list li {
@@ -999,6 +1056,17 @@ const artworks = [
 
 	.hero-img-btn img {
 		width: 100%;
+	}
+
+	/* CTA spacer */
+	.cta-spacer {
+		height: 6rem;
+	}
+
+	@media (min-width: 50em) {
+		.cta-spacer {
+			height: 2rem;
+		}
 	}
 </style>
 
