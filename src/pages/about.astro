@@ -185,37 +185,62 @@ const artworks = [
 				</div>
 				<header class="section-header">
 					<h2>Hardware Detours</h2>
-					<p>When code meets the physical world.</p>
+					<p>The universe pushes back. Since high school.</p>
 				</header>
-				<div class="hardware-grid">
-					<div class="hardware-story">
-						<button
-							class="lightbox-trigger"
-							data-src="/images/about/car_diagnostics.jpg"
-							data-alt="Car diagnostics with laptop and OBD"
-							type="button"
-							aria-label="View full image"
-						>
-							<img src="/images/about/car_diagnostics.jpg" alt="Car diagnostics with laptop and OBD" />
-						</button>
-						<h3>Car Diagnostics</h3>
-						<p>My car wouldn't start intermittently. I connected a laptop via OBD to hunt down the problem. Turned out to be an unreliable relay that was supposed to enable the fuel pump before starting — it would lose pressure and the engine couldn't fire.</p>
-					</div>
-					<div class="hardware-story">
-						<button
-							class="lightbox-trigger"
-							data-src="/images/about/football_launcher_studio.jpg"
-							data-alt="Football launcher studio setup"
-							type="button"
-							aria-label="View full image"
-						>
-							<img src="/images/about/football_launcher_studio.jpg" alt="Football launcher studio setup" />
-						</button>
-						<h3>Football Launcher</h3>
-						<p>An ATTiny MCU controlled by a C# CLI app, connected through a PHP backend listening to the Facebook API. Users watched a live stream and picked where to shoot the ball at a real goalkeeper.</p>
-					</div>
+				<div class="hardware-cards">
+					<article class="hardware-card">
+						<div class="hardware-card-media">
+							<button
+								class="lightbox-trigger"
+								data-src="/images/about/car_diagnostics.jpg"
+								data-alt="Car diagnostics with laptop and OBD"
+								type="button"
+								aria-label="View full image"
+							>
+								<img src="/images/about/car_diagnostics.jpg" alt="Car diagnostics with laptop and OBD" />
+							</button>
+						</div>
+						<div class="hardware-card-content">
+							<h3>Car Diagnostics</h3>
+							<p>My student car started enjoying mornings as much as I did. Some mornings it started; some mornings it just... didn't. Fine when you need to get to school. Less fine at 2 AM after a rock concert.</p>
+							<p>Mechanics weren't able to fix it — a rare heisenbug in a car from 1997. So I tried myself. OBD diagnostics, forum deep-dives, and other alchemy — until I finally stuck a multimeter on a relay after a rainy night. I swapped the "humidity-sensitive" fuel pump relay with the wiper relay. Russian roulette downgraded to "hope it doesn't rain".</p>
+						</div>
+					</article>
+
+					<article class="hardware-card hardware-card-reverse">
+						<div class="hardware-card-media">
+							<div class="hardware-card-images">
+								<button
+									class="lightbox-trigger"
+									data-src="/images/about/football_launcher_studio.jpg"
+									data-alt="Football launcher studio setup"
+									type="button"
+									aria-label="View full image"
+								>
+									<img src="/images/about/football_launcher_studio.jpg" alt="Football launcher studio setup" />
+								</button>
+								<button
+									class="lightbox-trigger"
+									data-src="/images/about/mastercard_delovka.jpg"
+									data-alt="MasterCard Dělovka cannon in action"
+									type="button"
+									aria-label="View full image"
+								>
+									<img src="/images/about/mastercard_delovka.jpg" alt="MasterCard Dělovka cannon in action" />
+								</button>
+							</div>
+							<p class="hardware-credit">MasterCard Dělovka (2013) — McCann Prague. Photo via <a href="https://www.effie.cz/vysledky-effie/rocnik-2014/mastercard-super-cup-2013-sponsorship-mastercard-delovka/">Effie Czech</a>.</p>
+						</div>
+						<div class="hardware-card-content">
+							<h3>Football Launcher</h3>
+							<p>A Frankenstein's monster of Atmel microcontroller with C, C# desktop app, PHP backend connected to FB API. And of course an old concrete mixer — I mean, a football cannon. Users in a Facebook app watched a livestream and picked where to shoot a ball at a real goalkeeper.</p>
+							<p>The capacitors powering the kick generated EMP bombs, often killing the controller. Manual defibrillation required. Russian roulette vol. 2. But it was still a success — the campaign reached 1.2M Czech viewers.</p>
+						</div>
+					</article>
 				</div>
-				<p class="hardware-lesson">Both projects taught the same lesson: debugging unreliable relays and EMP from huge capacitors isn't something you want to do every day. I went back to software.</p>
+
+				<p class="hardware-lesson">Both projects whispered the same truth: "You know nothing, Martin Kavík. Do not meddle in the affairs of wizards, for they are subtle and quick to anger." So I crawled back to software.</p>
+				<p class="hardware-lesson hardware-lesson-followup">Ten years later, I'm developing a language to write software and design hardware. I'll create my own roulettes!</p>
 			</section>
 
 			<!-- Testing Gravity Section -->
@@ -904,65 +929,185 @@ const artworks = [
 		}
 	}
 
-	/* Hardware grid */
-	.hardware-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 2rem;
-	}
-
-	@media (min-width: 50em) {
-		.hardware-grid {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-
-	.hardware-story {
+	/* Hardware cards */
+	.hardware-cards {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 6rem;
+		margin-top: 2rem;
 	}
 
-	.hardware-story img {
+	.hardware-card {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.hardware-card-media {
+		flex: 1;
+	}
+
+	.hardware-card-media img {
 		width: 100%;
 		border-radius: 1rem;
 		box-shadow: var(--shadow-md);
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
 	}
 
-	.hardware-story h3 {
-		font-size: var(--text-xl);
-		color: var(--gray-0);
-		margin-bottom: 0.25rem;
+	.hardware-card-images {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem;
 	}
 
-	.hardware-story p {
+	@media (min-width: 50em) and (max-width: 66em) {
+		.hardware-card-images {
+			max-width: 320px;
+		}
+	}
+
+	.hardware-card-content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.hardware-card-content h3 {
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+		margin: 0;
+	}
+
+	.hardware-card-content p {
 		color: var(--gray-300);
 		font-size: var(--text-md);
+		margin: 0;
+	}
+
+	.hardware-credit {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		font-style: italic;
+		margin-top: 0.5rem;
+		text-align: right;
+	}
+
+	.hardware-credit a {
+		color: inherit;
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	.hardware-credit a:hover {
+		color: var(--gray-200);
 	}
 
 	@media (min-width: 50em) {
-		.hardware-story h3 {
+		.hardware-cards {
+			gap: 7rem;
+			margin-top: 2rem;
+		}
+
+		.hardware-card {
+			flex-direction: row;
+			gap: 4rem;
+			align-items: center;
+		}
+
+		.hardware-card-reverse {
+			flex-direction: row-reverse;
+		}
+
+		/* Car Diagnostics: wider text, smaller image */
+		.hardware-card:not(.hardware-card-reverse) .hardware-card-media {
+			flex: 0.7;
+		}
+
+		.hardware-card:not(.hardware-card-reverse) .hardware-card-content {
+			flex: 1.3;
+		}
+
+		/* Football Launcher: narrower text, bigger images */
+		.hardware-card-reverse .hardware-card-media {
+			flex: 1.2;
+		}
+
+		.hardware-card-reverse .hardware-card-content {
+			flex: 0.8;
+		}
+
+
+		.hardware-card-content h3 {
 			font-size: var(--text-2xl);
 		}
 
-		.hardware-story p {
+		.hardware-card-content p {
 			font-size: var(--text-lg);
 		}
 	}
 
 	.hardware-lesson {
-		color: var(--gray-400);
+		position: relative;
+		color: var(--gray-300);
 		font-style: italic;
 		text-align: center;
-		max-width: 65ch;
-		margin: 0 auto;
+		max-width: 55ch;
+		margin: 5rem auto 0;
+		padding: 1.5rem 2rem;
 		font-size: var(--text-md);
+		border-left: 3px solid var(--gray-700);
+		border-right: 3px solid var(--gray-700);
+		background: linear-gradient(90deg, var(--gray-999) 0%, transparent 15%, transparent 85%, var(--gray-999) 100%);
+	}
+
+	.hardware-lesson::before,
+	.hardware-lesson::after {
+		content: "";
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 60px;
+		height: 3px;
+		background: var(--gray-700);
+	}
+
+	.hardware-lesson::before {
+		top: 0;
+	}
+
+	.hardware-lesson::after {
+		bottom: 0;
+	}
+
+	.hardware-lesson-followup {
+		margin-top: 1.5rem;
+		border: none;
+		background: none;
+		padding: 0;
+	}
+
+	.hardware-lesson-followup::before,
+	.hardware-lesson-followup::after {
+		display: none;
 	}
 
 	@media (min-width: 50em) {
 		.hardware-lesson {
 			font-size: var(--text-lg);
+			margin-top: 6rem;
+			padding: 2rem 2.5rem;
+		}
+
+		.hardware-lesson-followup {
+			margin-top: 1.5rem;
+			padding: 0;
+		}
+	}
+
+	@media (min-width: 66em) {
+		.hardware-card-images {
+			grid-template-columns: 1fr 1fr;
 		}
 	}
 
