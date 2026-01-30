@@ -29,6 +29,8 @@
 			align-items: center;
 			justify-content: center;
 			position: relative;
+			padding-left: 140px;
+			margin-top: -40px;
 		}
 		.photo-wrapper {
 			width: 280px;
@@ -50,7 +52,8 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			padding: 60px 80px 60px 40px;
+			padding: 40px 40px 80px 80px;
+			margin-top: 0px;
 		}
 		h1 {
 			color: #fff;
@@ -95,6 +98,28 @@
 		.b1 { background: #7209b7; width: 50px; height: 40px; top: 40px; right: 60px; }
 		.b2 { background: #2a9d8f; width: 40px; height: 55px; bottom: 50px; right: 120px; }
 		.b3 { background: #f4a261; width: 45px; height: 35px; bottom: 100px; left: 30px; }
+		/* CTA below color bar - width matches color bar: 60+45+55+50+40+65+35+50 + 7*8 = 456px */
+		.cta {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 24px;
+			width: 456px;
+		}
+		.cta-text {
+			color: #a3acc8;
+			font-size: 22px;
+			font-weight: 500;
+		}
+		.cta-url {
+			font-size: 28px;
+			font-weight: 600;
+			background: linear-gradient(90deg, #3a86ff, #7209b7);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			padding-right: 8px;
+		}
 		/* Subtle grid pattern */
 		.grid-overlay {
 			position: absolute;
@@ -132,6 +157,10 @@
 			<div class="bar-segment"></div>
 			<div class="bar-segment"></div>
 			<div class="bar-segment"></div>
+		</div>
+		<div class="cta">
+			<span class="cta-text">Let's build something</span>
+			<span class="cta-url">kavik.cz</span>
 		</div>
 	</div>
 </body>
