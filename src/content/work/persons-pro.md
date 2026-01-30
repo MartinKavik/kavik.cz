@@ -3,7 +3,7 @@ title: "Persons.pro"
 description: "The app for freelancers, open-source creators and digital product makers"
 sortOrder: 12
 tags: ["hire", "sponsor", "sell", "figma", "WIP"]
-img: "/images/figma_persons_pro.png"
+img: "/images/figma_persons_pro.webp"
 img_alt: "Persons.pro dashboard concept"
 links:
   - name: "Single-page demo"

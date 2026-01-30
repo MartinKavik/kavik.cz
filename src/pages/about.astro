@@ -65,7 +65,7 @@ const artworks = [
 				</header>
 				<div class="section-content">
 					<p>When I returned from kindergarten, I noticed a weird box on the table in our living room. Dad whispered magic spells that a wizard had taught him: <em>"Restart in MS-DOS mode and then write <code>cd games</code>."</em> The curse started with <a href="/shelf/#supaplex">Supaplex</a>. Unfortunately, I killed the computer a couple of years later by trying to compress the hard disk.</p>
-					<p>At thirteen, I built an antenna holder to finally get internet. Then I learned C# from a Czech school website. I faced a choice: pursue 3D graphics or programming. I chose programming — because making something out of nothing is the ultimate creativity. Also, I couldn't afford a better PC or 3D software licenses.</p>
+					<p>At thirteen, I built an antenna holder to finally get internet. Then I learned C# from a Czech school website. I faced a choice: to pursue 3D graphics or programming. I chose programming — because making something out of nothing is the ultimate creativity. Also, I couldn't afford a better PC or 3D software licenses.</p>
 					<p>Now, with <a href="/work/#raybox">RayBox</a>, I'm coming full circle to 3D graphics. And with AI in terminals, I'm coming full circle to MS-DOS.</p>
 				</div>
 				<div class="video-grid">
@@ -151,10 +151,10 @@ const artworks = [
 				<div class="music-container">
 					<div class="music-bg" aria-hidden="true"></div>
 					<div class="section-content">
-						<p>I rely on unconsciousness a lot for solving difficult problems or when I need creativity. It means I typically work in bursts through the day or night, including weekends. You can call it <a href="https://www.youtube.com/watch?v=WTr12dK2Se0&t=172s">Ping Pong method</a> or effective usage of <em>shower thoughts</em> and <a href="https://en.wikipedia.org/wiki/Incubation_(psychology)">incubation</a>.</p>
+						<p>I rely on my unconscious mind a lot for solving difficult problems or when I need creativity. It means I typically work in bursts through the day or night, including weekends. You can call it <a href="https://www.youtube.com/watch?v=WTr12dK2Se0&t=172s">Ping Pong method</a> or effective usage of <em>shower thoughts</em> and <a href="https://en.wikipedia.org/wiki/Incubation_(psychology)">incubation</a>.</p>
 						<p>So I needed some "filler" when the unconsciousness works. I also wanted to learn guitar. I can't sing, can't keep the rhythm and can't produce loud noises at night. Hence learning to play simpler fingerstyle songs started.</p>
 						<p>I was learning pieces like <em>Romanza</em> <span class="sep" aria-hidden="true"></span> <em>Un Dia de Noviembre</em> <span class="sep" aria-hidden="true"></span> <em>Dust in the Wind</em> <span class="sep" aria-hidden="true"></span> <em>The Heart Asks Pleasure First</em> <span class="sep" aria-hidden="true"></span> <em>Watermark</em> (Enya) <span class="sep" aria-hidden="true"></span> <em>Moonlight Sonata</em> (if my left hand was fresh before gym) <span class="sep" aria-hidden="true"></span> main themes from <em>Metro 2033</em> and <em>Requiem for a Dream</em>. It was on cheap guitar with small and slow fingers, but I felt the similar magic like writing code.</p>
-						<p>However, I'm creator so the urge to "compose" own song was stronger than motivation to improve my guitar skills. Those days, I was listening Philip Glass and similar, even electronic music with a lot of repetitions and patterns to keep me focused and relaxed. It was natural to draw some inspiration from them. I've written The Emptiness <a href="/documents/the_emptiness.pdf">tabulature</a> with pencil while testing on guitar and then (years later) I've recreated it in the app Steinberg Dorico.</p>
+						<p>However, I'm creator so the urge to "compose" own song was stronger than motivation to improve my guitar skills. Those days, I was listening Philip Glass and similar, even electronic music with a lot of repetitions and patterns to keep me focused and relaxed. It was natural to draw some inspiration from them. I've written The Emptiness <a href="/documents/the_emptiness.pdf">tablature</a> with pencil while testing on guitar and then (years later) I've recreated it in the app Steinberg Dorico.</p>
 					</div>
 					<VideoEmbed url="https://youtu.be/3mNv0QXfPhE" title="The Emptiness - Guitar Composition by Martin Kavík" />
 				</div>
@@ -239,7 +239,7 @@ const artworks = [
 					</article>
 				</div>
 
-				<p class="hardware-lesson">Both projects whispered the same truth: "You know nothing, Martin Kavík. Do not meddle in the affairs of wizards, for they are subtle and quick to anger." So I crawled back to software.</p>
+				<p class="hardware-lesson">Both projects whispered the same truth: "You know nothing, Martin Kavík. Do not meddle in the affairs of hardware, for it is subtle and quick to punish." So I crawled back to software.</p>
 				<p class="hardware-lesson hardware-lesson-followup">Ten years later, I'm developing a language to write software and design hardware. I'll create my own roulettes!</p>
 			</section>
 
@@ -1199,6 +1199,12 @@ const artworks = [
 	.lightbox-trigger:focus img {
 		transform: scale(1.02);
 		box-shadow: var(--shadow-lg);
+	}
+
+	.lightbox-trigger:focus-visible,
+	.poetry-art-btn:focus-visible {
+		outline: 2px solid var(--accent-regular);
+		outline-offset: 4px;
 	}
 
 	.hero-img-btn img {

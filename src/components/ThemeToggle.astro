@@ -20,6 +20,11 @@ import Icon from './Icon.astro';
 		cursor: pointer;
 	}
 
+	button:focus-visible {
+		outline: 2px solid var(--accent-regular);
+		outline-offset: 2px;
+	}
+
 	.icon {
 		z-index: 1;
 		position: relative;

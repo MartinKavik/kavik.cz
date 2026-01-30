@@ -164,6 +164,18 @@ const { items } = Astro.props;
 		background: rgba(255, 255, 255, 0.2);
 	}
 
+	.lightbox-close:focus,
+	.lightbox-prev:focus,
+	.lightbox-next:focus {
+		outline: 2px solid white;
+		outline-offset: 2px;
+	}
+
+	.gallery-item:focus-visible {
+		outline: 2px solid var(--accent-regular);
+		outline-offset: 4px;
+	}
+
 	.lightbox-close {
 		top: 1rem;
 		right: 1rem;
@@ -203,14 +215,17 @@ const { items } = Astro.props;
 	const lightbox = document.getElementById('lightbox');
 	const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
 	const lightboxCaption = document.getElementById('lightbox-caption');
+	const lightboxClose = gallery?.querySelector('.lightbox-close') as HTMLElement;
 	const lightboxPrev = gallery?.querySelector('.lightbox-prev') as HTMLElement;
 	const lightboxNext = gallery?.querySelector('.lightbox-next') as HTMLElement;
 	const items = document.querySelectorAll('.gallery-item');
 	let currentIndex = 0;
 	let isGalleryMode = false;
+	let triggerElement: HTMLElement | null = null;
 
 	function openLightbox(index: number) {
 		const item = items[index] as HTMLElement;
+		triggerElement = item;
 		currentIndex = index;
 		lightboxImg.src = item.dataset.src || '';
 		lightboxImg.alt = item.dataset.alt || '';
@@ -221,6 +236,8 @@ const { items } = Astro.props;
 		showNavButtons(true);
 		lightbox?.setAttribute('aria-hidden', 'false');
 		document.body.style.overflow = 'hidden';
+		// Move focus to close button
+		lightboxClose?.focus();
 	}
 
 	function showNavButtons(show: boolean) {
@@ -232,6 +249,11 @@ const { items } = Astro.props;
 		lightbox?.setAttribute('aria-hidden', 'true');
 		document.body.style.overflow = '';
 		isGalleryMode = false;
+		// Return focus to trigger element
+		if (triggerElement) {
+			triggerElement.focus();
+			triggerElement = null;
+		}
 	}
 
 	function showPrev() {
@@ -263,12 +285,32 @@ const { items } = Astro.props;
 		}
 	});
 
-	// Keyboard navigation
+	// Keyboard navigation and focus trap
 	document.addEventListener('keydown', (e) => {
 		if (lightbox?.getAttribute('aria-hidden') === 'false') {
 			if (e.key === 'Escape') closeLightbox();
 			if (e.key === 'ArrowLeft') showPrev();
 			if (e.key === 'ArrowRight') showNext();
+			// Focus trap - Tab cycling within lightbox
+			if (e.key === 'Tab') {
+				const focusableElements = [lightboxClose, lightboxPrev, lightboxNext].filter(el => el && el.style.display !== 'none');
+				if (focusableElements.length === 0) return;
+
+				const firstElement = focusableElements[0];
+				const lastElement = focusableElements[focusableElements.length - 1];
+
+				if (e.shiftKey) {
+					if (document.activeElement === firstElement) {
+						e.preventDefault();
+						lastElement?.focus();
+					}
+				} else {
+					if (document.activeElement === lastElement) {
+						e.preventDefault();
+						firstElement?.focus();
+					}
+				}
+			}
 		}
 	});
 

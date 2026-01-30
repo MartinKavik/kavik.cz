@@ -10,16 +10,21 @@ import Nav from '../components/Nav.astro';
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
+	image?: string | undefined;
+	imageAlt?: string | undefined;
+	imageWidth?: number | undefined;
+	imageHeight?: number | undefined;
 }
 
-const { title, description } = Astro.props;
+const { title, description, image, imageAlt, imageWidth, imageHeight } = Astro.props;
 ---
 
 <html lang="en">
 	<head>
-		<MainHead title={title} description={description} />
+		<MainHead title={title} description={description} image={image} imageAlt={imageAlt} imageWidth={imageWidth} imageHeight={imageHeight} />
 	</head>
 	<body>
+		<a href="#main-content" class="skip-link">Skip to main content</a>
 		<div class="stack backgrounds">
 			<div class="floating-bricks" aria-hidden="true">
 				<div class="brick brick-1"></div>
@@ -32,7 +37,9 @@ const { title, description } = Astro.props;
 				<div class="brick brick-8"></div>
 			</div>
 			<Nav />
-			<slot />
+			<main id="main-content">
+				<slot />
+			</main>
 			<Footer />
 		</div>
 
@@ -97,26 +104,43 @@ const { title, description } = Astro.props;
 			lbImg.style.cursor = '-webkit-zoom-out';
 			lbImg.style.cursor = 'zoom-out';
 
+			let triggerElement: HTMLElement | null = null;
+
 			const closeLightbox = () => {
 				lightbox.style.display = 'none';
 				document.body.style.overflow = '';
+				// Return focus to trigger element
+				if (triggerElement) {
+					triggerElement.focus();
+					triggerElement = null;
+				}
 			};
 
 			lightbox.addEventListener('click', closeLightbox);
 
 			document.addEventListener('keydown', (e) => {
-				if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-					closeLightbox();
+				if (lightbox.style.display === 'flex') {
+					if (e.key === 'Escape') {
+						closeLightbox();
+					}
+					// Focus trap - Tab cycling
+					if (e.key === 'Tab') {
+						e.preventDefault();
+						closeBtn.focus();
+					}
 				}
 			});
 
 			document.body.appendChild(lightbox);
 
-			function openLightbox(imgSrc: string, imgAlt: string) {
+			function openLightbox(imgSrc: string, imgAlt: string, trigger?: HTMLElement) {
+				triggerElement = trigger || document.activeElement as HTMLElement;
 				lbImg.src = imgSrc;
 				lbImg.alt = imgAlt;
 				lightbox.style.display = 'flex';
 				document.body.style.overflow = 'hidden';
+				// Move focus to close button
+				closeBtn.focus();
 			}
 
 			// Attach handlers to header images and their expand buttons
@@ -126,7 +150,7 @@ const { title, description } = Astro.props;
 
 				const open = (e: Event) => {
 					e.stopPropagation();
-					if (img) openLightbox((img as HTMLImageElement).src, (img as HTMLImageElement).alt);
+					if (img) openLightbox((img as HTMLImageElement).src, (img as HTMLImageElement).alt, e.currentTarget as HTMLElement);
 				};
 
 				img?.addEventListener('click', open);
@@ -168,7 +192,7 @@ const { title, description } = Astro.props;
 				wrapper.appendChild(img);
 				wrapper.appendChild(btn);
 
-				const open = () => openLightbox((img as HTMLImageElement).src, (img as HTMLImageElement).alt);
+				const open = (e: Event) => openLightbox((img as HTMLImageElement).src, (img as HTMLImageElement).alt, e.currentTarget as HTMLElement);
 				img.addEventListener('click', open);
 				btn.addEventListener('click', open);
 			});
@@ -331,6 +355,22 @@ const { title, description } = Astro.props;
 				}
 			}
 
+			/* Skip link for accessibility */
+			.skip-link {
+				position: absolute;
+				top: -40px;
+				left: 0;
+				background: var(--gray-0);
+				color: var(--gray-999);
+				padding: 0.5rem 1rem;
+				text-decoration: none;
+				z-index: 10000;
+				border-radius: 0 0 0.5rem 0;
+			}
+
+			.skip-link:focus {
+				top: 0;
+			}
 		</style>
 	</body>
 </html>

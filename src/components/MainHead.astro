@@ -4,18 +4,52 @@ import '../styles/global.css';
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
+	image?: string | undefined;
+	imageAlt?: string | undefined;
+	imageWidth?: number | undefined;
+	imageHeight?: number | undefined;
 }
 
 const {
 	title = 'Martin Kavík | Rust, Boon & design',
 	description = 'Personal site of Martin Kavík — Rust developer, designer, and creator of Boon & MoonZoon.',
+	image = '/images/martin_trondheim.jpg',
+	imageAlt = 'Martin Kavík in a forest near Trondheim',
+	imageWidth = 1500,
+	imageHeight = 959,
 } = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://kavik.cz';
+const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
 ---
 
 <meta charset="UTF-8" />
-<meta name="description" property="og:description" content={description} />
 <meta name="viewport" content="width=device-width" />
+<meta name="description" content={description} />
 <meta name="generator" content={Astro.generator} />
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content={imageWidth.toString()} />
+<meta property="og:image:height" content={imageHeight.toString()} />
+<meta property="og:image:alt" content={imageAlt} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Martin Kavík" />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:image:alt" content={imageAlt} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalUrl} />
+
 <title>{title}</title>
 
 <link rel="icon" type="image/png" href="/favicon_robot.png" />

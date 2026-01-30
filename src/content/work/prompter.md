@@ -3,7 +3,7 @@ title: "Prompter"
 description: "Web UI for Claude Code sessions"
 sortOrder: 10
 tags: ["rust", "cli", "ai", "pty", "axum", "htmx"]
-img: "/images/prompter.png"
+img: "/images/prompter.webp"
 img_alt: "Prompter web interface"
 ---
 

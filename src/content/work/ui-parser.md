@@ -3,7 +3,7 @@ title: "UI Parser"
 description: "Extract UI metadata from web pages"
 sortOrder: 11
 tags: ["rust", "extension", "cdp", "typescript", "mcp", "WIP"]
-img: "/images/ui_parser.png"
+img: "/images/ui_parser.webp"
 img_alt: "UI Parser overlay visualization"
 ---
 
