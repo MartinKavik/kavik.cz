@@ -734,16 +734,28 @@ const artworks = [
 
 	.music-bg {
 		position: absolute;
-		top: 0;
+		bottom: 0;
 		left: calc(-50vw + 50%);
 		width: 100vw;
-		height: 100%;
+		height: 280px;
 		background-image: url('/images/about/emptiness_tab.jpg');
 		background-size: cover;
-		background-position: center top;
+		background-position: center;
 		background-repeat: no-repeat;
 		opacity: 0.08;
 		pointer-events: none;
+	}
+
+	@media (min-width: 500px) {
+		.music-bg {
+			height: 350px;
+		}
+	}
+
+	@media (min-width: 720px) {
+		.music-bg {
+			height: 500px;
+		}
 	}
 
 	:root:not(.theme-dark) .music-bg {
