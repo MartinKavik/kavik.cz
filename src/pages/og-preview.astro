@@ -1,0 +1,138 @@
+---
+// OG Image Preview - Used to generate og-image.png
+// Screenshot at 1200x630 viewport
+// Not linked from anywhere, just for regenerating the OG image
+---
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="robots" content="noindex, nofollow" />
+	<title>OG Preview</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body {
+			width: 1200px;
+			height: 630px;
+			background: #090b11;
+			font-family: 'Rubik', system-ui, sans-serif;
+			position: relative;
+			overflow: hidden;
+			display: flex;
+		}
+		.photo-side {
+			width: 420px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+		}
+		.photo-wrapper {
+			width: 280px;
+			height: 280px;
+			border-radius: 50%;
+			padding: 6px;
+			background: linear-gradient(135deg, #e63946, #f4a261, #e9c46a, #2a9d8f, #00b4d8, #3a86ff, #7209b7, #f72585);
+			background-size: 200% 200%;
+		}
+		.photo {
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			object-fit: cover;
+			object-position: center top;
+		}
+		.content-side {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: 60px 80px 60px 40px;
+		}
+		h1 {
+			color: #fff;
+			font-size: 64px;
+			font-weight: 600;
+			margin-bottom: 20px;
+			letter-spacing: -1px;
+			line-height: 1.1;
+		}
+		.tagline {
+			color: #a3acc8;
+			font-size: 28px;
+			font-weight: 400;
+			line-height: 1.4;
+			margin-bottom: 32px;
+		}
+		.highlight {
+			color: #3a86ff;
+		}
+		/* Color bar accent */
+		.color-bar {
+			display: flex;
+			gap: 8px;
+		}
+		.bar-segment {
+			height: 8px;
+			border-radius: 4px;
+		}
+		.bar-segment:nth-child(1) { background: #e63946; width: 60px; }
+		.bar-segment:nth-child(2) { background: #f4a261; width: 45px; }
+		.bar-segment:nth-child(3) { background: #e9c46a; width: 55px; }
+		.bar-segment:nth-child(4) { background: #2a9d8f; width: 50px; }
+		.bar-segment:nth-child(5) { background: #00b4d8; width: 40px; }
+		.bar-segment:nth-child(6) { background: #3a86ff; width: 65px; }
+		.bar-segment:nth-child(7) { background: #7209b7; width: 35px; }
+		.bar-segment:nth-child(8) { background: #f72585; width: 50px; }
+		/* Floating bricks - subtle */
+		.brick {
+			position: absolute;
+			opacity: 0.25;
+		}
+		.b1 { background: #7209b7; width: 50px; height: 40px; top: 40px; right: 60px; }
+		.b2 { background: #2a9d8f; width: 40px; height: 55px; bottom: 50px; right: 120px; }
+		.b3 { background: #f4a261; width: 45px; height: 35px; bottom: 100px; left: 30px; }
+		/* Subtle grid pattern */
+		.grid-overlay {
+			position: absolute;
+			inset: 0;
+			background-image:
+				linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+				linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+			background-size: 40px 40px;
+			pointer-events: none;
+		}
+	</style>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="grid-overlay"></div>
+	<div class="brick b1"></div>
+	<div class="brick b2"></div>
+	<div class="brick b3"></div>
+	<div class="photo-side">
+		<div class="photo-wrapper">
+			<img class="photo" src="/images/martin_coffee.png" alt="Martin Kavík" />
+		</div>
+	</div>
+	<div class="content-side">
+		<h1>Martin Kavík</h1>
+		<p class="tagline">From Ideas to Silicon<br>with <span class="highlight">Rust</span> & <span class="highlight">Boon</span></p>
+		<div class="color-bar">
+			<div class="bar-segment"></div>
+			<div class="bar-segment"></div>
+			<div class="bar-segment"></div>
+			<div class="bar-segment"></div>
+			<div class="bar-segment"></div>
+			<div class="bar-segment"></div>
+			<div class="bar-segment"></div>
+			<div class="bar-segment"></div>
+		</div>
+	</div>
+</body>
+</html>
