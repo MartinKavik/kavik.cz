@@ -123,6 +123,18 @@ const isCurrentPage = (href: string) => {
 			// Toggle menu visibility when the menu button is clicked.
 			btn.addEventListener('click', () => setExpanded(menu.hidden));
 
+			// Close menu on theme toggle click.
+			menu.querySelector('theme-toggle')?.addEventListener('click', () => {
+				if (!btn.hidden) setExpanded(false);
+			});
+
+			// Close menu on click outside.
+			document.addEventListener('click', (e) => {
+				if (!btn.hidden && !menu.hidden && !menu.contains(e.target as Node) && !btn.contains(e.target as Node)) {
+					setExpanded(false);
+				}
+			});
+
 			// Hide menu button for large screens.
 			const handleViewports = (e: MediaQueryList | MediaQueryListEvent) => {
 				setExpanded(e.matches);
@@ -175,6 +187,13 @@ const isCurrentPage = (href: string) => {
 		color: var(--gray-300);
 		background: var(--gray-800);
 		box-shadow: var(--shadow-md);
+		cursor: pointer;
+		transition: color var(--theme-transition), background var(--theme-transition);
+	}
+
+	.menu-button:hover {
+		color: var(--gray-0);
+		background: var(--gray-700);
 	}
 
 	.menu-button[aria-expanded='true'] {
@@ -380,9 +399,41 @@ const isCurrentPage = (href: string) => {
 			gap: 0;
 		}
 	}
+	nav::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 3px;
+		width: var(--scroll-progress, 0%);
+		background: var(--rainbow-gradient);
+		background-size: 200% 100%;
+		z-index: 10000;
+		pointer-events: none;
+	}
+
 	@media (forced-colors: active) {
 		.link[aria-current='page'] {
 			color: SelectedItem;
 		}
 	}
 </style>
+
+<script>
+	function initScrollProgress() {
+		const nav = document.querySelector('nav');
+		if (!nav) return;
+
+		function updateProgress() {
+			const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+			const progress = docHeight > 0 ? Math.min(window.scrollY / docHeight, 1) : 0;
+			(nav as HTMLElement).style.setProperty('--scroll-progress', `${progress * 100}%`);
+		}
+
+		window.addEventListener('scroll', updateProgress, { passive: true });
+		updateProgress();
+	}
+
+	initScrollProgress();
+	document.addEventListener('astro:page-load', initScrollProgress);
+</script>

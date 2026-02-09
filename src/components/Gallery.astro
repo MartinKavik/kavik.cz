@@ -108,7 +108,7 @@ const { items } = Astro.props;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		z-index: 1000;
+		z-index: 10000;
 		opacity: 0;
 		visibility: hidden;
 		transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -148,7 +148,7 @@ const { items } = Astro.props;
 	.lightbox-prev,
 	.lightbox-next {
 		position: absolute;
-		background: rgba(255, 255, 255, 0.1);
+		background: rgba(255, 255, 255, 0.15);
 		border: none;
 		color: white;
 		font-size: 2rem;
@@ -158,10 +158,12 @@ const { items } = Astro.props;
 		transition: background 0.2s ease;
 	}
 
-	.lightbox-close:hover,
-	.lightbox-prev:hover,
-	.lightbox-next:hover {
-		background: rgba(255, 255, 255, 0.2);
+	@media (hover: hover) {
+		.lightbox-close:hover,
+		.lightbox-prev:hover,
+		.lightbox-next:hover {
+			background: rgba(255, 255, 255, 0.3);
+		}
 	}
 
 	.lightbox-close:focus,
@@ -204,7 +206,8 @@ const { items } = Astro.props;
 		}
 
 		.lightbox-prev,
-		.lightbox-next {
+		.lightbox-next,
+		.lightbox-close {
 			display: none;
 		}
 	}
@@ -223,9 +226,9 @@ const { items } = Astro.props;
 	let isGalleryMode = false;
 	let triggerElement: HTMLElement | null = null;
 
-	function openLightbox(index: number) {
+	function openLightbox(index: number, initialOpen = false) {
 		const item = items[index] as HTMLElement;
-		triggerElement = item;
+		if (initialOpen) triggerElement = item;
 		currentIndex = index;
 		lightboxImg.src = item.dataset.src || '';
 		lightboxImg.alt = item.dataset.alt || '';
@@ -236,8 +239,7 @@ const { items } = Astro.props;
 		showNavButtons(true);
 		lightbox?.setAttribute('aria-hidden', 'false');
 		document.body.style.overflow = 'hidden';
-		// Move focus to close button
-		lightboxClose?.focus();
+		if (initialOpen) lightboxClose?.focus();
 	}
 
 	function showNavButtons(show: boolean) {
@@ -270,15 +272,20 @@ const { items } = Astro.props;
 
 	// Event listeners
 	items.forEach((item, index) => {
-		item.addEventListener('click', () => openLightbox(index));
+		item.addEventListener('click', () => openLightbox(index, true));
 	});
 
 	gallery?.querySelector('.lightbox-close')?.addEventListener('click', closeLightbox);
 	lightboxPrev?.addEventListener('click', showPrev);
 	lightboxNext?.addEventListener('click', showNext);
 
-	// Close on click anywhere (except nav buttons)
+	// Close on click anywhere (except nav buttons), but not after a swipe
+	let swipeOccurred = false;
 	lightbox?.addEventListener('click', (e) => {
+		if (swipeOccurred) {
+			swipeOccurred = false;
+			return;
+		}
 		const target = e.target as HTMLElement;
 		if (!target.closest('.lightbox-prev') && !target.closest('.lightbox-next')) {
 			closeLightbox();
@@ -313,6 +320,38 @@ const { items } = Astro.props;
 			}
 		}
 	});
+
+	// Touch swipe support for mobile lightbox navigation
+	let touchStartX = 0;
+	let touchStartY = 0;
+	const SWIPE_THRESHOLD = 50;
+
+	function handleTouchStart(e: TouchEvent) {
+		swipeOccurred = false;
+		touchStartX = e.changedTouches[0].screenX;
+		touchStartY = e.changedTouches[0].screenY;
+	}
+
+	function handleTouchEnd(e: TouchEvent) {
+		const deltaX = e.changedTouches[0].screenX - touchStartX;
+		const deltaY = e.changedTouches[0].screenY - touchStartY;
+
+		if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+		if (Math.abs(deltaY) > Math.abs(deltaX)) return;
+		if (!isGalleryMode) return;
+
+		swipeOccurred = true;
+		if (deltaX < 0) {
+			showNext();
+		} else {
+			showPrev();
+		}
+	}
+
+	if (lightbox) {
+		lightbox.addEventListener('touchstart', handleTouchStart, { passive: true });
+		lightbox.addEventListener('touchend', handleTouchEnd, { passive: true });
+	}
 
 	// Expose function to hide nav for standalone images
 	(window as any).openLightboxSingle = () => {

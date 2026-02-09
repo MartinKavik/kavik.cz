@@ -88,10 +88,10 @@ const artworks = [
 				</div>
 				<header class="section-header">
 					<h2>Drawings</h2>
-					<p>Frustration driven, sustained by curiosity.</p>
+					<p>Drawn from the rough.</p>
 				</header>
 				<div class="section-content">
-					<p>At fifteen, I had to move with my mum and sister from a small spa town to a rougher part of Ostrava city. The following seven years were an infinite loop: sleep at school → gym → programming → games or attempts at art.</p>
+					<p>At fifteen, I had to move with my mum and sister from a small spa town to a grittier corner of Ostrava. The following seven years were an infinite loop: sleep at school → gym → programming → games or attempts at art.</p>
 					<p>Drawing became my quiet escape — and a brutal teacher. When you create, the gaps expose what you don't know. No way to cheat.</p>
 					<p>I slowly learned to struggle well and trust my decisions. Soon, I was able to help mum pay our rent from my first programming jobs — and my collection of drawings grew.</p>
 				</div>
@@ -150,12 +150,6 @@ const artworks = [
 				</header>
 				<div class="music-container">
 					<div class="music-bg" aria-hidden="true"></div>
-					<div class="section-content">
-						<p>I rely on my unconscious mind a lot for solving difficult problems or when I need creativity. It means I typically work in bursts through the day or night, including weekends. You can call it <a href="https://www.youtube.com/watch?v=WTr12dK2Se0&t=172s">Ping Pong method</a> or effective usage of <em>shower thoughts</em> and <a href="https://en.wikipedia.org/wiki/Incubation_(psychology)">incubation</a>.</p>
-						<p>So I needed some "filler" when the unconsciousness works. I also wanted to learn guitar. I can't sing, can't keep the rhythm and can't produce loud noises at night. Hence learning to play simpler fingerstyle songs started.</p>
-						<p>I was learning pieces like <em>Romanza</em> <span class="sep" aria-hidden="true"></span> <em>Un Dia de Noviembre</em> <span class="sep" aria-hidden="true"></span> <em>Dust in the Wind</em> <span class="sep" aria-hidden="true"></span> <em>The Heart Asks Pleasure First</em> <span class="sep" aria-hidden="true"></span> <em>Watermark</em> (Enya) <span class="sep" aria-hidden="true"></span> <em>Moonlight Sonata</em> (if my left hand was fresh before gym) <span class="sep" aria-hidden="true"></span> main themes from <em>Metro 2033</em> and <em>Requiem for a Dream</em>. It was on cheap guitar with small and slow fingers, but I felt the similar magic like writing code.</p>
-						<p>However, I'm creator so the urge to "compose" own song was stronger than motivation to improve my guitar skills. Those days, I was listening Philip Glass and similar, even electronic music with a lot of repetitions and patterns to keep me focused and relaxed. It was natural to draw some inspiration from them. I've written The Emptiness <a href="/documents/the_emptiness.pdf">tablature</a> with pencil while testing on guitar and then (years later) I've recreated it in the app Steinberg Dorico.</p>
-					</div>
 					<VideoEmbed url="https://youtu.be/3mNv0QXfPhE" title="The Emptiness - Guitar Composition by Martin Kavík" />
 				</div>
 				<div class="section-content">
@@ -175,6 +169,13 @@ const artworks = [
 					</button>
 					<figcaption>"Burlaks on the Volga" (1870–1873) by Ilya Repin. Public domain, via Wikimedia Commons.</figcaption>
 				</figure>
+				<h3 class="subsection-title">Composed in the pauses</h3>
+				<div class="section-content">
+					<p>I rely on my unconscious mind a lot for solving difficult problems or when I need creativity. It means I typically work in bursts through the day or night, including weekends. You can call it <a href="https://www.youtube.com/watch?v=WTr12dK2Se0&t=172s">Ping Pong method</a> or effective usage of <em>shower thoughts</em> and <a href="https://en.wikipedia.org/wiki/Incubation_(psychology)">incubation</a>.</p>
+					<p>So I needed some "filler" when the unconsciousness works. I also wanted to learn guitar. I can't sing, can't keep the rhythm and can't produce loud noises at night. Hence learning to play simpler fingerstyle songs started.</p>
+					<p>I was learning pieces like <em>Romanza</em> <span class="sep" aria-hidden="true"></span> <em>Un Dia de Noviembre</em> <span class="sep" aria-hidden="true"></span> <em>Dust in the Wind</em> <span class="sep" aria-hidden="true"></span> <em>The Heart Asks Pleasure First</em> <span class="sep" aria-hidden="true"></span> <em>Watermark</em> (Enya) <span class="sep" aria-hidden="true"></span> <em>Moonlight Sonata</em> (if my left hand was fresh before gym) <span class="sep" aria-hidden="true"></span> main themes from <em>Metro 2033</em> and <em>Requiem for a Dream</em>. It was on cheap guitar with small and slow fingers, but I felt the similar magic like writing code.</p>
+					<p>However, I'm creator so the urge to "compose" own song was stronger than motivation to improve my guitar skills. Those days, I was listening Philip Glass and similar, even electronic music with a lot of repetitions and patterns to keep me focused and relaxed. It was natural to draw some inspiration from them. I've written The Emptiness <a href="/documents/the_emptiness.pdf">tablature</a> with pencil while testing on guitar and then (years later) I've recreated it in the app Steinberg Dorico.</p>
+				</div>
 			</section>
 
 			<!-- Hardware Detours Section -->
@@ -446,6 +447,14 @@ const artworks = [
 		.section-header p {
 			font-size: var(--text-lg);
 		}
+	}
+
+	.subsection-title {
+		text-align: center;
+		font-size: var(--text-lg);
+		font-style: italic;
+		color: var(--gray-300);
+		margin: 2rem 0 1rem;
 	}
 
 	/* Section content */

@@ -204,6 +204,8 @@ const { Content } = await render(project);
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+		min-width: 0;
+		word-break: break-word;
 	}
 
 	.link-copy-btn {
@@ -404,6 +406,17 @@ const { Content } = await render(project);
 
 	.card {
 		scroll-margin-top: 2rem;
+	}
+
+	@media (max-width: 400px) {
+		.title {
+			font-size: var(--text-xl);
+			gap: 0.5rem;
+		}
+
+		.description {
+			font-size: var(--text-md);
+		}
 	}
 </style>
 
