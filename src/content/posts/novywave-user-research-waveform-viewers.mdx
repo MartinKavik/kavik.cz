@@ -1,271 +1,113 @@
 ---
-title: "NovyWave User Research: What Waveform Users Struggle With"
-description: "Issue-tracker analysis plus direct user interviews, and how those findings change NovyWave priorities."
-sortOrder: 1
-tags: ["novywave", "user-research", "eda", "waveforms", "ux"]
+title: "Building NovyWave: GTKWave alternative"
+description: "NovyWave, user feedback, and the final stretch to a polished release."
+sortOrder: 0
+tags: ["novywave", "user-research", "eda", "waveforms"]
 ---
 
 import Note from '../../components/Note.astro';
 
-I spent this cycle doing two things in parallel:
+![NovyWave desktop UI](/images/novywave_dark_linux.png)
+*NovyWave running on Linux.*
 
-1. reading public issue trackers and discussion threads around GTKWave-class viewers,
-2. replying to people who emailed me directly about NovyWave and collecting practical feedback.
+<Note>NovyWave is built on [MoonZoon](/#moonzoon), a Rust fullstack framework I've been developing since 2021. If you're curious about the journey that led here — signals, WASM size battles, Tauri desktop — start with [MoonZoon: Foundations](/blog/moonzoon-foundations-2021) and [MoonZoon: 2021–2025](/blog/moonzoon-2021-2025).</Note>
 
-This post publishes both.
+GTKWave has been the default open-source waveform viewer for over two decades. It earned that position honestly: it was there first and it works. But the UI feels like it was designed for a world where CRT monitors were still standard. There are no precompiled Windows binaries for recent versions. macOS support is unreliable. Large waveform files can eat gigabytes of RAM and stall the UI. And if you try to file a bug, you will find an issue tracker where many things have been reported but few have been fixed recently.
 
-## What NovyWave is
+[NovyWave](https://github.com/NovyWave/NovyWave) started from that frustration. It is an open-source waveform viewer built as a modern alternative — desktop app, cross-platform, with gamer-style WASD controls for navigating waveforms. The idea is not complicated: keep waveform debugging fast enough for daily professional use, but approachable enough that you do not need a wiki to add your first signal.
 
-If you are new here: NovyWave is an open-source waveform viewer built as a modern alternative to GTKWave.
+I built it on MoonZoon and Tauri — a single Rust codebase that compiles the frontend to WebAssembly, runs a native backend for file parsing and plugin hosting via Wasmtime, and wraps into a Tauri desktop app. Minimal JavaScript glue, no Electron. This post covers how user research and public issue tracker analysis shaped what gets built on top of that foundation.
 
-In practical terms, the project already provides:
+## Three conversations that changed my priorities
 
-- desktop app flow for Linux, macOS, and Windows
-- VCD, FST, and GHW waveform support
-- keyboard-first zoom/pan/cursor navigation
-- workspace persistence and plugin-driven extensions
-- auto-reload workflows for fast simulation loops
+I spent a cycle doing two things in parallel: reading public issue trackers to find where waveform viewer users get stuck, and replying to people who emailed me directly about NovyWave. The issue trackers told me what was broken. The emails told me what it felt like.
 
-The goal is simple: keep waveform debugging fast enough for daily professional use, but approachable enough for students and occasional HDL users.
+<Note>Direct quotes below are anonymized and lightly edited for length. They are included because they expose workflow pain that issue trackers often miss.</Note>
 
-I care about one question: **what repeatedly breaks the real debugging loop?**
+**A physics researcher** working with RedPitaya (Zynq 7) boards on Windows/WSL — not an FPGA professional, they were careful to note. After upgrading GHDL, GTKWave 3.3.100 stopped handling newer `.ghw` files, so they switched to `.fst`. They liked NovyWave's auto-reload immediately. But analog visualization was the sore point: "height extensions feel wonky, and values are normalized to the current window — I cannot set limits manually." One workflow saver, two critical UX gaps.
 
-`load trace -> add signals -> navigate -> measure -> interpret buses -> repeat`
+**A developer evaluating alternatives** on macOS and WSL2 because GTKWave "seems to be losing steam." They could not find prebuilt binaries for their setup, while another viewer installed with a single `brew install` and just worked. The line that stuck: "Hardware users are very conservative types." I had been so focused on what NovyWave could *do* that I had not spent enough time on whether anyone could *get* it.
 
-![NovyWave desktop UI](https://raw.githubusercontent.com/NovyWave/NovyWave/main/docs/novywave_dark_linux.png)
-*Current NovyWave UI screenshot from the project README.*
+**A cross-platform tester** on Mac M1 and Hyprland Arch Linux. No blank screen on M1 this time — that was fixed. But the file dialog expected Linux-style paths (`/home`) on macOS. Files in `/tmp` would not show up; moving them to `/usr/local/share` worked. Once past that hurdle: "Dock to Bottom is great, binary/hex toggle is practical, keyboard flow is strong, and multiple dump comparison is a huge plus." On Hyprland, everything worked without the filesystem issue. Good product — if you could get past the first 30 seconds.
 
-## How the research was done
+Three people, three setups, same pattern: the core viewer works, but the edges — installation, file picking, analog display — are where trust breaks.
 
-I used public sources where users report friction during real work, plus direct outreach:
+## What the issue trackers confirmed
 
-- GTKWave GitHub issues and historical SourceForge tickets
-- ecosystem/downstream channels where installation and theme pain surfaces
-- alternative tool channels for baseline expectations
-- direct email conversations with potential NovyWave users
+The emails told me what *felt* broken. The issue trackers told me it was not just three people — it was a pattern across the entire GTKWave user base. Here are the recurring pain clusters I found:
 
-<Note>
-Direct quotes below are anonymized and lightly edited for length. They are included because they expose workflow pain that issue trackers often miss.
-</Note>
+**Signal onboarding is unintuitive.** Adding signals is literally the first thing you do in a waveform viewer, and users keep reporting it is confusing ([GTKWave #368](https://github.com/gtkwave/gtkwave/issues/368), [#476](https://github.com/gtkwave/gtkwave/issues/476)). If this step feels broken, people assume the tool is broken.
 
-The goal is not "which viewer wins." The goal is to find recurring friction patterns and remove them.
+**Performance and memory break flow.** Stalls and RAM spikes destroy iterative debugging. A 500MB VCD file should not require 3GB of RAM ([GTKWave #173](https://github.com/gtkwave/gtkwave/issues/173), [#438](https://github.com/gtkwave/gtkwave/issues/438)).
 
-## Direct feedback from potential users
+**Format and semantic edges still hurt.** Newer GHDL versions produce `.ghw` files that older GTKWave builds cannot parse correctly ([SourceForge bug #21](https://sourceforge.net/p/gtkwave/bugs/21/)). The physicist hit exactly this.
 
-### Interview A (physics researcher, RedPitaya + VHDL/GHDL on Windows/WSL)
+**Navigation is still too manual.** Jump-to-next-change is a daily operation, not a luxury ([vcdrom #27](https://github.com/wavedrom/vcdrom/issues/27)).
 
-> "After upgrading GHDL, GTKWave 3.3.100 no longer works well with newer .ghw files, so I moved to .fst."
->
-> "I like auto-reloading updated waveform files."
->
-> "I don't like analog visualization in GTKWave: height extensions feel wonky, and values are normalized to the current window; I cannot set limits manually."
+**Theming and visual comfort are inconsistent.** Long debug sessions need readable UI, and GTKWave's theming has been a known gap for years ([GTKWave #4](https://github.com/gtkwave/gtkwave/issues/4), [oss-cad-suite #186](https://github.com/YosysHQ/oss-cad-suite-build/issues/186)).
 
-This is a great example of mixed feedback: one workflow saver (auto-reload) and two critical UX gaps (analog lane ergonomics and y-axis control).
+**Cross-platform polish blocks adoption.** macOS issues alone have accumulated dozens of reports ([GTKWave #43](https://github.com/gtkwave/gtkwave/issues/43), [#207](https://github.com/gtkwave/gtkwave/issues/207), [#269](https://github.com/gtkwave/gtkwave/issues/269), [#250](https://github.com/gtkwave/gtkwave/issues/250)). Desktop problems feel like product reliability problems.
 
-### Interview B (macOS + WSL2, evaluating alternatives)
+**Packaging is a product feature.** If users cannot install confidently, they never evaluate the core UX ([GTKWave #486](https://github.com/gtkwave/gtkwave/issues/486), [#219](https://github.com/gtkwave/gtkwave/issues/219), [Homebrew discussion #2367](https://github.com/orgs/Homebrew/discussions/2367)).
 
-> "I looked for an alternative because GTKWave maintenance seems to be losing steam."
->
-> "I could not find prebuilt binaries for my setup, while Surfer installed easily with brew and just worked."
->
-> "Hardware users are conservative; education matters."
-
-This reinforces a hard truth: better features do not matter if installation trust is low.
-
-### Interview C (macOS M1 retest + Hyprland Linux)
-
-> "No blank screen this time on mac M1, so that part is clearly sorted out."
->
-> "What blocked me was the file dialog. It seemed to expect a Linux-like layout with /home."
->
-> "Files in /tmp still did not show in NovyWave's picker; moving them to /usr/local/share worked."
->
-> "Once files opened, everything worked smoothly: Dock to Bottom is great, binary/hex toggle is practical, keyboard flow is strong, and multiple dump comparison is a huge plus."
->
-> "On Hyprland Arch Linux it works very well without the filesystem issue."
-
-This is exactly the kind of beta signal that matters: one severe first-minute blocker, followed by strong product validation once the blocker is removed.
-
-### Positive signals worth preserving
-
-- clean, uncluttered workspace presentation
-- strong keyboard-driven interaction model
-- practical radix switching for signal inspection
-- multi-dump comparison as a migration-grade differentiator
-
-## Feedback-derived checklist (what is done vs missing)
-
-This checklist is distilled directly from Interviews A-C, with explicit status so we can avoid fuzzy progress claims.
-
-### Interview A checklist (RedPitaya + VHDL/GHDL on Windows/WSL)
-
-- [x] Keep auto-reload workflow in core product path (already implemented and positively validated)
-- [x] Keep FST as a first-class workflow format
-- [x] Keep `.ghw` as a first-class supported format for VHDL/GHDL workflows
-- [ ] Add regression samples for newer GHDL-generated `.ghw` files and verify behavior on Windows + WSL
-- [ ] Improve analog lane ergonomics: direct row-height resizing instead of awkward mode-dependent interaction
-- [ ] Add manual analog y-axis limits (min/max), not only auto-normalized view
-- [ ] Publish a beginner-friendly quick-start for non-FPGA users (research/education users)
-
-### Interview B checklist (macOS + WSL2 adoption friction)
-
-- [x] Keep NovyWave positioned as multi-HDL, not tied to one language ecosystem
-- [x] Keep basic macOS and Windows desktop support in active scope (not Linux-only)
-- [ ] Make binary downloads easier to discover in release notes and docs
-- [ ] Add clearer install guides per platform (macOS, Windows, Linux, WSL)
-- [ ] Add a GTKWave migration guide for conservative users (old action -> NovyWave equivalent)
-- [ ] Publish short onboarding material focused on first success in under 5 minutes
-
-### Interview C checklist (macOS M1 retest + Hyprland Linux)
-
-- [x] Multiple waveform files can be loaded and compared in one session
-- [x] Fast rendering path exists (Fast2D canvas + backend decimation for dense timelines)
-- [x] Transition visibility while zoomed out (short spikes/events) is handled by transition-aware timeline processing (still being tuned)
-- [x] Basic cross-platform behavior is validated by users on macOS and Linux; remaining blockers are mostly first-run file-picker UX
-
-### Cross-platform path checklist (including Windows audit)
-
-- [x] Windows root browsing currently enumerates available drives (`C:\`, `D:\`, ...)
-- [x] Linux root shortcuts are present (`/home`, `/tmp`, `/usr`, etc.)
-- [ ] Add macOS-first roots to file browsing (`/Users`, `~/`, `/Volumes`) instead of Linux-biased defaults
-- [ ] Verify first-file-open flow from common macOS locations (`~/Desktop`, `~/Downloads`, `/tmp`)
-- [ ] Remove slash-only assumptions in frontend path handling (Windows separators currently expose edge cases)
-- [ ] Replace path-prefix heuristics like `starts_with("/")` with platform-agnostic file/directory classification
-- [ ] Add Windows-specific QA cases for file picker (`C:\Users\<user>\Downloads`, secondary drives, optional UNC paths)
-
-## High-signal pain clusters with citations
-
-| Cluster | Evidence | Why it matters for NovyWave |
-| --- | --- | --- |
-| Signal onboarding is unintuitive | [GTKWave #368](https://github.com/gtkwave/gtkwave/issues/368), [GTKWave #476](https://github.com/gtkwave/gtkwave/issues/476) | Adding signals is a first-minute task; if it is confusing, users assume the tool is broken |
-| Performance and memory break flow | [GTKWave #173](https://github.com/gtkwave/gtkwave/issues/173), [GTKWave #438](https://github.com/gtkwave/gtkwave/issues/438) | Stalls and RAM spikes destroy iterative debugging |
-| Format/semantic edges still hurt | [SourceForge bug #21](https://sourceforge.net/p/gtkwave/bugs/21/), Interview A (.ghw friction) | Missing semantics means missing trust |
-| Navigation and measurement are still too manual | [vcdrom #27](https://github.com/wavedrom/vcdrom/issues/27) | Jump-to-next-change is a daily operation, not a luxury |
-| Theming and visual comfort are inconsistent | [GTKWave #4](https://github.com/gtkwave/gtkwave/issues/4), [oss-cad-suite #186](https://github.com/YosysHQ/oss-cad-suite-build/issues/186) | Long debug sessions need readable UI in real desktop setups |
-| Cross-platform polish blocks adoption | [GTKWave #43](https://github.com/gtkwave/gtkwave/issues/43), [GTKWave #207](https://github.com/gtkwave/gtkwave/issues/207), [GTKWave #269](https://github.com/gtkwave/gtkwave/issues/269), [GTKWave #250](https://github.com/gtkwave/gtkwave/issues/250) | Desktop problems feel like product reliability problems |
-| File-dialog portability can block first use | Interview C (macOS M1 feedback) | If users cannot find/open their first file, every other feature is invisible |
-| Packaging and release cadence are product features | [GTKWave #486](https://github.com/gtkwave/gtkwave/issues/486), [GTKWave #219](https://github.com/gtkwave/gtkwave/issues/219), [Homebrew discussion #2367](https://github.com/orgs/Homebrew/discussions/2367) | If users cannot install confidently, they never evaluate the core UX |
-| Extensibility and automation demand is explicit | [GTKWave #308](https://github.com/gtkwave/gtkwave/issues/308), [GTKWave #209](https://github.com/gtkwave/gtkwave/issues/209) | Tool longevity depends on integration, not just UI controls |
+**Extensibility demand is explicit.** Users want plugins and automation, not just UI controls ([GTKWave #308](https://github.com/gtkwave/gtkwave/issues/308), [#209](https://github.com/gtkwave/gtkwave/issues/209)).
 
 The pattern is not a single missing feature. It is compounding friction across onboarding, scale, and platform reliability.
 
-## Priority chart (my weighted view)
+![Workspace header in light theme](/images/novywave_header_light.png)
+*NovyWave workspace in light theme.*
 
-I scored each cluster by impact on debugging flow, evidence recurrence, and near-term product leverage.
+## What is already built
 
-```text
-Scale performance and memory      ########## 10
-Signal onboarding UX              #########   9
-Packaging and platform polish     #########   9
-Format semantic compatibility     ########    8
-Navigation and measurement        #######     7
-Extensibility and automation      ######      6
-Theming and visual comfort        #####       5
-```
+These conversations did not happen in a vacuum. A lot of the foundation was already in place — the interviews just confirmed which parts mattered and which had gaps.
 
-This is opinionated on purpose: if a waveform viewer is not fast, predictable, and easy to install, everything else is secondary.
+Here is what NovyWave already does:
 
-## What is already implemented in NovyWave
+- **VCD, FST, and GHW format support** — the three formats that cover most VHDL, Verilog, and GHDL workflows. The physicist's `.ghw` problem with GTKWave does not apply here.
+- **Multi-file waveform comparison** — load two or more dumps into the same session and compare them side by side. The tester called this "a huge plus," and it is genuinely one of the things that surprised people the most.
+- **Gamer-style navigation** — W/S to zoom, A/D to pan, Q/E for cursor movement. Shift for acceleration. If you have ever played an FPS, you already know the controls.
+- **Auto-reload via plugin** — change your simulation, NovyWave detects the updated file and reloads it. The physicist's favorite feature, and mine too.
+- **Workspace persistence and plugin system** — `.novywave` config files for per-project state. The plugin system is built on WebAssembly (Wasmtime), so plugins are sandboxed and portable across platforms. This directly answers the extensibility demand from the issue trackers ([GTKWave #308](https://github.com/gtkwave/gtkwave/issues/308), [#209](https://github.com/gtkwave/gtkwave/issues/209)) — users want automation, not just UI controls, and WASM plugins are how NovyWave delivers that.
+- **Cross-platform desktop app** — built with Tauri, with builds for Linux (AppImage, .deb, .rpm), macOS (DMG), and Windows (MSI, NSIS).
+- **Dark and light themes, flexible layouts** — including the "Dock to Bottom" layout the tester liked.
+- **Browser and desktop modes** — NovyWave runs as a Tauri desktop app or as a browser app via the MoonZoon backend. The physicist's WSL scenario is a perfect example: run the backend in WSL, open `localhost` in a Windows browser — no desktop app installation needed. Also works for remote servers and team sharing over the network.
+- **Signal state rendering** — Z (high-impedance), X (unknown), U (uninitialized), and N/A states already display with distinct colors and sizing. This came from the format compatibility research ([SourceForge bug #21](https://sourceforge.net/p/gtkwave/bugs/21/)).
+- **Peak-preserving decimation** — zooming out on large traces keeps short events visible instead of losing them to sub-pixel averaging. Motivated by the performance cluster ([GTKWave #173](https://github.com/gtkwave/gtkwave/issues/173), [#438](https://github.com/gtkwave/gtkwave/issues/438)).
+- **Jump to next/previous transition** — keyboard shortcut to jump between signal changes. The "navigation is too manual" issue tracker finding ([vcdrom #27](https://github.com/wavedrom/vcdrom/issues/27)) is already partially addressed.
+- **Example projects for five HDLs** — ready-to-run examples for VHDL, Verilog, SpinalHDL, Amaranth, and Spade, so NovyWave is not tied to one ecosystem.
 
-NovyWave is not starting from zero. Several pain points already have concrete implementation work:
+<Note>The auto-reload feature is not hardcoded into NovyWave's core. It is a WASM plugin called `reload_watcher` that monitors the filesystem and requests reloads. This is a deliberate design choice — the plugin system should carry its weight, and auto-reload is proof that it can.</Note>
 
-| Area | Implemented status | Source |
-| --- | --- | --- |
-| Core format support | VCD, FST, and `.ghw` support is in place | [NovyWave README](https://github.com/NovyWave/NovyWave/blob/main/README.md) |
-| Multi-waveform workflows | Multiple waveforms can be loaded and compared in one view | [NovyWave README](https://github.com/NovyWave/NovyWave/blob/main/README.md), [Multi-file tutorial](https://github.com/NovyWave/NovyWave/blob/main/docs/src/tutorials/multi-file.md) |
-| Navigation shortcuts | Zoom/pan/cursor controls including jump to transitions | [Task 5 report](https://github.com/NovyWave/NovyWave/blob/main/docs/Task%205%20-%20Waveform%20Viewer%20and%20Speed%20Optimizations.md) |
-| Fast rendering and zoomed-out readability | Fast2D rendering + decimation/transition processing for dense timelines, so short events remain visible when zoomed out | [Task 5 report](https://github.com/NovyWave/NovyWave/blob/main/docs/Task%205%20-%20Waveform%20Viewer%20and%20Speed%20Optimizations.md), [Architecture notes](https://github.com/NovyWave/NovyWave/blob/main/docs/src/development/architecture.md), [Backend implementation](https://github.com/NovyWave/NovyWave/blob/main/backend/src/main.rs) |
-| Auto-reload workflow | `reload_watcher` plugin automatically requests waveform reloads | [Tasks 6 and 7](https://github.com/NovyWave/NovyWave/blob/main/docs/Tasks%206%20and%207.md) |
-| Workspace and plugin model | `.novywave` and `.novywave_global`, Wasmtime-based plugin loading | [Tasks 6 and 7](https://github.com/NovyWave/NovyWave/blob/main/docs/Tasks%206%20and%207.md) |
-| Distribution and updater | Bundling pipeline and Tauri updater integration work | [Tasks 8 and 9](https://github.com/NovyWave/NovyWave/blob/main/docs/Tasks_8_and_9.md) |
-| Basic macOS/Windows support | Cross-platform desktop app and release artifacts for non-Linux users are already part of the project | [NovyWave README](https://github.com/NovyWave/NovyWave/blob/main/README.md), [Tasks 8 and 9](https://github.com/NovyWave/NovyWave/blob/main/docs/Tasks_8_and_9.md), Interview C |
-| Multi-HDL onboarding | Example projects for VHDL, Verilog, SpinalHDL, Amaranth, Spade | [NovyWave README](https://github.com/NovyWave/NovyWave/blob/main/README.md), [Tasks 8 and 9](https://github.com/NovyWave/NovyWave/blob/main/docs/Tasks_8_and_9.md) |
+## What I am fixing before I would feel good shipping this
 
-Several interview-driven asks are therefore already implemented: `.ghw` support, multi-waveform comparison, fast/decimated rendering with zoomed-out transition visibility, and basic macOS/Windows support.
+Here is what is left. Not a roadmap — more like the list I keep looking at when I ask myself "would I recommend this to the physicist?"
 
-![Workspace header in light theme](https://raw.githubusercontent.com/NovyWave/NovyWave/main/docs/Task%206%20and%207%20-%20media/header_light.png)
-*Workspace UX iteration from the workspace/plugin workstream.*
+### Analog signal rendering
 
-## Gaps that remain (and now become explicit targets)
+This one goes directly to the physicist's feedback: "height extensions feel wonky, values normalized, cannot set limits." NovyWave's backend already parses Real/float values from waveform files, but the frontend renders them as digital rectangles with text — no line charts, no Y-axis. The plan is to add polyline or step-function rendering for analog signals, with a Y-axis scale and user-settable min/max limits. This is a significant addition, so the initial version will focus on getting basic line rendering working with reasonable defaults — a best-effort starting point that can be refined based on feedback.
 
-The interviews and issue analysis reveal gaps I now treat as first-class:
+### Signal row height resizing
 
-- analog signal lane ergonomics (resizing interaction, not "wonky" mode toggles)
-- user-defined y-axis limits for analog traces
-- more forgiving handling and diagnostics around format/version mismatches
-- faster "find and add many signals" workflow with fewer hidden gestures
-- stronger installation confidence on macOS, Windows, and WSL paths
-- platform-aware file picker defaults and clearer empty-state guidance in file browsing
+Signal rows are currently fixed at 30 pixels. For analog traces you need vertical space to read values — the physicist's feedback makes that clear. The goal is drag-to-resize on row dividers, with per-signal heights stored in the workspace config. Analog signals would get a taller default.
 
-## Decisions from this research
+### Signal grouping and coloring
 
-### 1) Onboarding is a performance feature
+The selected variables panel is currently a flat list. Past about twenty signals, it becomes hard to find anything — exactly the onboarding friction reported in [GTKWave #368](https://github.com/gtkwave/gtkwave/issues/368) and [#476](https://github.com/gtkwave/gtkwave/issues/476). Named collapsible groups with drag reorder and per-signal or per-group color assignment would bring structure to larger designs. Colors would be reflected in the waveform rendering.
 
-I will treat signal discovery/addition as hot-path UX, not an auxiliary panel. If users cannot add 20 signals quickly, the viewer is not ready.
+### Named markers / time bookmarks
 
-### 2) Scale behavior is a correctness requirement
+Jump-to-transition exists, but there is no way to bookmark important time points. This addresses the "navigation is too manual" cluster ([vcdrom #27](https://github.com/wavedrom/vcdrom/issues/27)) and the extensibility demand ([GTKWave #308](https://github.com/gtkwave/gtkwave/issues/308)). Named markers rendered as labeled vertical lines on the waveform, with keyboard shortcuts for add/next/prev, stored in the workspace config.
 
-A viewer that freezes under realistic memory/vector workloads is functionally wrong, even if rendering is correct eventually.
+### File picker platform roots
 
-### 3) Packaging reliability is part of product quality
+Interview C — the macOS M1 tester — was blocked on first use because the file picker showed `/home` instead of `/Users`. Files in `/tmp` were invisible. This is a first-minute blocker that makes every other feature invisible. macOS needs `/Users`, `~/Desktop`, `~/Downloads`, `/Volumes`. Windows needs clean drive letter handling. And a clear "no waveform files here" empty-state message when a directory has no supported files.
 
-"Install and open file in minutes" is a feature with equal priority to parser and renderer work.
+<Note>These five items trace directly to the user research and issue tracker findings above. Each one addresses friction that real users reported — not speculative features.</Note>
 
-### 4) Plugins and automation stay in core strategy
+## What this comes down to
 
-The plugin system is not just a technical experiment; it is the path to sustainable specialization per domain/team.
+Three conversations taught me more about what NovyWave needs than months of reading issue trackers alone. The tool works — the feedback confirmed that. What it needs now is the kind of care that turns "works" into "I trust this." Reliable file picking. Analog traces that behave. Installation that does not require workarounds.
 
-### 5) Analog UX needs dedicated design work
+If you want to try it or if you have thoughts of your own, the project is on [GitHub](https://github.com/NovyWave/NovyWave). I am not hard to reach.
 
-The analog feedback in Interview A is exactly the kind of practical detail that issue mining alone would underweight.
-
-### 6) First-file-open experience is a release gate
-
-Interview C confirms a key product rule: if users cannot find and open waveforms from common platform paths on first try, the release is not beta-ready.
-
-## Beta-readiness TODOs
-
-Before NovyWave is ready for broad beta testing, these items should be implemented and validated.
-
-### P0: must be done before beta
-
-- [ ] Make signal onboarding frictionless: multi-select add, clear append/group affordances, and useful startup defaults
-- [ ] Keep interaction responsive on large traces during zoom/pan/cursor operations (no freeze-like behavior)
-- [ ] Add dedicated large-memory UX: range/slice selection plus table/hex views
-- [ ] Improve analog workflows: direct lane-height resizing and user-defined y-axis limits
-- [ ] Harden compatibility diagnostics: tolerant loading with explicit, actionable warnings for skipped constructs
-- [ ] Ship reliable install paths for Linux, macOS, and Windows, with clear WSL usage guidance
-- [ ] Fix file picker portability: platform-aware default roots (`/Users` on macOS, drives on Windows, `/home` on Linux), fallback to user home, and clear "no supported waveforms here" empty-state messaging
-- [ ] Remove path-separator assumptions so Windows paths behave the same as POSIX paths in labels and selection UX
-
-### P1: strongly recommended during beta
-
-- [ ] Improve navigation ergonomics: named markers and fast next/previous transition workflows
-- [ ] Stabilize plugin/automation interfaces and publish concise API examples
-- [ ] Ensure session/workspace state is portable and reproducible across machines
-- [ ] Expand quick-start and troubleshooting docs for common HDL stacks
-
-### Beta exit checks
-
-- [ ] First-time users can complete the core debug loop without hidden gestures or private guidance
-- [ ] Memory-heavy and large-trace sessions remain usable under realistic project conditions
-- [ ] Cross-platform packages work predictably enough that onboarding does not start with installation debugging
-- [ ] macOS users can open waveform files from common locations (`~/Desktop`, `~/Downloads`, `/tmp`) without path workarounds
-- [ ] Windows users can open waveform files from common locations (`C:\Users\<user>\Downloads`, project drives) with no path-format surprises
-
-## Final take
-
-I think EDA tooling has normalized too much friction for too long.
-
-Users are not asking for magic. They are asking for tools that do not break concentration. The fastest way to earn trust is boring in the best possible way: open files reliably, stay responsive, show correct semantics, and get out of the way.
-
-That is the bar I am using for NovyWave from now on.
-
-## Source index
-
-- GTKWave issues: [#368](https://github.com/gtkwave/gtkwave/issues/368), [#476](https://github.com/gtkwave/gtkwave/issues/476), [#173](https://github.com/gtkwave/gtkwave/issues/173), [#438](https://github.com/gtkwave/gtkwave/issues/438), [#4](https://github.com/gtkwave/gtkwave/issues/4), [#43](https://github.com/gtkwave/gtkwave/issues/43), [#207](https://github.com/gtkwave/gtkwave/issues/207), [#269](https://github.com/gtkwave/gtkwave/issues/269), [#250](https://github.com/gtkwave/gtkwave/issues/250), [#486](https://github.com/gtkwave/gtkwave/issues/486), [#219](https://github.com/gtkwave/gtkwave/issues/219), [#308](https://github.com/gtkwave/gtkwave/issues/308), [#209](https://github.com/gtkwave/gtkwave/issues/209)
-- SourceForge historical ticket: [GTKWave bug #21](https://sourceforge.net/p/gtkwave/bugs/21/)
-- Downstream/platform signals: [Homebrew discussion #2367](https://github.com/orgs/Homebrew/discussions/2367), [oss-cad-suite #186](https://github.com/YosysHQ/oss-cad-suite-build/issues/186)
-- Alternative viewer baseline: [Surfer homepage](https://surfer-project.org/), [vcdrom issue #27](https://github.com/wavedrom/vcdrom/issues/27)
-- NovyWave implementation references: [README](https://github.com/NovyWave/NovyWave/blob/main/README.md), [Task 5](https://github.com/NovyWave/NovyWave/blob/main/docs/Task%205%20-%20Waveform%20Viewer%20and%20Speed%20Optimizations.md), [Tasks 6 and 7](https://github.com/NovyWave/NovyWave/blob/main/docs/Tasks%206%20and%207.md), [Tasks 8 and 9](https://github.com/NovyWave/NovyWave/blob/main/docs/Tasks_8_and_9.md)
-- Direct user interviews: anonymized email feedback from three potential users (Interviews A-C)
+*Full disclosure: an AI helped me write this post. The research, interviews, and opinions are mine — the AI organized my rambling into something with structure.*
