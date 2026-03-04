@@ -18,19 +18,21 @@ GTKWave has been the default open-source waveform viewer for over two decades. I
 
 I built it on MoonZoon and Tauri — a single Rust codebase that compiles the frontend to WebAssembly, runs a native backend for file parsing and plugin hosting via Wasmtime, and wraps into a Tauri desktop app. Minimal JavaScript glue, no Electron. This post covers how user research and public issue tracker analysis shaped what gets built on top of that foundation.
 
-## Three conversations that changed my priorities
+## Four conversations that changed my priorities
 
-I spent a cycle doing two things in parallel: reading public issue trackers to find where waveform viewer users get stuck, and replying to people who emailed me directly about NovyWave. The issue trackers told me what was broken. The emails told me what it felt like.
+I spent a cycle doing two things in parallel: reading public issue trackers — GTKWave, vcdrom, oss-cad-suite, Homebrew discussions — to find where waveform viewer users get stuck, and replying to people who emailed me directly about NovyWave. The issue trackers told me what was broken. The emails told me what it felt like.
 
-<Note>Direct quotes below are anonymized and lightly edited for length. They are included because they expose workflow pain that issue trackers often miss.</Note>
+<Note>Quotes below are anonymized, shortened, and paraphrased from email feedback. They are included because they expose workflow pain that issue trackers often miss.</Note>
 
-**A physics researcher** working with RedPitaya (Zynq 7) boards on Windows/WSL — not an FPGA professional, they were careful to note. After upgrading GHDL, GTKWave 3.3.100 stopped handling newer `.ghw` files, so they switched to `.fst`. They liked NovyWave's auto-reload immediately. But analog visualization was the sore point: "height extensions feel wonky, and values are normalized to the current window — I cannot set limits manually." One workflow saver, two critical UX gaps.
+**A physicist** working with RedPitaya (Zynq 7), Vivado, and GHDL on Windows — not an FPGA professional, they were careful to note. GTKWave 3.3.100 (the last precompiled Windows binary) broke on newer `.ghw` files after a GHDL upgrade, so they switched to `.fst`. They planned to run NovyWave in WSL and access it through `localhost` in a Windows browser. Auto-reload was an immediate win. Analog visualization was the sore point: "height extensions feel wonky, and values are normalized to the current window — I cannot set limits manually."
 
-**A developer evaluating alternatives** on macOS and WSL2 because GTKWave "seems to be losing steam." They could not find prebuilt binaries for their setup, while another viewer installed with a single `brew install` and just worked. The line that stuck: "Hardware users are very conservative types." I had been so focused on what NovyWave could *do* that I had not spent enough time on whether anyone could *get* it.
+**A developer on macOS and WSL2** reached out looking for a GTKWave alternative. NovyWave was too early for real testing at that point — it would not even build on their machine. But the exchange started me thinking about why GTKWave is still the default after two decades. "Hardware users are very conservative types," they wrote. It makes sense — verification already consumes most of the design cycle, and a missed signal can mean costly re-fabrication. People stick with the tool they know, even if they hate it. Few people work deeply enough in both hardware and software to build better alternatives, and fewer still can sustain it.
 
-**A cross-platform tester** on Mac M1 and Hyprland Arch Linux. No blank screen on M1 this time — that was fixed. But the file dialog expected Linux-style paths (`/home`) on macOS. Files in `/tmp` would not show up; moving them to `/usr/local/share` worked. Once past that hurdle: "Dock to Bottom is great, binary/hex toggle is practical, keyboard flow is strong, and multiple dump comparison is a huge plus." On Hyprland, everything worked without the filesystem issue. Good product — if you could get past the first 30 seconds.
+**Another hardware developer** — a university student simulating a VHDL traffic light controller — first tried NovyWave on Mac M1 months earlier: blank screen, loading hangs. They came back after prebuilt binaries shipped. No blank screen this time, but the file dialog expected Linux-style paths (`/home`) on macOS and files in `/tmp` would not show. Once past that: "Dock to Bottom is great, binary/hex toggle is practical, keyboard flow is strong, and multiple dump comparison is a huge plus." On Hyprland Arch Linux everything worked without the filesystem issue. Good product — if you could get past the first 30 seconds.
 
-Three people, three setups, same pattern: the core viewer works, but the edges — installation, file picking, analog display — are where trust breaks.
+**A developer building a pipelined MIPS processor** in Verilog on macOS. Used GTKWave "for a long time" and hated it. ChatGPT recommended NovyWave. They cloned the repo and hit a build error — a local path dependency left over from my machine. Fixed the same week when CI produced the first release binaries, but another reminder: if people cannot install the tool, nothing else matters.
+
+Four people, four setups, same pattern: the core viewer works, but installation, file picking, and analog display are where people get stuck.
 
 ## What the issue trackers confirmed
 
@@ -54,8 +56,8 @@ The emails told me what *felt* broken. The issue trackers told me it was not jus
 
 The pattern is not a single missing feature. It is compounding friction across onboarding, scale, and platform reliability.
 
-![Workspace header in light theme](/images/novywave_header_light.png)
-*NovyWave workspace in light theme.*
+![GTKWave interface](/images/gtkwave_interface.png)
+*GTKWave — the default open-source waveform viewer for over two decades.*
 
 ## What is already built
 
@@ -76,7 +78,7 @@ Here is what NovyWave already does:
 - **Jump to next/previous transition** — keyboard shortcut to jump between signal changes. The "navigation is too manual" issue tracker finding ([vcdrom #27](https://github.com/wavedrom/vcdrom/issues/27)) is already partially addressed.
 - **Example projects for five HDLs** — ready-to-run examples for VHDL, Verilog, SpinalHDL, Amaranth, and Spade, so NovyWave is not tied to one ecosystem.
 
-<Note>The auto-reload feature is not hardcoded into NovyWave's core. It is a WASM plugin called `reload_watcher` that monitors the filesystem and requests reloads. This is a deliberate design choice — the plugin system should carry its weight, and auto-reload is proof that it can.</Note>
+<Note>The auto-reload feature is not hardcoded into NovyWave's core. It is a WASM plugin called `reload_watcher` that monitors the filesystem and requests reloads. This is a deliberate design choice — the plugin system should be useful for real features, and auto-reload is proof that it is.</Note>
 
 ## What I am fixing before I would feel good shipping this
 
@@ -106,8 +108,8 @@ Interview C — the macOS M1 tester — was blocked on first use because the fil
 
 ## What this comes down to
 
-Three conversations taught me more about what NovyWave needs than months of reading issue trackers alone. The tool works — the feedback confirmed that. What it needs now is the kind of care that turns "works" into "I trust this." Reliable file picking. Analog traces that behave. Installation that does not require workarounds.
+Four conversations taught me more about what NovyWave needs than months of reading issue trackers alone. The tool works — the feedback confirmed that. What it needs now is the kind of care that turns "works" into "I trust this." Reliable file picking. Analog traces that behave. Installation that does not require workarounds.
 
 If you want to try it or if you have thoughts of your own, the project is on [GitHub](https://github.com/NovyWave/NovyWave). I am not hard to reach.
 
-*Full disclosure: an AI helped me write this post. The research, interviews, and opinions are mine — the AI organized my rambling into something with structure.*
+*Full disclosure: an AI helped me write this post — organizing my rambling into something with structure and finding related issues and pain points across waveform viewer and hardware developer tool trackers. The interviews, opinions, and decisions are mine.*
