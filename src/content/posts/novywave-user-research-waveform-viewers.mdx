@@ -80,7 +80,7 @@ Here is what NovyWave already does:
 
 ## What I am fixing before I would feel good shipping this
 
-Here is what is left. Not a roadmap — more like the list I keep looking at when I ask myself "would I recommend this to the physicist?"
+This is what stands between the current state and a beta I would be comfortable sharing.
 
 ### Analog signal rendering
 
@@ -90,19 +90,17 @@ This one goes directly to the physicist's feedback: "height extensions feel wonk
 
 Signal rows are currently fixed at 30 pixels. For analog traces you need vertical space to read values — the physicist's feedback makes that clear. The goal is drag-to-resize on row dividers, with per-signal heights stored in the workspace config. Analog signals would get a taller default.
 
-### Signal grouping and coloring
+### Signal grouping
 
-The selected variables panel is currently a flat list. Past about twenty signals, it becomes hard to find anything — exactly the onboarding friction reported in [GTKWave #368](https://github.com/gtkwave/gtkwave/issues/368) and [#476](https://github.com/gtkwave/gtkwave/issues/476). Named collapsible groups with drag reorder and per-signal or per-group color assignment would bring structure to larger designs. Colors would be reflected in the waveform rendering.
+The selected variables panel is currently a flat list. Past about twenty signals it becomes hard to find anything — exactly the friction reported in [GTKWave #368](https://github.com/gtkwave/gtkwave/issues/368) and [#476](https://github.com/gtkwave/gtkwave/issues/476). Named collapsible groups would bring structure to larger designs.
 
 ### Named markers / time bookmarks
 
-Jump-to-transition exists, but there is no way to bookmark important time points. This addresses the "navigation is too manual" cluster ([vcdrom #27](https://github.com/wavedrom/vcdrom/issues/27)) and the extensibility demand ([GTKWave #308](https://github.com/gtkwave/gtkwave/issues/308)). Named markers rendered as labeled vertical lines on the waveform, with keyboard shortcuts for add/next/prev, stored in the workspace config.
+Jump-to-transition exists, but there is no way to bookmark important time points. This addresses the "navigation is too manual" cluster ([vcdrom #27](https://github.com/wavedrom/vcdrom/issues/27)) and the extensibility demand ([GTKWave #308](https://github.com/gtkwave/gtkwave/issues/308)). Named markers rendered as labeled vertical lines on the waveform, stored in the workspace config.
 
 ### File picker platform roots
 
 The macOS M1 developer was blocked on first use because the file picker showed `/home` instead of `/Users`. Files in `/tmp` were invisible. This is a first-minute blocker that makes every other feature invisible. macOS needs `/Users`, `~/Desktop`, `~/Downloads`, `/Volumes`. Windows needs clean drive letter handling. And a clear "no waveform files here" empty-state message when a directory has no supported files.
-
-<Note>These five items trace directly to the user research and issue tracker findings above. Each one addresses friction that real users reported — not speculative features.</Note>
 
 ## Next steps
 
