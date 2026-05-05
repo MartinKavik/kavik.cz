@@ -81,10 +81,24 @@ const { hideAboutLink = false } = Astro.props;
 					</ul>
 				</div>
 				<p class="social-proof">I've helped 10+ great companies</p>
-				<a href="mailto:martin@kavik.cz?subject=Contract%20Work%20Inquiry" class="cta-button contract-button">
-					<Icon icon="paper-plane-tilt" size="1.1em" />
-					Email martin@kavik.cz
-				</a>
+				<div class="contact-actions">
+					<a
+						href="mailto:martin@kavik.cz?subject=Contract%20Work%20Inquiry"
+						class="cta-button contract-button"
+						aria-label="Email martin@kavik.cz"
+					>
+						<Icon icon="paper-plane-tilt" size="1.1em" />
+						martin@kavik.cz
+					</a>
+					<a href="https://cz.linkedin.com/in/martinkavik" target="_blank" rel="noopener" class="cta-button resource-button">
+						<Icon icon="linkedin-logo" size="1.1em" />
+						LinkedIn
+					</a>
+					<a href="/documents/cv.pdf" target="_blank" rel="noopener" class="cta-button resource-button">
+						<Icon icon="file-pdf" size="1.1em" />
+						CV
+					</a>
+				</div>
 			</div>
 		</article>
 
@@ -601,6 +615,16 @@ const { hideAboutLink = false } = Astro.props;
 		margin-top: auto;
 	}
 
+	.contact-actions {
+		display: grid;
+		gap: 0.75rem;
+		margin-top: auto;
+	}
+
+	.contact-actions .cta-button {
+		margin-top: 0;
+	}
+
 	.sponsor-button {
 		background: linear-gradient(135deg, #f72585, #7209b7);
 		color: white;
@@ -623,7 +647,32 @@ const { hideAboutLink = false } = Astro.props;
 		box-shadow: 0 4px 12px rgba(58, 134, 255, 0.3);
 	}
 
+	.resource-button {
+		color: var(--gray-0);
+		background: var(--gray-800);
+		border: 1px solid var(--gray-700);
+	}
+
+	.resource-button:hover,
+	.resource-button:focus {
+		background: var(--gray-700);
+		border-color: var(--gray-600);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
 	/* Responsive */
+	@media (min-width: 36em) {
+		.contact-actions {
+			grid-template-columns: minmax(0, 1fr) auto auto;
+			align-items: stretch;
+		}
+
+		.contact-actions .cta-button {
+			padding-inline: 1rem;
+		}
+	}
+
 	@media (min-width: 50em) {
 		aside {
 			padding: 7.5rem;

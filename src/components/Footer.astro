@@ -42,8 +42,10 @@ const baseUrl = Astro.url.origin;
 	</div>
 
 	<div class="footer-links">
-		<a href="mailto:martin@kavik.cz">martin@kavik.cz</a>
+		<a href="mailto:martin@kavik.cz" aria-label="Email martin@kavik.cz"><Icon icon="envelope-simple" size="1.4em" /></a>
+		<a href="/documents/cv.pdf" target="_blank" rel="noopener">CV</a>
 		<a href="https://github.com/MartinKavik" aria-label="GitHub"><Icon icon="github-logo" size="1.4em" /></a>
+		<a href="https://cz.linkedin.com/in/martinkavik" aria-label="LinkedIn"><Icon icon="linkedin-logo" size="1.4em" /></a>
 		<a href="https://x.com/MartinKavik" aria-label="X"><Icon icon="x-logo" size="1.4em" /></a>
 		<a href="https://www.youtube.com/@MartinKavik" aria-label="YouTube"><Icon icon="youtube-logo" size="1.4em" /></a>
 	</div>
@@ -248,11 +250,17 @@ const baseUrl = Astro.url.origin;
 	/* Footer links */
 	.footer-links {
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: center;
+		align-items: center;
 		gap: 0.75rem;
 	}
 
 	.footer-links a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 0;
 		padding: 0.625rem 1rem;
 		font-size: var(--text-base, 1rem);
 		color: var(--gray-300);
@@ -271,9 +279,7 @@ const baseUrl = Astro.url.origin;
 
 	.footer-links a:has(svg) {
 		padding: 0.75rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		gap: 0.4rem;
 	}
 
 	.sr-only {
@@ -298,4 +304,3 @@ const baseUrl = Astro.url.origin;
 	}
 
 </style>
-
